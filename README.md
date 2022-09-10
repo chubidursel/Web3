@@ -13,4 +13,4 @@ Contant:
   #3 Block "Other"
   Onther feauters
 
-to run this project after you download it and install all dependencies, type in ur comand line >npx run dev 
+to run this project after you download it and install all dependencies, type in ur comand line >npm run dev 
