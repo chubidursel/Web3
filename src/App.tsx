@@ -4,6 +4,7 @@ import  { Token }  from "./pages/Token"
 import  { ERC20 }  from "./pages/Token/ERC20"
 import { Defi } from "./pages/Defi"
 import { Other } from "./pages/Other"
+import {Exchange} from "./pages/Defi/exchange"
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Route path="/Token" element={<Token />} />
       <Route path="/Token/ERC20" element={<ERC20 />} />
       <Route path="/Defi" element={<Defi />} />
+      <Route path="/Defi/exchange" element={<Exchange />} />
       <Route path="/Other" element={<Other />} />
     </Routes>
   )

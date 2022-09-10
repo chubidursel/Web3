@@ -8,6 +8,7 @@ import { Tooltip, Button } from "@material-tailwind/react";
 //import {Wallet} from "../components/wallet"
 
 // CSS how to put them in the center?
+// max-width for small devices
 
 export function Home() {
   //const [visible, setVisible] = useState(false)
