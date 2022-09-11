@@ -4,7 +4,7 @@ import { ethers } from "hardhat";
 // npx hardhat run --network rinkeby scripts/deployErc20.ts
 
 // verify SC on etherscan 
-//npx hardhat verify ADDRESS --network rinkeby
+//npx hardhat verify 0x7C2ED4E6fB642186ec9472813207c902005583D7 --network rinkeby
 
 async function main() {
   console.log("🚀 deploying scmart contract.....");

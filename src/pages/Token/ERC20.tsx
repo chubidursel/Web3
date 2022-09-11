@@ -1,6 +1,6 @@
 import React from 'react'
 import defaultProvider from '../../components/defaultProvider';
-import { contractERC20, contractERC20WithSigner } from '../../components/erc20';
+import { contractERC20, contractERC20WithSigner } from '../../components/smart_contract/erc20';
 import {useState} from 'react';
 import { Link } from 'react-router-dom';
 

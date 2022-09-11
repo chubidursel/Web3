@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
-import metaProvider from "./metaMask"
-import defaultProvider from "./defaultProvider";
+import metaProvider from "../metaMask"
+import defaultProvider from "../defaultProvider";
 
 const address = "0x7C2ED4E6fB642186ec9472813207c902005583D7"
 const abi = [

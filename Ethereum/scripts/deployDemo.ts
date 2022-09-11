@@ -1,6 +1,7 @@
 import { ethers } from "hardhat";
 
 //npx hardhat run --network rinkeby scripts/deployDemo.ts
+//npx hardhat run --network localhost scripts/deployDemo.ts
 
 async function main() {
   console.log("🚀 deploying scmart contract.....");
