@@ -1,11 +1,11 @@
 import React from 'react'
-import { useState } from "react";
+import { useContext } from "react";
 import {Link} from "react-router-dom"
 
 
 //onClick={prev => setDis(!prev)}
 export function Token() {
-
+ 
   return (
     <>
     <div className='flex flex-raw justify-around text-5xl font-bold text-gray-100 mt-40'>
@@ -14,6 +14,7 @@ export function Token() {
       
       <div>ERC721</div>
       <div>ERC1155</div>
+     
     </div>
 
 

@@ -1,31 +1,35 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import walletProvider from "../abi/walletProvider";
-import Jazzicon, { jsNumberForAddress } from 'react-jazzicon'
+import Jazzicon, { jsNumberForAddress } from 'react-jazzicon';
+import { Context } from "../contexts/context";
+
+
+//1) ПЕРЕПИСАТЬ ФУНКЦИИ СТЕЙТА В ХЕНДЛЕРЫ 2) РАЗОБРАТЬСЯ С ПОДСКАЗКОЙ 3) ДОВЕСТИ ДО УМА КНОПКУ РАЗЛОГИНА
+
 declare let window: any;
 
 
 const Header = () => {
-  
- 
-  const [currentAccount, setCurrentAccount] = useState("");
+
+  const { currentAccount, setCurrentAccount } = useContext(Context);
   const [isLogOutVisible, setLogOutVisible] = useState(false);
 
-  // useEffect(() => {
-  //   window.ethereum.on("accountsChanged", (accounts: any) => {
-  //     console.log(accounts);
-  //     setCurrentAccount(accounts[0]);
-  //   });
-  //   window.ethereum.on("chainChanged", (chainId: any) => {
-  //     if (chainId !== "0x4") {
-  //       setCurrentAccount("");
-  //     }
-  //   });
+  useEffect(() => {
+    window.ethereum.on("accountsChanged", (accounts: any) => {
+      console.log(accounts);
+      setCurrentAccount(accounts[0]);
+    });
+    window.ethereum.on("chainChanged", (chainId: any) => {
+      if (chainId !== "0x4") {
+        setCurrentAccount("");
+      }
+    });
 
-  //   return () => {
-  //     window.ethereum.removeListener("accountsChanged");
-  //     window.ethereum.removeListener("chainChanged");
-  //   };
-  // }, []);
+    // return () => {
+    //   window.ethereum.removeListener("accountsChanged");
+    //   window.ethereum.removeListener("chainChanged");
+    // };
+  }, []);
 
   const handleMetamaskConnect = async () => {
     try {
@@ -41,40 +45,29 @@ const Header = () => {
   };
 
   return (
-    // надо переписать на тайлвинд
-    <header
-      style={{
-        display: "flex",
-        position: "relative",
-        justifyContent: "space-between",
-        padding: "16px",
-      }}
-    >
-     
+    <header className="flex relative justify-between p-4">
       {currentAccount ? (
-        // <h1 onClick={() => setLogOutVisible(!isLogOutVisible)}>
-        //   {currentAccount}
-        // </h1>
-
-
-<span
-          className="absolute right-0 mr-6 flex rounded-2xl border-2 border-green-700 px-[15px] py-2 text-xl hover:bg-green-700"
+  
+    <span
+          className="absolute right-0 mr-6 flex rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400"
           onClick={() => setLogOutVisible(!isLogOutVisible)}
         >
-          <Jazzicon diameter={25} seed={jsNumberForAddress(currentAccount)} />
+        <Jazzicon diameter={30} seed={jsNumberForAddress(currentAccount)}/>
           {currentAccount.toString().slice(0, 5) +
             "..." +
             currentAccount.toString().slice(38)}
         </span>
-
-
-
       ) : (
-        <button onClick={handleMetamaskConnect}>Connect to metamask</button>
+        <button
+          className="absolute right-0 mr-6 rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400"
+          onClick={handleMetamaskConnect}
+        >
+          Connect Metamask
+        </button>
       )}
       {isLogOutVisible && (
-        <div style={{ position: "absolute", right: "30px", top: "80px" }}>
-          <button
+        <div className="absolute right-12 top-20">
+          <button className = 'rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400'
             onClick={() => {
               setCurrentAccount("");
               setLogOutVisible(false);
