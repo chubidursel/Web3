@@ -1,13 +1,14 @@
 # Sample Hardhat Project
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+All smart contracts from this project you can find in contracts folder
 
-Try running some of the following tasks:
 
-```shell
-npx hardhat help
+>> testing smart contract
 npx hardhat test
-GAS_REPORT=true npx hardhat test
+
+>>run local hardhat blockchain
 npx hardhat node
+
+>> deploy or interact with smart contract
 npx hardhat run scripts/deploy.ts
-```
+

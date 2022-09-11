@@ -1,14 +1,25 @@
 import React from 'react'
 import defaultProvider from '../../components/defaultProvider';
+import { contractERC20 } from '../../components/erc20';
+import {useState} from 'react';
 
 export function ERC20() {
+  const [owner, setOwner] = useState()
+  const [add, setAdd] = useState("")
+
 
   async function getData(){
     const blockNum = await defaultProvider.getBlockNumber();
     console.log(blockNum)
-  }
 
-  console.log(defaultProvider)
+    const data = await contractERC20.owner();
+    setOwner(data)
+
+  }
+  const hadleSupply = async()=>{
+    const balance = await contractERC20.balanceOf(add);
+    console.log(balance.toString())
+  }
 
   const address = "0x354hb23jhb2"
   const tokenAddress = "0xXXXXXXX"
@@ -26,11 +37,11 @@ export function ERC20() {
       </div>
       <div className="bg-gray-200 w-full flex flex-col items-center">
       <div className="flex flex-col items-center py-6 space-y-3">
-          <a href='https://etherscan.io/token/0x2260fac5e5542a773aa44fbcfedf7c193bc2c599#code' target="_blank"><span className="text-gray-800 text-3xl font-semibold hover:underline">Etherscan</span></a>
+          <a href='https://etherscan.io/address/0x7C2ED4E6fB642186ec9472813207c902005583D7' target="_blank"><span className="text-gray-800 text-3xl font-semibold hover:underline">Etherscan</span></a>
           <p>Here i wanna put link to defi page with my small exchange  THIS IS WILL BE OUR FAUSET</p>
       </div>
       <div>
-        <h2>Your address: {address}</h2>
+        <h2>Your address: {owner}</h2>
         <h2>Token address: {tokenAddress}</h2>
         <p>total supply: {tokenAmount}</p>
         <p>owner: ??</p>
@@ -38,9 +49,10 @@ export function ERC20() {
       <div className='p-5'>
         <h1 className='text-4xl text-center'>Token Function:</h1>
         <label>Check your balance: 
-        <input onChange={()=>console.log("Toss this address to our ERC20 smart contract")}></input>
+        <input onChange={(event)=>setAdd(event.target.value)}></input>
+        <button onClick={hadleSupply} className="bg-orange-600 px-10 rounded-xl">submit</button>
         </label>
-        <input type="submit"></input>
+        
         
         <p> ADD more Feauters....... </p>
 
