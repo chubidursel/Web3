@@ -14,12 +14,12 @@ const config: HardhatUserConfig = {
       url: `https://rinkeby.infura.io/v3/${process.env.INFURA_RINKEBY}`,
       accounts: [`${process.env.PRIVATE_KEY}`]
     },
+    etherscan: {
+      apiKey: process.env.ETHERSCAN_VERIFY,
+    },
 
   }
 };
 
 export default config;
 
-// etherscan: {
-//   apiKey: process.env.ETHERSCAN_VERIFY,
-// },

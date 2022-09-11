@@ -53,35 +53,31 @@ export function ERC20() {
         <h2 className="text-purple-800 text-3xl text-center font-semibold">Check out our ERC20 token</h2>
       </div>
       <div className="bg-gray-200 w-full flex flex-col items-center">
-      <div className="flex flex-col items-center py-6 space-y-3">
-          <a href='https://etherscan.io/address/0x7C2ED4E6fB642186ec9472813207c902005583D7' target="_blank"><span className="text-gray-800 text-3xl font-semibold hover:underline">Etherscan 📚 </span></a>
-          <Link to="/Defi/exchange" className="text-gray-800 text-3xl font-semibold hover:underline">Exchange 🔃 </Link>
+      <div className="flex flex-row space-x-4 items-center py-6 space-y-3">
+          <a href='https://etherscan.io/address/0x7C2ED4E6fB642186ec9472813207c902005583D7' target="_blank"><span className="text-gray-800 text-3xl font-semibold hover:underline">Etherscan </span></a>
+          <Link to="/Defi/exchange" ><span className="text-gray-800 text-3xl font-semibold hover:underline">Exchange</span> </Link>
       </div>
-      <div>
+      <div className='bg-blue-100 w-full py-10'>
+        <h1 className='font-bold text-center'>INFO</h1>
         <h2>Owner of smart contract: {owner}</h2>
         <h2>Token address: {tokenAddress}</h2>
         <p>total supply: {tokenAmount}</p>
-
       </div>
-      <div className='p-5'>
+      <div className='p-5 bg-orange-100'>
         <h1 className='text-4xl text-center'>Token Function:</h1>
         <label>Check your balance: 
         <input onChange={(event)=>setAdd(event.target.value)}></input>
         <button onClick={hadleSupply} className="bg-orange-600 px-10 rounded-xl">submit</button>
         </label>
         <h1 className='text-center font-bold'>{balance}</h1>
-
         <form onSubmit={handleTransaction}>
           <h1 className='text-center font-bold underline'>Transfer token</h1>
           <label>send to: </label>
-          <input onChange={(e)=>setAddressTo(e.target.value)} className='border-solid border-4 border-indigo-600'></input>
+          <input onChange={(e)=>setAddressTo(e.target.value)} className='rounded'></input>
           <label>amount:</label>
           <input type='text' onChange={(e:any)=>setAmountTo(e.target.value)}></input>
           <button type="submit" className=" px-2 bg-orange-500" >click</button>
-
         </form>
-        
-        
         <p> ADD more Feauters....... </p>
 
       </div>
