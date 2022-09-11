@@ -45,7 +45,7 @@ const Header = () => {
   };
 
   return (
-    <header className="flex relative justify-between p-4">
+    <header className="flex relative justify-between p-4 font-semibold">
       {currentAccount ? (
   
     <span

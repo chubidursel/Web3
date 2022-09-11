@@ -1,9 +1,11 @@
 import React from 'react'
 import {Link} from "react-router-dom"
+import Header from '../components/header'
 
 export function Defi() {
   return (
     <>
+    <Header />
     <div className='text-white text-5xl text-center pt-10'>Defi</div>
     <div className='flex flex-raw justify-around text-5xl font-bold text-gray-100 mt-40'>
       <Link to="/Defi/exchange"><h1>Exchange</h1></Link>

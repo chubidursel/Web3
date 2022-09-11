@@ -1,8 +1,11 @@
 import React from 'react'
+import Header from '../components/header'
 
 export function Other() {
-  return (
-    <h1>Note</h1>
+  return (<>
+  <Header />
+  <h1>Note</h1>
+  </>
   )
 }
 
