@@ -3,6 +3,7 @@ import defaultProvider from '../../components/defaultProvider';
 import { contractERC20, contractERC20WithSigner } from '../../components/smart_contract/erc20';
 import {useState} from 'react';
 import { Link } from 'react-router-dom';
+import Header from '../../components/header';
 
 export function ERC20() {
   const [owner, setOwner] = useState()
@@ -44,6 +45,7 @@ export function ERC20() {
 
   return (
     <>
+    <Header />
 <button onClick={getData}>TESTING</button>
 
 <div className="py-6 flex flex-col justify-center sm:py-12">
