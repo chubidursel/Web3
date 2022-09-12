@@ -52,10 +52,10 @@ export function ERC20() {
   return (
     <>
     <Header />
-<div className="py-6 flex flex-col justify-center sm:py-12">
+<div className="py-6 flex flex-col justify-center sm:py-12 ">
 <div className="py-3 sm:max-w-xl sm:mx-auto ">
-<div className="bg-white min-w-1xl flex flex-col rounded-xl shadow-lg ">
-      <div className="px-12 py-5">
+<div className="bg-white min-w-1xl flex flex-col rounded-xl shadow-lg m-2">
+      <div className="px-12 py-5 ">
         <h2 className="text-purple-800 text-3xl text-center font-semibold">Check out our ERC20 token</h2>
       </div>
       <div className="bg-gray-200 w-full flex flex-col items-center">
