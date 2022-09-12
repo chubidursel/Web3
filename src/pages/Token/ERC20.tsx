@@ -1,9 +1,12 @@
 import React from 'react'
-import defaultProvider from '../../components/defaultProvider';
+import defaultProvider from '../../abi/defaultProvider';
 import { contractERC20, contractERC20WithSigner } from '../../components/smart_contract/erc20';
-import {useState} from 'react';
+import {useState, useContext} from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../../components/header';
+import { Context } from "../../contexts/context";
+import walletProvider from '../../abi/walletProvider';
+import {Info} from "./ERC20_components/info"
 
 export function ERC20() {
   const [owner, setOwner] = useState()
@@ -13,15 +16,18 @@ export function ERC20() {
   const [addressTo, setAddressTo] = useState("");
   const [amountTo, setAmountTo] = useState();
 
+//<<<<<<<<<<<<<<<<<<<<<  TESTING
+  const currentAccount = useContext(Context);
 
   async function getData(){
     const blockNum = await defaultProvider.getBlockNumber();
-    console.log(blockNum)
+    console.log(walletProvider)
 
-    const owner = await contractERC20.owner();
-    setOwner(owner)
+    console.log(currentAccount)
 
   }
+
+//<<<<<<<<<<<<<<<<<<<<
   const hadleSupply = async()=>{
     const balance = await contractERC20.balanceOf(add);
     setBalance(balance.toString())
@@ -46,8 +52,6 @@ export function ERC20() {
   return (
     <>
     <Header />
-<button onClick={getData}>TESTING</button>
-
 <div className="py-6 flex flex-col justify-center sm:py-12">
 <div className="py-3 sm:max-w-xl sm:mx-auto ">
 <div className="bg-white min-w-1xl flex flex-col rounded-xl shadow-lg ">
@@ -59,29 +63,27 @@ export function ERC20() {
           <a href='https://etherscan.io/address/0x7C2ED4E6fB642186ec9472813207c902005583D7' target="_blank"><span className="text-gray-800 text-3xl font-semibold hover:underline">Etherscan </span></a>
           <Link to="/Defi/exchange" ><span className="text-gray-800 text-3xl font-semibold hover:underline">Exchange</span> </Link>
       </div>
-      <div className='bg-blue-100 w-full py-10'>
-        <h1 className='font-bold text-center'>INFO</h1>
-        <h2>Owner of smart contract: {owner}</h2>
-        <h2>Token address: {tokenAddress}</h2>
-        <p>total supply: {tokenAmount}</p>
-      </div>
+
+      <Info />
+
       <div className='p-5 bg-orange-100'>
         <h1 className='text-4xl text-center'>Token Function:</h1>
-        <label>Check your balance: 
-        <input onChange={(event)=>setAdd(event.target.value)}></input>
-        <button onClick={hadleSupply} className="bg-orange-600 px-10 rounded-xl">submit</button>
-        </label>
-        <h1 className='text-center font-bold'>{balance}</h1>
-        <form onSubmit={handleTransaction}>
+        <div className="bg-pink-400 p-2">
+          <label >Check your balance: 
+            <input onChange={(event)=>setAdd(event.target.value)}></input>
+            <button onClick={hadleSupply} className="bg-orange-600 px-10 rounded-xl">submit</button>
+            <h1 className='text-center font-bold'>{balance}</h1>
+          </label>
+        </div>
+        
+        <form onSubmit={handleTransaction} className="bg-green-400 p-2">
           <h1 className='text-center font-bold underline'>Transfer token</h1>
           <label>send to: </label>
-          <input onChange={(e)=>setAddressTo(e.target.value)} className='rounded'></input>
+          <input onChange={(e)=>setAddressTo(e.target.value)} className='rounded'></input><br />
           <label>amount:</label>
           <input type='text' onChange={(e:any)=>setAmountTo(e.target.value)}></input>
-          <button type="submit" className=" px-2 bg-orange-500" >click</button>
+          <button type="submit" className="ml-10 px-2 bg-orange-500" >click</button>
         </form>
-        <p> ADD more Feauters....... </p>
-
       </div>
 
       </div>

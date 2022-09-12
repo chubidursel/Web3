@@ -1,17 +1,26 @@
 import React from 'react'
 import { ethers } from "ethers";
 import {useState, useEffect} from 'react';
-import defaultProvider from '../../components/defaultProvider';
-import { contractExchange, contractERC20WithSigner } from '../../components/smart_contract/exchange';
+import defaultProvider from '../../abi/defaultProvider';
+import walletProvider from '../../abi/walletProvider';
+import { contractExchange, contractExchangeWithSigner } from '../../components/smart_contract/exchange'
+import Result from './components/exchange/Result';
+
 export function Exchange() {
   const [cwt, setCwt] = useState();
+  const [eth, setEth] = useState();
   const [amountBuy, setAmountBuy] = useState();
+  const [amountSell, setAmountSell] = useState();
 
   useEffect(()=>{
     (async()=>{
       try {
         const balanceCWT = await contractExchange.getTokenBalance();
         setCwt(ethers.utils.formatEther(balanceCWT) as any) // ANY
+
+        const balanceETH = await contractExchange.getEthBalance();
+        setEth(ethers.utils.formatEther(balanceETH) as any)
+
       } catch (error) {
         console.log(error)
       }
@@ -19,8 +28,21 @@ export function Exchange() {
   },[])
 
   const handleBuy = async()=>{
-    const tx = await contractERC20WithSigner.getTokenBalance();
-    console.log(tx)
+    const tx= {
+        value: ethers.utils.parseEther(amountBuy.toString()),
+        // gasLimit: ethers.utils.hexlify(21000), //???
+        // gasPrice: ethers.utils.hexlify(gas),
+    }
+    const callFunc = await contractExchangeWithSigner.buyToken(tx)
+    await callFunc.wait()
+    console.log(callFunc)
+  }
+  const handleSell = async()=>{
+
+    // const callFunc = await contractExchangeWithSigner.sellToken(ethers.utils.parseEther(amountSell.toString()));
+    // await callFunc.wait()
+    // console.log(callFunc)
+    console.log("REWRITE THE SC!!!!!!!!!!!!!!")
   }
 
 
@@ -32,7 +54,8 @@ export function Exchange() {
         </div>
         <div>
           <p>CWT: {cwt}</p>
-          <p>ETH:  </p>
+          <p>ETH: {eth} </p>
+          
         </div>
         <div className='m-5 bg-gray-200 w-3/4 h-auto rounded-xl p-2'>
             <h2>Exchange: </h2>
@@ -41,11 +64,13 @@ export function Exchange() {
                 <button onClick={handleBuy} className='bg-green-500 px-10 rounded-xl'>buy</button>
             </div>
             <div>
-                <input className='m-2' onChange={e => setAmountBuy(e.target.value as any)}></input>
-                <button onClick={handleBuy} className='bg-red-500 px-10 rounded-xl'>sell</button>
+                <input className='m-2' onChange={e => setAmountSell(e.target.value as any)}></input>
+                <button onClick={handleSell} className='bg-red-500 px-10 rounded-xl'>sell</button>
             </div>
         </div>
-        <h1> POPUP warning</h1>
+        <div>
+         </div>
+        <Result />
         <p>What if i dont have rinkeby acc ❓ </p>
     </div>
   )

@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
-import metaProvider from "../metaMask"
-import defaultProvider from "../defaultProvider";
+import walletProvider from "../../abi/walletProvider"
+import defaultProvider from "../../abi/defaultProvider";
 
 const address = "0x15f4d3eD01d833FCE8fbcc76fA61077dAdF44672"
 const abi = [
@@ -127,9 +127,9 @@ const abi = [
     }
   ]
 
+  //this sc you can only read
 export const contractExchange = new ethers.Contract(address, abi, defaultProvider)
 
 //smart contract with Signer so we can signer
-
-const signer = metaProvider.getSigner();
-export const contractERC20WithSigner = contractExchange.connect(signer)
+const signer = walletProvider.getSigner();
+export const contractExchangeWithSigner = contractExchange.connect(signer)

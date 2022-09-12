@@ -8,3 +8,5 @@ if (typeof window !== "undefined" && window?.ethereum) {
 }
 
 export default walletProvider;
+
+//const signer = walletProvider.getSigner();

@@ -3,6 +3,9 @@ pragma solidity ^0.8.9;
 
 import "../node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
+// Decrease the rate, its tooo expensive
+
+
 contract Exchange {
     event Purchase(address indexed buyer, uint amount);
     event Sold(address indexed seller, uint amount);
@@ -52,6 +55,4 @@ contract Exchange {
         require(amount <= getEthBalance(), "Not enough funds");
         payable(msg.sender).transfer(amount);
     }
-
-
 }

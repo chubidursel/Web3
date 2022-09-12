@@ -8,9 +8,7 @@ import { Context } from "../contexts/context";
 
 declare let window: any;
 
-
 const Header = () => {
-
   const { currentAccount, setCurrentAccount } = useContext(Context);
   const [isLogOutVisible, setLogOutVisible] = useState(false);
 
