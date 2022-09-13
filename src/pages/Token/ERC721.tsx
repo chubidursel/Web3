@@ -26,6 +26,10 @@ export function ERC721() {
           <p>THIS BLOCK pops up with NFT card and if u have nft, and than u can interact wiht it, like send and other</p>
           <p>MINT???</p>
         </div>
+        <div className='m-5 bg-orange-200'>
+          <a href='https://rinkeby.etherscan.io/address/0x436c7CEe43947A1714914ccc30223C235f8605aF#code'>SMART CONTRACT</a><br />
+          <a href='https://ipfs.io/ipfs/QmbzXf4jGd5Hwvk6PwLgbKZnKQ8AWMcCvjazKi4qdJ7RXM'>IPFS</a>
+        </div>
     </div>
     </>
   )
