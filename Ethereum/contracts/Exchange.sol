@@ -1,10 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.9;
 
-import "../node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol";
-
-// Decrease the rate, its tooo expensive
-
+import "./IERC20.sol";
 
 contract Exchange {
     event Purchase(address indexed buyer, uint amount);
@@ -12,7 +9,9 @@ contract Exchange {
 
     IERC20 public immutable token;
     address owner;
-    address exchange = address(this);
+    address public exchange = address(this);
+
+    uint public rate = 1 ether;
     
     constructor(address _token){
         token = IERC20(_token);
@@ -31,23 +30,32 @@ contract Exchange {
         return token.balanceOf(exchange);
     }
 
+
+    function setRate(uint _rate) external onlyOwner{
+        rate = _rate;
+    }
+
     function buyToken() public payable{
-        require(msg.value >= 0.1 ether, "Pay up");
+        require(msg.value >= rate, "Pay up");
         uint tokenAvalible = getTokenBalance();
-        uint tokenRate = msg.value / 1 ether; // 1 eth = 1 CWT
+        uint tokensToBuy = msg.value / rate; 
 
-        require(tokenRate <= tokenAvalible, "Not enough tokens");
+        require(tokensToBuy <= tokenAvalible, "Not enough tokens");
 
-        token.transfer(msg.sender, tokenRate);
-        emit Purchase(msg.sender, tokenRate);
+        token.transfer(msg.sender, tokensToBuy);
+        emit Purchase(msg.sender, tokensToBuy);
     }
 
     function sellToken(uint _amount) external{
         require(_amount > 0, "Amount must be grater than 0");
+
+        token.approve(exchange, _amount); //aprrove to this sc to grab my tokens
+
         uint allowance = token.allowance(msg.sender, exchange);
         require(allowance >= _amount, "Wrong allowance");
+
         token.transferFrom(msg.sender, exchange, _amount);
-        payable(msg.sender).transfer(_amount * 1 ether);
+        payable(msg.sender).transfer(_amount * rate);
         emit Sold(msg.sender, _amount);
     }
 
