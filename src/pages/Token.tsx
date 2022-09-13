@@ -13,7 +13,7 @@ export function Token() {
  
       <Link to="/Token/ERC20"><div className="cursor-pointer hover:underline">ERC20</div></Link>
       
-      <div>ERC721</div>
+      <Link to="/Token/ERC721" className="hover:underline"> <div>ERC721</div></Link>
       <div>ERC1155</div>
      
     </div>
