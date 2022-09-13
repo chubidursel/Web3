@@ -49,8 +49,6 @@ contract Exchange {
     function sellToken(uint _amount) external{
         require(_amount > 0, "Amount must be grater than 0");
 
-        token.approve(exchange, _amount); //aprrove to this sc to grab my tokens
-
         uint allowance = token.allowance(msg.sender, exchange);
         require(allowance >= _amount, "Wrong allowance");
 
