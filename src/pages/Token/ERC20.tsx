@@ -24,7 +24,6 @@ export function ERC20() {
     console.log(walletProvider)
 
     console.log(currentAccount)
-
   }
 
 //<<<<<<<<<<<<<<<<<<<<

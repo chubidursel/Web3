@@ -31,6 +31,7 @@ export function ERC721() {
           <a href='https://ipfs.io/ipfs/QmbzXf4jGd5Hwvk6PwLgbKZnKQ8AWMcCvjazKi4qdJ7RXM'>IPFS</a>
         </div>
     </div>
+    <NftCard tokenId={tokenId}/>
     </>
   )
 }
