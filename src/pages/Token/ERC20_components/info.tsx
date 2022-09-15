@@ -3,7 +3,7 @@ import React from 'react'
 export function Info() {
   return (
     <>
-    <div className='bg-blue-100 rounded-2xl border-4 border-red-400 w-full p-3 m-3'>
+    <div className='bg-blue-100 rounded-2xl border-4 border-red-400 px-[15px]'>
         <h1 className=" text-3xl text-center font-bold m-3">INFO</h1>
 <div className='text-xl'>
         <label htmlFor="chain" className='mr-3 font-bold'>Network:</label>
@@ -17,8 +17,8 @@ export function Info() {
             <p className='font-bold'>Owner:</p> <p>0x98162D17D4d15c945B7418475EdEb4d9c0335684</p>
             <p className='font-bold'>Total supply:</p> <p>1000</p>
             
-    </div></div>
-    </>
+    </div></div></>
+    
   )
 }
 

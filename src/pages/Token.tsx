@@ -1,7 +1,6 @@
-import React from 'react'
-import { useContext } from "react";
+
 import {Link} from "react-router-dom"
-import Header from '../components/header'
+import Header from '../components/headerNew'
 
 //onClick={prev => setDis(!prev)}
 export function Token() {
