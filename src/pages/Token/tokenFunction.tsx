@@ -12,6 +12,12 @@ export default function TokenFunction() {
   const [addressTo, setAddressTo] = useState("");
   const [amountTo, setAmountTo] = useState();
 
+
+  const [amountApprove, setAmountApprove] = useState();
+  const [addressToArrpove, setAddressToApporve] = useState("");
+  const[result, setResult] = useState(); //result???
+
+
 //<<<<<<<<<<<<<<<<<<<<<  TESTING
   const currentAccount = useContext(Context);
 
@@ -45,12 +51,21 @@ export default function TokenFunction() {
   const tokenAddress = "0xXXXXXXX"
   const tokenAmount = 10000;
 
+  const handleApprove = async(event:any)=>{
+    event.preventDefault();
+    try {
+      const tx = await contractERC20WithSigner.approve(addressToArrpove, amountApprove);
+      console.log(tx)
+      await tx.wait()
+      console.log('Done!') // set up result! 
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+
   return (
-    <>
-   
-
-      
-
+    <>   
       
       <div className='bg-blue-100 rounded-2xl border-4 border-red-400 text-xl px-[15px]'>
         <h1 className=" text-3xl text-center font-bold m-3">Token function</h1>
@@ -74,16 +89,25 @@ export default function TokenFunction() {
         </div>
 
 
-        <div className='rounded-2xl border-2 border-red-400 px-[15px] p-2 m-2'> 
-        <h1 className='text-center font-bold'>Approve</h1>
-            <input placeholder='Enter your address' onChange={(event)=>setAdd(event.target.value)} className = 'rounded'/>
-            <button onClick={hadleSupply} className="font-bold ml-3 rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400">Approve</button>
-        </div>
 
+<div className='rounded-2xl border-2 border-red-400 px-[15px] p-2 m-2'>
+        <form onSubmit={handleApprove}>
+          <h1 className='text-center font-bold'>Approve</h1>
+          <label>Approve to: </label>
+          <input onChange={(e)=>setAddressToApporve(e.target.value)} className='rounded' placeholder='Enter address of reciever'></input><br />
+          <label>Amount:</label>
+          <input type='text' className='rounded' onChange={(e:any)=>setAmountApprove(e.target.value)} placeholder='Enter amount of tokens' />
+          <button type="submit" className="font-bold ml-3 rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400">Approve</button>
+        </form>
+      </div></div>
 
-      </div>
+      {result && <div className='bg-green-500'>
+          <h1>RESULT</h1>
+      </div>}
 
+      
 
 
 </>
   )}
+
