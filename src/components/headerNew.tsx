@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import Jazzicon, { jsNumberForAddress } from 'react-jazzicon';
 import { LogoutIcon } from "../icons/LogoutIcon";
 import { useAppContext } from "../hooks/useAppContext";

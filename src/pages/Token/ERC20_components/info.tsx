@@ -1,6 +1,10 @@
-import React from 'react'
+import { useAppContext } from "../../../hooks/useAppContext";
 
 export function Info() {
+
+  const { contextState, updateContextState } = useAppContext();
+  const currentAccount = contextState?.currentAccount;
+
   return (
     <>
     <div className='bg-blue-100 rounded-2xl border-4 border-red-400 px-[15px]'>
@@ -16,6 +20,8 @@ export function Info() {
             <p className='font-bold'>Token address:</p> <p>0x7C2ED4E6fB642186ec9472813207c902005583D7</p>
             <p className='font-bold'>Owner:</p> <p>0x98162D17D4d15c945B7418475EdEb4d9c0335684</p>
             <p className='font-bold'>Total supply:</p> <p>1000</p>
+            <p className='font-bold'>Your address:</p> 
+            {currentAccount ? <p>{currentAccount}</p> : <p className='font-bold text-red-500'>Please connect your wallet</p>}
             
     </div></div></>
     
