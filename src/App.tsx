@@ -7,6 +7,7 @@ import { Other } from "./pages/Other"
 import {Exchange} from "./pages/Defi/exchange"
 import { Vault } from "./pages/Defi/vault"
 import { ERC721 } from "./pages/Token/ERC721";
+import { Wait } from "./components/waiting";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
       <Route path="/Defi/exchange" element={<Exchange />} />
       <Route path="/Defi/vault" element={<Vault />} />
       <Route path="/Other" element={<Other />} />
+      <Route path="/Coming_soon" element={<Wait />} />
     </Routes>
   )
 }
