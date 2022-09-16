@@ -3,41 +3,69 @@ import { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
 import walletProvider from '../../abi/walletProvider';
 import { NftCard } from './ERC721_components/NftCard';
+import Header from '../../components/header';
 import { contractWithSigner, contract } from './ERC721_components/contract_conection';
 
 export function ERC721() {
-  const [tokenId, setTokenId] = useState();
+  const [tokenId, setTokenId] = useState(1);
+  const [tokenUri, setTokenUri] = useState('');
+  const [tokenOwner, setTokenOwner] = useState('');
+
+  const [checkOwnerNft, setCheckOwnerNft] = useState('')
+  const [showNumNft, setShowNumNft] = useState()
+
 
   const habdleGetPic = async()=>{
-    const test = await contract.owner();
-    console.log(test)
+    const owner = await contract.ownerOf(tokenId);
+    setTokenOwner(owner)
+
+    const urlById = await contract.tokenURI(tokenId)
+    setTokenUri(urlById);
   }
+//0x98162D17D4d15c945B7418475EdEb4d9c0335684
+  const handleCheckOwnerNft = async()=>{
+
+    const amountOfNft = await contract.balanceOf(checkOwnerNft)
+    setShowNumNft(amountOfNft.toString() as any);
+  }
+
 
   return (
     <>
-    <div className='w-1/2 h-96 bg-slate-100 rounded-xl m-10'>
-        <div className='p-5'>
+    <Header />
+    <div className='w-1/2 h-full bg-slate-100 rounded-xl m-10 p-2'>
+        <div>
+         <p className='text-center pt-5 font-bold text-3xl'>INFO</p>
+       </div>
+       <div className='m-5 bg-orange-200'>
+         <a href='https://rinkeby.etherscan.io/address/0x436c7CEe43947A1714914ccc30223C235f8605aF#code' target="_blank">SMART CONTRACT</a><br />
+         <a href='https://gateway.pinata.cloud/ipfs/QmNM3ZUzASR78M61PsPF3f63j13ZsXNCACnfMshNroFuKz' target="_blank">IPFS</a>
+       </div>
+
+        <div className='p-5 bg-yellow-200'>
           <p>token ID:</p>
           <input onChange={(e:any)=>setTokenId(e.target.value)}></input>
           <button onClick={habdleGetPic} className='bg-blue-500 px-10 rounded-xl'>TEST</button>
-          <p>INPUT + BUTTON to check if owner has nft</p>
+          <p>address: {tokenUri}</p>
+          <p>owner: {tokenOwner}</p>
         </div>
-        <div>
-          <p>THIS BLOCK pops up with NFT card and if u have nft, and than u can interact wiht it, like send and other</p>
-          <p>MINT???</p>
+
+        <div className='p-5 bg-orange-400'>
+            <h1>Check if u have an NFT:</h1>
+            <input  onChange={(e:any)=>setCheckOwnerNft(e.target.value)} type='text' placeholder='put an address'/>
+            <button onClick={handleCheckOwnerNft} className='bg-purple-300 px-5'>check</button>
+            <h2>Your token ID: {showNumNft}</h2>
         </div>
-        <div className='m-5 bg-orange-200'>
-          <a href='https://rinkeby.etherscan.io/address/0x436c7CEe43947A1714914ccc30223C235f8605aF#code'>SMART CONTRACT</a><br />
-          <a href='https://ipfs.io/ipfs/QmbzXf4jGd5Hwvk6PwLgbKZnKQ8AWMcCvjazKi4qdJ7RXM'>IPFS</a>
-        </div>
+
+
+        <p>THIS BLOCK pops up with NFT card and if u have nft, and than u can interact wiht it, like send and other</p>
     </div>
-    <NftCard tokenId={tokenId}/>
+    <NftCard tokenId={2} tokenAddress={tokenUri}/>
     </>
   )
 }
 
 // function Home() {
-
 //   const [totalMinted, setTotalMinted] = useState(0);
 //   useEffect(() => {
 //     getCount();
