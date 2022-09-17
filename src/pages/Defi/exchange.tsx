@@ -6,6 +6,7 @@ import walletProvider from '../../abi/walletProvider';
 import { contractExchange, contractExchangeWithSigner } from '../../components/smart_contract/exchange'
 import Result from './components/exchange/Result';
 import { contractERC20WithSigner } from '../../components/smart_contract/erc20'; //ERC token
+import Header from '../../components/headerNew';
 
 export function Exchange() {
   const [cwt, setCwt] = useState();
@@ -71,6 +72,8 @@ export function Exchange() {
   }
 
   return (
+    <>
+    <Header />
     <div className='w-max h-auto bg-slate-50 m-16 rounded-2xl p-10'>
         <h1 className='text-2xl font-bold'>You wanna get some CWT tokens?</h1>
         <div>Check out this smart contract here: 
@@ -104,6 +107,7 @@ export function Exchange() {
         <Result />
         <p>What if i dont have rinkeby acc ❓ </p>
     </div>
+    </>
   )
 }
 

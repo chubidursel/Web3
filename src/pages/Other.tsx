@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '../components/header'
+import Header from '../components/headerNew'
 import Sidebar from '../components/Sidebar'
 import Welcome from '../components/Other/welcome'
 

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
 import walletProvider from '../../abi/walletProvider';
 import { NftCard } from './ERC721_components/NftCard';
-import Header from '../../components/header';
+import Header from '../../components/headerNew';
 import { contractWithSigner, contract } from './ERC721_components/contract_conection';
 
 export function ERC721() {

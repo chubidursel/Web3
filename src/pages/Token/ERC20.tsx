@@ -1,8 +1,7 @@
-
-  import Header from '../../components/headerNew';
+import Header from '../../components/headerNew';
 import {Info} from "./ERC20_components/info"
 import HeaderToken from './ERC20_components/headerToken';
-import TokenFunction from './tokenFunction';
+import TokenFunction from './ERC20_components/tokenFunction';
 
 export function ERC20() {
 

@@ -1,8 +1,8 @@
-import defaultProvider from '../../abi/defaultProvider';
-import { contractERC20, contractERC20WithSigner } from '../../components/smart_contract/erc20';
+import defaultProvider from '../../../abi/defaultProvider';
+import { contractERC20, contractERC20WithSigner } from '../../../components/smart_contract/erc20';
 import {useState} from 'react';
-import walletProvider from '../../abi/walletProvider';
-import { useAppContext } from '../../hooks/useAppContext';
+import walletProvider from '../../../abi/walletProvider';
+import { useAppContext } from '../../../hooks/useAppContext';
 
 
 export default function TokenFunction() {
@@ -124,7 +124,7 @@ const currentAccount = contextState?.currentAccount;
         <form onSubmit={handleTransaction}>
           <h1 className='text-center font-bold p-1'>Transfer token</h1>
           <label>Send to:</label>
-          <input onChange={(e)=>setAddressTo(e.target.value)} className='rounded ml-3' placeholder='Enter address of reciever' /><br />
+          <input onChange={(e)=>setAddressTo(e.target.value)} className='rounded ml-3 mb-1' placeholder='Enter address of reciever' /><br />
           <label>Amount:</label>
           <input type='text' className='rounded ml-3' onChange={(e:any)=>setAmountTo(e.target.value)} placeholder='Enter amount of tokens' />
      
@@ -152,11 +152,11 @@ const currentAccount = contextState?.currentAccount;
 <div className='rounded-2xl border-2 border-red-400 px-[15px] p-2 m-2'>
         <form onSubmit={handleApprove}>
           <h1 className='text-center font-bold'>Approve</h1>
-          <label>Approve to:</label>
+          <label>Approve:</label>
           <input onChange={(e)=>setAddressToApporve(e.target.value)} className='rounded ml-3' placeholder='Enter address of reciever' /><br />
           <label>Amount:</label>
           <input type='text' className='rounded ml-3' onChange={(e:any)=>setAmountApprove(e.target.value)} placeholder='Enter amount of tokens' />
-          <button type="submit" className="font-bold ml-3 rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400">Approve</button>
+          <button type="submit" className="font-bold mt-1 ml-3 rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400">Approve</button>
         </form>
       </div></div>
 
