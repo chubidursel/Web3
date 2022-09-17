@@ -6,11 +6,11 @@ import { ethers } from "hardhat";
 // npx hardhat run --network rinkeby scripts/deployExchange.ts
 
 // verify SC on etherscan 
-//npx hardhat verify --network rinkeby 0x15f4d3eD01d833FCE8fbcc76fA61077dAdF44672 0x7C2ED4E6fB642186ec9472813207c902005583D7
+//npx hardhat verify --network rinkeby 0xE1D5aFb20a6Fe4bD9139D91C9c833dA4c6AAcF12 0x4F77F82dF5CcC8D8d5f46ECadA58e500f53fDb3a
 
 async function main() {
 
-  const address = "0x7C2ED4E6fB642186ec9472813207c902005583D7" // ERC20 address
+  const address = "0x4F77F82dF5CcC8D8d5f46ECadA58e500f53fDb3a" // ERC20 address
 
   console.log("🚀 deploying scmart contract.....");
 

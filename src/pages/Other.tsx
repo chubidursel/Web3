@@ -1,11 +1,17 @@
 import React from 'react'
-import Header from '../components/header'
+import Header from '../components/headerNew'
+import Sidebar from '../components/Sidebar'
+import Welcome from '../components/Other/welcome'
 
 export function Other() {
   return (<>
-  <Header />
-  <h1>Note</h1>
+  
+  <div className='flex flex-row'>
+    <Sidebar />
+    <Welcome />
+  </div>
   </>
   )
 }
 
+//<Header />
