@@ -9,9 +9,9 @@ contract Exchange {
 
     IERC20 public immutable token;
     address owner;
-    address public exchange = address(this);
+    address public exchangeAddress = address(this);
 
-    uint public rate = 1 ether;
+    uint public rate = 0.01 ether;
     
     constructor(address _token){
         token = IERC20(_token);
@@ -27,9 +27,8 @@ contract Exchange {
         return address(this).balance;
     }
     function getTokenBalance() public view returns(uint){
-        return token.balanceOf(exchange);
+        return token.balanceOf(exchangeAddress);
     }
-
 
     function setRate(uint _rate) external onlyOwner{
         rate = _rate;
@@ -49,10 +48,10 @@ contract Exchange {
     function sellToken(uint _amount) external{
         require(_amount > 0, "Amount must be grater than 0");
 
-        uint allowance = token.allowance(msg.sender, exchange);
+        uint allowance = token.allowance(msg.sender, exchangeAddress);
         require(allowance >= _amount, "Wrong allowance");
 
-        token.transferFrom(msg.sender, exchange, _amount);
+        token.transferFrom(msg.sender, exchangeAddress, _amount);
         payable(msg.sender).transfer(_amount * rate);
         emit Sold(msg.sender, _amount);
     }

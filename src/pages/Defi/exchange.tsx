@@ -12,12 +12,13 @@ export function Exchange() {
   const [eth, setEth] = useState();
   const [amountBuy, setAmountBuy] = useState();
   const [amountSell, setAmountSell] = useState();
+  const [result, setResult] = useState('');
 
   useEffect(()=>{
     (async()=>{
       try {
         const balanceCWT = await contractExchange.getTokenBalance();
-        setCwt(ethers.utils.formatEther(balanceCWT) as any) // ANY
+        setCwt(balanceCWT.toString()) 
 
         const balanceETH = await contractExchange.getEthBalance();
         setEth(ethers.utils.formatEther(balanceETH) as any)
@@ -29,19 +30,29 @@ export function Exchange() {
   },[])
 
   const handleBuy = async()=>{
-    const tx= {
-        value: ethers.utils.parseEther(amountBuy.toString()),
-        // gasLimit: ethers.utils.hexlify(21000), //???
-        // gasPrice: ethers.utils.hexlify(gas),
+    try {
+      if(Number(amountBuy) <= Number(cwt)){
+        const tx= {
+          value: ethers.utils.parseEther(amountBuy.toString()),
+          // gasLimit: ethers.utils.hexlify(21000), //???
+          // gasPrice: ethers.utils.hexlify(gas),
+      }
+        const callFunc = await contractExchangeWithSigner.buyToken(tx)
+        await callFunc.wait()
+        console.log(callFunc)
+        setResult(`✅ Complete! TX hash: ${callFunc.hash}`)
+      } 
+      else{
+        setResult('Not enough fund here 😞')
+      }
+    } catch (error) {
+      console.log(error)
     }
-    const callFunc = await contractExchangeWithSigner.buyToken(tx)
-    await callFunc.wait()
-    console.log(callFunc)
   }
+
   const handleSell = async()=>{
     const amount = ethers.utils.parseEther(amountSell.toString());
     try {
-
       //calling ERC20 contract to set approve
       const tx = await contractERC20WithSigner.approve(contractExchange.address, amount);
       await tx.wait()
@@ -59,18 +70,23 @@ export function Exchange() {
     }
   }
 
-
   return (
-    <div className='w-1/2 h-auto bg-slate-50 m-16 rounded-2xl p-10'>
-        <h1 className='text-2xl font-bold'>You wanna get some tokens?</h1>
-        <div>Check out our smart contract here: 
-        <a href='https://rinkeby.etherscan.io/address/0x15f4d3eD01d833FCE8fbcc76fA61077dAdF44672#code'><span className='px-3 underline font-bold'>Etherscan</span></a>
+    <div className='w-max h-auto bg-slate-50 m-16 rounded-2xl p-10'>
+        <h1 className='text-2xl font-bold'>You wanna get some CWT tokens?</h1>
+        <div>Check out this smart contract here: 
+        <a href='https://rinkeby.etherscan.io/address/0xE1D5aFb20a6Fe4bD9139D91C9c833dA4c6AAcF12#code' target ='_blank'><span className='px-3 underline font-bold'>Etherscan</span></a>
         </div>
-        <div>
-          <p>CWT: {cwt}</p>
-          <p>ETH: {eth} </p>
-          
-        </div>
+        <div className='flex flex-row'>
+            <div className='bg-blue-100 p-3'>
+              <p>EXCHANGE RATE: </p>
+              <p>1 CWT = 0.01 ETH</p>
+            </div>
+            <div className='bg-pink-200 p-2'>
+              <p>Current amount of tokens and Ethereum here:</p>
+              <p>CWT: {cwt}</p>
+              <p>ETH: {eth} </p>
+            </div>
+          </div>
         <div className='m-5 bg-gray-200 w-3/4 h-auto rounded-xl p-2'>
             <h2>Exchange: </h2>
             <div>
@@ -84,6 +100,7 @@ export function Exchange() {
         </div>
         <div>
          </div>
+         {result && <div>result: {result}</div>}
         <Result />
         <p>What if i dont have rinkeby acc ❓ </p>
     </div>
