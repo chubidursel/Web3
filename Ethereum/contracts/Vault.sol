@@ -4,8 +4,8 @@ pragma solidity ^0.8.9;
 import "./IERC20.sol";
 
 contract Vault {
-    event Lock(address from, uint amount);
-    event Withdraw(address to, uint amount);
+    event Lock(address from, uint amount, uint time);
+    event Withdraw(address to, uint amount, uint time);
 
     IERC20 public immutable token;
 
@@ -38,7 +38,7 @@ contract Vault {
         _mint(msg.sender, shares);
         token.transferFrom(msg.sender, address(this), _amount);
 
-        emit Lock(msg.sender, _amount);
+        emit Lock(msg.sender, _amount, block.timestamp);
     }
 
     function withdraw(uint _shares) external {
@@ -46,6 +46,6 @@ contract Vault {
         _burn(msg.sender, _shares);
         token.transfer(msg.sender, amount);
 
-        emit Withdraw(msg.sender, _shares);
+        emit Withdraw(msg.sender, _shares, block.timestamp);
     }
 }

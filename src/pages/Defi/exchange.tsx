@@ -7,6 +7,7 @@ import { contractExchange, contractExchangeWithSigner } from '../../components/s
 import Result from './components/exchange/Result';
 import { contractERC20WithSigner } from '../../components/smart_contract/erc20'; //ERC token
 import Header from '../../components/headerNew';
+import EventsExchange from './components/exchange/EventsExchange';
 
 export function Exchange() {
   const [cwt, setCwt] = useState();
@@ -14,6 +15,7 @@ export function Exchange() {
   const [amountBuy, setAmountBuy] = useState();
   const [amountSell, setAmountSell] = useState();
   const [result, setResult] = useState('');
+  const [showEvents, setShowEvents] =useState(false)
 
   useEffect(()=>{
     (async()=>{
@@ -28,15 +30,13 @@ export function Exchange() {
         console.log(error)
       }
     })()
-  },[])
+  },[cwt])
 
   const handleBuy = async()=>{
     try {
-      if(Number(amountBuy) <= Number(cwt)){
+      if(Number(amountBuy) * 100 <= Number(cwt) ){
         const tx= {
           value: ethers.utils.parseEther(amountBuy.toString()),
-          // gasLimit: ethers.utils.hexlify(21000), //???
-          // gasPrice: ethers.utils.hexlify(gas),
       }
         const callFunc = await contractExchangeWithSigner.buyToken(tx)
         await callFunc.wait()
@@ -52,22 +52,30 @@ export function Exchange() {
   }
 
   const handleSell = async()=>{
-    const amount = ethers.utils.parseEther(amountSell.toString());
     try {
-      //calling ERC20 contract to set approve
-      const tx = await contractERC20WithSigner.approve(contractExchange.address, amount);
-      await tx.wait()
-      console.log(tx)
+      const amount = ethers.utils.parseEther(amountSell.toString());
 
-    } catch (error) {
-      console.error(error)
-    }
-    try {
-      const callFunc = await contractExchangeWithSigner.sellToken(amount, {gasLimit: 3e7});
-      await callFunc.wait()
-      console.log(callFunc)
+ console.log(amount)
+
+// #1 calling ERC20 contract to set approve
+      const resApprove = await contractERC20WithSigner.approve(contractExchange.address, amount);
+      await resApprove.wait()
+  console.log(resApprove)
+      setResult(`✅ Approve completed! TX hash: ${resApprove.hash}`)
+
+// #2 calling this SC to sell tokens
+console.log("Start with selling tokens")
+      const tx= {
+        value: amount,
+        gasLimit: 1000000, 
+      }
+      const resSell = await contractExchangeWithSigner.sellToken(amount);
+      await resSell.wait()
+console.log(resSell)
+console.log("Finished!")
     } catch (error) {
       console.log(error)
+      setResult('Oii wei, we got problems! 😞')
     }
   }
 
@@ -105,8 +113,9 @@ export function Exchange() {
          </div>
          {result && <div>result: {result}</div>}
         <Result />
-        <p>What if i dont have rinkeby acc ❓ </p>
+        <button onClick={()=>setShowEvents(!showEvents)} className='bg-gray-200 w-full py-2 rounded-xl'>events</button>
     </div>
+    {showEvents && <EventsExchange /> }
     </>
   )
 }
