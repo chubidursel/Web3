@@ -1,10 +1,14 @@
 import React from 'react'
 import {Link} from "react-router-dom"
 import Header from '../components/headerNew'
+import Sidebar from '../components/Sidebar'
 
 export function Defi() {
   return (
     <>
+     <div className='flex justify-center'>
+   <Sidebar />
+      </div>
     <div className='text-white text-5xl font-bold text-center pt-10'>Defi</div>
     <div className='flex flex-raw justify-around text-5xl font-bold text-gray-100 mt-40'>
       <Link to="/Defi/exchange"><h1 className='hover:underline'>Exchange</h1></Link>

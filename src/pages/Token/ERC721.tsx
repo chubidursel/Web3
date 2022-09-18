@@ -5,6 +5,7 @@ import walletProvider from '../../abi/walletProvider';
 import { NftCard } from './ERC721_components/NftCard';
 import Header from '../../components/headerNew';
 import { contractWithSigner, contract } from './ERC721_components/contract_conection';
+import Sidebar from '../../components/Sidebar';
 
 export function ERC721() {
   const [tokenId, setTokenId] = useState(1);
@@ -32,7 +33,10 @@ export function ERC721() {
 
   return (
     <>
-    <Header />
+   <Header />
+    <div className='flex justify-center'>
+    <Sidebar />
+    </div>
     <div className='w-1/2 h-full bg-slate-100 rounded-xl m-10 p-2'>
         <div>
          <p className='text-center pt-5 font-bold text-3xl'>INFO</p>
