@@ -1,0 +1,23 @@
+>>>TypeScript
+    1.window.ethereum (main\src\abi\walletProvider.ts)
+    2. Toss the props to react component (main\src\pages\Token\ERC721_components\NftCard.tsx)
+    3. Set up global types
+    4. HeaderNew
+
+>>> REACT
+    1. SideBar (How to display differen block)
+    2. Set Up global font for all text
+    3. Change pop up text on the main page
+    4. LOGS and EVENTS
+
+>>>> Hardhat
+    1. Import openzeppelin (../../node)
+
+>>>> IPFS
+    1.How to set the ipfs link to smart contract ERC721
+    2. What happend if all nodes with ur file  will cut off from the network, so i can't reach my files?
+    
+>>>> .env 
+    1. check wssWallet <<< it doesn't work =(
+
+        

@@ -2,10 +2,11 @@ import Header from '../../components/headerNew';
 import {Info} from "./ERC20_components/info"
 import HeaderToken from './ERC20_components/headerToken';
 import TokenFunction from './ERC20_components/tokenFunction';
+import EventErc20 from './ERC20_components/EventErc20';
 
 export function ERC20() {
 
-
+// HOW TO take state from Header component and toss it to EventErc20 ????
   return (
     <>
     <Header />
@@ -21,6 +22,7 @@ export function ERC20() {
      
       </div>
       </div>
+    <EventErc20 />
 
 
 </>

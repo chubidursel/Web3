@@ -51,6 +51,7 @@ export function Vault() {
         <div className='bg-yellow-200'>
           <h1>result: {lockAmount}</h1>
         </div>
+        <button className='bg-blue-200 w-full mt-2 rounded-xl py-2 hover:bg-blue-400 active:bg-blue-800'>EVEVENTS</button>
         
     </div>
     </>
