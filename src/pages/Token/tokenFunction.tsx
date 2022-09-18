@@ -2,11 +2,10 @@ import defaultProvider from '../../abi/defaultProvider';
 import { contractERC20, contractERC20WithSigner } from '../../components/smart_contract/erc20';
 import {useState} from 'react';
 import walletProvider from '../../abi/walletProvider';
-import { useAppContext } from '../../hooks/useAppContext';
+// import { useAppContext } from '../../hooks/useAppContext';
 
 
 export default function TokenFunction() {
-  // const [owner, setOwner] = useState()
   const [add, setAdd] = useState("")
   const [balance, setBalance] = useState()
   const [addressTo, setAddressTo] = useState("");
@@ -24,22 +23,10 @@ export default function TokenFunction() {
 
   const [amountApprove, setAmountApprove] = useState();
   const [addressToArrpove, setAddressToApporve] = useState("");
-  // const[result, setResult] = useState(); //result???
+  // const { contextState, updateContextState } = useAppContext();
+  // const currentAccount = contextState?.currentAccount;
 
 
-//<<<<<<<<<<<<<<<<<<<<<  TESTING
-const { contextState, updateContextState } = useAppContext();
-const currentAccount = contextState?.currentAccount;
-
-  // async function getData(){
-  //   const blockNum = await defaultProvider.getBlockNumber();
-  //   console.log(walletProvider)
-
-  //   console.log(currentAccount)
-
-  // }
-
-//<<<<<<<<<<<<<<<<<<<<
   const hadleSupply = async()=>{
     try {
       setLoaderBal(true)
@@ -48,10 +35,9 @@ const currentAccount = contextState?.currentAccount;
       
     }
       catch(error) {
-        if(error.code === "INVALID_ARGUMENT") {setErrorBal('Invalid input')
-        setTimeout(() => {setErrorBal()}, 2000);
-      }
+        if(error.code === "INVALID_ARGUMENT") {setErrorBal('Invalid input')}
         else {setErrorBal("Some mystic error")}
+        setTimeout(() => {setErrorBal()}, 2000);
       }
       setLoaderBal(false)
   }
@@ -68,16 +54,12 @@ const currentAccount = contextState?.currentAccount;
       setTimeout(() => {setSuccs()}, 2000);}
       
     } catch (error) {
-      if(error.code === "INSUFFICIENT_FUNDS") {setError('Not enough funds')
-      setTimeout(() => {setError()}, 2000);}
-      else if(error.code === "INVALID_ARGUMENT") {setError('Invalid input')
-      setTimeout(() => {setError()}, 2000);}
-      else if(error.code === "ACTION_REJECTED") {setError('Transaction was rejected')
-      setTimeout(() => {setError()}, 2000);}
-      else {setError("Error")
-      setTimeout(() => {setError()}, 2000);}
-     
-    }
+      if(error.code === "INSUFFICIENT_FUNDS") {setError('Not enough funds')}
+      else if(error.code === "INVALID_ARGUMENT") {setError('Invalid input')}
+      else if(error.code === "ACTION_REJECTED") {setError('Transaction was rejected')}
+      else {setError("Error")}
+      setTimeout(() => {setError()}, 2000);
+         }
     setLoader(false)
   }
 
@@ -90,14 +72,11 @@ const currentAccount = contextState?.currentAccount;
       if(tx){setSuccsAp("Transaction Success")
       setTimeout(() => {setSuccsAp()}, 2000);}
     } catch (error) {
-      if(error.code === "INSUFFICIENT_FUNDS") {setErrorAp('Not enough funds')
-      setTimeout(() => {setErrorAp()}, 2000);}
-      else if(error.code === "INVALID_ARGUMENT") {setErrorAp('Invalid input')
-      setTimeout(() => {setErrorAp()}, 2000);}
-      else if(error.code === "ACTION_REJECTED") {setErrorAp('Transaction was rejected')
-      setTimeout(() => {setErrorAp()}, 2000);}
-      else {setErrorAp("Some mystic error")
-      setTimeout(() => {setErrorAp()}, 2000)}
+      if(error.code === "INSUFFICIENT_FUNDS") {setErrorAp('Not enough funds')}
+      else if(error.code === "INVALID_ARGUMENT") {setErrorAp('Invalid input')}
+      else if(error.code === "ACTION_REJECTED") {setErrorAp('Transaction was rejected')}
+      else {setErrorAp("Some mystic error")}
+      setTimeout(() => {setErrorAp()}, 2000)
     }
     setLoaderAp(false)
   }
