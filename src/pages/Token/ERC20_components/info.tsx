@@ -25,7 +25,7 @@ export function Info() {
 
   return (
     <>
-    <div className='bg-blue-100 rounded-2xl border-4 border-red-400 px-[15px]'>
+    <div className='bg-blue-100 rounded-2xl border-4 border-red-400 px-[15px] hover:bg-blue-200'>
         <h1 className=" text-3xl text-center font-bold m-3">INFO</h1>
 <div className='text-xl'>
         <label htmlFor="chain" className='mr-3 font-bold'>Network:</label>

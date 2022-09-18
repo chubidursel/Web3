@@ -1,6 +1,7 @@
 >>>TypeScript
     1.window.ethereum (main\src\abi\walletProvider.ts)
-    2. Toss the props to react component (main\src\pages\Token\ERC721_components\NftCard.tsx)
+    2. Toss the props to react component (main\src\pages\Token\ERC721_components\NftCard.tsx) // Faq
+        >should i declare all props as a type in types folder? 
     3. Set up global types
     4. HeaderNew
 

@@ -7,13 +7,16 @@ import { contractWithSigner, contract } from './../ERC721_components/contract_co
 export function NftCard({tokenId, tokenAddress, }) {
 
   const [addressToSend, setAddressToSend] = useState('');
-
+//ipfs://QmNM3ZUzASR78M61PsPF3f63j13ZsXNCACnfMshNroFuKz/1.json
 //https://gateway.pinata.cloud/ipfs/QmNM3ZUzASR78M61PsPF3f63j13ZsXNCACnfMshNroFuKz/1.json
   const contentIPFS = 'QmNM3ZUzASR78M61PsPF3f63j13ZsXNCACnfMshNroFuKz';
   const metadataURI = `${contentIPFS}/${tokenId}.json`;
   const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
   
   //const imageLocal = `img/${tokenId}.png`; //<<< just store all ur img localy in our folder
+
+  // CALL FUNCTION FROM SMART CONTRACT
+  //  contract.tokenURI(tokenId)
   
 
 // >>>>>>> parse data from metaData

@@ -8,6 +8,8 @@ import "../node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721Bu
 import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
 import "../node_modules/@openzeppelin/contracts/utils/Counters.sol";
 
+// https://gateway.pinata.cloud/ipfs/QmNM3ZUzASR78M61PsPF3f63j13ZsXNCACnfMshNroFuKz
+
 contract NftTest is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
     using Counters for Counters.Counter;
 
@@ -18,14 +20,14 @@ contract NftTest is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
     // function setBaseURI(string memory uri) public{
     //     _baseTokenURI = uri;
     // }
-  //  `ipfs://QmbzXf4jGd5Hwvk6PwLgbKZnKQ8AWMcCvjazKi4qdJ7RXM/1`
+  //  `ipfs://QmbzXf4jGd5Hwvk6PwLgbKZnKQ8AWMcCvjazKi4qdJ7RXM`
 
     mapping(string=>uint8) existingURIs;
 
     constructor() ERC721("NftTest", "NT") {}
 
     function _baseURI() internal pure override returns (string memory) {
-        return "ipfs://"; 
+        return "QmNM3ZUzASR78M61PsPF3f63j13ZsXNCACnfMshNroFuKz"; //+id +.json 
     }
 
     function safeMint(address to, string memory uri) public onlyOwner {
