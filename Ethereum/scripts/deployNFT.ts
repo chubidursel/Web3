@@ -1,17 +1,17 @@
 import { ethers } from "hardhat";
-
-//npx hardhat run --network localhost scripts/deployNFT.ts
-// npx hardhat run --network rinkeby scripts/deployNFT.ts
+// npx hardhat clean && npx hardhat compile
+// npx hardhat run --network localhost scripts/deployNFT.ts
+// npx hardhat run --network goerli scripts/deployNFT.ts
 
 // verify SC on etherscan 
-//npx hardhat verify 0x436c7CEe43947A1714914ccc30223C235f8605aF --network rinkeby
+//npx hardhat verify 0x71aca2815d8237A3bf3DB4AcE47115666F46a961 --network goerli
 
 async function main() {
   console.log("🚀 deploying scmart contract.....");
 
   const [deployer] = await ethers.getSigners();
   
-  const Nft = await ethers.getContractFactory("NftTest");
+  const Nft = await ethers.getContractFactory("Emoji");
   const token = await Nft.deploy();
 
   await token.deployed();

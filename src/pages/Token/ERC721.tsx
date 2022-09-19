@@ -11,22 +11,38 @@ export function ERC721() {
   const [tokenUri, setTokenUri] = useState('');
   const [tokenOwner, setTokenOwner] = useState('');
 
-  const [checkOwnerNft, setCheckOwnerNft] = useState('')
-  const [showNumNft, setShowNumNft] = useState()
+  const [numInteract, setNumInteract] = useState() // toos this number to NFT card
+
+  const [displayNftCard, setDisplayNftCard] = useState(false)
+  const [amountMinted, setAmountMinted] = useState();
+
+// BLOCK 1 INFO
+useEffect((()=>{
+  (async()=>{
+    try {
+      const numMinted = await contract.numOfNft()
+      setAmountMinted(numMinted.toString())
+      
+    } catch (error) {
+      console.log(error)
+    }
+  })()
+}),[])
 
 
-  const habdleGetPic = async()=>{
+// BLOCK 2 CHECK OWNER
+  const habdleGetInfo = async()=>{
     const owner = await contract.ownerOf(tokenId);
     setTokenOwner(owner)
 
     const urlById = await contract.tokenURI(tokenId)
     setTokenUri(urlById);
   }
-//0x98162D17D4d15c945B7418475EdEb4d9c0335684
+
+// BLOCK 2
   const handleCheckOwnerNft = async()=>{
 
-    const amountOfNft = await contract.balanceOf(checkOwnerNft)
-    setShowNumNft(amountOfNft.toString() as any);
+    setDisplayNftCard(!displayNftCard)
   }
 
 
@@ -38,29 +54,37 @@ export function ERC721() {
          <p className='text-center pt-5 font-bold text-3xl'>INFO</p>
        </div>
        <div className='m-5 bg-orange-200'>
-         <a href='https://rinkeby.etherscan.io/address/0x436c7CEe43947A1714914ccc30223C235f8605aF#code' target="_blank">SMART CONTRACT</a><br />
+         <a href='https://goerli.etherscan.io/address/0x71aca2815d8237a3bf3db4ace47115666f46a961#code' target="_blank">SMART CONTRACT</a><br />
          <a href='https://gateway.pinata.cloud/ipfs/QmNM3ZUzASR78M61PsPF3f63j13ZsXNCACnfMshNroFuKz' target="_blank">IPFS</a>
+         <p>amount of NFT: 8</p>
+         <p>amount of minted NFT: {amountMinted}</p>
        </div>
 
         <div className='p-5 bg-yellow-200'>
-          <p>token ID:</p>
+          <p>Check out the NFT info:</p>
           <input onChange={(e:any)=>setTokenId(e.target.value)}></input>
-          <button onClick={habdleGetPic} className='bg-blue-500 px-10 rounded-xl'>TEST</button>
+          <button onClick={habdleGetInfo} className='bg-blue-500 px-10 rounded-xl'>TEST</button>
           <p>address: {tokenUri}</p>
           <p>owner: {tokenOwner}</p>
+
+        </div>
+
+        <div className='p-5 bg-red-200'>
+          <p>Purchase an NFT: </p>
+          <h1>Rate: {"0.05"} ETH</h1>
+          <button className='bg-red-500 px-10 text-3xl rounded-xl'>BUY</button>
+          <div>I gonna make another SC to handle purchase</div>
         </div>
 
         <div className='p-5 bg-orange-400'>
-            <h1>Check if u have an NFT:</h1>
-            <input  onChange={(e:any)=>setCheckOwnerNft(e.target.value)} type='text' placeholder='put an address'/>
+            <h1>Interact with your NFT</h1>
+            <input  onChange={(e:any)=>setNumInteract(e.target.value)} type='text' placeholder='token ID'/>
             <button onClick={handleCheckOwnerNft} className='bg-purple-300 px-5'>check</button>
-            <h2>Your token ID: {showNumNft}</h2>
+            <h2>In this block The nft card should pops up so u can interact with it</h2>
         </div>
-
-
-        <p>THIS BLOCK pops up with NFT card and if u have nft, and than u can interact wiht it, like send and other</p>
     </div>
-    <NftCard tokenId={2} tokenAddress={tokenUri}/>
+    
+    {displayNftCard && <NftCard tokenId={numInteract}/>}
     </>
   )
 }
