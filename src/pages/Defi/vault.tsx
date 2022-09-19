@@ -21,9 +21,7 @@ export function Vault() {
   return (
   <>
   <Header />
-    <div className='flex justify-center'>
-    <Sidebar />
-    </div>
+  
     <div className='bg-white w-1/2 m-40 rounded-xl p-2'>
         <div>
           <h1 className='font-bold text-center text-2xl'>INFO: </h1>

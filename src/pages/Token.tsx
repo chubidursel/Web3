@@ -9,9 +9,7 @@ export function Token() {
   return (
     <>
     <Header />
-    <div className='flex justify-center'>
-   <Sidebar />
-      </div>
+ 
     <div className='flex flex-raw justify-around text-5xl font-bold text-gray-100 mt-40'>
  
       <Link to="/Token/ERC20"><div className="cursor-pointer hover:underline">ERC20</div></Link>

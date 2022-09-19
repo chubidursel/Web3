@@ -34,9 +34,7 @@ export function ERC721() {
   return (
     <>
    <Header />
-    <div className='flex justify-center'>
-    <Sidebar />
-    </div>
+ 
     <div className='w-1/2 h-full bg-slate-100 rounded-xl m-10 p-2'>
         <div>
          <p className='text-center pt-5 font-bold text-3xl'>INFO</p>

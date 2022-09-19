@@ -5,9 +5,7 @@ import Sidebar from '../Sidebar'
 function Game() {
   return (<>
     <Header />
-    <div className='flex justify-center'>
-    <Sidebar />
-    </div>
+   
     <div>Game</div>
     </>)
 }
