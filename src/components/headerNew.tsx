@@ -21,7 +21,7 @@ useEffect(() => {
       updateContextState({ currentAccount: accounts[0] });
     };
     const handleChangeNetwork = (chainId) => {
-      if (chainId != "0x4") {
+      if (chainId != "0x5") {
         disconnectMetamask(updateContextState);
       }
     };

@@ -11,6 +11,10 @@ const config: HardhatUserConfig = {
     rinkeby: {
       url: `https://rinkeby.infura.io/v3/${process.env.INFURA_RINKEBY}`,
       accounts: [`${process.env.PRIVATE_KEY}`]
+    }, 
+    goerli: {
+      url: `https://goerli.infura.io/v3/${process.env.INFURA_RINKEBY}`,
+      accounts: [`${process.env.PRIVATE_KEY}`]
     }},
     etherscan: {
       apiKey: process.env.ETHERSCAN_VERIFY,

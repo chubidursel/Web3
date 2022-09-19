@@ -28,14 +28,9 @@ export function Info() {
     <div className='bg-blue-100 rounded-2xl border-4 border-red-400 px-[15px] hover:bg-blue-200'>
         <h1 className=" text-3xl text-center font-bold m-3">INFO</h1>
 <div className='text-xl'>
-        <label htmlFor="chain" className='mr-3 font-bold'>Network:</label>
-            <select name="chain" id="chain" form="carform" className="rounded-xl px-2">
-            <option value="ETH">ETH</option>
-            <option value="Poligon">Poligon</option>
-            <option value="BNB">BNB</option>
-            </select>         
+            <p className='font-bold'>Network:</p> <p>Ethreum Testnet ( Goerli )</p>
             <p className='font-bold'>Token name / symbol:</p> <p>CryptoWorldToken / CWT</p>
-            <p className='font-bold'>Token address:</p> <p>0x4F77F82dF5CcC8D8d5f46ECadA58e500f53fDb3a </p>
+            <p className='font-bold'>Token address:</p> <p>0x9fa7096177A9eDC1547cCA1345B6a9C9e3A7eA6D</p>
             <p className='font-bold'>Owner:</p> <p>0x98162D17D4d15c945B7418475EdEb4d9c0335684</p>
             <p className='font-bold'>Total supply:</p> <p>{totalSupply}</p>
             <p className='font-bold'>Your address:</p> 
@@ -45,4 +40,9 @@ export function Info() {
     
   )
 }
-
+{/* <label htmlFor="chain" className='mr-3 font-bold'>Network:</label>
+<select name="chain" id="chain" form="carform" className="rounded-xl px-2">
+<option value="ETH">ETH</option>
+<option value="Poligon">Poligon</option>
+<option value="BNB">BNB</option>
+</select>  */}

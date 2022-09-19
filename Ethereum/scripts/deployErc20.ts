@@ -1,10 +1,10 @@
 import { ethers } from "hardhat";
-
+// npx hardhat clean && npx hardhat compile
 //npx hardhat run --network localhost scripts/deployErc20.ts
-// npx hardhat run --network rinkeby scripts/deployErc20.ts
+// npx hardhat run --network goerli scripts/deployErc20.ts
 
 // verify SC on etherscan 
-//npx hardhat verify 0x4F77F82dF5CcC8D8d5f46ECadA58e500f53fDb3a --network rinkeby
+//npx hardhat verify 0x9fa7096177A9eDC1547cCA1345B6a9C9e3A7eA6D --network goerli
 
 async function main() {
   console.log("🚀 deploying scmart contract.....");
