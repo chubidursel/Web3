@@ -1,5 +1,7 @@
 import React from 'react'
 import {Link} from "react-router-dom"
+import Header from '../components/headerNew'
+import Sidebar from '../components/Sidebar'
 
 export function Defi() {
   return (
