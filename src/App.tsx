@@ -9,7 +9,11 @@ import { Vault } from "./pages/Defi/vault"
 import { ERC721 } from "./pages/Token/ERC721";
 import { Wait } from "./components/waiting";
 import { ChainLink } from "./pages/Defi/ChainLink";
-
+import { Conveter } from "./pages/Other/converter";
+import { Market } from "./pages/Defi/Market";
+import {Auction} from "./pages/Defi/components/Market/Auction";
+//import Wordle from "./pages/Games/wordle";
+// <Route path="/Game" element={<Wordle />} />
 
 function App() {
 
@@ -22,9 +26,13 @@ function App() {
       <Route path="/Defi" element={<Defi />} />
       <Route path="/Defi/exchange" element={<Exchange />} />
       <Route path="/Defi/vault" element={<Vault />} />
+      <Route path="/Defi/Market" element={<Market />} />
+      <Route path="/Defi/Market/Auction" element={<Auction />} />
       <Route path="/Other" element={<Other />} />
       <Route path="/Coming_soon" element={<Wait />} />
       <Route path="/ChainLink" element={<ChainLink />} />
+      <Route path="/Other/Converter" element={<Conveter />} />
+     
     </Routes>
   )
 }
