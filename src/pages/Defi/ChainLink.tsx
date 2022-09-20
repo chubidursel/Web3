@@ -18,7 +18,7 @@ export function ChainLink() {
   return (
   <>
   <Header />
-  <Faq info={desciption}/>
+  
     <div className='bg-blue-100 w-2/3 flex flex-col m-10 rounded-2xl p-4'>
         <h1 className='font-bold text-center text-5xl'>ChainLink</h1>
         <h1 className='font-bold text-center my-3 text-2xl'>get data from off-chain</h1>

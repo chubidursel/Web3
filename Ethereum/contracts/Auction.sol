@@ -17,33 +17,6 @@ interface IERC721 {
     function ownerOf(uint) external view returns(address);
 }
 
-contract AuctionFactory{
-    event CreatedAuction(address auction, address owner, uint time);
-    IERC721 public nft;
-
-    constructor( address _nft) {
-        nft = IERC721(_nft);
-    }
-
-    address[] public listOfAuctions;
-    
-    function getLenght()public view returns(uint){
-        return listOfAuctions.length;
-    }
-
-    modifier nftHolder(uint _id){
-        require(msg.sender == nft.ownerOf(_id), "Yo yo, this is not ur NFT!");
-        _;
-    }
-
-    function createAuction(uint tokenId) external nftHolder(tokenId){
-        address newAction = address(new NftAuction(address(nft), payable(msg.sender), tokenId));
-        listOfAuctions.push(newAction);
-
-        emit CreatedAuction(newAction, msg.sender, block.timestamp);
-    }
-}
-
 contract NftAuction {
     event Start();
     event Bid(address indexed sender, uint amount);
