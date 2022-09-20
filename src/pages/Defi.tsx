@@ -1,5 +1,7 @@
 import React from 'react'
 import {Link} from "react-router-dom"
+import Header from '../components/headerNew'
+import Sidebar from '../components/Sidebar'
 
 export function Defi() {
   return (
@@ -16,6 +18,8 @@ export function Defi() {
       <Link to="/ChainLink" className='font-bold rounded-2xl border-2 bg-blue-100 border-red-400 px-10 py-5 text-6xl hover:bg-red-200 text-purple-900'><h1>ChainLink</h1></Link>
 
       <Link to="/Coming_soon" className='font-bold rounded-2xl border-2 bg-blue-100 border-red-400 px-10 py-5 text-6xl hover:bg-red-200 text-purple-900'><h1>DAO</h1></Link>
+
+      <Link to="/Defi/Market" className='font-bold rounded-2xl border-2 bg-blue-100 border-red-400 px-10 py-5 text-6xl hover:bg-red-200 text-purple-900'><h1>Market</h1></Link>
     </div>
     </>
   )

@@ -4,7 +4,9 @@ import { ethers } from 'ethers';
 import walletProvider from '../../abi/walletProvider';
 import { NftCard } from './ERC721_components/NftCard';
 import Header from '../../components/headerNew';
+import {Link} from "react-router-dom"
 import { contractWithSigner, contract } from './ERC721_components/contract_conection';
+import Sidebar from '../../components/Sidebar';
 
 export function ERC721() {
   const [tokenId, setTokenId] = useState(1);
@@ -48,7 +50,8 @@ useEffect((()=>{
 
   return (
     <>
-    <Header />
+   <Header />
+ 
     <div className='w-1/2 h-full bg-slate-100 rounded-xl m-10 p-2'>
         <div>
          <p className='text-center pt-5 font-bold text-3xl'>INFO</p>
@@ -56,6 +59,7 @@ useEffect((()=>{
        <div className='m-5 bg-orange-200'>
          <a href='https://goerli.etherscan.io/address/0x71aca2815d8237a3bf3db4ace47115666f46a961#code' target="_blank">SMART CONTRACT</a><br />
          <a href='https://gateway.pinata.cloud/ipfs/QmNM3ZUzASR78M61PsPF3f63j13ZsXNCACnfMshNroFuKz' target="_blank">IPFS</a>
+         <Link to="/Defi/Market"><button className='bg-red-500 px-10 text-3xl rounded-xl'>BUY</button></Link>
          <p>amount of NFT: 8</p>
          <p>amount of minted NFT: {amountMinted}</p>
        </div>
@@ -67,13 +71,6 @@ useEffect((()=>{
           <p>address: {tokenUri}</p>
           <p>owner: {tokenOwner}</p>
 
-        </div>
-
-        <div className='p-5 bg-red-200'>
-          <p>Purchase an NFT: </p>
-          <h1>Rate: {"0.05"} ETH</h1>
-          <button className='bg-red-500 px-10 text-3xl rounded-xl'>BUY</button>
-          <div>I gonna make another SC to handle purchase</div>
         </div>
 
         <div className='p-5 bg-orange-400'>

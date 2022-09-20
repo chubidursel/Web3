@@ -6,6 +6,7 @@ import Result from './components/exchange/Result';
 import { contractERC20WithSigner } from '../../components/smart_contract/erc20'; //ERC token
 import Header from '../../components/headerNew';
 import EventsExchange from './components/exchange/EventsExchange';
+import Sidebar from '../../components/Sidebar';
 
 export function Exchange() {
   const [cwt, setCwt] = useState();
@@ -81,6 +82,7 @@ console.log("Start with selling tokens")
   return (
     <>
     <Header />
+  
     <div className='w-max h-auto bg-slate-50 m-16 rounded-2xl p-10'>
         <h1 className='text-2xl font-bold'>You wanna get some CWT tokens?</h1>
         <div>Check out this smart contract here: 
