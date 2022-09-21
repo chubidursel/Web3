@@ -11,7 +11,7 @@ import Modal from "./modal";
 
 declare let window: any;
 
-const Header = () => {
+const Header = ({children}) => {
   const [active, setActive] = useState(false);
   const [isLogOutVisible, setLogOutVisible] = useState(false);
   const { contextState, updateContextState } = useAppContext();
@@ -100,7 +100,7 @@ className="block py-2 pr-4 pl-3 rounded md:hover:bg-transparent md:hover:text-pi
     <Modal 
     active={active}
     setActive={setActive}
-    >some information</Modal>
+    >{children}</Modal>
 </div>
   );
 };

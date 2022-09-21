@@ -6,7 +6,10 @@ import { NftCard } from './ERC721_components/NftCard';
 import Header from '../../components/headerNew';
 import {Link} from "react-router-dom"
 import { contractWithSigner, contract } from './ERC721_components/contract_conection';
-import Sidebar from '../../components/Sidebar';
+// import Sidebar from '../../components/Sidebar';
+import HeaderTokenNft from './ERC721_components/headerToken721';
+import Modal from '../../components/modal';
+
 
 export function ERC721() {
   const [tokenId, setTokenId] = useState(1);
@@ -14,8 +17,10 @@ export function ERC721() {
   const [tokenOwner, setTokenOwner] = useState('');
 
   const [numInteract, setNumInteract] = useState() // toos this number to NFT card
+  const [active, setActive] = useState(false);
 
-  const [displayNftCard, setDisplayNftCard] = useState(false)
+  const handleMod = () => setActive(true)
+  // const [displayNftCard, setDisplayNftCard] = useState(false)
   const [amountMinted, setAmountMinted] = useState();
 
 // BLOCK 1 INFO
@@ -42,46 +47,56 @@ useEffect((()=>{
   }
 
 // BLOCK 2
-  const handleCheckOwnerNft = async()=>{
+  // const handleCheckOwnerNft = async()=>{
 
-    setDisplayNftCard(!displayNftCard)
-  }
+  //   setDisplayNftCard(!displayNftCard)
+  // }
 
 
   return (
     <>
-   <Header />
+   <Header>info about token ERC721</Header>
+   <div className='flex justify-center'>
+   <HeaderTokenNft /></div>
+   <div className='flex justify-around text-purple-800'>
  
-    <div className='w-1/2 h-full bg-slate-100 rounded-xl m-10 p-2'>
+   <div className='bg-blue-100 w-1/2 rounded-2xl border-4 border-red-400 text-xl px-[15px] py-5 m-8'>
+   
         <div>
-         <p className='text-center pt-5 font-bold text-3xl'>INFO</p>
+        <h1 className=" text-3xl text-center font-bold m-1">INFO</h1>
        </div>
-       <div className='m-5 bg-orange-200'>
-         <a href='https://goerli.etherscan.io/address/0x71aca2815d8237a3bf3db4ace47115666f46a961#code' target="_blank">SMART CONTRACT</a><br />
-         <a href='https://gateway.pinata.cloud/ipfs/QmNM3ZUzASR78M61PsPF3f63j13ZsXNCACnfMshNroFuKz' target="_blank">IPFS</a>
-         <Link to="/Defi/Market"><button className='bg-red-500 px-10 text-3xl rounded-xl'>BUY</button></Link>
-         <p>amount of NFT: 8</p>
-         <p>amount of minted NFT: {amountMinted}</p>
+       <div className='flex flex-row justify-around rounded-2xl border-2 border-red-400 px-[15px] p-2 m-2'>
+         {/* <a href='https://goerli.etherscan.io/address/0x71aca2815d8237a3bf3db4ace47115666f46a961#code' target="_blank">SMART CONTRACT</a><br /> */}
+         {/* <a href='https://gateway.pinata.cloud/ipfs/QmNM3ZUzASR78M61PsPF3f63j13ZsXNCACnfMshNroFuKz' target="_blank">IPFS</a>
+         <Link to="/Defi/Market"><button className="font-bold rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400">BUY</button></Link> */}
+         <p className='font-semibold'>Amount of NFT: 8</p>
+         <p className='font-semibold'>Amount of minted NFT: {amountMinted}</p> 
        </div>
 
-        <div className='p-5 bg-yellow-200'>
-          <p>Check out the NFT info:</p>
-          <input onChange={(e:any)=>setTokenId(e.target.value)}></input>
-          <button onClick={habdleGetInfo} className='bg-blue-500 px-10 rounded-xl'>TEST</button>
-          <p>address: {tokenUri}</p>
-          <p>owner: {tokenOwner}</p>
+        <div className='rounded-2xl border-2 border-red-400 px-[15px] p-2 m-2'>
+          <p className='font-semibold'>Check out the NFT info:</p>
+          <input className='rounded-xl' onChange={(e:any)=>setTokenId(e.target.value)} placeholder='token ID'/>
+          <button onClick={habdleGetInfo} className='ml-3 className="font-bold rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400'>TEST</button>
+          <p className='font-semibold'>address:</p><p>{tokenUri}</p>
+          <p className='font-semibold'>owner:</p><p> {tokenOwner}</p>
 
         </div>
 
-        <div className='p-5 bg-orange-400'>
+        <div className='rounded-2xl border-2 border-red-400 px-[15px] p-2 m-2'>
             <h1>Interact with your NFT</h1>
-            <input  onChange={(e:any)=>setNumInteract(e.target.value)} type='text' placeholder='token ID'/>
-            <button onClick={handleCheckOwnerNft} className='bg-purple-300 px-5'>check</button>
-            <h2>In this block The nft card should pops up so u can interact with it</h2>
+            <input className='rounded-xl' onChange={(e:any)=>setNumInteract(e.target.value)} type='text' placeholder='token ID'/>
+            <button onClick={handleMod} className='ml-3 className="font-bold rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400'>Check</button>
+            {/* <h2>In this block The nft card should pops up so u can interact with it</h2> */}
         </div>
-    </div>
+    </div></div>
+    <Modal 
+    active={active}
+    setActive={setActive}
+    >
+    <NftCard tokenId={numInteract}/> 
     
-    {displayNftCard && <NftCard tokenId={numInteract}/>}
+    </Modal>
+    {/* {displayNftCard && <NftCard tokenId={numInteract}/>} */}
     </>
   )
 }

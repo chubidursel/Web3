@@ -11,7 +11,7 @@ export function ERC20() {
 
   return (
     <>
-    <Header />
+    <Header>info about token ERC20</Header>
  
     <div className='text-purple-800'>
     <div className="flex justify-center">

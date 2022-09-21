@@ -6,6 +6,7 @@ import Sidebar from '../components/Sidebar'
 export function Defi() {
   return (
     <>
+    <Header>info about DeFi</Header>
     <div className='text-white text-7xl font-bold text-center pt-10'>DeFi</div>
     <div className='flex flex-wrap space-x-4 mt-20 ml-5'>
 

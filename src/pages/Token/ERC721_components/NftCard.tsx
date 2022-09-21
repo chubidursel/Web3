@@ -73,9 +73,9 @@ const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
 
   return (
     <>
- <div className="bg-green-500 w-auto absolute top-20 right-20 p-5 rounded-2xl">
+ <div>
       <p>THERE is ur NFT</p>
-      <img className='h-40 p-5' src={imgUri} />
+      <img className='h-32 p-5' src={imgUri} />
           <div>
             <h1 className='bg-red-100 font-bold underline'>Description</h1>
             <p>name: {metaName}</p>
