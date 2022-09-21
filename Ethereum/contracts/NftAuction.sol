@@ -19,6 +19,7 @@ interface IERC721 {
 
 contract AuctionFactory{
     event CreatedAuction(address auction, address owner, uint time);
+    
     IERC721 public nft;
 
     constructor( address _nft) {
@@ -36,11 +37,12 @@ contract AuctionFactory{
         _;
     }
 
-    function createAuction(uint tokenId) external nftHolder(tokenId){
+    function createAuction(uint tokenId) external nftHolder(tokenId) returns(address _new){
         address newAction = address(new NftAuction(address(nft), payable(msg.sender), tokenId));
         listOfAuctions.push(newAction);
-
         emit CreatedAuction(newAction, msg.sender, block.timestamp);
+        
+        return newAction;       
     }
 }
 

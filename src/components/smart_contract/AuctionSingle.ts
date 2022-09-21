@@ -247,12 +247,12 @@ const abi = [
   ]
 // const address = "0xE1D5aFb20a6Fe4bD9139D91C9c833dA4c6AAcF12"
 
-export function AuctionPutAddress(address:string){
+export function auctionPutAddress(address:string){
     const contractAuctionFactory = new ethers.Contract(address, abi, defaultProvider);
     return contractAuctionFactory;
 }
-export function AuctionPutAddressSigner(address:string){
-    const contract = AuctionPutAddress(address)
+export function auctionPutAddressSigner(address:string){
+    const contract = auctionPutAddress(address)
     const signer = walletProvider.getSigner();
     const contractAuctionWithSigner = contract.connect(signer);
     return contractAuctionWithSigner;

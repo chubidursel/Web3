@@ -12,6 +12,8 @@ import { ChainLink } from "./pages/Defi/ChainLink";
 import { Conveter } from "./pages/Other/converter";
 import { Market } from "./pages/Defi/Market";
 import {Auction} from "./pages/Defi/components/Market/Auction";
+import { ShopNft } from "./pages/Defi/components/Market/ShopNft";
+
 //import Wordle from "./pages/Games/wordle";
 // <Route path="/Game" element={<Wordle />} />
 
@@ -28,6 +30,7 @@ function App() {
       <Route path="/Defi/vault" element={<Vault />} />
       <Route path="/Defi/Market" element={<Market />} />
       <Route path="/Defi/Market/Auction" element={<Auction />} />
+      <Route path="/Defi/Market/Shop" element={<ShopNft />} />
       <Route path="/Other" element={<Other />} />
       <Route path="/Coming_soon" element={<Wait />} />
       <Route path="/ChainLink" element={<ChainLink />} />

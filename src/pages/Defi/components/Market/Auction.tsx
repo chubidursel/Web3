@@ -8,7 +8,7 @@ import defaultProvider from '../../../../abi/defaultProvider';
 import walletProvider from '../../../../abi/walletProvider';
 import { contractAuctionFactory, contractAuctionFactoryWithSigner } from '../../../../components/smart_contract/AuctionFactory';
 import { contractERC721,  contractERC721WithSigner} from '../../../../components/smart_contract/ERC721';
-import { AuctionPutAddress, AuctionPutAddressSigner } from '../../../../components/smart_contract/AuctionSingle';
+import { auctionPutAddress, auctionPutAddressSigner } from '../../../../components/smart_contract/AuctionSingle';
 import { useAppContext } from "../../../../hooks/useAppContext";
 import Modal from '../../../../components/modal';
 
@@ -18,275 +18,21 @@ export function Auction() {
     const [tokenId, setTokenId] = useState();
     const [resCheckOwner, setResCheckOwner] = useState(false);
     const [timeStart, setTimeStart] = useState();
-    const [arrayAuction, setArrayAuction] = useState([]);
+    
     const [resultDeployment, setResultDeployment] = useState("");
     const addressAuction = "0xE1D5aFb20a6Fe4bD9139D91C9c833dA4c6AAcF12";
     
     const { contextState, updateContextState } = useAppContext();
     const currentAccount = contextState?.currentAccount;
 
-    const abi = [
-      {
-        "inputs": [
-          {
-            "internalType": "address",
-            "name": "_nft",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "_seller",
-            "type": "address"
-          },
-          {
-            "internalType": "uint256",
-            "name": "_nftId",
-            "type": "uint256"
-          }
-        ],
-        "stateMutability": "nonpayable",
-        "type": "constructor"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": true,
-            "internalType": "address",
-            "name": "sender",
-            "type": "address"
-          },
-          {
-            "indexed": false,
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-          }
-        ],
-        "name": "Bid",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": false,
-            "internalType": "address",
-            "name": "winner",
-            "type": "address"
-          },
-          {
-            "indexed": false,
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-          }
-        ],
-        "name": "End",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [],
-        "name": "Start",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": true,
-            "internalType": "address",
-            "name": "bidder",
-            "type": "address"
-          },
-          {
-            "indexed": false,
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-          }
-        ],
-        "name": "Withdraw",
-        "type": "event"
-      },
-      {
-        "inputs": [],
-        "name": "bid",
-        "outputs": [],
-        "stateMutability": "payable",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "address",
-            "name": "",
-            "type": "address"
-          }
-        ],
-        "name": "bids",
-        "outputs": [
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "end",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "endAt",
-        "outputs": [
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "ended",
-        "outputs": [
-          {
-            "internalType": "bool",
-            "name": "",
-            "type": "bool"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "highestBid",
-        "outputs": [
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "highestBidder",
-        "outputs": [
-          {
-            "internalType": "address",
-            "name": "",
-            "type": "address"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "nft",
-        "outputs": [
-          {
-            "internalType": "contract IERC721",
-            "name": "",
-            "type": "address"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "nftId",
-        "outputs": [
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "seller",
-        "outputs": [
-          {
-            "internalType": "address payable",
-            "name": "",
-            "type": "address"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "_time",
-            "type": "uint256"
-          }
-        ],
-        "name": "start",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "started",
-        "outputs": [
-          {
-            "internalType": "bool",
-            "name": "",
-            "type": "bool"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "withdraw",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-      }
-    ]
-    const handleRefresh = async()=>{
-      //const lastIndex = await contractAuctionFactoryWithSigner.getLenght()
-      const lastIndex = 2
-      let arrAddressAuction = [];
-      for (let i = 0; i <= lastIndex; i++) {
-        let addr = await contractAuctionFactory.listOfAuctions(i)
-        arrAddressAuction.push(addr);
-      }
-      setArrayAuction(arrAddressAuction as any);
-      console.log("Done!")
-    }
-// STEP #1  CHECK THE OWNER AND DISPLY MODAL
+// !!!!!!!!!!!!  STEP #1  CHECK THE OWNER AND DISPLY MODAL
   const handleCheck = async()=>{
     setShowDeploySC(!showDeploySC)
     const chackOwner = await contractERC721WithSigner.ownerOf(tokenId)
     const res = chackOwner.toLowerCase() === currentAccount
     setResCheckOwner(res);
   }
-// STEP #2  DEPLOY THE SMART CONTRACT
+// !!!!!!!!!!!!!!!!!! STEP #2  DEPLOY THE SMART CONTRACT
     const handleDeploy = async()=>{
       setShowDeploySC(false)
       setShowDeploySCSecond(true)
@@ -303,13 +49,13 @@ export function Auction() {
       }
     }
 
-// STEP #3  START AUCTION THE AUCTION
+// !!!!!!!!!!!!!!!!! STEP #3  START AUCTION THE AUCTION
     const handleStart = async()=>{
       try {
   // #1 CREATE SC INSTANST AND CONNECT TO SIGNER
    // GET NEW SMART CONTRACT FROM FACTORY
-        const addressNew = '0xc87a28c9d3f69f07ba214daa63fbbc64b85924be'
-        const contractAuctionWithSigner = AuctionPutAddressSigner(addressNew)
+        const addressNew = '0xa1166DFec8eCEBCC21A8e8D25777fF98F577a7b9'
+        const contractAuctionWithSigner = auctionPutAddressSigner(addressNew)
 console.log(contractAuctionWithSigner)
   // #2 APPROVING THE NFT TO NEW AUCTION    
  console.log("Aprroving...")
@@ -321,39 +67,24 @@ console.log(contractAuctionWithSigner)
         const txStart = contractAuctionWithSigner.start(timeStart)
         await txStart.wait();
         console.log(txStart)
+  console.log("DONE!!!!..")
       } catch (error) {
         console.log(error)
       }
     }
-// CONNECT SINGLE AUCTION TO ETHERS
-        const handleEnd = async() =>{
-
-          const address = "0xc87a28C9d3f69f07BA214daa63fBbC64B85924Be"
-          const contractSigner = AuctionPutAddressSigner(address);
-          const tx = await contractSigner.seller();
-          console.log(tx)
-
-         // const address = "0xc87a28C9d3f69f07BA214daa63fBbC64B85924Be"
-          //   const contractAuctionFactory = new ethers.Contract(address, abi, defaultProvider);
-          //   const signer = walletProvider.getSigner();
-          //   const contractAuctionWithSigner = contractAuctionFactory.connect(signer);
-          //   const tx = await contractAuctionWithSigner.seller();
-          // console.log(tx)
-        }
 
   return (
     <>
    <Header />
    
   <div className="flex flex-col bg-gray-100 w-2/3 m-5 ">
-  <button className='w-full bg-green-300 p-5 ' onClick={handleEnd}>TEST</button>
     <h1 className='text-5xl font-bold text-center'>AUCTION</h1>
         <div className="bg-blue-100 rounded-2xl border-4 h-max w-1/2 m-5">
-          <a href='https://goerli.etherscan.io/address/0xE1D5aFb20a6Fe4bD9139D91C9c833dA4c6AAcF12#code' target="_blank">SMART CONTRACT</a><br />
+          <a href='https://goerli.etherscan.io/address/0xab8Ce981A19146d263508855efB3F8B40724288C#code' target="_blank">SMART CONTRACT</a><br />
           <Link to="/Token/ERC721"><a className=' text-3xl rounded-xl'>NFT</a></Link>
         </div>
         <div className="bg-blue-100 rounded-2xl w-full border-4" >
-            <div>START AUCTION</div>
+            <div>CReATE AUCTION</div>
             <label>Token ID: </label>
             <input type="text" onChange={(e)=>{setTokenId(e.target.value as any)}}/>
             <button className='bg-orange-200 p-3 rounded-xl' onClick={handleCheck}>Create Auction</button>
@@ -382,12 +113,10 @@ console.log(contractAuctionWithSigner)
     </div>
  </Modal>
     
-    <div className="bg-blue-100 rounded-2xl border-4 w-1/2 m-20" >
-        <div>LIVE AUCTION</div>
-        <p>useeffect from Auction Factory to see current Auction</p>
-        <button className='bg-blue-400 px-3 rounded-xl' onClick={handleRefresh}>refresh</button>
-        
-        <ItemAuction arr={arrayAuction}/>
+    <div className="bg-blue-100 rounded-2xl border-4 w-auto m-20" >
+        <div className='text-5xl font-bold text-center'>LIVE AUCTION</div>
+
+        <ItemAuction />
 
     </div>
     
