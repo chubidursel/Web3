@@ -37,7 +37,6 @@ function EventsExchange() {
           <td className='ml-5 font-bold'>{el.args[1].toString()}</td>
         </tr>
       )
-
     })
 
   return (

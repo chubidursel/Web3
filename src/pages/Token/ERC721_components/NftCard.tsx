@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { contractWithSigner, contract } from './../ERC721_components/contract_conection';
+import { contractERC721, contractERC721WithSigner } from '../../../components/smart_contract/ERC721';
 import { useAppContext } from "../../../hooks/useAppContext";
 
 // https://gateway.pinata.cloud/ipfs/ <<<<gateway to ipfs
@@ -44,7 +44,7 @@ const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
   const handleTransfer = async(event:any)=>{
     event.preventDefault();
 
-    const txTransfer = await contractWithSigner.transferFrom(currentAccount, addressToSend, tokenId);
+    const txTransfer = await contractERC721WithSigner.transferFrom(currentAccount, addressToSend, tokenId);
     await txTransfer.wait()
 
     console.log(txTransfer)
@@ -53,7 +53,7 @@ const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
   const handleApprove = async(event:any)=>{
     event.preventDefault();
 
-    const txApprove = await contractWithSigner.approve(addressToApprove, tokenId);
+    const txApprove = await contractERC721WithSigner.approve(addressToApprove, tokenId);
     await txApprove.wait()
 
     console.log(txApprove)
@@ -62,7 +62,7 @@ const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
   useEffect((()=>{
     (async()=>{
       try {
-        const addressOwner = await contract.ownerOf(tokenId)
+        const addressOwner = await contractERC721.ownerOf(tokenId)
         setInfoAddressOwner(addressOwner)
       } catch (error) {
         console.log(error)

@@ -5,7 +5,7 @@ import walletProvider from '../../abi/walletProvider';
 import { NftCard } from './ERC721_components/NftCard';
 import Header from '../../components/headerNew';
 import {Link} from "react-router-dom"
-import { contractWithSigner, contract } from './ERC721_components/contract_conection';
+import { contractERC721, contractERC721WithSigner } from '../../components/smart_contract/ERC721';
 import Sidebar from '../../components/Sidebar';
 
 export function ERC721() {
@@ -22,7 +22,7 @@ export function ERC721() {
 useEffect((()=>{
   (async()=>{
     try {
-      const numMinted = await contract.numOfNft()
+      const numMinted = await contractERC721.numOfNft()
       setAmountMinted(numMinted.toString())
       
     } catch (error) {
@@ -34,10 +34,10 @@ useEffect((()=>{
 
 // BLOCK 2 CHECK OWNER
   const habdleGetInfo = async()=>{
-    const owner = await contract.ownerOf(tokenId);
+    const owner = await contractERC721.ownerOf(tokenId);
     setTokenOwner(owner)
 
-    const urlById = await contract.tokenURI(tokenId)
+    const urlById = await contractERC721.tokenURI(tokenId)
     setTokenUri(urlById);
   }
 

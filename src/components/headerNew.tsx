@@ -49,28 +49,29 @@ const handleConnectMetamaskClick  = async () => {
 
   const handleModal = () => setActive(true)
 
-  return (<div className="text-2xl text-white">
-    <header className="flex relative justify-center p-4 font-semibold">
-    <nav className="rounded-2xl border-2 border-red-400">
-    <ul className="flex space-x-8  font-semibold">
-<li>
-<Link to="../" className="block py-2 pr-4 pl-3 rounded hover:bg-transparent hover:text-pink-400">Home</Link> 
-</li>
-<li>
-<Link to="../Token" 
-className="block py-2 pr-4 pl-3 rounded md:hover:bg-transparent md:hover:text-pink-400">Tokens</Link>
-</li>
-<li>
-<Link to="../Defi" className="block py-2 pr-4 pl-3 text-white rounded md:hover:bg-transparent md:hover:text-pink-400">DeFi</Link>
-</li>
-<li>
-<Link to="../Other" className="block py-2 pr-4 pl-3 rounded md:hover:bg-transparent md:hover:text-pink-400">Other</Link>
-</li>  
-<li>
-<button onClick={handleModal} className="block py-2 pr-4 pl-3 rounded md:hover:bg-transparent md:hover:text-pink-400">FAQ</button>
-</li>
-</ul>
-</nav>
+  return (
+        <div className="text-2xl text-white ">
+          <header className="flex relative justify-center p-4 font-semibold">
+            <nav className="rounded-2xl border-2 border-red-400 opacity-50 hover:opacity-100  hover:px-10 ">
+          <ul className="flex space-x-8  font-semibold">
+            <li>
+            <Link to="../" className="block py-2 pr-4 pl-3 rounded hover:bg-transparent hover:text-pink-400">Home</Link> 
+            </li>
+            <li>
+            <Link to="../Token" 
+            className="block py-2 pr-4 pl-3 rounded md:hover:bg-transparent md:hover:text-pink-400">Tokens</Link>
+            </li>
+            <li>
+            <Link to="../Defi" className="block py-2 pr-4 pl-3 text-white rounded md:hover:bg-transparent md:hover:text-pink-400">DeFi</Link>
+            </li>
+            <li>
+            <Link to="../Other" className="block py-2 pr-4 pl-3 rounded md:hover:bg-transparent md:hover:text-pink-400">Other</Link>
+            </li>  
+            <li>
+            <button onClick={handleModal} className="block py-2 pr-4 pl-3 rounded md:hover:bg-transparent md:hover:text-pink-400 animate-pulse">FAQ</button>
+            </li>
+            </ul>
+      </nav>
       {currentAccount ? (
   <>
     <span

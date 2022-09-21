@@ -22,13 +22,13 @@ export function Home() {
  
     <div className="flex  flex-row justify-around mt-40">
     <Link to="Token" onMouseEnter={() => setToken(!isToken)} onMouseLeave={() => setToken(!isToken)}><img src={Coin} alt="coin"  className='h-60 hover:animate-spin'/>
-    {isToken && <div className="text-3xl font-bold text-white">This is all about tokens</div>}
+    {isToken && <div className="text-5xl font-bold text-white text-center">Tokens</div>}
     </Link>
     <Link to="Defi" onMouseEnter={() => setDefi(!isDefi)} onMouseLeave={() => setDefi(!isDefi)}><img src={Defi} alt="Defi" className='h-60 hover:animate-bounce'/>
-    {isDefi && <div className="text-3xl font-bold text-white">This is all about DeFi</div>}
+    {isDefi && <div className="text-5xl font-bold text-white text-center">DeFi</div>}
     </Link>
     <Link to="Other" onMouseEnter={() => setOther(!isOther)} onMouseLeave={() => setOther(!isOther)}><img src={Tool} alt="tools" className='h-60 hover:animate-spin'/>
-    {isOther && <div className="text-3xl font-bold text-white">Other functional</div>}
+    {isOther && <div className="text-5xl font-bold text-white text-center">Other</div>}
     </Link>
     
     

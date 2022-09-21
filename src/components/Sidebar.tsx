@@ -37,26 +37,25 @@ export default function Sidebar() {
 // const handleDefi = () => setDefiVisible(!isDefiVisible)
 // const handleOther = () => setOtherVisible(!isOtherVisible)
     return (
-<div>
-<nav>
-  
-          <ul className="flex space-x-8 text-2xl text-white font-semibold">
-        <li>
-        <Link to="../" className="block py-2 pr-4 pl-3 text-white rounded hover:bg-transparent hover:text-pink-400">Home</Link> 
-        </li>
-        <li>
-        <Link to="../Token" 
-        className="block py-2 pr-4 pl-3 text-white rounded md:hover:bg-transparent md:hover:text-pink-400">Tokens</Link>
-        </li>
-        <li>
-        <Link to="../Defi" className="block py-2 pr-4 pl-3 text-white rounded md:hover:bg-transparent md:hover:text-pink-400">DeFi</Link>
-        </li>
-        <li>
-        <Link to="../Other" className="block py-2 pr-4 pl-3 text-white rounded md:hover:bg-transparent md:hover:text-pink-400">Other</Link>
-        </li>  
-      </ul>
-  
-</nav>
+    <div className="bg-green-300">
+    <nav>
+        <ul className="flex space-x-8 text-2xl text-white font-semibold">
+            <li>
+            <Link to="../" className="block py-2 pr-4 pl-3 text-white rounded hover:bg-transparent hover:text-pink-400">Home</Link> 
+            </li>
+            <li>
+            <Link to="../Token" 
+            className="block py-2 pr-4 pl-3 text-white rounded md:hover:bg-transparent md:hover:text-pink-400">Tokens</Link>
+            </li>
+            <li>
+            <Link to="../Defi" className="block py-2 pr-4 pl-3 text-white rounded md:hover:bg-transparent md:hover:text-pink-400">DeFi</Link>
+            </li>
+            <li>
+            <Link to="../Other" className="block py-2 pr-4 pl-3 text-white rounded md:hover:bg-transparent md:hover:text-pink-400">Other</Link>
+            </li>  
+        </ul>
+    
+    </nav>
 
 {/* {isTokenVisible && (
         <div onMouseLeave={() => setTokenVisible(!isTokenVisible)}
