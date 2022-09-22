@@ -73,31 +73,31 @@ const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
 
   return (
     <>
- <div>
-      <p>THERE is ur NFT</p>
-      <img className='h-32 p-5' src={imgUri} />
-          <div>
-            <h1 className='bg-red-100 font-bold underline'>Description</h1>
-            <p>name: {metaName}</p>
-            <p>metadata: <a href={metadataJson} target="_blank">link 🔗 </a></p>
-            <p>owner: {infoAddressOwner}</p>
+ <div className='text-purple-800'>
+ <h1 className="text-xl text-center font-bold m-1">NFT INFO</h1>
+      <img className='h-32 ml-44' src={imgUri} />
+          <div className='rounded-2xl border-2 border-red-400 px-[15px] p-2 m-2'>
+            <h1 className='bg-red-100 rounded-2xl text-center font-bold'>Description</h1>
+            <div className='flex flex-row'> <p className="font-bold mr-3">name:</p><p>{metaName}</p></div>
+            <div className='flex flex-row'> <p className="font-bold mr-3">metadata:</p> <a href={metadataJson} target="_blank">link 🔗</a></div>
+            <div className='flex flex-row'> <p className="font-bold mr-3">owner:</p><p>{infoAddressOwner}</p></div>
             <p>if the address is th same like in ur metamask show that</p>
             
           </div>
-          <div>
-            <h1 className='bg-red-100 font-bold underline mb-2'>functions</h1>
-              <form onSubmit={handleTransfer} className='bg-blue-100'>
+          <div className='rounded-2xl border-2 border-red-400 px-[15px] p-2 m-2'>
+            <h1 className='bg-red-100 rounded-2xl text-center font-bold'>Functions</h1>
+              <form onSubmit={handleTransfer}>
                 <h1 className='text-center font-bold'>Transfer</h1>
-                <label>send to: </label>
+                <div className='flex flex-row'><label className='font-bold mr-3'>send to: </label>
                 <input onChange={(e)=>setAddressToSend(e.target.value)} className='rounded' placeholder='Enter address of reciever'></input><br />
-                <button type="submit" className="font-bold ml-3 rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400">send</button>
+                <button type="submit" className="font-bold ml-12 rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400">send</button></div>
               </form>
-              <form onSubmit={handleTransfer} className='bg-blue-100'>
+              <form onSubmit={handleTransfer}>
                 <h1 className='text-center font-bold'>Aprove</h1>
-                <label>approve to: </label>
-                <input onChange={(e)=>setAddressToApprove(e.target.value)} className='rounded mr-2' placeholder='Enter address of reciever'></input><br />
+                <div className='flex flex-row'><label className='font-bold mr-3'>approve to: </label>
+                 <input onChange={(e)=>setAddressToApprove(e.target.value)} className='rounded mr-2' placeholder='Enter address of reciever'></input><br />
                 <button onClick={handleApprove} type="submit" className="font-bold ml-3 rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400">approve</button>
-              </form>
+                </div></form>
             </div>
     </div> 
     </>
