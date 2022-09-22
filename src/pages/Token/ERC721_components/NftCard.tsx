@@ -4,11 +4,12 @@ import { contractERC721, contractERC721WithSigner } from '../../../components/sm
 import { useAppContext } from "../../../hooks/useAppContext";
 
 // https://gateway.pinata.cloud/ipfs/ <<<<gateway to ipfs
-
+type tokenId = number;
 export function NftCard({tokenId}) {
   const[infoAddressOwner, setInfoAddressOwner ] = useState('')
   const [addressToSend, setAddressToSend] = useState('');
   const [addressToApprove, setAddressToApprove] = useState('');
+  const[ownerOrNot, setOwnrOrNot ] = useState(false)
 
   const { contextState, updateContextState } = useAppContext();
   const currentAccount = contextState?.currentAccount;
@@ -64,40 +65,48 @@ const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
       try {
         const addressOwner = await contractERC721.ownerOf(tokenId)
         setInfoAddressOwner(addressOwner)
+
+        if(currentAccount.toLowerCase() === infoAddressOwner.toLowerCase()){
+          setOwnrOrNot(true)
+          console.log("Yahooo")
+        }
+
       } catch (error) {
         console.log(error)
       }
     })()
   }),[])
 
+  // ERROOR =(
+  // IF INVALID TOKEN RETURN phrase "SORRY THIS TOKEN doesn't exist or hasn't been minted yet!"
+
 
   return (
     <>
- <div className="bg-green-500 w-auto absolute top-20 right-20 p-5 rounded-2xl">
-      <p>THERE is ur NFT</p>
-      <img className='h-40 p-5' src={imgUri} />
-          <div>
-            <h1 className='bg-red-100 font-bold underline'>Description</h1>
-            <p>name: {metaName}</p>
-            <p>metadata: <a href={metadataJson} target="_blank">link 🔗 </a></p>
-            <p>owner: {infoAddressOwner}</p>
-            <p>if the address is th same like in ur metamask show that</p>
-            
+ <div className='text-purple-800'>
+ <h1 className="text-xl text-center text-gray-200 font-bold m-1">PICTURE</h1>
+      <img className='h-32 ml-44' src={imgUri} />
+          <div className='rounded-2xl border-2 border-red-400 px-[15px] p-2 m-2'>
+            <h1 className='bg-red-100 rounded-2xl text-center font-bold'>Description</h1>
+            <div className='flex flex-row'> <p className="font-bold mr-3">name:</p><p>{metaName}</p></div>
+            <div className='flex flex-row'> <p className="font-bold mr-3">metadata:</p> <a href={metadataJson} target="_blank">link 🔗</a></div>
+            <div className='flex flex-row'> <p className="font-bold mr-3">owner:</p><p>{infoAddressOwner}</p></div>
+            {ownerOrNot ? <p className='text-green-600 font-bold'>This is your NFT! You can interact with it!</p> : <p>This NFT doesn't belong to your account. You can not use any function</p>}
           </div>
-          <div>
-            <h1 className='bg-red-100 font-bold underline mb-2'>functions</h1>
-              <form onSubmit={handleTransfer} className='bg-blue-100'>
+          <div className='rounded-2xl border-2 border-red-400 px-[15px] p-2 m-2'>
+            <h1 className='bg-red-100 rounded-2xl text-center font-bold'>Functions</h1>
+              <form onSubmit={handleTransfer}>
                 <h1 className='text-center font-bold'>Transfer</h1>
-                <label>send to: </label>
-                <input onChange={(e)=>setAddressToSend(e.target.value)} className='rounded' placeholder='Enter address of reciever'></input><br />
-                <button type="submit" className="font-bold ml-3 rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400">send</button>
+                <div className='flex flex-row'><label className='font-bold mr-3'>send to: </label>
+                <input onChange={(e)=>setAddressToSend(e.target.value)} className='rounded border-solid w-full border-2 pl-2 border-purple-800' placeholder='Enter address of reciever'></input><br />
+                <button disabled={ownerOrNot} type="submit" className="font-bold ml-1 rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400">send</button></div>
               </form>
-              <form onSubmit={handleTransfer} className='bg-blue-100'>
+              <form onSubmit={handleTransfer}>
                 <h1 className='text-center font-bold'>Aprove</h1>
-                <label>approve to: </label>
-                <input onChange={(e)=>setAddressToApprove(e.target.value)} className='rounded mr-2' placeholder='Enter address of reciever'></input><br />
-                <button onClick={handleApprove} type="submit" className="font-bold ml-3 rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400">approve</button>
-              </form>
+                <div className='flex flex-row'><label className='font-bold mr-3'>approve to: </label>
+                 <input onChange={(e)=>setAddressToApprove(e.target.value)} className='rounded border-solid w-full border-2 pl-2 border-purple-800' placeholder='Enter address of reciever'></input><br />
+                <button onClick={handleApprove} type="submit" className="font-bold ml-1 rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400">approve</button>
+                </div></form>
             </div>
     </div> 
     </>

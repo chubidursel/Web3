@@ -11,7 +11,7 @@ import Modal from "./modal";
 
 declare let window: any;
 
-const Header = () => {
+const Header = ({children}) => {
   const [active, setActive] = useState(false);
   const [isLogOutVisible, setLogOutVisible] = useState(false);
   const { contextState, updateContextState } = useAppContext();
@@ -101,7 +101,7 @@ const handleConnectMetamaskClick  = async () => {
     <Modal 
     active={active}
     setActive={setActive}
-    >some information</Modal>
+    >{children}</Modal>
 </div>
   );
 };

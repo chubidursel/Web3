@@ -15,10 +15,19 @@ export function Home() {
   const [isDefi, setDefi] = useState(false);
   const [isOther, setOther] = useState(false);
 
+  const desc = (<>
+  <div className="text-center">
+  <h1>Desciptions</h1>
+  <h1>This projest is made for educatinal and as a showcase of these dudes 👨 👨 </h1>
+  <h1>Tech stach is used in this project:  </h1>
+<p>Front-end: Typescript, React, Tailwind</p>
+ <h1>PS: You always can click at FAQ and see how does it work</h1>
+  </div></>)
+
 
   return (
     <>
-    <Header />
+    <Header>{desc}</Header>
  
     <div className="flex  flex-row justify-around mt-40">
     <Link to="Token" onMouseEnter={() => setToken(!isToken)} onMouseLeave={() => setToken(!isToken)}><img src={Coin} alt="coin"  className='h-60 hover:animate-spin'/>

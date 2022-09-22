@@ -6,18 +6,17 @@ const Modal = ({ children, active, setActive}) => {
     }
     const handleOverlayClick = () => {setActive(false)}
 
-      return active ? (
+      return active ? (<>
         <div
-          className='h-full w-full bg-black opacity-100 fixed top-0 left-0 flex items-center justify-center scale-100'
+          className='h-full w-full bg-black opacity-70 fixed top-0 left-0 flex items-center justify-center scale-100'
           onClick={handleOverlayClick}
-        >
+        ></div>
           <div
-            className="p-5 rounded-md bg-white w-auto h-auto opacity-100 text-black"
+            className="fixed flex items-center justify-center top-1/4 right-1/3 p-5 w-1/3 h-auto rounded-md bg-white  text-black scale-100"
             onClick={handleStopPropag}
           >
-              <div className="opacity-100">{children}</div>
-           </div>
-        </div>
+              {children}
+           </div></>
       ) : null
     }
     
