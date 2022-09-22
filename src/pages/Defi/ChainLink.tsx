@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import { ethers } from "ethers";
-import {Faq} from '../../components/Faq'
 import Header from '../../components/headerNew';
 import { contractChainLink } from '../../components/smart_contract/ChainLinkEth';
 
