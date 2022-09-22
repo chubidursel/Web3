@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 
+
 export function Conveter() {
     const [ethTOwei, setEthToWei] = useState();
     const [weiTOeth, setWeiToEth] = useState();
@@ -14,7 +15,6 @@ export function Conveter() {
         <input onChange={(e)=>{setWeiToEth(e.target.value as any)}} placeholder={ethTOwei ? (Number(ethTOwei) * 1000000000000000000).toString() : 'Wei'}></input>
         <label>ETH</label>
         <input onChange={(e)=>{setEthToWei(e.target.value as any)}} ></input>
-        
     </div>
   </div>
   </>
