@@ -7,7 +7,7 @@ export function Other() {
   const [show, setShow] = useState(true)
   
   return (<>
-   <Header />
+   <Header>info about other functions</Header>
 
    {show ? <div className='flex justify-center' onClick={()=>{setShow(!show)}}><Welcome /></div> : 
    <div>

@@ -21,4 +21,6 @@
 >>>> .env 
     1. check wssWallet <<< it doesn't work =(
 
-        
+>>>> to do:
+1) do separate component Loader, because it uses in many places
+2) think about several states of error, maybe one result?        

@@ -18,7 +18,7 @@ export function Home() {
 
   return (
     <>
-    <Header />
+    <Header>General information</Header>
  
     <div className="flex  flex-row justify-around mt-40">
     <Link to="Token" onMouseEnter={() => setToken(!isToken)} onMouseLeave={() => setToken(!isToken)}><img src={Coin} alt="coin"  className='h-60 hover:animate-spin'/>
