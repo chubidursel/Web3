@@ -26,7 +26,7 @@ export function DAO() {
   }),[])
 
   return (<>
-  <Header>info about token ERC20</Header>
+  <Header>This is simple DAO project. If you have one of our NFT you can vote or create proposal</Header>
     <div>
         <div className='bg-blue-200'>
           <h1>Governance overvview</h1>

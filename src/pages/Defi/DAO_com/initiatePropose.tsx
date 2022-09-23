@@ -32,7 +32,7 @@ useEffect((()=>{
 
   return (<>
   
-    <div className='bg-blue-100 p-3 flex flex-col'>
+    <div className='bg-blue-100 p-8 flex flex-col'>
         <h1>InitiatePropse</h1>
         <h1>check if you have an NFT</h1>
         <form>

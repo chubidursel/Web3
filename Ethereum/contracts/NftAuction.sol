@@ -27,6 +27,7 @@ contract AuctionFactory{
     }
 
     address[] public listOfAuctions;
+    address public lastDeploed;
     
     function getLenght()public view returns(uint){
         return listOfAuctions.length;
@@ -37,12 +38,12 @@ contract AuctionFactory{
         _;
     }
 
-    function createAuction(uint tokenId) external nftHolder(tokenId) returns(address _new){
+    function createAuction(uint tokenId) external nftHolder(tokenId){
         address newAction = address(new NftAuction(address(nft), payable(msg.sender), tokenId));
         listOfAuctions.push(newAction);
         emit CreatedAuction(newAction, msg.sender, block.timestamp);
         
-        return newAction;       
+        lastDeploed = newAction;       
     }
 }
 

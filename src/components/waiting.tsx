@@ -5,7 +5,7 @@ import Sidebar from './Sidebar'
 
 export function Wait() {
   return (<>
-  <Header />
+  <Header>Stay tune</Header>
 
     <div className='grid h-screen place-items-center'>
         <div>

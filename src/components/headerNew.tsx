@@ -52,7 +52,7 @@ const handleConnectMetamaskClick  = async () => {
   return (
         <div className="text-2xl text-white ">
           <header className="flex relative justify-center p-4 font-semibold">
-            <nav className="rounded-2xl border-2 border-red-400 opacity-50 hover:opacity-100  hover:px-10 ">
+            <nav className="rounded-2xl border-2 border-red-400 opacity-40 hover:opacity-100  hover:px-10 ">
           <ul className="flex space-x-8  font-semibold">
             <li>
             <Link to="../" className="block py-2 pr-4 pl-3 rounded hover:bg-transparent hover:text-pink-400">Home</Link> 
