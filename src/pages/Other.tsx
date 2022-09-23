@@ -15,11 +15,7 @@ export function Other() {
    </div>
 
   }
-
-
-
-  
-  
+ 
   </>
   )
 }
