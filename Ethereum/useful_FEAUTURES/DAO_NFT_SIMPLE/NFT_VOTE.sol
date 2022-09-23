@@ -2,12 +2,12 @@
 pragma solidity ^0.8.4;
 
 
-import "../node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "../node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-import "../node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
-import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
-import "../node_modules/@openzeppelin/contracts/utils/Counters.sol";
-import "../node_modules/@openzeppelin/contracts/utils/Strings.sol";
+import "../../node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "../../node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "../../node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
+import "../../node_modules/@openzeppelin/contracts/access/Ownable.sol";
+import "../../node_modules/@openzeppelin/contracts/utils/Counters.sol";
+import "../../node_modules/@openzeppelin/contracts/utils/Strings.sol";
 
 contract Emoji is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
     using Counters for Counters.Counter;
@@ -26,7 +26,7 @@ contract Emoji is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
     function _baseURI() internal pure override returns (string memory) {
         return "ipfs://QmNM3ZUzASR78M61PsPF3f63j13ZsXNCACnfMshNroFuKz/";  
     }
-//THERE ARE JUST 8 pic??
+
     function safeMint(address to) public onlyOwner {
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
