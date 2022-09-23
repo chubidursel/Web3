@@ -1,11 +1,15 @@
-const Modal = ({ children, active, setActive}) => {
+import { useEffect } from "react"
+
+const ModalTwo = ({ children, active, setActive}) => {
 
     
     const handleStopPropag =(e) => {
     e.stopPropagation()
     }
     const handleOverlayClick = () => {setActive(false)}
-
+    useEffect(() => {
+        setActive(true)
+      }, []);
       return active ? (<>
         <div
           className='h-full w-full bg-black opacity-70 fixed top-0 left-0 flex items-center justify-center scale-100'
@@ -20,6 +24,6 @@ const Modal = ({ children, active, setActive}) => {
       ) : null
     }
     
-    export default Modal
+    export default ModalTwo
     
     

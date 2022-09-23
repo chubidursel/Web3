@@ -54,18 +54,18 @@ export function AuctionLot({address}) {
 
   return (
     <>
-     <div className='bg-blue-100 w-max rounded-2xl border-4 border-red-400 px-[15px] hover:bg-blue-200'>
-        <img src={Pic} className="h-40" />
-        <p className='bg-green-200'>address: {address}</p>
-        <p className='bg-yellow-200'>highest bid: {highestBid} ETH</p>
-        <p className='bg-red-200'>highest Bitter: {higBidder} </p>
-        {finished ?  <p className='bg-green-500'>active! until {timeFinished}</p> : <p className='bg-pink-300'>finished!</p>}
-        <input type="number"onChange={e => setBid(e.target.value as any)} placeholder='amount of ETH'></input>
-        <button  className='bg-orange-400 px-5' onClick={handleBid}>BID</button>
-
-        <button className='bg-purple-200 px-5 w-full 'onClick={handleEnding}>finied Auction!</button>
-        <button className='bg-orange-100 px-5 w-full'>withdraw</button>
-    </div>
+     <div className='rounded-2xl border-4 border-red-400 px-[15px] text-purple-800'>
+        <img src={Pic} className="h-32 ml-40" />
+        <p className='font-bold'>address:</p><p> {address}</p>
+        <p className='font-bold'>highest bid: </p><p>{highestBid} ETH</p>
+        <p className='font-bold'>highest Bitter from address:</p><p> {higBidder} </p>
+        {finished ?  <p className='font-bold text-center text-green-500'>Status: active until {timeFinished}</p> : <p className='font-bold text-center text-red-500'>Status: finished!</p>}
+        <input type="number"onChange={e => setBid(e.target.value as any)} className='m-2 rounded border-solid border-2 pl-2 border-purple-800' placeholder='amount of ETH'></input>
+        <button  className='text-lg font-bold rounded-2xl m-2 border-2 border-red-400 px-[15px] hover:bg-red-400' onClick={handleBid}>BID</button>
+<div className='flex flex-row justify-center'>
+        <button className='text-lg font-bold rounded-2xl m-2 border-2 border-red-400 px-[15px] hover:bg-red-400' onClick={handleEnding}>finied Auction!</button>
+        <button className='text-lg font-bold rounded-2xl m-2 border-2 border-red-400 px-[15px] hover:bg-red-400'>withdraw</button>
+    </div></div>
     </>
   )
 }

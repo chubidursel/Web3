@@ -65,11 +65,11 @@ export function ItemAuction() {
 
   const listTx = arrAucWithProvider.map((el:any, id) =>{
     return(<>
-      <tr key={id}>
-        <td className='bg-green-300 text-center py-1'>Open</td>
+      <tr key={id} className='text-center'>
+        <td className='font-bold text-green-500 py-1'>Open</td>
         <td>{el.tokenId}</td>
         <td>{el.addressAuc}</td>
-        <td className='ml-5 font-bold'><button className='bg-orange-400 px-5' value={el.addressAuc} onClick={getCard}>OPEN</button></td>
+        <td className='ml-5 font-bold'><button className='text-sm font-bold rounded-2xl m-2 border-2 border-red-400 px-[15px] hover:bg-red-400' value={el.addressAuc} onClick={getCard}>OPEN</button></td>
       </tr>
       
       </>
@@ -78,18 +78,21 @@ export function ItemAuction() {
 
   return (
     <>
-<button onClick={testingAuc} className='bg-red-500 w-full rounded-xl'>TEST</button>
-<h1>total amount of Auction: {amountAuc}</h1>
-    <table className='bg-orange-100 w-full rounded-xl'>
-          <tr className='bg-orange-300'>
+       <div className='text-purple-800'>
+
+<div className='flex justify-center'><button onClick={testingAuc} className='font-bold w-1/3 m-2 rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400'>TEST</button>
+</div>
+<h1 className='font-bold mb-2'>total amount of Auction: {amountAuc}</h1>
+    <table className='bg-orange-100 rounded-xl w-full'>
+          <tr className='bg-orange-300 text-center'>
           <th>Type</th>
-            <th>token ID</th>
+            <th>Token ID</th>
             <th>Address</th>
             <th>OPEN</th>
           </tr>
           {listTx}
         </table>
-
+</div>
 
     {display &&
      <Modal  active={display}
