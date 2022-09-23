@@ -82,6 +82,7 @@ const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
         const addressOwner = await contractERC721.ownerOf(tokenId)
         setInfoAddressOwner(addressOwner)
 
+
         if(currentAccount.toLowerCase() === infoAddressOwner.toLowerCase()){
           setOwnrOrNot(true)
           console.log("Yahooo")

@@ -11,7 +11,7 @@ import Modal from '../../components/modal';
 
 
 export function ERC721() {
-  const [tokenId, setTokenId] = useState(1);
+  const [tokenId, setTokenId] = useState();
   const [tokenUri, setTokenUri] = useState('');
   const [tokenOwner, setTokenOwner] = useState('');
   const [opneTokenInfo, setOpneTokenInfo] = useState(false);
