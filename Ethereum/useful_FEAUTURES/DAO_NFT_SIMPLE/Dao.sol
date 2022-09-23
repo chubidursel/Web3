@@ -13,10 +13,10 @@ contract Dao {
     uint256[] public validTokens;
     IdaoContract daoContract;
 
-    constructor(){
+    constructor( address nft_contract){
         owner = msg.sender;
         nextProposal = 1;
-        daoContract = IdaoContract(0x2953399124F0cBB46d2CbACD8A89cF0599974963);
+        daoContract = IdaoContract(nft_contract);
         validTokens = [34885103611559094078416375598166902696017567311370712658413208238551126245396];
     }
 

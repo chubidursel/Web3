@@ -15,7 +15,8 @@ export function ItemAuction() {
 
 
   type infoAuction = {
-    condition : boolean,
+    start : boolean
+    end : boolean,
     tokenId : number;
     addressAuc : string
   }
@@ -26,17 +27,23 @@ export function ItemAuction() {
     (async()=>{
       try {
         let arrIndex = await contractAuctionFactory.getLenght()
-      const index = arrIndex.toString()
-      setAmountAuc(index)
+        const index = arrIndex.toString()
+        setAmountAuc(index)
 
       let arrAddressAuction = [];
       for (let i = 0; i <= index -1 ; i++) {
         let addr = await contractAuctionFactory.listOfAuctions(i)
+        
+        const contractAuctionSingle = auctionPutAddress(addr);
+        const tokenID = await contractAuctionSingle.nftId()
+        const finished = await contractAuctionSingle.ended()
+        const started = await contractAuctionSingle.started()
 
         let newAuc: infoAuction = {
-          condition : true,
+          start : started,
+          end : finished,
           addressAuc : addr,
-          tokenId : 21,
+          tokenId : tokenID.toString(),
         }
         arrAddressAuction.push(newAuc)
       }
@@ -65,8 +72,11 @@ export function ItemAuction() {
 
   const listTx = arrAucWithProvider.map((el:any, id) =>{
     return(<>
-      <tr key={id}>
-        <td className='bg-green-300 text-center py-1'>Open</td>
+      <tr key={id} className='text-center'>
+        {
+          !el.start ? <td className='bg-gray-300 text-center py-1'>error ❌</td> : el.end ? <td className='bg-red-300 text-center py-1'>finished</td> : <td className='bg-green-300 text-center py-1'>live</td>
+        }
+        
         <td>{el.tokenId}</td>
         <td>{el.addressAuc}</td>
         <td className='ml-5 font-bold'><button className='bg-orange-400 px-5' value={el.addressAuc} onClick={getCard}>OPEN</button></td>

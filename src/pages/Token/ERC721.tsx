@@ -50,10 +50,15 @@ useEffect((()=>{
     }, 3000);
   }
 
-
   return (
     <>
-   <Header>info about token ERC721</Header>
+   <Header><div className='text-center py-2'>
+   <h1 className='font-bold'>Simple ERC721 smart contract</h1>
+   <p>📌 There are 8 pictures stored on IPFS</p>
+   📌Function to mint a new token is avalible only for owner, but other users can use function payToMin() to buy token. Or you can get this NFT from market.
+   <p>🔜There are some features which we want to implement in this block soon.  </p>
+   <p>1.On-chain stored NFT <br/> 2. Generator to mint more than 8 tokens 😉</p>
+    </div></Header>
    <div className='flex justify-center'>
    <HeaderTokenNft /></div>
    <div className='flex justify-around text-purple-800'>
