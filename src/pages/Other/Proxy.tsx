@@ -85,18 +85,18 @@ export function Proxy() {
   </Header>
         <div ref={boxRef} className="box">
           <h1 className='font-bold'>PROXY</h1>
-          <a target='_blanck' href='https://goerli.etherscan.io/address/0x42551E0B5d48ed3A4CEb8592E31e13E24adf19a0#code' className='bg-green-300'>Etherscan</a>
+          <a target='_blanck' href='https://goerli.etherscan.io/address/0x41153577d5931F5c47f575d2EC1674e10AB102aB#code' className='bg-green-300'>Etherscan</a>
           <button onClick={()=>{setShowModule(true)}} className='bg-purple-200 p-2 rounded-xl'>MODULE TO INTERACT</button>
         </div>
 
         <div className='bg-green-300 h-40 w-40 m-10'>
-            <h1>BOX #2</h1>
+            <h1>BOX #1</h1>
             <a target='_blanck' href='https://goerli.etherscan.io/address/0x42551E0B5d48ed3A4CEb8592E31e13E24adf19a0#code'>Etherscan</a>
             <h1>local number: {21}</h1>
         </div>
 
         <div className='bg-green-400 h-40 w-40 m-10'>
-            <h1>BOX #1</h1>
+            <h1>BOX #2</h1>
             <a href='https://goerli.etherscan.io/address/0x629d6c9473921cCe3317f213c097b16168664646#code'>Etherscan</a>
             <FunctionBox />
         </div>

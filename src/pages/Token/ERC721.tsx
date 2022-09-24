@@ -20,7 +20,7 @@ export function ERC721() {
   const [active, setActive] = useState(false);
 
 
-  const [error, setError] = useState()
+  const [error, setError] = useState('')
   const handleMod = () => setActive(true)
 
   const [amountMinted, setAmountMinted] = useState();
@@ -55,7 +55,7 @@ useEffect((()=>{
     catch (error) {
       console.log(error)
       setError('Oii wei, we got problems! 😞')
-      setTimeout(() => {setError()}, 2000)
+      setTimeout(() => {setError('')}, 2000)
     }  
   }
 

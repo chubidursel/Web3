@@ -70,10 +70,10 @@ export function PrposalTable() {
         <td>{el.id}</td>
         <td>{el.desc}</td>
         <td>{el.voteUp}</td>
-        <button value={el.id} onClick={showCard}>{el.passed ? "active" : "finished"}</button>
+        <button value={el.id} onClick={showCard}>VOTE</button>
       </tr>
     )
-  })
+  }) //{el.passed ? "active" : "finished"}
 
   return (<>
     <div className='bg-blue-100 w-1/2 rounded-2xl border-4 border-red-400 px-[15px] text-purple-800'>

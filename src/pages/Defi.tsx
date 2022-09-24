@@ -17,7 +17,10 @@ import Sidebar from '../components/Sidebar'
 export function Defi() {
   return (
     <>
-    <Header>info about DeFi</Header>
+    <Header>
+      <h1 className='text-center'>There are few main technoly that are going to help us to switch to the decentralized world 😉 </h1>
+    
+    </Header>
     <div className='text-white text-7xl font-bold text-center pt-10'>DeFi</div>
     <div className='flex flex-wrap space-x-4 mt-20 ml-5'>
 
