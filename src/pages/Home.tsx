@@ -55,7 +55,7 @@ export function Home() {
     {isOther && <div className="text-5xl font-bold text-white text-center">Other</div>}
     </Link>
     
-    <ModalTwo 
+    {/* <ModalTwo 
     active={active}
     setActive={setActive}
     ><>
@@ -65,7 +65,7 @@ export function Home() {
     <h1>Tech stach is used in this project:  </h1>
   <p>Front-end: Typescript, React, Tailwind</p>
    <h1>PS: You always can click at FAQ and see how does it work</h1>
-    </div></></ModalTwo>
+    </div></></ModalTwo> */}
     </div>
 
 

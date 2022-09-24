@@ -92,7 +92,7 @@ useEffect((()=>{
             </div>
             {/* <p>second block</p> */}
         <div className='rounded-2xl border-2 border-red-400 px-[15px] p-2 m-2'>
-            <h1 className='text-center font-bold text-xl mb-3'>Interact with cerrtain NFT</h1>
+            <h1 className='text-center font-bold text-xl mb-3'>Interact with certain NFT</h1>
             <div className='flex flex-row'>
             <input className='rounded-xl text-center w-1/2' type='number' onChange={(e:React.FormEvent)=>setNumInteract(e.target.value)} placeholder='token ID'/>
             <button onClick={handleMod} className='ml-3 w-1/2 className="font-bold rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400'>Check</button>

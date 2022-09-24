@@ -12,7 +12,7 @@ const Modal = ({ children, active, setActive}) => {
           onClick={handleOverlayClick}
         ></div>
           <div
-            className="fixed flex items-center justify-center top-2.5 right-1/3 p-5 w-1/3 h-auto rounded-md bg-white  text-black scale-100"
+            className="fixed flex items-center justify-center top-1/4 right-1/3 p-5 w-1/3 h-auto rounded-md bg-white  text-black scale-100"
             onClick={handleStopPropag}
           >
               {children}
