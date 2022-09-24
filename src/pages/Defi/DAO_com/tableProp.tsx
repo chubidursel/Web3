@@ -70,7 +70,7 @@ export function PrposalTable() {
         <td>{el.id}</td>
         <td>{el.desc}</td>
         <td>{el.voteUp}</td>
-        <button value={el.id} onClick={showCard} className='border-2'>{el.passed ? "active" : "finished"}</button>
+        <button value={el.id} onClick={showCard}>{el.passed ? "active" : "finished"}</button>
       </tr>
     )
   })
@@ -78,8 +78,9 @@ export function PrposalTable() {
   return (<>
     <div className='bg-blue-100 w-1/2 rounded-2xl border-4 border-red-400 px-[15px] text-purple-800'>
         <p className='font-bold text-3xl p-1 text-center'>Token transfer history</p>
-        <button className='w-full bg-blue-300 py-2 rounded-xl'>REFRESH</button>
         <div className='flex justify-center'> 
+        <button className='ml-3 w-1/2 className="font-bold rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400'>REFRESH</button>
+        
         
         </div>
         <table className='bg-orange-100 w-full  my-2 text-xl rounded-2xl text-center'>
