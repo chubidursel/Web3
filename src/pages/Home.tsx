@@ -18,7 +18,7 @@ export function Home() {
   const desc = (<>
   <div className="">
   <h1 className="text-2xl underline text-center">Desciptions</h1>
-  <h1 className="pb-2">This projest is made for educatinal purpose and to represent skills of these dudes <a href="https://www.linkedin.com/in/danil-kozhevnikov-a14b66232/" className="hover:animate-ping" target='_blank'>👨</a> 👨 </h1>
+  <h1 className="pb-2 ">This projest is made for educatinal purpose and to represent skills of these dudes <a href="https://www.linkedin.com/in/danil-kozhevnikov-a14b66232/" className="hover:animate-ping" target='_blank'>👨</a> 👨 </h1>
   
   <h1>📌Tech stach is used in this project:  </h1>
     <p>Front-end: Typescript, React, Tailwind</p>

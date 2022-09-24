@@ -18,8 +18,10 @@
     1.How to set the ipfs link to smart contract ERC721
     2. What happend if all nodes with ur file  will cut off from the network, so i can't reach my files?
     
->>>> .env 
+>>>> .env !!!!!
+
     1. check wssWallet <<< it doesn't work =(
+    2. ADDRESSS local smart contract
 
 >>>> to do:
 1) do separate component Loader, because it uses in many places

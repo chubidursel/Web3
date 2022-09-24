@@ -26,7 +26,15 @@ export function DAO() {
   }),[])
 
   return (<>
-  <Header>This is simple DAO project. If you have one of our NFT you can vote or create proposal</Header>
+  <Header>
+    <div className='text-center p-4'>
+      <h1 className='font-bold'>There is a simple implemetation of DAO</h1>
+      <p>How does it work?</p>
+      <p>The NFT-holders can create an proposal and vote for them</p>
+      <p>If you want to participate and be a member of our DAO you need to get one of our token which u can get in a few different way (buy it on the Auction, in the shop or buy dirrectly from the smart contract)</p>
+      <p>PS: We are going to add more feautures here such as a basic standard of Governant contract with TimeLock</p>
+    </div>
+  </Header>
     <div>
         <div className='bg-blue-200'>
           <h1>Governance overvview</h1>

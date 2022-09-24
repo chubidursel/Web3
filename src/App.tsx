@@ -14,7 +14,7 @@ import { Market } from "./pages/Defi/Market";
 import {Auction} from "./pages/Defi/components/Market/Auction";
 import { ShopNft } from "./pages/Defi/components/Market/ShopNft";
 import { DAO } from "./pages/Defi/DAO";
-
+import { Proxy } from "./pages/Other/Proxy";
 //import Wordle from "./pages/Games/wordle";
 // <Route path="/Game" element={<Wordle />} />
 
@@ -37,6 +37,7 @@ function App() {
       <Route path="/Coming_soon" element={<Wait />} />
       <Route path="/ChainLink" element={<ChainLink />} />
       <Route path="/Other/Converter" element={<Conveter />} />
+      <Route path="/Other/Proxy" element={<Proxy />} />
      
     </Routes>
   )
