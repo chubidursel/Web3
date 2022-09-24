@@ -83,7 +83,7 @@ const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
         setInfoAddressOwner(addressOwner)
 
 
-        if(currentAccount.toLowerCase() === infoAddressOwner.toLowerCase()){
+        if(currentAccount.toLowerCase() == infoAddressOwner.toLowerCase()){
           setOwnrOrNot(true)
           console.log("Yahooo")
         }

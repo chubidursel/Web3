@@ -91,16 +91,21 @@ console.log(contractAuctionWithSigner)
     </div>
    </Header>
    
+   <div>
+            <h2 className="flex justify-center text-5xl text-blue-100 font-bold m-3">Web3 Auction</h2>
+            <div className="flex justify-center space-x-4 text-white m-3">
+                <a href='https://goerli.etherscan.io/address/0xab8Ce981A19146d263508855efB3F8B40724288C#code' target="_blank" 
+                className="font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400">Etherscan </a>  
+          <Link to="/Token/ERC721" className='font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400'>NFT  </Link>
+            </div>
+        </div>
+
 
    <div className='grid grid-cols-1 justify-items-center'>
-   <div className='bg-blue-100 w-1/2 rounded-2xl border-4 border-red-400 text-xl px-[15px] py-5 m-8 text-purple-800'>
-   <div><h1 className="text-3xl text-center font-bold m-1">INFO</h1></div>
+   <div className='bg-blue-100 w-1/2 rounded-2xl border-4 border-red-400 text-xl px-[15px] py-5 m-3 text-purple-800'>
         <div className='flex flex-row justify-center mr-20'>
-          <button className='ml-3 className="font-bold rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400'>
-            <a href='https://goerli.etherscan.io/address/0xab8Ce981A19146d263508855efB3F8B40724288C#code' target="_blank">SMART CONTRACT</a></button><br />
-          <Link to="/Token/ERC721"><a className='ml-3 className="font-bold rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400'>NFT</a></Link>
         </div>
-            <div className='font-bold text-2xl text-center mt-3 mb-3'>Create auction</div>
+            <div className='font-bold text-2xl text-center mb-2'>Create auction</div>
             <div className='flex flex-row justify-center' >
 
             <label>Token ID: </label>
@@ -133,7 +138,7 @@ console.log(contractAuctionWithSigner)
  </Modal>
     
  <div className='bg-blue-100 w-1/2 rounded-2xl border-4 border-red-400 text-xl px-[15px] py-5 m-8 text-purple-800'>
-          <div className='font-bold text-center text-3xl m-1'>LIVE AUCTION</div>
+          <div className='font-bold text-center text-3xl m-1'>Live auction</div>
 
         <ItemAuction />
 
