@@ -92,22 +92,16 @@ useEffect((()=>{
                 <p className='font-semibold'>owner:</p><p> {tokenOwner}</p>
               </div> : <div className='flex justify-center text-red-500 font-bold'>{error}</div>}
 
-
-          <div className='flex flex-row'>
-             <p className='font-semibold'>Interact</p>
+              </div><h1 className=" text-3xl text-center font-bold m-1">Interact</h1>
+          <div className='bg-blue-100 rounded-xl border-2 border-red-400 text-xl px-[15px] py-5 flex flex-row justify-center'>
            
-            <input className='rounded-xl text-center ml-1' type='number' onChange={(e:React.FormEvent)=>setNumInteract(e.target.value)} placeholder='token ID'/>
+            <input className='w-1/2 rounded-xl text-center ml-1' type='number' onChange={(e:React.FormEvent)=>setNumInteract(e.target.value)} placeholder='token ID'/>
             <button onClick={handleMod} className='ml-3 font-semibold rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400'>Check</button>
            
-          
-          </div>
-        {/* { opneTokenInfo == true ? <div>
-                <p className='font-semibold'>address:</p><p>{tokenUri}</p>
-                <p className='font-semibold'>owner:</p><p> {tokenOwner}</p>
-              </div> : <div className='flex justify-center text-red-500 font-bold'>{error}</div>} */}
+           
             </div>
-            {/* <p>second block</p> */}
-    </div></div>
+          </div>
+    </div>
     <Modal 
     active={active}
     setActive={setActive}
