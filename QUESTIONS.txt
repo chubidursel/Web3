@@ -26,3 +26,6 @@
 >>>> to do:
 1) do separate component Loader, because it uses in many places
 2) think about several states of error, maybe one result?        
+
+>>> PROXY
+How to put a sort of a line to connect ptoxy and box

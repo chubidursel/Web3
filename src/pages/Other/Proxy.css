@@ -17,8 +17,20 @@ main {
   .box {
     padding: 10px;
     position: absolute;
-    top: 10;
-    left: 10;
+    top: 100;
+    left: 100;
+    background-color: hotpink;
+    height: auto;
+    width: max-content;
+    cursor: pointer;
+    display:flex;
+    flex-direction: column;
+  }
+  .box1 {
+    padding: 10px;
+    position: absolute;
+    top: 100;
+    left: 100;
     background-color: hotpink;
     height: auto;
     width: max-content;

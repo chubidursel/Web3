@@ -1,37 +1,70 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Header from '../../components/headerNew';
-import Sidebar from '../../components/Sidebar';
+import { contractVault, contractVaultWithSigner} from '../../components/smart_contract/vault';
+import { contractERC20WithSigner } from '../../components/smart_contract/erc20';
 
 export function Vault() {
   const [lockAmount, setLockAmount] = useState();
+  const [withdrawAmount, setWithdrawAmount] = useState();
+  const [totalSupply, setTotalSupply] = useState(0);
+  
+  const[checkBalance, setCheckBalance] = useState(0);
+  const[getBalanCheck, setGetBalanCheck] = useState('');
 
-  const contractSig = 'contractSigner'
-  const contractSimple = 'just a normal contract from ethers.js'
+  const [displayResult, setDisplayResult] = useState(false)
+  const [resultTx, setResultTx] = useState('');
+
+  const addressVault = "0xBd9bb2397512527718125661faC4c5b63d0b0c2d"
+  useEffect((()=>{
+    (async()=>{
+      try {
+        const totalSupply = await contractVault.totalSupply()
+        setTotalSupply(totalSupply.toString())
+      } catch (error) {
+        console.log(error)
+      }
+    })()
+  }),[])
 
   const habdleCheckBallance = async() =>{
-    // const balance = contractSig.balanceOf();
-    // setBalance(balance)
-    console.log(21)
+    const balance = await  contractVault.balanceOf(getBalanCheck);
+    setCheckBalance(balance.toString())
   }
 // FUNCTION
   const handleLock = async()=>{
-    console.log("Connect contract and call this func")
+    setDisplayResult(true)
+    setResultTx('Please sign 2 transations in MetaMask (1st to approve transfer from ERC20 and 2nd is deposit here) 🙌')
+    const resApprove = await contractERC20WithSigner.approve(addressVault, lockAmount);
+    await resApprove.wait(1)
+    const tx = await  contractVaultWithSigner.deposit(lockAmount);
+    await tx.wait(1)
+    setResultTx(`Congratulations 🥳! You lock ${lockAmount} CWT here`)
+    setTimeout(() => {setDisplayResult(false)}, 10000)
+  }
+  const handleWithdraw = async()=>{
+    setDisplayResult(true)
+    setResultTx('Hold on! I am calculating how much you locked here ... 😉 Please sign the transation in MetaMask ')
+    const tx = await  contractVaultWithSigner.withdraw(withdrawAmount);
+    await tx.wait(1)
+    setResultTx(`Congratulations 🥳! You got ${withdrawAmount} CWT back`)
+    setTimeout(() => {setDisplayResult(false)}, 10000)
   }
 
   return (
   <>
-  <Header />
+  <Header >Just a simple Vault</Header>
   
     <div className='bg-white w-1/2 m-40 rounded-xl p-2'>
         <div>
+          
           <h1 className='font-bold text-center text-2xl'>INFO: </h1>
-          <p>CWT: {222}</p>
-          <p>ETH: {10}</p>
+          <a className='hover:underline' target='_blanck' href="https://goerli.etherscan.io/address/0xBd9bb2397512527718125661faC4c5b63d0b0c2d#code">Etherscan</a> 
+          <p>totalSupply: {totalSupply}</p>
           <div>
             <h1>CHeck out ur lock</h1>
-            <input type='text' className='outline'></input>
+            <input type='text' onChange={(e)=>setGetBalanCheck(e.target.value)} className='outline'></input>
             <button onClick={habdleCheckBallance} className='bg-orange-500 mx-2 p-1'>check</button>
-            <h1>Your balance: ...</h1>
+            <h1>Your balance: {checkBalance}</h1>
           </div>
         </div>
 
@@ -40,22 +73,22 @@ export function Vault() {
           <div className='flex flex-row justify-center '>
             <div className='bg-green-500 p-5'>
               <h1>Lock CWT Token:</h1>
-              <input type="number" min="0" step='0.01' value={lockAmount} onChange={(e:any) => setLockAmount(e.target.value)} />
+              <input type="number" min="0" onChange={(e:any) => setLockAmount(e.target.value)} />
               <button onClick={handleLock} className='bg-blue-300 px-2 ml-2 rounded-xl'>LOCK</button>
             </div>
             <div className='bg-orange-500 p-5'>
               <h1>Withdraw CWT Token:</h1>
-              <input type="number" min="0" step='0.01' value={lockAmount} onChange={(e:any) => setLockAmount(e.target.value)} />
-              <button onClick={handleLock} className='bg-blue-300 px-2 ml-2 rounded-xl'>LOCK</button>
+              <input type="number" min="0"   onChange={(e:any) => setWithdrawAmount(e.target.value)} />
+              <button onClick={handleWithdraw} className='bg-blue-300 px-2 ml-2 rounded-xl'>Withdraw</button>
             </div>
           </div>
 
         </div>
 
-        <div className='bg-yellow-200'>
-          <h1>result: {lockAmount}</h1>
-        </div>
-        <button className='bg-blue-200 w-full mt-2 rounded-xl py-2 hover:bg-blue-400 active:bg-blue-800'>EVEVENTS</button>
+        {displayResult && <div className='bg-yellow-200 py-5 rounded-xl'>
+          <h1 className='text-center text-2xl'>{resultTx}</h1>
+        </div>}
+
         
     </div>
     </>

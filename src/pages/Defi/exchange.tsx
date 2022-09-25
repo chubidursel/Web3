@@ -61,7 +61,7 @@ export function Exchange() {
       } 
       else{
         setResult('Not enough fund here 😞')
-        setTimeout(() => {setResult()}, 2000)
+        setTimeout(() => {setResult('')}, 2000)
       }
     } catch (error) {
       console.log(error)
@@ -71,7 +71,7 @@ export function Exchange() {
       // else {setError("Error")}
       // setTimeout(() => {setError()}, 2000);
       setResult('Oii wei, we got problems! 😞')
-      setTimeout(() => {setResult()}, 2000)
+      setTimeout(() => {setResult('')}, 2000)
     }setLoader(false)
   }
 
