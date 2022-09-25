@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const config: HardhatUserConfig = {
-  solidity: "0.8.9",
+  solidity: "0.8.17",
   networks: {
     rinkeby: {
       url: `https://rinkeby.infura.io/v3/${process.env.INFURA_RINKEBY}`,

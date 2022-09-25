@@ -20,8 +20,9 @@ export function Proxy() {
       <div  className="container">
       <Header>
         <div className='text-center p-4'>
-          <h1 className='font-bold'>There is a simple implemetation of PROXY</h1>
-          <p>How does it work?</p>
+          <h1 className='font-bold'>There is a simple implemetation of PROXY contract</h1>
+          <p>How does it work?🤔</p>
+          <p>The orange box is our Proxy contract which is in theory other user are going to interact with. Under the hood this contract doesnt have any function that change it local state. But this proxy contract can use low-level function to call setter from another contract (Box # or Box#2) and change only its own value</p>
           </div>
        </Header>
 
