@@ -12,21 +12,26 @@ export function Other() {
   return (<>
    <Header>info about other functions</Header>
 
-   {!first ? <div className='flex justify-center' onClick={()=>{setFirst(!show)}}><Welcome /></div> : 
-   <div className='min-h-screen flex items-center justify-center'>
+   {/* {!first ? <div className='flex justify-center' onClick={()=>{setFirst(!show)}}><Welcome /></div> :  */}
 
-  <div className="relative w-full max-w-lg">
-    {show && <div className='absolute text-7xl text-white font-bold blur-sm animate-blob -left-32'>Converter</div>}
-    <Link to="/Other/Converter" onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)} className="text-white absolute top-0 -left-4 w-72 h-72 bg-yellow-700 rounded-full filter blur-xl opacity-70 animate-blob">
+   <div className='absolute top-1/3 ml-64 flex flex-row'>
+
+  {/* <div className="w-full max-w-lg"> */}
+    <div className='absolute text-7xl text-white font-bold blur-sm animate-blob'>Converter</div>
+    <Link to="/Other/Converter" onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)} className="mr-20 text-white w-72 h-72 bg-yellow-700 rounded-full filter blur-xl opacity-70 animate-blob animation-delay12000">
     </Link>
-    {showGame && <div className='absolute -top-1/2 -right-20 w-72 h-72 text-7xl text-white font-bold blur-sm animate-blob'>Game</div>}
-    <Link to="/Coming_soon" onMouseEnter={() => setShowGame(true)} onMouseLeave={() => setShowGame(false)} className="absolute top-0 -right-4 w-72 h-72 bg-blue-700 rounded-full filter blur-xl opacity-70 animate-blob animation-delay-2000">
+  <div className='absolute right-80 w-72 h-72 text-7xl text-white font-bold blur-sm animate-blob'>Game</div>
+    <Link to="/Coming_soon" onMouseEnter={() => setShowGame(true)} onMouseLeave={() => setShowGame(false)} className="mr-20 w-72 h-72 bg-blue-700 rounded-full filter blur-xl opacity-70 animate-blob animation-delay-2000">
     </Link>
-    {showProxy && <div className='absolute -top-72 left-20 w-72 h-72 text-7xl text-white font-bold blur-sm animate-blob'>Proxy</div>}
-    <Link to="Proxy" onMouseEnter={() => setShowProxy(true)} onMouseLeave={() => setShowProxy(false)} className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-700 rounded-full filter blur-xl opacity-80 animate-blob animation-delay-4000">
+  <div className='absolute left-3/4 w-72 h-72 text-7xl text-white font-bold blur-sm animate-blob'>Proxy</div>
+    <Link to="Proxy" onMouseEnter={() => setShowProxy(true)} onMouseLeave={() => setShowProxy(false)} className="w-72 h-72 bg-pink-700 rounded-full filter blur-xl opacity-80 animate-blob animation-delay-4000">
     </Link>
+
+
+    
     </div>
-    </div>
+    
+    {/* </div> */}
    }
 
     {/* <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-700 rounded-full filter blur-xl opacity-80 animate-blob animation-delay-4000"></div> */}
