@@ -4,6 +4,7 @@ import Welcome from '../components/Other/welcome'
 import { Link } from 'react-router-dom'
 import Modal from '../components/modal'
 import { FeedBack } from './Other/feedBack'
+import Sidebar from '../components/Sidebar'
 
 
 export function Other() {

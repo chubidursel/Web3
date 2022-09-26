@@ -2,40 +2,40 @@ import { useState, useEffect } from "react";
 import {Link} from "react-router-dom"
 
 export default function Sidebar() {
-//   const [isTokenVisible, setTokenVisible] = useState(false);
-//   const [isDefiVisible, setDefiVisible] = useState(false);
-//   const [isOtherVisible, setOtherVisible] = useState(false);
-//   const [isDropVisible, setDropVisible] = useState(false);
-// const tokenMenu = [{nam: "ERC20", path:"../Token/ERC20"}, {nam: 'ERC721', path:'../Token/ERC721'}, {nam: "ERC1151", path:"../Coming_soon"}]
-// const defiMenu = [{nam: "Exchange", path:"../Defi/exchange"}, {nam: 'Vault', path:'../Defi/vault'}, {nam: "Swap", path:"../Coming_soon"}, {nam: "ChainLink", path:"../Coming_soon"}, {nam: "DAO", path:"../Coming_soon"}]
-// const otherMenu = [{nam: "Game", path:"../Coming_soon"}, {nam: 'Note', path:'../Coming_soon'}, {nam: "Converter", path:"../Coming_soon"}, {nam: "Dropdown", path:"../Coming_soon"}, {nam: "Social media", path:"../Coming_soon"}]
+  const [isTokenVisible, setTokenVisible] = useState(false);
+  const [isDefiVisible, setDefiVisible] = useState(false);
+  const [isOtherVisible, setOtherVisible] = useState(false);
+  const [isDropVisible, setDropVisible] = useState(false);
+const tokenMenu = [{nam: "ERC20", path:"../Token/ERC20"}, {nam: 'ERC721', path:'../Token/ERC721'}, {nam: "ERC1151", path:"../Coming_soon"}]
+const defiMenu = [{nam: "Exchange", path:"../Defi/exchange"}, {nam: 'Vault', path:'../Defi/vault'}, {nam: "Swap", path:"../Coming_soon"}, {nam: "ChainLink", path:"../Coming_soon"}, {nam: "DAO", path:"../Coming_soon"}]
+const otherMenu = [{nam: "Game", path:"../Coming_soon"}, {nam: 'Note', path:'../Coming_soon'}, {nam: "Converter", path:"../Coming_soon"}, {nam: "Dropdown", path:"../Coming_soon"}, {nam: "Social media", path:"../Coming_soon"}]
 
   
 
-//   useEffect(() => {
-//   if (isTokenVisible){
-//     setDefiVisible(false)
-//     setOtherVisible(false)
-//     setDropVisible(false)
-//   }
-// }, [isTokenVisible])
+  useEffect(() => {
+  if (isTokenVisible){
+    setDefiVisible(false)
+    setOtherVisible(false)
+    setDropVisible(false)
+  }
+}, [isTokenVisible])
   
-//   useEffect(() => {
-//   if (isDefiVisible){
-//     setTokenVisible(false)
-//     setOtherVisible(false)
-//     setDropVisible(false)
-//   }}, [isDefiVisible])
+  useEffect(() => {
+  if (isDefiVisible){
+    setTokenVisible(false)
+    setOtherVisible(false)
+    setDropVisible(false)
+  }}, [isDefiVisible])
   
-//   useEffect(() => {
-//   if (isOtherVisible){
-//     setTokenVisible(false)
-//     setDefiVisible(false)}
-// }, [isOtherVisible])
+  useEffect(() => {
+  if (isOtherVisible){
+    setTokenVisible(false)
+    setDefiVisible(false)}
+}, [isOtherVisible])
 
-// const handleToken = () => setTokenVisible(!isTokenVisible)
-// const handleDefi = () => setDefiVisible(!isDefiVisible)
-// const handleOther = () => setOtherVisible(!isOtherVisible)
+const handleToken = () => setTokenVisible(!isTokenVisible)
+const handleDefi = () => setDefiVisible(!isDefiVisible)
+const handleOther = () => setOtherVisible(!isOtherVisible)
     return (
     <div className="bg-green-300">
     <nav>
@@ -57,7 +57,7 @@ export default function Sidebar() {
     
     </nav>
 
-{/* {isTokenVisible && (
+{isTokenVisible && (
         <div onMouseLeave={() => setTokenVisible(!isTokenVisible)}
         className="font-semibold absolute right-2/4 opacity-100 mt-2 rounded-md bg-white"
         >
@@ -84,7 +84,7 @@ export default function Sidebar() {
             <Link to="../Coming_soon" className="w-full text-pink-700 block px-4 py-2 text-xl  hover:bg-pink-400 rounded-md">Game</Link>
             <Link to="../Coming_soon" className="w-full text-pink-700 block px-4 py-2 text-xl  hover:bg-pink-400 rounded-md">Note</Link>
        </div>
-      )} */}
+      )}
 
 </div>)} 
 

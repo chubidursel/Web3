@@ -49,6 +49,17 @@ const handleConnectMetamaskClick  = async () => {
 
   const handleModal = () => setActive(true)
 
+
+  const [isTokenVisible, setTokenVisible] = useState(false);
+  const [isDefiVisible, setDefiVisible] = useState(false);
+  const [isOtherVisible, setOtherVisible] = useState(false);
+const tokenMenu = [{nam: "ERC20", path:"../Token/ERC20"}, {nam: 'ERC721', path:'../Token/ERC721'}, {nam: "ERC1151", path:"../Coming_soon"}]
+const defiMenu = [{nam: "Exchange", path:"../Defi/exchange"}, {nam: 'Vault', path:'../Defi/vault'}, {nam: "Swap", path:"../Coming_soon"}, {nam: "ChainLink", path:"../ChainLink"}, {nam: "DAO", path:"../DAO"}, {nam: "Auction", path:"../Defi/components/Market/Auction"}]
+const otherMenu = [{nam: "Converter", path:"../Other/converter"}, {nam: "Game", path:"../Coming_soon"}, {nam: 'Proxy', path:'../Other/Proxy'}]
+
+
+
+
   return (
         <div className="text-2xl text-white ">
           <header className="flex relative justify-center p-4 font-semibold">
@@ -58,20 +69,46 @@ const handleConnectMetamaskClick  = async () => {
             <Link to="../" className="block py-2 pr-4 pl-3 rounded hover:bg-transparent hover:text-pink-400">Home</Link> 
             </li>
             <li>
-            <Link to="../Token" 
+            <Link to="../Token" onMouseEnter={() => setTokenVisible(!isTokenVisible)}
             className="block py-2 pr-4 pl-3 rounded md:hover:bg-transparent md:hover:text-pink-400">Tokens</Link>
             </li>
             <li>
-            <Link to="../Defi" className="block py-2 pr-4 pl-3 text-white rounded md:hover:bg-transparent md:hover:text-pink-400">DeFi</Link>
+            <Link to="../Defi" onMouseEnter={() => setDefiVisible(!isDefiVisible)}
+            className="block py-2 pr-4 pl-3 text-white rounded md:hover:bg-transparent md:hover:text-pink-400">DeFi</Link>
             </li>
             <li>
-            <Link to="../Other" className="block py-2 pr-4 pl-3 rounded md:hover:bg-transparent md:hover:text-pink-400">Other</Link>
+            <Link to="../Other" onMouseEnter={() => setOtherVisible(!isOtherVisible)}
+            className="block py-2 pr-4 pl-3 rounded md:hover:bg-transparent md:hover:text-pink-400">Other</Link>
             </li>  
             <li>
             <button onClick={handleModal} className="block py-2 pr-4 pl-3 rounded md:hover:bg-transparent md:hover:text-pink-400 animate-pulse">FAQ</button>
             </li>
             </ul>
       </nav>
+      {isTokenVisible && (
+        <div onMouseLeave={() => setTokenVisible(!isTokenVisible)}
+        className="w-1/2 top-1 h-14 flex flex-row font-semibold absolute opacity-100 mt-2 rounded-md bg-blue-100"
+        >
+           {tokenMenu.map(el => (<Link to={el.path} className="w-full text-center align-content-center text-pink-700 block px-4 py-2 text-2xl  hover:bg-pink-400 rounded-md">{el.nam}</Link>))} 
+       </div>
+      )}
+
+{isDefiVisible && (
+        <div onMouseLeave={() => setDefiVisible(!isDefiVisible)}
+        className="w-1/2 h-14 top-2 flex flex-row font-semibold absolute opacity-100 mt-2 rounded-md bg-blue-100">
+            {defiMenu.map(el => (<Link to={el.path} className="w-full text-center text-pink-700 block px-4 py-2 text-2xl  hover:bg-pink-400 rounded-md">{el.nam}</Link>))} 
+       </div>
+      )}
+
+{isOtherVisible && (
+        <div onMouseLeave={() => setOtherVisible(!isOtherVisible)}
+        className="w-1/2 h-14 top-2 flex flex-row font-semibold absolute opacity-100 mt-2 rounded-md bg-blue-100">
+           {otherMenu.map(el => (<Link to={el.path} className="w-full text-center text-pink-700 block px-4 py-2 text-2xl  hover:bg-pink-400 rounded-md">{el.nam}</Link>))} 
+       </div>
+      )}
+
+
+
       {currentAccount ? (
   <>
     <span
