@@ -51,6 +51,7 @@ export function Exchange() {
     try {
       if(convertEthToCwt * 100 <= Number(cwt) ){setLoader(true)
         //contract get amount of ETH u want to send to this SC and according to Rate recive certain amount of CWT
+        setResult("Please sign the transation in MetaMask 📝 and wait till this tx will be confirmed in blockchain")
         const tx= {
           value: ethers.utils.parseEther(convertEthToCwt.toString()),
       }
@@ -58,7 +59,8 @@ export function Exchange() {
         const res = await callFunc.wait(1)
         //console.log(res.events)
 
-        setResult(`✅ Complete! TX hash: ${callFunc.hash}`)
+        setResult(`✅ Complete! You just bought ${cwt} CWT`)
+        setTimeout(() => {setResult('')}, 7000)
       } 
       else{
         setResult('Not enough fund here 😞')
@@ -66,11 +68,6 @@ export function Exchange() {
       }
     } catch (error) {
       console.log(error)
-      // if(error.code == "INSUFFICIENT_FUNDS") {setError('Not enough funds')}
-      // else if(error.code == "INVALID_ARGUMENT") {setError('Invalid input')}
-      // else if(error.code == "ACTION_REJECTED") {setError('Transaction was rejected')}
-      // else {setError("Error")}
-      // setTimeout(() => {setError()}, 2000);
       setResult('Oii wei, we got problems! 😞')
       setTimeout(() => {setResult('')}, 2000)
     }setLoader(false)
@@ -79,20 +76,17 @@ export function Exchange() {
   const handleSell = async()=>{
     try {setLoaderSell(true)
       const amount = ethers.utils.parseEther(amountSell.toString());
-
+      setResult(`To sell CWT token you must sign 2 transation. The first one is to approve in ERC20 contract and the secont tx you call in Exchange contract 📝`)
 // #1 calling ERC20 contract to set approve
       const resApprove = await contractERC20WithSigner.approve(contractExchange.address, amount);
       await resApprove.wait()
   console.log(resApprove)
-      setResult(`✅ Approve completed! TX hash: ${resApprove.hash}`)
-      setTimeout(() => {setResult('')}, 2000)
-
+      setResult(`✅ Approve completed! Now please sign the second transaction to sell your token`)
 // #2 calling this SC to sell tokens
-console.log("Start with selling tokens")
       const resSell = await contractExchangeWithSigner.sellToken(amountSell);
       await resSell.wait()
-      setResult(`✅ Sell Token completed! TX hash: ${resSell.hash}`)
-      setTimeout(() => {setResult('')}, 2000)
+      setResult(`✅ Sell Token completed!`)
+      setTimeout(() => {setResult('')}, 8000)
     } catch (error) {
       console.log(error)
       setResult('Oii wei, we got problems! 😞')
@@ -107,7 +101,7 @@ console.log("Start with selling tokens")
     <HeaderExchange handleToggle={handleToggle}/></div>
   <div className='flex justify-center text-purple-800'>
     <div className='bg-blue-100 w-1/2 rounded-2xl border-4 border-red-400 text-xl px-[15px] py-5 m-8'>
-    <h1 className=" text-3xl text-center font-bold m-1">You wanna get some CWT tokens?</h1>
+    <h1 className=" text-3xl text-center mb-2 font-bold m-1">You wanna get some CWT tokens?</h1>
      
    
     <div className='flex justify-around text-center'>
@@ -150,7 +144,7 @@ console.log("Start with selling tokens")
             </div> : <button onClick={handleSell} className="font-bold py-1 text-2xl hover:shadow-xl rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400">sell</button>}           
             </div>
             </div>  
-           <div className='flex justify-center'> {result && <h1 className='font-bold text-red-500 text-2xl '>{result}</h1>}   </div>
+           <div className='flex justify-center'> {result && <h1 className='font-bold mt-3 bg-yellow-100 w-full py-2 text-center  px-1 rounded-xl text-purple-900 text-xl '>{result}</h1>}   </div>
             </div>
            
          

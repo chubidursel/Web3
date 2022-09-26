@@ -20,7 +20,7 @@ export function ChainLink() {
     <h1>Here we implement simple chainLink contract to get data from off-chain</h1>
   </Header>
   
-    <div className='bg-blue-100 w-2/3 flex flex-col m-10 rounded-2xl p-4'>
+    <div className='bg-blue-100 w-2/3 flex flex-col ml-20 m-10 rounded-2xl p-4'>
         <h1 className='font-bold text-center text-5xl'>ChainLink</h1>
         <h1 className='font-bold text-center my-3 text-2xl'>get data from off-chain</h1>
 

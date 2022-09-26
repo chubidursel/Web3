@@ -50,22 +50,22 @@ useEffect((()=>{
       setOpneTokenInfo(true) // display the info below
       setTimeout(() => {
         setOpneTokenInfo(false)
-      }, 2500);
+      }, 6500);
     }
     catch (error) {
       console.log(error)
-      setError('Oii wei, we got problems! 😞')
-      setTimeout(() => {setError('')}, 2000)
+      setError('This token ID is not valid! 😞')
+      setTimeout(() => {setError('')}, 6000)
     }  
   }
 
   return (
     <>
    <Header><div className='text-center py-2'>
-   <h1 className='font-bold'>Simple ERC721 smart contract</h1>
-   <p>📌 There are 8 pictures stored on IPFS</p>
-   📌Function to mint a new token is avalible only for owner, but other users can use function payToMin() to buy token. Or you can get this NFT from market.
-   <p>🔜There are some features which we want to implement in this block soon.  </p>
+   <h1 className='font-bold mb-2'>Simple ERC721 smart contract</h1>
+   <p>📌 There are 8 pictures with metadata jons files stored on IPFS</p>
+   📌Function to mint a new token is avalible only for owner, but other users can use function payToMin() to buy token. Or you can get this NFT from Auction if curent holdder has a willing ro sell it.
+   <p>🔜There are some features which we want to implement in this block soon:  </p>
    <p>1.On-chain stored NFT <br/> 2. Generator to mint more than 8 tokens 😉</p>
     </div></Header>
    <div className='flex justify-center'>
@@ -84,7 +84,7 @@ useEffect((()=>{
                 <div className='flex flex-row'>
                   <p className='font-semibold'>Check the NFT info by token ID:</p>
           <input className='rounded-xl text-center ml-1' type='number' onChange={(e:any)=>setTokenId(e.target.value)} placeholder='token ID'/>
-          <button onClick={habdleGetInfo} className='ml-3 font-semibold rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400'>TEST</button>
+          <button onClick={habdleGetInfo} className='ml-2 font-semibold rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400'>check</button>
           </div>
 
           { opneTokenInfo == true ? <div>
@@ -95,8 +95,8 @@ useEffect((()=>{
               </div><h1 className=" text-3xl text-center font-bold m-1">Interact</h1>
           <div className='bg-blue-100 rounded-xl border-2 border-red-400 text-xl px-[15px] py-5 flex flex-row justify-center'>
            
-            <input className='w-1/2 rounded-xl text-center ml-1' type='number' onChange={(e:React.FormEvent)=>setNumInteract(e.target.value)} placeholder='token ID'/>
-            <button onClick={handleMod} className='ml-3 font-semibold rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400'>Check</button>
+            <input className='w-1/2 rounded-xl hover:shadow-xl text-center ml-1' type='number' onChange={(e:React.FormEvent)=>setNumInteract(e.target.value)} placeholder='token ID'/>
+            <button onClick={handleMod} className='ml-3 font-semibold text-2xl rounded-xl border-2 border-red-400 px-[17px] hover:bg-red-400'>show</button>
            
            
             </div>

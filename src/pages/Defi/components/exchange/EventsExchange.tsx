@@ -18,13 +18,12 @@ function EventsExchange() {
       return(
         <tr key={id} className='text-center py-1'>
           <td className='font-bold'>{el.event}</td>
-          <td>{el.blockNumber}</td>
-          <td>{el.args[0].toString()}</td>
+          <td className='px-2'>{el.blockNumber}</td>
+          <td>{el.args[0].toString().slice(0, 8) +"..." + el.args[0].toString().slice(35)}</td>
           <td className='ml-5 font-bold'>{el.args[1].toString()}</td>
         </tr>
       )
     })
-
   return (
     <div className='bg-blue-100 w-2/5 rounded-2xl border-4 border-red-400 p-1 px-[15px] text-purple-800'>
       <p className='font-bold text-3xl p-1 text-center'>Contract events</p>
@@ -32,7 +31,7 @@ function EventsExchange() {
       
     <button onClick={listenEvent} className="font-bold text-xl m-3 rounded-xl w-full border-2 border-red-400 px-[15px] hover:bg-orange-300">REFRESH</button></div>
     
-        <table className='bg-orange-100 w-auto'>
+        <table className='bg-orange-100 w-full'>
           <tr className='bg-orange-300'>
             <th>Type</th>
             <th>Block Number</th>

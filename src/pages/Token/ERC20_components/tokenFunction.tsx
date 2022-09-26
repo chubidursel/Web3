@@ -18,7 +18,7 @@ export default function TokenFunction() {
   const [error, setError] = useState()
   const [loader, setLoader] = useState(false)
 
-  const [succsAp, setSuccsAp] = useState()
+  const [succsAp, setSuccsAp] = useState('')
   const [errorAp, setErrorAp] = useState()
   const [loaderAp, setLoaderAp] = useState(false)
 
@@ -47,13 +47,14 @@ const currentAccount = contextState?.currentAccount;
   const handleTransaction = async(event:any)=>{
     event.preventDefault();
     setLoader(true)
-    setError()   
+    setError('')   
     try {
       const tx = await contractERC20WithSigner.transfer(addressTo, amountTo);
       const trans = await tx.wait()
       console.log(trans.transactionHash)
       if(tx){setSuccs("Transaction Success")
-      setTimeout(() => {setSuccs()}, 2000);}
+      setTimeout(() => {setSuccs('')}, 4000);
+    }
       
     } catch (error) {
       console.log(error)
@@ -73,7 +74,7 @@ const currentAccount = contextState?.currentAccount;
       const tx = await contractERC20WithSigner.approve(addressToArrpove, amountApprove);
       await tx.wait()
       if(tx){setSuccsAp("Transaction Success")
-      setTimeout(() => {setSuccsAp()}, 2000);}
+      setTimeout(() => {setSuccsAp('')}, 2000);}
     } catch (error) {
       if(error.code === "INSUFFICIENT_FUNDS") {setErrorAp('Not enough funds')}
       else if(error.code === "INVALID_ARGUMENT") {setErrorAp('Invalid input')}

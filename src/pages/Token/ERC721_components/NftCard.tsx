@@ -4,7 +4,7 @@ import { contractERC721, contractERC721WithSigner } from '../../../components/sm
 import { useAppContext } from "../../../hooks/useAppContext";
 
 // https://gateway.pinata.cloud/ipfs/ <<<<gateway to ipfs
-type tokenId = number;
+type tokId = number;
 export function NftCard({tokenId}) {
   const[infoAddressOwner, setInfoAddressOwner ] = useState('')
   const [addressToSend, setAddressToSend] = useState('');
@@ -100,7 +100,7 @@ const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
 
   return (
     <>
- <div className='text-purple-800'>
+ <div className='text-purple-800 w-full'>
  <h1 className="text-xl text-center text-gray-200 font-bold m-1">PICTURE</h1>
       <img className='h-32 ml-44' src={imgUri} />
           <div className='rounded-2xl border-2 border-red-400 px-[15px] p-2 m-2'>
@@ -108,7 +108,7 @@ const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
             <div className='flex flex-row'> <p className="font-bold mr-3">name:</p><p>{metaName}</p></div>
             <div className='flex flex-row'> <p className="font-bold mr-3">metadata:</p> <a href={metadataJson} target="_blank">link 🔗</a></div>
             <div className='flex flex-row'> <p className="font-bold mr-3">owner:</p><p>{infoAddressOwner}</p></div>
-            {ownerOrNot ? <p className='text-green-600 font-bold'>This is your NFT! You can interact with it!</p> : <p>This NFT doesn't belong to your account. You can not use any function</p>}
+            {ownerOrNot ? <p className='text-green-600 font-bold'>This is your NFT! You can interact with it!🙂</p> : <p className='text-red-500'>This NFT token doesn't belong to your account</p>}
           </div>
           <div className='rounded-2xl border-2 border-red-400 px-[15px] p-2 m-2'>
             <h1 className='bg-red-100 rounded-2xl text-center font-bold'>Functions</h1>

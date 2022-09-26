@@ -2,6 +2,8 @@ import {useState} from 'react'
 import Header from '../components/headerNew'
 import Welcome from '../components/Other/welcome'
 import { Link } from 'react-router-dom'
+import Modal from '../components/modal'
+import { FeedBack } from './Other/feedBack'
 
 
 export function Other() {
@@ -9,10 +11,13 @@ export function Other() {
   const [show, setShow] = useState(false)
   const [showGame, setShowGame] = useState(false)
   const [showProxy, setShowProxy] = useState(false)
+  const [openFeedback, setOpenFeedback] = useState(false)
+
   return (<>
    <Header>info about other functions</Header>
 
-   {/* {!first ? <div className='flex justify-center' onClick={()=>{setFirst(!show)}}><Welcome /></div> :  */}
+  
+<button onClick={()=>{setOpenFeedback(true)}} className='absolute top-20 right-5 hover:bg-blue-100 hover:text-purple-900 w-max px-4 py-1 font-bold rounded-xl border-2 text-white border-red-400 text-xl hover:bg-red-400"'>leave us a feedback</button>
 
    <div className='absolute top-1/3 ml-64 flex flex-row'>
   {/* <div className="w-full max-w-lg"> */}
@@ -31,12 +36,17 @@ export function Other() {
     </div>
     
     {/* </div> */}
-   }
-
+ 
     {/* <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-700 rounded-full filter blur-xl opacity-80 animate-blob animation-delay-4000"></div> */}
  
  
-  
+    <Modal 
+    active={openFeedback}
+    setActive={setOpenFeedback}
+    >
+   <FeedBack />
+    
+    </Modal>
 
 
 
