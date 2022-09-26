@@ -55,8 +55,9 @@ export function Exchange() {
           value: ethers.utils.parseEther(convertEthToCwt.toString()),
       }
         const callFunc = await contractExchangeWithSigner.buyToken(tx)
-        await callFunc.wait()
-        console.log(callFunc)
+        const res = await callFunc.wait(1)
+        //console.log(res.events)
+
         setResult(`✅ Complete! TX hash: ${callFunc.hash}`)
       } 
       else{
@@ -84,18 +85,18 @@ export function Exchange() {
       await resApprove.wait()
   console.log(resApprove)
       setResult(`✅ Approve completed! TX hash: ${resApprove.hash}`)
-      setTimeout(() => {setResult()}, 2000)
+      setTimeout(() => {setResult('')}, 2000)
 
 // #2 calling this SC to sell tokens
 console.log("Start with selling tokens")
       const resSell = await contractExchangeWithSigner.sellToken(amountSell);
       await resSell.wait()
       setResult(`✅ Sell Token completed! TX hash: ${resSell.hash}`)
-      setTimeout(() => {setResult()}, 2000)
+      setTimeout(() => {setResult('')}, 2000)
     } catch (error) {
       console.log(error)
       setResult('Oii wei, we got problems! 😞')
-      setTimeout(() => {setResult()}, 2000)
+      setTimeout(() => {setResult('')}, 2000)
     }setLoaderSell(false)
   }
 

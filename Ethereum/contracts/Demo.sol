@@ -5,7 +5,7 @@ contract Demo {
     uint num;
     address public owner;
 
-    event SetNumber(address who, uint number);
+    event SetNumber(address who, uint number, uint time);
 
     constructor(){
         owner = msg.sender;
@@ -17,7 +17,7 @@ contract Demo {
 
     function setNum(uint _num) public onlyOwner{
         num = _num;
-        emit SetNumber(msg.sender, _num);
+        emit SetNumber(msg.sender, _num, block.timestamp);
     }
 
     function getNumber()public view returns(uint){
