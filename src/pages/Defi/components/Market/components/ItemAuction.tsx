@@ -91,7 +91,7 @@ export function ItemAuction() {
     <>
        <div className='text-purple-800'>
 
-<div className='flex justify-center'><button onClick={testingAuc} className='font-bold w-1/3 m-2 rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400'>TEST</button>
+<div className='flex justify-center'><button onClick={testingAuc} className='font-bold w-1/3 m-2 rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400'>Refresh</button>
 </div>
 <h1 className='font-bold mb-2'>total amount of Auction: {amountAuc}</h1>
     <table className='bg-orange-100 rounded-xl w-full'>

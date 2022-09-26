@@ -47,8 +47,12 @@ export function DAO() {
             <button onClick={handleToggle} className="font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400">
             Amount of votes</button> 
             </div>
+            <div className='flex justify-center'>
+            <button onClick={()=>{setInitiateProp(!initiateProp)}} className='w-1/4 text-white font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400'>
+            Initiate purpose</button> </div>
         </div>
-        <div className='flex justify-center'> 
+        <div className='flex justify-center mt-5'> 
+         
     <PrposalTable /></div>
     <Modal 
     active={initiateProp}

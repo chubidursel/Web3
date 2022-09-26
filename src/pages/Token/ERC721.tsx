@@ -50,7 +50,7 @@ useEffect((()=>{
       setOpneTokenInfo(true) // display the info below
       setTimeout(() => {
         setOpneTokenInfo(false)
-      }, 2000);
+      }, 2500);
     }
     catch (error) {
       console.log(error)
@@ -78,27 +78,30 @@ useEffect((()=>{
         <div className='rounded-2xl border-2 border-red-400 px-[15px] p-2 m-2'>
                 {/* <p>Это нужно здесь? desciption: simple NFT smart contract with picture store on IPFS</p> */}
               {/* <div className='flex flex-row justify-around rounded-2xl border-2 border-red-400 px-[15px] p-2 m-2'> */}
-              <div className='flex flex-row justify-around'><p className='font-semibold'>Total amount of NFT: 8</p>
-                <p className='font-semibold'>Minted NFT: {amountMinted}</p></div>
+              <p className='font-semibold'>Total amount of NFT: 8</p>
+                <p className='font-semibold'>Minted NFT: {amountMinted}</p>
             
-          <p className='font-semibold mt-2 text-center'>Check the NFT info by token ID:</p>
-          <div className='flex flex-row justify-center m-2'><input className='rounded-xl text-center' type='number' onChange={(e:any)=>setTokenId(e.target.value)} placeholder='token ID'/>
-          <button onClick={habdleGetInfo} className='ml-3 className="font-bold rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400'>TEST</button>
+                <div className='flex flex-row'>
+                  <p className='font-semibold'>Check the NFT info by token ID:</p>
+          <input className='rounded-xl text-center ml-1' type='number' onChange={(e:any)=>setTokenId(e.target.value)} placeholder='token ID'/>
+          <button onClick={habdleGetInfo} className='ml-3 font-semibold rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400'>TEST</button>
           </div>
-        { opneTokenInfo == true ? <div>
+
+          { opneTokenInfo == true ? <div>
                 <p className='font-semibold'>address:</p><p>{tokenUri}</p>
                 <p className='font-semibold'>owner:</p><p> {tokenOwner}</p>
               </div> : <div className='flex justify-center text-red-500 font-bold'>{error}</div>}
+
+              </div><h1 className=" text-3xl text-center font-bold m-1">Interact</h1>
+          <div className='bg-blue-100 rounded-xl border-2 border-red-400 text-xl px-[15px] py-5 flex flex-row justify-center'>
+           
+            <input className='w-1/2 rounded-xl text-center ml-1' type='number' onChange={(e:React.FormEvent)=>setNumInteract(e.target.value)} placeholder='token ID'/>
+            <button onClick={handleMod} className='ml-3 font-semibold rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400'>Check</button>
+           
+           
             </div>
-            {/* <p>second block</p> */}
-        <div className='rounded-2xl border-2 border-red-400 px-[15px] p-2 m-2'>
-            <h1 className='text-center font-bold text-xl mb-3'>Interact with certain NFT</h1>
-            <div className='flex flex-row'>
-            <input className='rounded-xl text-center w-1/2' type='number' onChange={(e:React.FormEvent)=>setNumInteract(e.target.value)} placeholder='token ID'/>
-            <button onClick={handleMod} className='ml-3 w-1/2 className="font-bold rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400'>Check</button>
-            </div>
-        </div>
-    </div></div>
+          </div>
+    </div>
     <Modal 
     active={active}
     setActive={setActive}

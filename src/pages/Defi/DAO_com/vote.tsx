@@ -31,19 +31,15 @@ export function Vote({objInfo}) {
   }
 
   return (
-    <div className='m-10 w-full text-center'>
-      <h1 className='font-bold text-2xl'>INFO</h1>
-      <h1>initiator: {objInfo.initiator}</h1>
-      <h1>time: {objInfo.deadline}</h1>
-      <h1>descripion: {objInfo.desc}</h1>
-
-      <button className='bg-green-400 w-full py-2 mx-3 mb-3 rounded-xl' value={true} onClick={handleVote}>up</button>
-      <button className='bg-red-400 w-full py-2 mx-3 rounded-xl' value={false} onClick={handleVote}>down</button>
-
-      {displayResult && <div className='bg-yellow-300 p-3 mt-4'>
-        <h1>RESULT: </h1>
-      </div>}
-    </div>
+    <div className='rounded-2xl border-2 border-red-400 px-[15px] p-2 m-2 text-purple-800 text-lg'>
+      <h1 className='font-bold text-center'>INFO</h1>
+      <div className='flex flex-row'><h1 className='mr-2 font-bold'>initiator:</h1> <h1>{objInfo.initiator}</h1></div>
+      <div className='flex flex-row'><h1 className='mr-2 font-bold'>time: </h1><h1>{objInfo.deadline  }</h1></div>
+      <div className='flex flex-row'><h1 className='mr-2 font-bold'>descripion:</h1><h1> {objInfo.desc}</h1></div>
+      <div className='flex flex-row justify-around mt-2'>
+      <button className='font-bold ml-1 rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400' value={true} onClick={handleVote}>up</button>
+      <button className='font-bold ml-1 rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400' value={false} onClick={handleVote}>down</button>
+    </div> </div>
   )
 }
 
