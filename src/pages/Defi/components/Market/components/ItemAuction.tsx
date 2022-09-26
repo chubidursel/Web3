@@ -76,11 +76,9 @@ export function ItemAuction() {
         {
           !el.start ? <td className='bg-gray-300 text-center py-1'>error ❌</td> : el.end ? <td className='bg-red-300 text-center py-1'>finished</td> : <td className='bg-green-300 text-center py-1'>live</td>
         }
-        
-        <td className='font-bold text-green-500 py-1'>Open</td>
         <td>{el.tokenId}</td>
         <td>{el.addressAuc}</td>
-        <td className='ml-5 font-bold'><button className='text-sm font-bold rounded-2xl m-2 border-2 border-red-400 px-[15px] hover:bg-red-400' value={el.addressAuc} onClick={getCard}>OPEN</button></td>
+        <td className='ml-5 font-bold'><button className='text-sm font-bold rounded-xl m-2 border-2 border-red-400 px-[15px] hover:bg-red-400' value={el.addressAuc} onClick={getCard}>OPEN</button></td>
       </tr>
       
       </>
@@ -90,10 +88,10 @@ export function ItemAuction() {
   return (
     <>
        <div className='text-purple-800'>
-
-<div className='flex justify-center'><button onClick={testingAuc} className='font-bold w-1/3 m-2 rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400'>Refresh</button>
+       <h1 className='font-bold text-2xl  text-center mb-2'>total amount of Auction: {amountAuc}</h1>
+<div className='flex justify-center'><button onClick={testingAuc} className='font-bold w-full m-2 rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400'>Refresh</button>
 </div>
-<h1 className='font-bold mb-2'>total amount of Auction: {amountAuc}</h1>
+
     <table className='bg-orange-100 rounded-xl w-full'>
           <tr className='bg-orange-300 text-center'>
           <th>Type</th>

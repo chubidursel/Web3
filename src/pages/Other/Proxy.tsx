@@ -6,11 +6,8 @@ import { FunctionBox2 } from './Proxy_components/box2';
 import { FunctionBox1 } from './Proxy_components/box1';
 import FuncProxy from './Proxy_components/FuncProxy';
 import Draggable, {DraggableCore} from 'react-draggable';
-//import MetaMask from '../../assets/MetaMask.png'
-
 
 // https://github.com/diveindev/dragme
-
 export function Proxy() {
   const [showModule, setShowModule] = useState(false);
 
@@ -25,8 +22,6 @@ export function Proxy() {
           <p>The orange box is our Proxy contract which is in theory other user are going to interact with. Under the hood this contract doesnt have any function that change it local state. But this proxy contract can use low-level function to call setter from another contract (Box # or Box#2) and change only its own value</p>
           </div>
        </Header>
-
-
 
        <Draggable>
         <div className="bg-orange-300 w-max p-5 flex flex-col rounded-2xl">

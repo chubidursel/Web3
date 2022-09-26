@@ -92,7 +92,7 @@ console.log(contractAuctionWithSigner)
    </Header>
    
    <div>
-            <h2 className="flex justify-center text-5xl text-blue-100 font-bold m-3">Web3 Auction</h2>
+            <h2 className="flex justify-center text-5xl text-blue-100 font-bold m-3">NFT Auction</h2>
             <div className="flex justify-center space-x-4 text-white m-3">
                 <a href='https://goerli.etherscan.io/address/0xab8Ce981A19146d263508855efB3F8B40724288C#code' target="_blank" 
                 className="font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400">Etherscan </a>  
@@ -105,22 +105,29 @@ console.log(contractAuctionWithSigner)
    <div className='bg-blue-100 w-1/2 rounded-2xl border-4 border-red-400 text-xl px-[15px] py-5 m-3 text-purple-800'>
         <div className='flex flex-row justify-center mr-20'>
         </div>
-            <div className='font-bold text-2xl text-center mb-2'>Create auction</div>
+            <div className='font-bold text-5xl text-center mb-2'>Create an Auction</div>
+            
+            <div className=' text-center w-full m-5'>
+                <p>Create an Auction and sell your NFT</p>
+              
+            </div>
+
+
             <div className='flex flex-row justify-center' >
 
-            <label>Token ID: </label>
-            <input type="text" className='rounded border-solid border-2 pl-2 border-purple-800' onChange={(e)=>{setTokenId(e.target.value as any)}}/>
-            <button className='ml-3 font-bold rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400' onClick={handleCheck}>Create Auction</button>
+            <input type="number" placeholder='write your token ID' className='rounded-xl text-center hover:shadow-xl border-solid border-2 pl-2 border-purple-800' onChange={(e)=>{setTokenId(e.target.value as any)}}/>
+            <button className='ml-3 font-bold rounded-xl text-2xl hover:shadow-xl border-2 border-red-400 px-[15px] hover:bg-red-400' onClick={handleCheck}>Create Auction</button>
         </div>
   </div>
 
     <Modal  active={showDeploySC}
     setActive={setShowDeploySC}>
-<div className='rounded-2xl border-4 border-red-400 text-xl px-[15px] py-5 m-8 text-purple-800'>
-  <h1>Show the result of checkin the owner and connection of metamask</h1>
+<div className='rounded-2xl border-4 border-red-400 text-xl px-[15px] text-center py-5 m-8 text-purple-800'>
+  <h1>Before you will create a new Auction we have to check the ownershit of current NFT 🧐</h1>
+  
   <div className='grid grid-cols-1 justify-center'>
     <button disabled={!resCheckOwner} onClick={handleDeploy} className='ml-3 m-3 className="font-bold rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400'>DEPLOY</button>
-    {resCheckOwner ? <p className='bg-green-300 p-2 text-center'>You are the Owner!</p> : <p className='text-center  bg-red-300 p-2'>You are not an Owner!</p>}
+    {resCheckOwner ? <p className='bg-green-300 p-2 text-center'>You are the Owner!</p> : <p className='text-center rounded-xl bg-red-300 p-2'>You are not an Owner!</p>}
     <div>{resultDeployment}</div>
     </div></div>
  </Modal>
@@ -132,13 +139,13 @@ console.log(contractAuctionWithSigner)
       <h1>Congatulation! You just created your own smart contract with Auction</h1>
       <h1>You can started any time, just put time, and than u can see ur smart contract in the list below</h1>
         <label className='font-bold'>Time: </label>
-        <input className='m-2 rounded border-solid border-2 pl-2 border-purple-800' type="text" onChange={(e)=>{setTimeStart(e.target.value as any)}} placeholder='How many minutes...' />
+        <input className='m-2 rounded-xl border-solid border-2 pl-2 border-purple-800' type="text" onChange={(e)=>{setTimeStart(e.target.value as any)}} placeholder='How many minutes...' />
         <div className='flex justify-center'><button disabled={!resCheckOwner} onClick={handleStart} className='font-bold rounded-2xl m-2 border-2 border-red-400 px-[15px] hover:bg-red-400'>START</button>
     </div></div>
  </Modal>
     
  <div className='bg-blue-100 w-1/2 rounded-2xl border-4 border-red-400 text-xl px-[15px] py-5 m-8 text-purple-800'>
-          <div className='font-bold text-center text-3xl m-1'>Live auction</div>
+          <div className='font-bold text-center text-5xl m-1'>All Auctions</div>
 
         <ItemAuction />
 

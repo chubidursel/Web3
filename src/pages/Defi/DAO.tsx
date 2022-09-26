@@ -5,6 +5,7 @@ import { InitiatePropse } from './DAO_com/initiatePropose';
 import { contractDAO, contractDAOWithSigner} from '../../components/smart_contract/Dao_contract';
 import { contractERC721, contractERC721WithSigner} from '../../components/smart_contract/ERC721';
 import Header from '../../components/headerNew';
+import {Link} from "react-router-dom"
 
 export function DAO() {
   const [initiateProp, setInitiateProp] = useState(false)
@@ -15,10 +16,8 @@ export function DAO() {
       try {
         const numMinted = await contractERC721.numOfNft()
         setAmountVote(numMinted.toString())
-
         // const numVote = await contractDAO.nextProposal();
         // console.log(numVote)
-      
       } catch (error) {
         console.log(error)
       }
@@ -38,18 +37,19 @@ export function DAO() {
     </div>
   </Header>
       <div>
-            <h2 className="flex justify-center text-5xl text-blue-100 font-bold m-3 mb-10">Decentralized Autonomous Organisation</h2>
+            <h2 className="flex justify-center text-6xl text-blue-100 font-bold m-3 mb-5">DAO</h2>
             <div className="flex justify-center space-x-4 text-white m-6">
                 <a href='https://goerli.etherscan.io/address/0x76086675490192222654F93a15761f53a5B96a15#code' target="_blank" 
                 className="font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400">Etherscan </a>  
-             <button onClick={()=>{setInitiateProp(!initiateProp)}} className="font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400">
-            Initiate purpose</button> 
+             
+             <Link to="/Token/ERC721"> <button className="font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400">
+            NFT token</button> </Link>
             <button onClick={handleToggle} className="font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400">
             Amount of votes</button> 
             </div>
             <div className='flex justify-center'>
-            <button onClick={()=>{setInitiateProp(!initiateProp)}} className='w-1/4 text-white font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400'>
-            Initiate purpose</button> </div>
+            <button onClick={()=>{setInitiateProp(!initiateProp)}} className='w-1/2 text-white font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-4xl hover:bg-red-400'>
+            Initiate proposal</button> </div>
         </div>
         <div className='flex justify-center mt-5'> 
          
@@ -61,7 +61,11 @@ export function DAO() {
     </Modal>
 
     <Modal  active={amount} setActive={setAmount}>
-        <p className='font-bold text-xl text-purple-800'> Amount of votes: {amountVote}</p>
+      <div className='text-center'>
+        <p className='font-bold text-2xl mt-5 text-purple-800'> Amount of votes: {amountVote}</p> <br />
+        <p>Right now this amount of NFT token has been minted.</p>
+        <p>In our simple DAO implementation 1 token = 1 vote.</p>
+      </div>
     </Modal>
     </>
   )

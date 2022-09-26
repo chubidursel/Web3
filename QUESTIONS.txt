@@ -29,3 +29,9 @@
 
 >>> PROXY
 How to put a sort of a line to connect ptoxy and box
+
+
+1.Find a hosting serves (FOR NODEjs, nginx)
+DNS name 
+>> Linux command line 
+>> VPS
