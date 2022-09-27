@@ -61,7 +61,7 @@ export function Home() {
     <Link to="Defi" className="mr-24 w-72 h-72 bg-blue-700 rounded-full filter blur-xl opacity-80 animate-blob animation-delay-2000">
     </Link>
   <div className='absolute left-3/4 top-24 ml-4 w-72 h-72 text-7xl text-white font-bold animate-blob animation-delay-4000'>Other</div>
-    <Link to="Other" className="w-72 h-72 bg-pink-700 rounded-full filter blur-xl opacity-80 animate-blob animation-delay-4000">
+    <Link to="Other" className="w-72 h-72 bg-lime-500 rounded-full filter blur-xl opacity-80 animate-blob animation-delay-4000">
     </Link>
     </div>
 
