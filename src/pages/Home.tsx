@@ -41,7 +41,7 @@ export function Home() {
   return (
     <>
     <Header>{desc}</Header>
-    <div className="flex  flex-row justify-around mt-40">
+    {/* <div className="flex  flex-row justify-around mt-40">
     <Link to="Token" onMouseEnter={() => setToken(!isToken)} onMouseLeave={() => setToken(!isToken)}><img src={Coin} alt="coin"  className='h-60 hover:animate-spin'/>
     {isToken && <div className="text-5xl font-bold text-white text-center">Tokens</div>}
     </Link>
@@ -50,6 +50,18 @@ export function Home() {
     </Link>
     <Link to="Other" onMouseEnter={() => setOther(!isOther)} onMouseLeave={() => setOther(!isOther)}><img src={Tool} alt="tools" className='h-60 hover:animate-spin'/>
     {isOther && <div className="text-5xl font-bold text-white text-center">Other</div>}
+    </Link>
+    </div> */}
+
+<div className='absolute top-1/3 ml-64 flex flex-row'>
+  <div  className='ml-8 absolute text-7xl text-white font-bold animate-blob top-24'>Tokens</div>
+    <Link to="Token" className="mr-20 text-white w-72 h-72 bg-yellow-600 filter rounded-full blur-xl opacity-80 animate-blob">
+   </Link>
+  <div className='absolute right-80 top-20 w-72 h-72 text-7xl text-white font-bold animate-blob animation-delay-2000'>DeFi</div>
+    <Link to="Defi" className="mr-24 w-72 h-72 bg-blue-700 rounded-full filter blur-xl opacity-80 animate-blob animation-delay-2000">
+    </Link>
+  <div className='absolute left-3/4 top-24 ml-4 w-72 h-72 text-7xl text-white font-bold animate-blob animation-delay-4000'>Other</div>
+    <Link to="Other" className="w-72 h-72 bg-pink-700 rounded-full filter blur-xl opacity-80 animate-blob animation-delay-4000">
     </Link>
     </div>
 
