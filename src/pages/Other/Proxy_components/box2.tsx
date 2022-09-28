@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
-import {contractBoxV2, contractBoxV2WithSigner} from '../../../components/smart_contract/ProxyBox'
-
+import {contractBoxV2} from '../../../components/smart_contract/ProxyBox'
+import conectSigner from '../../../components/smart_contract/SIGNER';
 
 export function FunctionBox2() {
     const [getNum1, setGetNum1] = useState();
@@ -17,10 +17,12 @@ export function FunctionBox2() {
       }),[])
 
       const handleInc1 = async()=>{
+        const contractBoxV2WithSigner = conectSigner(contractBoxV2)
         const tx = await contractBoxV2WithSigner.inc();
         console.log(tx)
       }
       const handleDec1 = async()=>{
+        const contractBoxV2WithSigner = conectSigner(contractBoxV2)
         const tx = await contractBoxV2WithSigner.dec();
         console.log(tx)
       }

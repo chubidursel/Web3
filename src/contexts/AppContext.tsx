@@ -9,6 +9,8 @@ export const AppContextProvider = ({ children }) => {
   useEffect(() => {
     if(typeof window !== "undefined" && sessionStorage.getItem("currentAccount")){
       updateContextState({ currentAccount: sessionStorage.getItem("currentAccount")})
+    } else{
+      
     }
   }, []);
 

@@ -1,11 +1,10 @@
-import React from 'react'
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
 import walletProvider from '../../abi/walletProvider';
 import { NftCard } from './ERC721_components/NftCard';
 import Header from '../../components/headerNew';
 import {Link} from "react-router-dom"
-import { contractERC721, contractERC721WithSigner } from '../../components/smart_contract/ERC721';
+import { contractERC721 } from '../../components/smart_contract/ERC721';
 import HeaderTokenNft from './ERC721_components/headerToken721';
 import Modal from '../../components/modal';
 

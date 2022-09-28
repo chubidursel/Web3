@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
-import {contractBoxV1, contractBoxV1WithSigner} from '../../../components/smart_contract/ProxyBox'
-
+import {contractBoxV1} from '../../../components/smart_contract/ProxyBox'
+import conectSigner from '../../../components/smart_contract/SIGNER';
 
 export function FunctionBox1() {
     const [getNum1, setGetNum1] = useState();
@@ -17,10 +17,12 @@ export function FunctionBox1() {
       }),[])
 
       const handleInc1 = async()=>{
+        const contractBoxV1WithSigner = conectSigner(contractBoxV1)
         const tx = await contractBoxV1WithSigner.inc();
         console.log(tx)
       }
       const handleDec1 = async()=>{
+        const contractBoxV1WithSigner = conectSigner(contractBoxV1)
         const tx = await contractBoxV1WithSigner.dec();
         console.log(tx)
       }
@@ -30,10 +32,8 @@ export function FunctionBox1() {
     <div>
         <h1 className='py-2'>add/sub by 1</h1>
         <h1 className='font-bold text-xl'>Value: {getNum1}</h1>
-        
         <button className='bg-purple-300 px-4 font-bold text-4xl rounded-full' onClick={handleInc1}>+</button>
         <button className='bg-purple-300 px-4 font-bold text-4xl rounded-full' onClick={handleDec1}>-</button>
-        
     </div>
     </>
   )

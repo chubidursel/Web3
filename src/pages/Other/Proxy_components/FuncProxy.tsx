@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react'
-import {contractProxy, contractProxyWithSigner} from '../../../components/smart_contract/ProxyMain'
+import {contractProxy} from '../../../components/smart_contract/ProxyMain'
 import walletProvider from '../../../abi/walletProvider';
 import { useAppContext } from "../../../hooks/useAppContext";
 import { ethers } from 'ethers';
-
+import conectSigner from '../../../components/smart_contract/SIGNER';
 
 
 function FuncProxy() {
@@ -32,6 +32,7 @@ function FuncProxy() {
       const handleSwitch = async() =>{
         setDisplayResult(true)
         setResultTx('Sign the transation to switch implementation contract ... ⏳')
+        const contractProxyWithSigner = conectSigner(contractProxy)
         const tx = await contractProxyWithSigner.switchImplementation();
         await tx.wait(1)
         console.log(tx)

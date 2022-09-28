@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { ethers } from 'ethers';
-import { contractDAO, contractDAOWithSigner} from '../../../components/smart_contract/Dao_contract';
-
+import { contractDAO} from '../../../components/smart_contract/Dao_contract';
+import conectSigner from '../../../components/smart_contract/SIGNER';
 
 export function Vote({objInfo}) {
 
@@ -17,6 +17,7 @@ export function Vote({objInfo}) {
       const id = ethers.BigNumber.from( objInfo.id.toString() )
   
       console.log(id, res)
+      const contractDAOWithSigner = conectSigner(contractDAO)
       const txVote = await contractDAOWithSigner.voteOnProposal(objInfo.id, res)
       await txVote.wait(1)
       setResultTx("Congratulations 🥳! We count your Vote!")

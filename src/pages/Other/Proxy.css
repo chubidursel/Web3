@@ -3,38 +3,13 @@ main {
     place-items: center;
     height: 100vh;
     width: 100vw;
+    background-color: rgb(169, 208, 233);
   }
   
   .container {
     position: relative;
-    border: 1px solid black;
     height: 800px;
     width: 800px;
     overflow: hidden;
-    background-color: rgb(169, 208, 233);
   }
   
-  .box {
-    padding: 10px;
-    position: absolute;
-    top: 100;
-    left: 100;
-    background-color: hotpink;
-    height: auto;
-    width: max-content;
-    cursor: pointer;
-    display:flex;
-    flex-direction: column;
-  }
-  .box1 {
-    padding: 10px;
-    position: absolute;
-    top: 100;
-    left: 100;
-    background-color: hotpink;
-    height: auto;
-    width: max-content;
-    cursor: pointer;
-    display:flex;
-    flex-direction: column;
-  }

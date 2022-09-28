@@ -1,7 +1,5 @@
-import React, {useEffect, useState} from 'react'
-import { ethers } from 'ethers';
+import {useState} from 'react'
 import {contractExchange} from '../../../../components/smart_contract/exchange';
-import {contractERC20} from '../../../../components/smart_contract/erc20';
 
 function EventsExchange() {
     const [eventsLog, setEventsLog] = useState([])

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { contractDAO, contractDAOWithSigner} from '../../../components/smart_contract/Dao_contract';
+import { contractDAO} from '../../../components/smart_contract/Dao_contract';
 import Modal from '../../../components/modal';
 import {Vote} from './vote';
 

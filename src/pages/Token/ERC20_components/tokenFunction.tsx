@@ -1,7 +1,7 @@
 import defaultProvider from '../../../abi/defaultProvider';
-import { contractERC20, contractERC20WithSigner } from '../../../components/smart_contract/erc20';
+import { contractERC20 } from '../../../components/smart_contract/erc20';
+import conectSigner from '../../../components/smart_contract/SIGNER';
 import {useState} from 'react';
-import walletProvider from '../../../abi/walletProvider';
 import { useAppContext } from '../../../hooks/useAppContext';
 
 
@@ -49,6 +49,7 @@ const currentAccount = contextState?.currentAccount;
     setLoader(true)
     setError('')   
     try {
+      const contractERC20WithSigner = conectSigner(contractERC20)
       const tx = await contractERC20WithSigner.transfer(addressTo, amountTo);
       const trans = await tx.wait()
       console.log(trans.transactionHash)
@@ -71,6 +72,7 @@ const currentAccount = contextState?.currentAccount;
     event.preventDefault();
     setLoaderAp(true)
     try {
+      const contractERC20WithSigner = conectSigner(contractERC20)
       const tx = await contractERC20WithSigner.approve(addressToArrpove, amountApprove);
       await tx.wait()
       if(tx){setSuccsAp("Transaction Success")

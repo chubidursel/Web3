@@ -38,3 +38,7 @@ DNS name
 
 IDEA!!!!!!!!!!!
 1. Add big number to Convertor
+2. Loader to NFT pic
+3. Finished Vault
+4. Move the module menu
+

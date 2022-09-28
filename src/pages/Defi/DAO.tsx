@@ -2,10 +2,10 @@ import React, {useState, useEffect} from 'react'
 import {PrposalTable} from './DAO_com/tableProp'
 import Modal from '../../components/modal';
 import { InitiatePropse } from './DAO_com/initiatePropose';
-import { contractDAO, contractDAOWithSigner} from '../../components/smart_contract/Dao_contract';
-import { contractERC721, contractERC721WithSigner} from '../../components/smart_contract/ERC721';
+import { contractDAO} from '../../components/smart_contract/Dao_contract';
+import { contractERC721} from '../../components/smart_contract/ERC721';
 import Header from '../../components/headerNew';
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
 
 export function DAO() {
   const [initiateProp, setInitiateProp] = useState(false)

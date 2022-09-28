@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import { contractDAO, contractDAOWithSigner} from '../../../components/smart_contract/Dao_contract';
-import { contractERC721, contractERC721WithSigner} from '../../../components/smart_contract/ERC721';
+import { contractDAO} from '../../../components/smart_contract/Dao_contract';
+import { contractERC721} from '../../../components/smart_contract/ERC721';
 import { useAppContext } from "../../../hooks/useAppContext";
-
+import conectSigner from '../../../components/smart_contract/SIGNER';
 
 export function InitiatePropse() {
   const [descProp, setDescProp] = useState('')
@@ -27,6 +27,7 @@ useEffect((()=>{
 
   const handleCreate = async() =>{
     const minTime = timeProp * 60
+    const contractDAOWithSigner = conectSigner(contractDAO)
     const txCreate = await contractDAOWithSigner.createProposal(descProp, minTime)
     await txCreate.wait(1);
     console.log(txCreate);

@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import Pic from "../../../../../assets/unknown.png"
-import { auctionPutAddress, auctionPutAddressSigner } from '../../../../../components/smart_contract/AuctionSingle';
+import { auctionPutAddress} from '../../../../../components/smart_contract/AuctionSingle';
 import { ethers } from 'ethers';
+import walletProvider from '../../../../../abi/walletProvider';
 // DISPLAY LIKE A MODULE FOR THE WHOLE SCREEN! 
 
 export function AuctionLot({address}) {
@@ -11,6 +12,13 @@ export function AuctionLot({address}) {
   const [timeFinished, setTimeFinished] = useState('');
 
   const [bid, setBid] = useState(0);
+
+  function auctionPutAddressSigner(address:string){
+    const contract = auctionPutAddress(address)
+    const signer = walletProvider.getSigner();
+    const contractAuctionWithSigner = contract.connect(signer);
+    return contractAuctionWithSigner;
+}
 
   //"0x61b593bFC4f84c37DE0553B2F1593B617df9C0f7"
   useEffect((()=>{
@@ -74,7 +82,7 @@ export function AuctionLot({address}) {
         <button  className='text-lg font-bold rounded-2xl m-2 border-2 border-red-400 px-[15px] hover:bg-red-400' onClick={handleBid}>BID</button>
 <div className='flex flex-row justify-center'>
         <button className='text-lg font-bold rounded-2xl m-2 border-2 border-red-400 px-[15px] hover:bg-red-400' onClick={handleEnding}>finied Auction!</button>
-        <button className='text-lg font-bold rounded-2xl m-2 border-2 border-red-400 px-[15px] hover:bg-red-400'>withdraw</button>
+        <button className='text-lg font-bold rounded-2xl m-2 border-2 border-red-400 px-[15px] hover:bg-red-400'onClick={handleWithdraw} >withdraw</button>
     </div></div>
     </>
   )

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { contractERC721, contractERC721WithSigner } from '../../../components/smart_contract/ERC721';
+import { contractERC721 } from '../../../components/smart_contract/ERC721';
+import conectSigner from '../../../components/smart_contract/SIGNER';
 import { useAppContext } from "../../../hooks/useAppContext";
 
 // https://gateway.pinata.cloud/ipfs/ <<<<gateway to ipfs
@@ -47,7 +48,7 @@ const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
   const handleTransfer = async(event:any)=>{
     try{
       event.preventDefault();
-
+      const contractERC721WithSigner = conectSigner(contractERC721)
       const txTransfer = await contractERC721WithSigner.transferFrom(currentAccount, addressToSend, tokenId);
       await txTransfer.wait()
   
@@ -63,7 +64,7 @@ const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
 // >>>>>>>> FUNC 2
   const handleApprove = async(event:any)=>{
     try {event.preventDefault();
-
+      const contractERC721WithSigner = conectSigner(contractERC721)
       const txApprove = await contractERC721WithSigner.approve(addressToApprove, tokenId);
       await txApprove.wait()
   

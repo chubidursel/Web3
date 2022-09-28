@@ -1,9 +1,7 @@
-
 import { useState } from "react";
-import { Modal } from "react-bootstrap"
+// import { Modal } from "react-bootstrap"
 import {Link} from "react-router-dom"
 import Header from '../components/headerNew'
-import Sidebar from "../components/Sidebar"
 
 
 export function Token() {

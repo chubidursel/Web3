@@ -4,7 +4,6 @@ import Pic from "../../../../../assets/unknown.png"
 export function ShopCard() {
   return (
     <>
-
      <div className='bg-blue-100 rounded-2xl border-4 border-red-400 px-[15px] hover:bg-blue-200'>
         <img src={Pic} className="h-40" />
         <p className='bg-green-200'>price: </p>

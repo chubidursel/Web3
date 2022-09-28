@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { contractFeedBack, contractFeedBackWithSigner } from '../../components/smart_contract/FeedBack_contract'
+import { contractFeedBack } from '../../components/smart_contract/FeedBack_contract'
 
 
 export function FeedBackList() {

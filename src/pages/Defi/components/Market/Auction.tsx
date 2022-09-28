@@ -6,11 +6,12 @@ import { ethers } from 'ethers';
 import Header from '../../../../components/headerNew';
 import defaultProvider from '../../../../abi/defaultProvider';
 import walletProvider from '../../../../abi/walletProvider';
-import { contractAuctionFactory, contractAuctionFactoryWithSigner } from '../../../../components/smart_contract/AuctionFactory';
-import { contractERC721,  contractERC721WithSigner} from '../../../../components/smart_contract/ERC721';
-import { auctionPutAddress, auctionPutAddressSigner } from '../../../../components/smart_contract/AuctionSingle';
+import { contractAuctionFactory } from '../../../../components/smart_contract/AuctionFactory';
+import { contractERC721} from '../../../../components/smart_contract/ERC721';
+import { auctionPutAddress } from '../../../../components/smart_contract/AuctionSingle';
 import { useAppContext } from "../../../../hooks/useAppContext";
 import Modal from '../../../../components/modal';
+import conectSigner from '../../../../components/smart_contract/SIGNER';
 
 export function Auction() {
     const [showDeploySC, setShowDeploySC] = useState(false);
@@ -27,9 +28,17 @@ export function Auction() {
     const { contextState, updateContextState } = useAppContext();
     const currentAccount = contextState?.currentAccount;
 
+// >>>>>>>>>> PUT SIGNER HERE INSTED SEPARETE FILE
+function auctionPutAddressSigner(address:string){
+  const contract = auctionPutAddress(address)
+  const signer = walletProvider.getSigner();
+  const contractAuctionWithSigner = contract.connect(signer);
+  return contractAuctionWithSigner;
+}
 // !!!!!!!!!!!!  STEP #1  CHECK THE OWNER AND DISPLY MODAL
   const handleCheck = async()=>{
     setShowDeploySC(!showDeploySC)
+    const contractERC721WithSigner = conectSigner(contractERC721)
     const chackOwner = await contractERC721WithSigner.ownerOf(tokenId)
     const res = chackOwner.toLowerCase() === currentAccount
     setResCheckOwner(res);
@@ -41,6 +50,7 @@ export function Auction() {
       try {
         if(resCheckOwner){
           console.log("Creating ur new Auction")
+          const contractAuctionFactoryWithSigner = conectSigner(contractAuctionFactory)
           const createSC = await contractAuctionFactoryWithSigner.createAuction(tokenId)
           await createSC.wait();
       console.log(createSC) 
@@ -57,13 +67,14 @@ export function Auction() {
       try {
   // #1 CREATE SC INSTANST AND CONNECT TO SIGNER  GET NEW SMART CONTRACT FROM FACTORY
   setLoaderThird(true)
-
+  const contractAuctionFactoryWithSigner = conectSigner(contractAuctionFactory)
         const getNewAddr = await contractAuctionFactoryWithSigner.lastDeploed()
         const contractAuctionWithSigner = auctionPutAddressSigner(getNewAddr)
 console.log(getNewAddr)
 console.log(contractAuctionWithSigner)
   // #2 APPROVING THE NFT TO NEW AUCTION    
  console.log("Aprroving...")
+        const contractERC721WithSigner = conectSigner(contractERC721)
         const approveTx = await contractERC721WithSigner.approve(getNewAddr, tokenId);
         await approveTx.wait();
         console.log(approveTx)

@@ -1,7 +1,6 @@
 import { useAppContext } from "../../../hooks/useAppContext";
 import {useEffect, useState} from 'react';
-import { contractERC20, contractERC20WithSigner } from '../../../components/smart_contract/erc20';
-import defaultProvider from '../../../abi/defaultProvider';
+import { contractERC20 } from '../../../components/smart_contract/erc20';
 
 export function Info() {
   const[totalSupply, setTotalSupply] = useState();
@@ -40,9 +39,3 @@ export function Info() {
     
   )
 }
-{/* <label htmlFor="chain" className='mr-3 font-bold'>Network:</label>
-<select name="chain" id="chain" form="carform" className="rounded-xl px-2">
-<option value="ETH">ETH</option>
-<option value="Poligon">Poligon</option>
-<option value="BNB">BNB</option>
-</select>  */}

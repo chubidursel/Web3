@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react'
-import { contractFeedBack, contractFeedBackWithSigner } from '../../components/smart_contract/FeedBack_contract'
+import { contractFeedBack } from '../../components/smart_contract/FeedBack_contract'
 import {FeedBackList} from './feedbackList';
+import conectSigner from '../../components/smart_contract/SIGNER';
 
 export function FeedBack() {
     const [displayResult, setDisplayResult] = useState(false)
@@ -11,6 +12,7 @@ export function FeedBack() {
     const handleComment = async()=>{
         setDisplayResult(true)
         setResultTx("Sign the transaction to leave the comment! 📝 ")
+        const contractFeedBackWithSigner = conectSigner(contractFeedBack)
         const tx = await contractFeedBackWithSigner.leaveFeedback(testRef.current);
         await tx.wait(1)
         setDisplayResult(true)

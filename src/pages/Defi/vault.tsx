@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import Header from '../../components/headerNew';
-import { contractVault, contractVaultWithSigner} from '../../components/smart_contract/vault';
-import { contractERC20WithSigner } from '../../components/smart_contract/erc20';
+import { contractVault} from '../../components/smart_contract/vault';
+import { contractERC20 } from '../../components/smart_contract/erc20';
+import conectSigner from '../../components/smart_contract/SIGNER';
 
 export function Vault() {
   const [lockAmount, setLockAmount] = useState();
@@ -41,8 +42,11 @@ export function Vault() {
   const handleLock = async()=>{
     setDisplayResult(true)
     setResultTx('Please sign 2 transations in MetaMask (1st to approve transfer from ERC20 and 2nd is deposit here) 🙌')
+    const contractERC20WithSigner = conectSigner(contractERC20)
     const resApprove = await contractERC20WithSigner.approve(addressVault, lockAmount);
     await resApprove.wait(1)
+
+    const contractVaultWithSigner = conectSigner(contractVault)
     const tx = await  contractVaultWithSigner.deposit(lockAmount);
     await tx.wait(1)
     setResultTx(`Congratulations 🥳! You lock ${lockAmount} CWT here`)
@@ -51,6 +55,7 @@ export function Vault() {
   const handleWithdraw = async()=>{
     setDisplayResult(true)
     setResultTx('Hold on! I am calculating how much you locked here ... 😉 Please sign the transation in MetaMask ')
+    const contractVaultWithSigner = conectSigner(contractVault)
     const tx = await  contractVaultWithSigner.withdraw(withdrawAmount);
     await tx.wait(1)
     setResultTx(`Congratulations 🥳! You got ${withdrawAmount} CWT back`)

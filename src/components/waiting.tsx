@@ -1,7 +1,7 @@
 import React from 'react'
 import wait from "../assets/wait.gif"
 import Header from './headerNew'
-import Sidebar from './Sidebar'
+
 
 export function Wait() {
   return (<>

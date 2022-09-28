@@ -2,8 +2,8 @@ import React, {useState, useEffect} from 'react'
 import { AuctionLot } from './AuctionLot';
 import { ethers } from 'ethers';
 import defaultProvider from '../../../../../abi/defaultProvider';
-import { auctionPutAddress, auctionPutAddressSigner } from '../../../../../components/smart_contract/AuctionSingle';
-import { contractAuctionFactory, contractAuctionFactoryWithSigner } from '../../../../../components/smart_contract/AuctionFactory';
+import { auctionPutAddress } from '../../../../../components/smart_contract/AuctionSingle';
+import { contractAuctionFactory } from '../../../../../components/smart_contract/AuctionFactory';
 import Modal from '../../../../../components/modal';
 
 

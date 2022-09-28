@@ -251,11 +251,6 @@ export function auctionPutAddress(address:string){
     const contractAuctionFactory = new ethers.Contract(address, abi, defaultProvider);
     return contractAuctionFactory;
 }
-export function auctionPutAddressSigner(address:string){
-    const contract = auctionPutAddress(address)
-    const signer = walletProvider.getSigner();
-    const contractAuctionWithSigner = contract.connect(signer);
-    return contractAuctionWithSigner;
-}
+
 
 

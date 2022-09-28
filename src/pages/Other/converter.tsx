@@ -1,7 +1,6 @@
-import React, {useState, useRef} from 'react'
+import {useState, useRef} from 'react'
 import Header from '../../components/headerNew';
-import { contractConvertor, contractConvertorWithSigner } from '../../components/smart_contract/convertor_Contract';
-import { Link } from "react-router-dom"
+import { contractConvertor } from '../../components/smart_contract/convertor_Contract';
 
 export function Conveter() {
     const [eth, setEth] = useState<number>(0);

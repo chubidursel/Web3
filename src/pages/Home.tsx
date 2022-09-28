@@ -4,7 +4,6 @@ import Defi from "../assets/Defi.png"
 import Tool from "../assets/tool.png"
 import {Link} from "react-router-dom"
 import Header from '../components/headerNew'
-import Sidebar from "../components/Sidebar";
 import ModalTwo from "../components/modalTwo";
 
 

@@ -1,10 +1,8 @@
 import {useState} from 'react'
 import Header from '../components/headerNew'
-import Welcome from '../components/Other/welcome'
 import { Link } from 'react-router-dom'
 import Modal from '../components/modal'
 import { FeedBack } from './Other/feedBack'
-
 
 export function Other() {
   const [first, setFirst] = useState(false)
@@ -35,11 +33,7 @@ export function Other() {
     
     </div>
     
-    {/* </div> */}
- 
-    {/* <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-700 rounded-full filter blur-xl opacity-80 animate-blob animation-delay-4000"></div> */}
- 
- 
+
     <Modal 
     active={openFeedback}
     setActive={setOpenFeedback}

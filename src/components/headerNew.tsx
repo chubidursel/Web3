@@ -37,7 +37,13 @@ useEffect(() => {
 
 
 const handleConnectMetamaskClick  = async () => {
-    connectMetamask(updateContextState);
+    try {
+      connectMetamask(updateContextState);
+    } catch (error) {
+      alert("Hold on, You do not have MetaMask here? 🤔 ")
+      console.log(error)
+    }
+  
   };
 
   const handleDisconnectMetamaskClick = async () => {

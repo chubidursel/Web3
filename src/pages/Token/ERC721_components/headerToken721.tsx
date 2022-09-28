@@ -14,10 +14,6 @@ const HeaderTokenNft = () => {
                 className="font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400">IFPS</a>
             <Link to="/Defi/Market" className="font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400">
             Buy NFT</Link>
-
-            
-           
-            
             </div>
         </div>
         </> );

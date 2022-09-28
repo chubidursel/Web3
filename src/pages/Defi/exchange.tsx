@@ -1,13 +1,13 @@
 import React from 'react'
 import { ethers } from "ethers";
 import {useState, useEffect} from 'react';
-import { contractExchange, contractExchangeWithSigner } from '../../components/smart_contract/exchange'
+import { contractExchange } from '../../components/smart_contract/exchange'
 import Result from './components/exchange/Result';
-import { contractERC20WithSigner } from '../../components/smart_contract/erc20'; //ERC token
 import Header from '../../components/headerNew';
 import EventsExchange from './components/exchange/EventsExchange';
-import Sidebar from '../../components/Sidebar';
 import HeaderExchange from './components/exchange/headerExchange';
+import { contractERC20 } from '../../components/smart_contract/erc20';
+import conectSigner from '../../components/smart_contract/SIGNER';
 
 export function Exchange() {
   const [cwt, setCwt] = useState();
@@ -56,6 +56,7 @@ export function Exchange() {
         const tx= {
           value: ethers.utils.parseEther(convertEthToCwt.toString()),
       }
+      const contractExchangeWithSigner = conectSigner(contractExchange)
         const callFunc = await contractExchangeWithSigner.buyToken(tx)
         const res = await callFunc.wait(1)
         console.log(res.events)
@@ -80,11 +81,13 @@ export function Exchange() {
       const amount = ethers.utils.parseEther(amountSell.toString());
       setResult(`To sell CWT token you must sign 2 transation. The first one is to approve in ERC20 contract and the secont tx you call in Exchange contract 📝`)
 // #1 calling ERC20 contract to set approve
+const contractERC20WithSigner = conectSigner(contractERC20)
       const resApprove = await contractERC20WithSigner.approve(contractExchange.address, amount);
       await resApprove.wait()
   console.log(resApprove)
       setResult(`✅ Approve completed! Now please sign the second transaction to sell your token`)
 // #2 calling this SC to sell tokens
+const contractExchangeWithSigner = conectSigner(contractExchange)
       const resSell = await contractExchangeWithSigner.sellToken(amountSell);
       await resSell.wait()
       setResult(`✅ Sell Token completed!`)
@@ -122,8 +125,6 @@ export function Exchange() {
               <p>ETH: {eth} </p>
             </div>
           </div>
-
-
           <div className='rounded-2xl border-2 border-red-400 px-[15px] p-2 m-2'>
           <h1 className='text-center font-bold text-3xl mb-2 p-1'>Exchange</h1>
           <div className='flex justify-around flex-wrap'>

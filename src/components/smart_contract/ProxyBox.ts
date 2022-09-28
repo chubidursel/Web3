@@ -9,7 +9,3 @@ const abi = [{"inputs":[],"name":"dec","outputs":[],"stateMutability":"nonpayabl
   //this sc you can only read
 export const contractBoxV1 = new ethers.Contract(address1, abi, defaultProvider)
 export const contractBoxV2 = new ethers.Contract(address2, abi, defaultProvider)
-//smart contract with Signer so we can signer
-const signer = walletProvider.getSigner();
-export const contractBoxV1WithSigner = contractBoxV1.connect(signer)
-export const contractBoxV2WithSigner = contractBoxV2.connect(signer)
