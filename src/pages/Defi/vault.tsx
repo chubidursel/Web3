@@ -67,7 +67,7 @@ export function Vault() {
           
           <h1 className='font-bold text-center text-2xl'>INFO: </h1>
           <div className='flex flex-row justify-around mt-2'>
-          <button className='font-semibold rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400 text-lg' target='_blanck' href="https://goerli.etherscan.io/address/0xBd9bb2397512527718125661faC4c5b63d0b0c2d#code">Etherscan</button> 
+          <a target='_blanck' href="https://goerli.etherscan.io/address/0xBd9bb2397512527718125661faC4c5b63d0b0c2d#code"><button className='font-semibold rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400 text-lg' >Etherscan</button> </a>
           <div className='flex flex-row'><p className='font-semibold rounded-xl border-2 border-red-400 px-[15px] text-lg'>CWT Locked: {totalSupply}</p></div>
      </div>
      <h1 className='text-center text-xl mt-3'>Check out amount CWT by address: </h1>
