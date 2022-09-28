@@ -5,7 +5,8 @@ import Sidebar from '../Sidebar'
 function Note() {
   return (
     <>
-    <Header />
+    <Header >FCK TS</Header>
+
   
     <div>
         <h1>Write your note: </h1>

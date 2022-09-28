@@ -1,10 +1,10 @@
 import { createContext, useState, useEffect } from "react";
 
-export const AppContext = createContext();
+export const AppContext = createContext({} as any);
 
 export const AppContextProvider = ({ children }) => {
-  const [contextState, setContextState] = useState();
 
+  const [contextState, setContextState] = useState({});
 
   useEffect(() => {
     if(typeof window !== "undefined" && sessionStorage.getItem("currentAccount")){

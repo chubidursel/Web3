@@ -12,9 +12,9 @@ import HeaderExchange from './components/exchange/headerExchange';
 export function Exchange() {
   const [cwt, setCwt] = useState();
   const [eth, setEth] = useState();
-  const [rateCwt, setRateCwt] = useState(); // How much ETH for 1 CWT
-  const [amountBuy, setAmountBuy] = useState();
-  const [amountSell, setAmountSell] = useState();
+  const [rateCwt, setRateCwt] = useState<any>(); // How much ETH for 1 CWT
+  const [amountBuy, setAmountBuy] = useState<any>();
+  const [amountSell, setAmountSell] = useState(0);
   const [result, setResult] = useState('');
   // const [showEvents, setShowEvents] =useState(false)
   const [showEvent, setShowEvent] = useState(false)
@@ -46,8 +46,9 @@ export function Exchange() {
 
   const handleBuy = async()=>{
     //contract get amount of ETH u want to send to this SC and according to Rate recive certain amount of CWT
-    const convertEthToCwt = amountBuy.toString() * rateCwt // 1 * 0.01 
-
+    const convertEthToCwt = amountBuy * rateCwt // 1 * 0.01 
+    console.log(convertEthToCwt)
+    console.log(ethers.utils.parseEther(convertEthToCwt.toString()))
     try {
       if(convertEthToCwt * 100 <= Number(cwt) ){setLoader(true)
         //contract get amount of ETH u want to send to this SC and according to Rate recive certain amount of CWT
@@ -57,24 +58,25 @@ export function Exchange() {
       }
         const callFunc = await contractExchangeWithSigner.buyToken(tx)
         const res = await callFunc.wait(1)
-        //console.log(res.events)
+        console.log(res.events)
 
         setResult(`✅ Complete! You just bought ${cwt} CWT`)
         setTimeout(() => {setResult('')}, 7000)
       } 
       else{
         setResult('Not enough fund here 😞')
-        setTimeout(() => {setResult('')}, 2000)
+        setTimeout(() => {setResult('')}, 4000)
       }
     } catch (error) {
       console.log(error)
       setResult('Oii wei, we got problems! 😞')
-      setTimeout(() => {setResult('')}, 2000)
+      setTimeout(() => {setResult('')}, 4000)
     }setLoader(false)
   }
 
   const handleSell = async()=>{
-    try {setLoaderSell(true)
+    try {
+      setLoaderSell(true)
       const amount = ethers.utils.parseEther(amountSell.toString());
       setResult(`To sell CWT token you must sign 2 transation. The first one is to approve in ERC20 contract and the secont tx you call in Exchange contract 📝`)
 // #1 calling ERC20 contract to set approve
@@ -96,7 +98,12 @@ export function Exchange() {
 
   return (
     <>
-  <Header>Simple app where you can exchange Ethreum (Goerli) to CryptoWorldToken</Header>
+  <Header>
+    <div className='text-center'>
+      Simple app where you can exchange Ethreum (Goerli) token  to CryptoWorldToken 💱
+      <h1 className='mt-3'>💡 If u do not have any of these token, we recommend  you to visit one of Goerli faucet website, to get free goerli token</h1>
+    </div>
+  </Header>
     <div className='flex justify-around'>
     <HeaderExchange handleToggle={handleToggle}/></div>
   <div className='flex justify-center text-purple-800'>
@@ -119,7 +126,7 @@ export function Exchange() {
 
           <div className='rounded-2xl border-2 border-red-400 px-[15px] p-2 m-2'>
           <h1 className='text-center font-bold text-3xl mb-2 p-1'>Exchange</h1>
-          <div className='flex justify-around'>
+          <div className='flex justify-around flex-wrap'>
           <div className="grid grid-cols-1 gap-3 w-72">
                 <input className='rounded-xl text-center p-1 hover:shadow-lg' onChange={e => setAmountBuy(e.target.value as any)} placeholder='amount of CWT' />
                 {loader ? 
@@ -146,12 +153,8 @@ export function Exchange() {
             </div>  
            <div className='flex justify-center'> {result && <h1 className='font-bold mt-3 bg-yellow-100 w-full py-2 text-center  px-1 rounded-xl text-purple-900 text-xl '>{result}</h1>}   </div>
             </div>
-           
-         
         {/* <Result /> */}
         {/* {error && <div>{error}</div>} */}
-
-
     </div></div>
     <div className='flex justify-center'>{showEvent && <EventsExchange />}</div>
     </>

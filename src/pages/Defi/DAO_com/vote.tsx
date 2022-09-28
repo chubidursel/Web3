@@ -12,7 +12,8 @@ export function Vote({objInfo}) {
     try {
       setDisplayResult(true)
       setResultTx("Sign the transaction in MetaMask and wait a bit 🙌")
-      const res = event.target.value
+      const resuslt = event.target.value
+      const res = resuslt ? true : false;
       const id = ethers.BigNumber.from( objInfo.id.toString() )
   
       console.log(id, res)
@@ -37,8 +38,8 @@ export function Vote({objInfo}) {
       <div className='flex flex-row'><h1 className='mr-2 font-bold'>time: </h1><h1>{objInfo.deadline}</h1></div>
       <div className='flex flex-row'><h1 className='mr-2 font-bold'>descripion:</h1><h1> {objInfo.desc}</h1></div>
       <div className='flex flex-row justify-around mt-2'>
-      <button className='font-bold ml-1 w-1/2 rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400' value={true} onClick={handleVote}>up</button>
-      <button className='font-bold ml-1 w-1/2 rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400' value={false} onClick={handleVote}>down</button>
+      <button className='font-bold ml-1 w-1/2 rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400' value={1} onClick={handleVote}>up</button>
+      <button className='font-bold ml-1 w-1/2 rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400' value={0} onClick={handleVote}>down</button>
     </div> </div>
   )
 }

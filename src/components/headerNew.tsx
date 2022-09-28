@@ -7,8 +7,6 @@ import disconnectMetamask from "../utils/disconnectMetamask";
 import { Link } from "react-router-dom";
 import Modal from "./modal";
 
-
-
 declare let window: any;
 
 const Header = ({children}) => {
@@ -107,5 +105,3 @@ const handleConnectMetamaskClick  = async () => {
 };
 
 export default Header;
-
-

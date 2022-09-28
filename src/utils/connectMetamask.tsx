@@ -1,4 +1,4 @@
-
+declare let window: any;
 
 const connectMetamask = async (updateFunc) => {
   const { ethereum } = window;

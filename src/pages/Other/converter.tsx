@@ -10,60 +10,59 @@ export function Conveter() {
     const funcSelRef = useRef<string>('')
     //kecccek
     const [resKeccak, setResKeccak] = useState('')
-    const keccakRef = useRef<string>('') //useRef<HTMLInputElement>('')
+    const keccakRef = useRef<HTMLInputElement>() //useRef<HTMLInputElement>('')
 
      // Bytes > Number 
     const [resBytesNumber, setResBytesNumber] = useState<string | number>()
-   const bytesNumRef = useRef<string>('')
-   const numberBytesRef = useRef<number>(0)
+   const bytesNumRef = useRef<HTMLInputElement>()
+   const numberBytesRef = useRef<HTMLInputElement>()
      // Bytes > string 
      const [resStrBytes, setresStrBytes] = useState<string>('')
-     const bytesStrRef = useRef<string>('')
-     const strBytesRef = useRef<string>('')
+     const bytesStrRef = useRef<HTMLInputElement>()
+     const strBytesRef = useRef<HTMLInputElement>()
 
 
 
     const handleFuncSelector = async() =>{
-      const data = await contractConvertor.funcSelector(funcSelRef.current.value);
+      const data = await contractConvertor.funcSelector(funcSelRef.current);
       setResSelector(data)
     }
     const handleKeccak = async() =>{
-      const data = await contractConvertor.getHash(keccakRef.current.value);
+      const data = await contractConvertor.getHash(keccakRef.current?.value);
       setResKeccak(data)
     }
     const handleBytesNumber = async() =>{
-      const bytes = bytesNumRef.current.value
-      const num = Number(numberBytesRef.current.value)
+      const bytes = bytesNumRef.current?.value
+      const num = numberBytesRef.current?.value
+    
 
       if(num && bytes){
         setResBytesNumber("WHYYYYYYY")
-  console.log("shittt")
       } else if (num) {
         const data = await contractConvertor.numToBytes(num);
         setResBytesNumber(data)
-        console.log(data)
       } 
       else {
         const data = await contractConvertor.bytesToNum(bytes);
         setResBytesNumber(Number(data.toString()))
-        console.log(data)
       }
     }
     const handleStringBytes = async() =>{
-      const str = strBytesRef.current.value
-      const byt = bytesStrRef.current.value
-      
+      const str = strBytesRef.current?.value
+      const byt = bytesStrRef.current?.value
+      console.log(byt)
+      console.log(str)
       if(str){
       const data = await contractConvertor.strToBytes(str);
       setresStrBytes(data)
       }else{
-        // const data = await contractConvertor.bytesToStr(byt);
-        // setresStrBytes(data)
-        setresStrBytes("Doesn't work ")
-        console.log('WHYYYYYY')
+        const data = await contractConvertor.bytesToStr(byt);
+        //setresStrBytes(data)
+        setresStrBytes("I got mistake in Smart Contract 😢 ")
+        console.log(data, "Return UINT intead stirng!!!")
       }
     }
-
+// ADD incode packed
 
 // FUNC TO COPY ON A CLICK
     async function copyTextToClipboard(text:string) {
@@ -86,36 +85,36 @@ export function Conveter() {
   <div className="flex justify-center" >
   <a href='https://goerli.etherscan.io/address/0x1B493aC3C02735546736b2db2c29A02F49285731' target="_blank" ><h2 className="hover:underline text-5xl text-blue-100 font-bold m-3 mb-10">Convertor</h2></a>
         </div>
+
+      {/*-------------- WEI TO ETH -------------------*/}
 <div className='flex justify-center flex-wrap'>
   <div className='bg-blue-100 w-max rounded-2xl border-4 border-red-400 hover:bg-blue-200 px-[15px] py-2 m-8'>
     <div className='p-1 flex flex-col w-max' onClick={()=>{setEth(0)}}>
         <h1 className='text-xl font-bold text-center'>ETH 🔄 WEI</h1>
         <label>WEI</label>
-        <input onChange={(e: React.FormEvent)=>{setEth(e.target.value / 10 ** 18)}} placeholder='to eth'></input>
+        <input onChange={(e: any)=>{setEth(e.target.value / 10 ** 18)}} placeholder='to eth'></input>
         <label>ETH</label>
-        <input onChange={(e: React.FormEvent)=>{setEth(e.target.value * 10 ** 18)}} placeholder='to wei' ></input>
+        <input onChange={(e: any)=>{setEth(e.target.value * 10 ** 18)}} placeholder='to wei' ></input>
         {/* <button className='bg-blue-200 rounded-lg mt-2 hover:bg-blue-300' >convert</button> */}
-        {(Number(eth) != 0) && <h1 className='mt-2 text center font-bold hover:underline cursor-pointer' onClick={()=>{copyTextToClipboard(eth)}}>{eth}</h1>}
+        {(Number(eth) != 0) && <h1 className='mt-2 text center font-bold hover:underline cursor-pointer' onClick={()=>{copyTextToClipboard(eth.toString())}}>{eth}</h1>}
     </div>
   </div>
 
-
-
-
+    {/*-------------- NUM TO BYTES -------------------*/}
     <div className=' flex flex-col w-max bg-blue-100 rounded-2xl border-4 border-red-400 px-[19px] py-3 m-8 hover:bg-blue-200' onClick={()=>{setResBytesNumber('')}}>
           <h1 className='text-xl font-bold text-center'>Bytes 🔄 Number</h1>
         <label className='text-center'>hexadecimal bytes</label>
         <input ref={bytesNumRef} placeholder='bytes' className='hover:shadow-xl rounded-lg pl-2 my-2'></input>
         <input ref={numberBytesRef} placeholder='number' className='hover:shadow-xl rounded-lg pl-2'></input>
        <button className='bg-blue-200 text-lg font-bold rounded-lg mt-4 hover:bg-blue-300 hover:shadow-xl' onClick={handleBytesNumber} >convert</button>
-        {(resBytesNumber) && <h1 className='mt-2 text-center font-bold hover:underline cursor-pointer active:text-xl' onClick={()=>{copyTextToClipboard(resBytesNumber)}}>
+        {(resBytesNumber) && <h1 className='mt-2 text-center font-bold hover:underline cursor-pointer active:text-xl' onClick={()=>{copyTextToClipboard(resBytesNumber.toString())}}>
           {typeof resBytesNumber != 'number' ? (resBytesNumber.toString().slice(0, 5) +
             "..." +
             resBytesNumber.toString().slice(56)) : resBytesNumber
           }</h1>}
     </div>
 
-
+ {/*-------------- STR TO BYTES -------------------*/}
     <div className=' flex flex-col w-max bg-blue-100 rounded-2xl border-4 border-red-400 px-[19px] py-3 m-8 hover:bg-blue-200' onClick={()=>{setresStrBytes('')}}>
           <h1 className='text-xl font-bold text-center'>Bytes 🔄 String</h1>
         <label className='text-center'>hexadecimal bytes</label>
@@ -128,15 +127,16 @@ export function Conveter() {
             resStrBytes.toString().slice(185)) : resStrBytes
           }</h1>}
     </div>
-
+ {/*-------------- FUNC SELECTOR -------------------*/}
     <div className=' flex flex-col w-max bg-blue-100 rounded-2xl border-4 border-red-400 px-[19px] py-3 m-8 hover:bg-blue-200' onClick={()=>{setResSelector('')}}>
         <h1 className='text-2xl font-bold text-center underline'>Funcion Selector</h1>
         <label>func name and param type</label>
-        <input ref={funcSelRef} placeholder='name(unit256, address)' className='hover:shadow-xl rounded-lg pl-2 mt-3'></input>
+        <input ref={funcSelRef as any} placeholder='name(unit256, address)' className='hover:shadow-xl rounded-lg pl-2 mt-3'></input>
        <button className='bg-blue-200 rounded-lg mt-4 text-lg font-bold hover:bg-blue-300 hover:shadow-xl' onClick={handleFuncSelector} >convert</button>
-        {(resSelecotr) && <h1 className='mt-2 text-center font-bold'>selector: {resSelecotr}</h1>}
+        {(resSelecotr) && <h1 className='mt-2 text-center font-bold hover:underline cursor-pointer active:text-xl'  onClick={()=>{copyTextToClipboard(resSelecotr)}}>{resSelecotr}</h1>}
     </div>
 
+ {/*-------------- KECCAK -------------------*/}
     <div className=' flex flex-col w-max bg-blue-100 rounded-2xl border-4 border-red-400 px-[19px] py-3 m-8 hover:bg-blue-200' onClick={()=>{setResKeccak('')}}>
         <h1 className='text-2xl font-bold text-center underline'>SHA-256</h1>
         <label className='text-center'>cryptographic hash</label>
@@ -146,9 +146,6 @@ export function Conveter() {
             "..." +
             resKeccak.toString().slice(60)}</h1>}
     </div>
-
-
-
     </div>
   </>
     

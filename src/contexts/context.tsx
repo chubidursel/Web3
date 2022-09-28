@@ -1,12 +1,11 @@
 import React, { createContext, useState } from "react";
 
 
-const Context = createContext();
+const Context = createContext({}as any);
 
 function Provider(props: any) {
-  const [currentAccount, setCurrentAccount] = useState();
+  const [currentAccount, setCurrentAccount] = useState({});
   
-
   return (
     <Context.Provider
       value={{ currentAccount, setCurrentAccount }}

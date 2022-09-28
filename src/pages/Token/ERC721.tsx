@@ -95,7 +95,7 @@ useEffect((()=>{
               </div><h1 className=" text-3xl text-center font-bold m-1">Interact</h1>
           <div className='bg-blue-100 rounded-xl border-2 border-red-400 text-xl px-[15px] py-5 flex flex-row justify-center'>
            
-            <input className='w-1/2 rounded-xl hover:shadow-xl text-center ml-1' type='number' onChange={(e:React.FormEvent)=>setNumInteract(e.target.value)} placeholder='token ID'/>
+            <input className='w-1/2 rounded-xl hover:shadow-xl text-center ml-1' type='number' onChange={(e:any)=>setNumInteract(e.target.value)} placeholder='token ID'/>
             <button onClick={handleMod} className='ml-3 font-semibold text-2xl rounded-xl border-2 border-red-400 px-[17px] hover:bg-red-400'>show</button>
            
            

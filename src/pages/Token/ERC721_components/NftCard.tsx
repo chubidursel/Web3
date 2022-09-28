@@ -27,8 +27,8 @@ const metadataURI = `${contentIPFS}/${tokenId}.json`;
 const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
   const [imgUri, setImgUri] = useState('')
   const [metaName, setMetaName] = useState('')
-  const [error, setError] = useState()
-  const [errorAp, setErrorAp] = useState()
+  const [error, setError] = useState('')
+  const [errorAp, setErrorAp] = useState('')
 
   async function pasingMetaData(){
     const response = await fetch(metadataJson);
@@ -55,7 +55,7 @@ const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
     }catch (error) {
       console.log(error)
       setError('Oii wei, we got problems! 😞')
-      setTimeout(() => {setError()}, 2000)
+      setTimeout(() => {setError('')}, 2000)
     }
     
    
@@ -72,7 +72,7 @@ const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
     catch (error) {
       console.log(error)
       setErrorAp('Oii wei, we got problems! 😞')
-      setTimeout(() => {setErrorAp()}, 2000)
+      setTimeout(() => {setErrorAp('')}, 2000)
     }
   }
 // GET OWNER

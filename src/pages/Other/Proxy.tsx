@@ -22,6 +22,7 @@ export function Proxy() {
           <p>The orange box is our Proxy contract which is in theory other user are going to interact with. Under the hood this contract doesnt have any function that change it local state. But this proxy contract can use low-level function to call setter from another contract (Box # or Box#2) and change only its own value</p>
           </div>
        </Header>
+       <h1 className='text-4xl font-bold text-gray-600 opacity-25 text-center'>draggable component</h1>
 
        <Draggable>
         <div className="bg-orange-300 w-max p-5 flex flex-col rounded-2xl">
@@ -34,7 +35,7 @@ export function Proxy() {
         <Draggable>
         <div className='bg-purple-200 h-max w-max p-4 text-center rounded-xl mt-3'>
         <h1 className='font-bold text-4xl'>BOX #1</h1>
-            <a target='_blanck' href='https://goerli.etherscan.io/address/0x42551E0B5d48ed3A4CEb8592E31e13E24adf19a0#code'>Etherscan</a>
+            <a target='_blanck' className='hover:underline' href='https://goerli.etherscan.io/address/0x42551E0B5d48ed3A4CEb8592E31e13E24adf19a0#code'>Etherscan</a>
             <FunctionBox1 />
         </div>
         </Draggable>

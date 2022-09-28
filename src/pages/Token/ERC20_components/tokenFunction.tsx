@@ -10,16 +10,16 @@ export default function TokenFunction() {
   const [add, setAdd] = useState("")
   const [balance, setBalance] = useState()
   const [addressTo, setAddressTo] = useState("");
-  const [amountTo, setAmountTo] = useState();
-  const [errorBal, setErrorBal] = useState()
+  const [amountTo, setAmountTo] = useState('');
+  const [errorBal, setErrorBal] = useState('')
   const [loaderBal, setLoaderBal] = useState(false)
 
-  const [succs, setSuccs] = useState()
-  const [error, setError] = useState()
+  const [succs, setSuccs] = useState('')
+  const [error, setError] = useState('')
   const [loader, setLoader] = useState(false)
 
   const [succsAp, setSuccsAp] = useState('')
-  const [errorAp, setErrorAp] = useState()
+  const [errorAp, setErrorAp] = useState('')
   const [loaderAp, setLoaderAp] = useState(false)
 
   const [amountApprove, setAmountApprove] = useState();
@@ -37,7 +37,7 @@ const currentAccount = contextState?.currentAccount;
     }
       catch(error) {
         if(error.code === "INVALID_ARGUMENT") {setErrorBal('Invalid input')
-        setTimeout(() => {setErrorBal()}, 2000);
+        setTimeout(() => {setErrorBal('')}, 2000);
       }
         else {setErrorBal("Some mystic error")}
       }
@@ -62,7 +62,7 @@ const currentAccount = contextState?.currentAccount;
       else if(error.code === "INVALID_ARGUMENT") {setError('Invalid input')}
       else if(error.code === "ACTION_REJECTED") {setError('Transaction was rejected')}
       else {setError("Error")}
-      setTimeout(() => {setError()}, 2000);
+      setTimeout(() => {setError('')}, 2000);
     }
     setLoader(false)
   }
@@ -80,7 +80,7 @@ const currentAccount = contextState?.currentAccount;
       else if(error.code === "INVALID_ARGUMENT") {setErrorAp('Invalid input')}
       else if(error.code === "ACTION_REJECTED") {setErrorAp('Transaction was rejected')}
       else {setErrorAp("Some mystic error")}
-    }setTimeout(() => {setErrorAp()}, 2000)
+    }setTimeout(() => {setErrorAp('')}, 2000)
     setLoaderAp(false)
   }
 
@@ -112,9 +112,9 @@ const currentAccount = contextState?.currentAccount;
         <form onSubmit={handleTransaction}>
           <h1 className='text-center font-bold p-1'>Transfer token</h1>
           <label>Send to:</label>
-          <input onChange={(e)=>setAddressTo(e.target.value)} className='rounded ml-3 mb-1' placeholder='Enter address of reciever' /><br />
+          <input onChange={(e)=>setAddressTo(e.target.value)} className='rounded ml-3 mb-1' placeholder='Enter address' /><br />
           <label>Amount:</label>
-          <input type='text' className='rounded ml-3' onChange={(e:any)=>setAmountTo(e.target.value)} placeholder='Enter amount of tokens' />
+          <input type='text' className='rounded  ml-3' onChange={(e:any)=>setAmountTo(e.target.value)} placeholder='Enter amount' />
      
         {loader ? 
             <div className='flex justify-center'>
@@ -135,9 +135,9 @@ const currentAccount = contextState?.currentAccount;
         <form onSubmit={handleApprove}>
           <h1 className='text-center font-bold'>Approve</h1>
           <label>Approve:</label>
-          <input onChange={(e)=>setAddressToApporve(e.target.value)} className='rounded ml-3 mb-1' placeholder='Enter address of reciever' /><br />
+          <input onChange={(e)=>setAddressToApporve(e.target.value)} className='rounded ml-3 mb-1' placeholder='Enter address' /><br />
           <label>Amount:</label>
-          <input type='text' className='rounded ml-3' onChange={(e:any)=>setAmountApprove(e.target.value)} placeholder='Enter amount of tokens' />
+          <input type='text' className='rounded ml-3' onChange={(e:any)=>setAmountApprove(e.target.value)} placeholder='Enter amount' />
         
           {loaderAp ? 
             <div className='flex justify-center'>

@@ -4,7 +4,7 @@ import Sidebar from '../Sidebar'
 
 function Game() {
   return (<>
-    <Header />
+    <Header >FCK TS</Header>
    
     <div>Game</div>
     </>)
