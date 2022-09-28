@@ -21,21 +21,13 @@ export function Home() {
 
   const desc = (<>
   <div className="">
-  <h1 className="text-2xl underline text-center">Desciptions</h1>
-  <h1 className="pb-2 ">This projest is made for educatinal purpose and to represent skills of these dudes <a href="https://www.linkedin.com/in/danil-kozhevnikov-a14b66232/" className="hover:animate-ping" target='_blank'>👨</a> 👨 </h1>
-  <h1>📌Tech stach is used in this project:  </h1>
-    <p>Front-end: Typescript, React, Tailwind</p>
-    <h1>Back-end: Solidity, Hardhat, Ethers.js</h1>
-    <div>
-      <div>Smart contract: </div>
-      <ul>
-        <li>ERC20 </li>
-        <li>ERC721 (NFT)</li>
-        <li>Exchange (convert ERC20 to testnet ETH)</li>
-      </ul>
-    </div>
-  <h1>This project is always involed and we always add some </h1>
-    <h1 className="pt-2 text-gray-400">PS: You always can click at FAQ and see how does certain feature work</h1>
+  <h1 className="text-2xl font-bold underline text-center">Desciptions</h1>
+  <h1 className="pb-2 ">This projest is made for educatinal purpose and to represent skills of these dudes <a href="https://www.linkedin.com/in/danil-kozhevnikov-a14b66232/" className="hover:animate-ping" target='_blank'>👨</a> 👨</h1>
+  <h1 className="text-center font-bold">Tech stach</h1>
+    <p>💻 Front-end: Typescript, React, Tailwind</p>
+    <h1>🖥 Back-end: Solidity, Hardhat, Node.js</h1>
+  <h1 className="pt-2">This project is updated regulary</h1>
+    <h1 className="pt-4 text-gray-400">PS: You always can click at FAQ and see how does certain feature work</h1>
   </div></>)
 
   return (
