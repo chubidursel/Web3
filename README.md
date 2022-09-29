@@ -1,16 +1,39 @@
-# Web3
-Blockchain world
+# INTRO
+Welcome to WEB3 space 👋
 
-This project has been written for studying purposes with the following stack (front: react, Typescript and Tailwind || back: hardhat, ethers.js)
+Here you can find a lot of interesting features in WEB3 
 
-Contant:
-  #1 Block "Tokens"
+## Basic Overview
+This project contains 3 blocks
+
+  #️⃣ Tokens
   Here you can interact with different types of tokens (ERC20, ERC721, ERC1155)
   
-  #2 Block "Defi"
+  #️⃣ Defi
   In this block you can see/interact with some DeFi app
-  
-  #3 Block "Other"
+  > DAO
+  > Auction
+  > ChainLink
+
+  #️⃣ Other
   Onther feauters
 
-to run this project after you download it and install all dependencies, type in ur comand line >npm run dev 
+## Key Features
+📌 Front-end
+
+➡️ TypeScript
+➡️ Tailwind
+➡️ React
+
+📌 Back-end
+
+➡️ Solidity
+➡️ Hardhat
+➡️ Ethers.js
+
+## How To use
+clone git repo
+npm install
+npm run dev
+
+

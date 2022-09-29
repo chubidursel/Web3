@@ -43,7 +43,6 @@ const handleConnectMetamaskClick  = async () => {
       alert("Hold on, You do not have MetaMask here? 🤔 ")
       console.log(error)
     }
-  
   };
 
   const handleDisconnectMetamaskClick = async () => {
