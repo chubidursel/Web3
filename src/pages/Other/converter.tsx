@@ -128,8 +128,8 @@ export function Conveter() {
             resStrBytes.toString().slice(185)) : resStrBytes
           }</h1>}
     </div>
-
-    <div className=' flex flex-col w-max bg-blue-100 rounded-2xl border-4 border-red-400 px-[19px] py-3 m-8 hover:bg-blue-200' onClick={()=>{setResSelector('')}}>
+<div className='flex flex-row'>
+    <div className='grid grid-cols-1 w-max bg-blue-100 rounded-2xl border-4 border-red-400 px-[19px] py-3 m-8 hover:bg-blue-200' onClick={()=>{setResSelector('')}}>
         <h1 className='text-2xl font-bold text-center underline'>Funcion Selector</h1>
         <label>func name and param type</label>
         <input ref={funcSelRef} placeholder='name(unit256, address)' className='hover:shadow-xl rounded-lg pl-2 mt-3'></input>
@@ -146,7 +146,7 @@ export function Conveter() {
             "..." +
             resKeccak.toString().slice(60)}</h1>}
     </div>
-
+    </div>
 
 
     </div>

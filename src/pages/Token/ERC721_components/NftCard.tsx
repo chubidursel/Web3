@@ -1,16 +1,18 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
+import Loader from '../../../components/loader';
 import { contractERC721, contractERC721WithSigner } from '../../../components/smart_contract/ERC721';
 import { useAppContext } from "../../../hooks/useAppContext";
 
 // https://gateway.pinata.cloud/ipfs/ <<<<gateway to ipfs
 type tokId = number;
 export function NftCard({tokenId}) {
+  const [loader, setLoader] = useState(false)
+
   const[infoAddressOwner, setInfoAddressOwner ] = useState('')
   const [addressToSend, setAddressToSend] = useState('');
   const [addressToApprove, setAddressToApprove] = useState('');
   const[ownerOrNot, setOwnrOrNot ] = useState(false)
-
   const { contextState, updateContextState } = useAppContext();
   const currentAccount = contextState?.currentAccount;
   
@@ -31,16 +33,20 @@ const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
   const [errorAp, setErrorAp] = useState()
 
   async function pasingMetaData(){
+  
     const response = await fetch(metadataJson);
     const data = await response.json();
     return data
+    
   }
   pasingMetaData().then((data)=>{
+   
     const link = data.image; 
     const cutSting = link.substring(7)
     const imgURL = `https://ipfs.io/ipfs/${cutSting}`
     setImgUri(imgURL)
     setMetaName(data.name)
+    
   })
 
 // >>>>>>>> FUNC 1
@@ -102,7 +108,7 @@ const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
     <>
  <div className='text-purple-800 w-full'>
  <h1 className="text-xl text-center text-gray-200 font-bold m-1">PICTURE</h1>
-      <img className='h-32 ml-44' src={imgUri} />
+      {loader ? <Loader /> : <img className='h-32 ml-44' src={imgUri} />}
           <div className='rounded-2xl border-2 border-red-400 px-[15px] p-2 m-2'>
             <h1 className='bg-red-100 rounded-2xl text-center font-bold'>Description</h1>
             <div className='flex flex-row'> <p className="font-bold mr-3">name:</p><p>{metaName}</p></div>
@@ -114,15 +120,17 @@ const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
             <h1 className='bg-red-100 rounded-2xl text-center font-bold'>Functions</h1>
               <form onSubmit={handleTransfer}>
                 <h1 className='text-center font-bold'>Transfer</h1>
-                <div className='flex flex-row'><label className='font-bold mr-3'>send to: </label>
-                <input onChange={(e)=>setAddressToSend(e.target.value)} className='rounded border-solid w-full border-2 pl-2 border-purple-800' placeholder='Enter address of reciever'></input><br />
+                <div className='flex flex-row'>
+                  {/* <label className='font-bold mr-3'>send to: </label> */}
+                <input onChange={(e)=>setAddressToSend(e.target.value)} className='rounded border-solid w-64 border-2 pl-2 border-purple-800' placeholder="Reciever's  address"></input><br />
                 <button disabled={ownerOrNot} type="submit" className="font-bold ml-1 rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400">send</button></div>
              {error && <div className='flex justify-center text-red-500 font-bold'>{error}</div>}
               </form>
               <form onSubmit={handleTransfer}>
                 <h1 className='text-center font-bold'>Aprove</h1>
-                <div className='flex flex-row'><label className='font-bold mr-3'>approve to: </label>
-                 <input onChange={(e)=>setAddressToApprove(e.target.value)} className='rounded border-solid w-full border-2 pl-2 border-purple-800' placeholder='Enter address of reciever'></input><br />
+                <div className='flex flex-row'>
+                  {/* <label className='font-bold mr-3'>approve to: </label> */}
+                 <input onChange={(e)=>setAddressToApprove(e.target.value)} className='rounded border-solid w-58 border-2 pl-2 border-purple-800' placeholder="Reciever's  address"></input><br />
                 <button onClick={handleApprove} type="submit" className="font-bold ml-1 rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400">approve</button>
                 </div>{errorAp && <div className='flex justify-center text-red-500 font-bold'>{errorAp}</div>}</form>
             </div>

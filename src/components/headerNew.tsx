@@ -69,15 +69,15 @@ const otherMenu = [{nam: "Converter", path:"../Other/converter"}, {nam: "Game", 
             <Link to="../" className="block py-2 pr-4 pl-3 rounded hover:bg-transparent hover:text-pink-400">Home</Link> 
             </li>
             <li>
-            <Link to="../Token" onMouseEnter={() => setTokenVisible(!isTokenVisible)}
+            <Link to="../Token"
             className="block py-2 pr-4 pl-3 rounded md:hover:bg-transparent md:hover:text-pink-400">Tokens</Link>
             </li>
             <li>
-            <Link to="../Defi" onMouseEnter={() => setDefiVisible(!isDefiVisible)}
+            <Link to="../Defi" 
             className="block py-2 pr-4 pl-3 text-white rounded md:hover:bg-transparent md:hover:text-pink-400">DeFi</Link>
             </li>
             <li>  
-            <Link to="../Other"  onMouseEnter={() => setOtherVisible(!isOtherVisible)}
+            <Link to="../Other"
             className="block py-2 pr-4 pl-3 rounded md:hover:bg-transparent md:hover:text-pink-400">Other</Link>
             </li>  
             <li>
@@ -85,11 +85,11 @@ const otherMenu = [{nam: "Converter", path:"../Other/converter"}, {nam: "Game", 
             </li>
             </ul>
       </nav>
-      {isTokenVisible && (
+      {/* {isTokenVisible && (
         <div onMouseLeave={() => setTokenVisible(!isTokenVisible)}
-        className="top-16  h-14 flex flex-row font-semibold absolute rounded-2xl border-2 border-red-400 opacity-100"
+        className="top-16  h-14 flex flex-row font-semibold absolute opacity-70"
         >
-           {tokenMenu.map(el => (<Link to={el.path} className="w-full text-center align-content-center text-pink-700 block px-4 py-2 text-2xl  hover:bg-pink-400 rounded-2xl">{el.nam}</Link>))} 
+           {tokenMenu.map(el => (<Link to={el.path} className="w-full text-center align-content-center text-white block px-4 py-2 text-xl">{el.nam}</Link>))} 
        </div>
       )}
 
@@ -105,7 +105,7 @@ const otherMenu = [{nam: "Converter", path:"../Other/converter"}, {nam: "Game", 
         className="w-1/2 h-14 top-2 flex flex-row font-semibold absolute opacity-100 mt-2 rounded-md bg-blue-100">
            {otherMenu.map(el => (<Link to={el.path} className="w-full text-center text-pink-700 block px-4 py-2 text-2xl  hover:bg-pink-400 rounded-md">{el.nam}</Link>))} 
        </div>
-      )}
+      )} */}
 
 
 
