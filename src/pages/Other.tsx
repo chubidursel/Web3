@@ -3,7 +3,7 @@ import Header from '../components/headerNew'
 import { Link } from 'react-router-dom'
 import Modal from '../components/modal'
 import { FeedBack } from './Other/feedBack'
-import Sidebar from '../components/Sidebar'
+
 import Footer from '../components/footer'
 
 export function Other() {

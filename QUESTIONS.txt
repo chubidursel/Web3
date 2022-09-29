@@ -42,3 +42,29 @@ IDEA!!!!!!!!!!!
 3. Finished Vault
 4. Move the module menu
 
+
+--------------------------------- TASKS -------------------------
+DAN
+> Flex wrap main menu gonna looks okay on small devices
+> token function componet reafctor 
+> NFT card reaftor button and slice address
+> refactor block to ping in token and other
+> ERRORS | SUCC AND LOADER INSTAED BTN !!! refacrot all erorrs in all functional component where we interact with ETH to one stuly
+> lines for PROXY
+> config here
+> link to github inside feedback
+> all mistakes from TypeScript
+> Set up types TS ??
+
+ALEX
+> DEFI main menu refactor blocks
+> Create modal -> center | create modal for big text (modalForBig)
+>  NFT main page slice ipfs address and owner address after check info
+> NFT mian -> do not show modul with card if input is invalid
+> NFT main work out with design 
+> VAULT make like in Exchange (set err and put div with result inside the block) and refactor
+> DAO 1.Initian btn / 2. btn refrash to update useEffect /3. btn vote inside table (looks nice)  /4. vote module date to normal and slice address with copy func
+> Auction > refactor table  | refrash btn update useEffect | Refactor auction module so all info only inside the container
+> background colour 
+> concet metaMAsk and Header 
+> 

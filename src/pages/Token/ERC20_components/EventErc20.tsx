@@ -67,7 +67,7 @@ function EventErc20() {
           </tr>
           {listTx}
         </table>
-       <div className='flex justify-center'>{pages}</div>
+       <div className='flex justify-center cursor-pointer'>{pages}</div>
     </div>
   )
 }
