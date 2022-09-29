@@ -130,13 +130,13 @@ const contractExchangeWithSigner = conectSigner(contractExchange)
           <h1 className='text-center font-bold text-3xl mb-2 p-1'>Exchange</h1>
           <div className='flex justify-around flex-wrap'>
           <div className="grid grid-cols-1 gap-3 w-72">
-                <input className='rounded-xl text-center p-1 hover:shadow-lg' onChange={e => setAmountBuy(e.target.value as any)} placeholder='amount of CWT' />
+                <input type='number' min='0' className='rounded-xl text-center p-1 hover:shadow-lg' onChange={e => setAmountBuy(e.target.value as any)} placeholder='amount of CWT' />
                 {loader ? 
             <Loader /> : <button onClick={handleBuy} className="font-bold rounded-xl py-1 text-2xl hover:shadow-xl border-2 border-red-400 px-[15px] hover:bg-red-400">buy</button>}            
         </div>
 
         <div className="grid grid-cols-1 gap-3 w-72 my-1">
-                <input className='rounded-xl text-center p-1 hover:shadow-lg' onChange={e => setAmountSell(e.target.value as any)} placeholder='amount of CWT' />
+                <input type='number' min='0' className='rounded-xl text-center p-1 hover:shadow-lg' onChange={e => setAmountSell(e.target.value as any)} placeholder='amount of CWT' />
                 {loaderSell ? 
             <Loader /> : <button onClick={handleSell} className="font-bold py-1 text-2xl hover:shadow-xl rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400">sell</button>}           
             </div>

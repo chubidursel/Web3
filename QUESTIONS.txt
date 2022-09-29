@@ -6,10 +6,8 @@
     4. HeaderNew
 
 >>> REACT
-    1. SideBar (How to display differen block)
     2. Set Up global font for all text
     3. Change pop up text on the main page
-    4. LOGS and EVENTS
 
 >>>> Hardhat
     1. Import openzeppelin (../../node)
@@ -22,39 +20,28 @@
 
     1. check wssWallet <<< it doesn't work =(
     2. ADDRESSS local smart contract
-
->>>> to do:
-1) do separate component Loader, because it uses in many places
-2) think about several states of error, maybe one result?        
-
->>> PROXY
-How to put a sort of a line to connect ptoxy and box
-
-
-1.Find a hosting serves (FOR NODEjs, nginx)
-DNS name 
->> Linux command line 
->> VPS
+   
 
 IDEA!!!!!!!!!!!
 1. Add big number to Convertor
 2. Loader to NFT pic
-3. Finished Vault
-4. Move the module menu
+
 
 
 --------------------------------- TASKS -------------------------
 DAN
-> Flex wrap main menu gonna looks okay on small devices
-> token function componet reafctor 
-> NFT card reaftor button and slice address
-> refactor block to ping in token and other
+> Flex wrap main menu gonna looks okay on small devices  ❓ >> bg and metamask with header
+> token function componet reafctor  ✅
+> NFT card reaftor button and slice address ✅
+> refactor block to ping in token and other ✅
 > ERRORS | SUCC AND LOADER INSTAED BTN !!! refacrot all erorrs in all functional component where we interact with ETH to one stuly
-> lines for PROXY
-> config here
-> link to github inside feedback
-> all mistakes from TypeScript
-> Set up types TS ??
+        ✅ exchange ||  valut ison Alex || tokenerc20 has its own err || other component 
+> lines for PROXY ✅ || to set up line we gonna use Jq query and, tbh i like how does it look now
+> config ❌ << again no result
+> link to github inside feedback  ✅ << change main FAQ
+> all mistakes from TypeScript 🏃
+> Set up types TS ?? 🏃
+>alret if no MetaMask ✅
 
 ALEX
 > DEFI main menu refactor blocks
@@ -68,3 +55,29 @@ ALEX
 > background colour 
 > concet metaMAsk and Header 
 > 
+
+
+
+FOR ERRORS >>>>>>>>>>>>>>>>>>>
+
+ const [result, setResult] = useState('');
+
+>>> inside the func 
+    setResult("Please sign the transation in MetaMask 📝 and wait till this tx will be confirmed in blockchain")
+
+    ... code ...
+
+    setResult(`✅ Complete! You just bought ${cwt} CWT`)
+    setTimeout(() => {setResult('')}, 3000)
+
+    catch (error) {
+      console.log(error)
+      setResult('Oii wei, we got problems! 😞')
+      setTimeout(() => {setResult('')}, 4000)
+
+>> RETURN
+...
+<div className='flex justify-center'> {result && <h1 className='font-bold mt-3 bg-yellow-100 w-full py-2 text-center  px-1 rounded-xl text-purple-900 text-xl '>{result}</h1>}   </div>
+
+! TIPS
+<input type='number' min='0' className='rounded-xl text-center p-1 hover:shadow-lg'  .....

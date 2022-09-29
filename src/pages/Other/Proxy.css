@@ -1,12 +1,16 @@
 main {
     display: grid;
     place-items: center;
-    height: 100vh;
-    width: 100vw;
+
     background-color: rgb(169, 208, 233);
   }
-  
-  .container {
+  .cels{
+    background: linear-gradient( #bbb, transparent 1px), linear-gradient( 90deg, #bbb, transparent 1px);
+    background-size: 15px 15px;
+    background-position: center center;
+    opacity: 0.8;
+  }
+   .container {
     position: relative;
     height: 800px;
     width: 800px;

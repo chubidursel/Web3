@@ -37,10 +37,12 @@ useEffect(() => {
 
 
 const handleConnectMetamaskClick  = async () => {
+  if(!window.ethereum){
+    alert("Hold on, You do not have MetaMask here? 🤔 ")
+  }
     try {
       connectMetamask(updateContextState);
     } catch (error) {
-      alert("Hold on, You do not have MetaMask here? 🤔 ")
       console.log(error)
     }
   };

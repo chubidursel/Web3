@@ -31,16 +31,16 @@ export function ChainLink() {
           <div className='bg-blue-100 rounded-2xl border-2 hover:shadow-2xl border-red-400 p-5 hover:bg-blue-200 flex flex-col'>
               <h1 className='font-bold text-2xl text-center mb-3'>Retrieve the latest asset prices</h1>
               <div className='flex justify-center'>
-                <p className='text-xl font-semibold'> Ethereum: <span className='text-5xl font-bold'> {priceEth}$</span></p>
+                <p className='text-xl font-semibold'> Ethereum: {priceEth && <span className='text-5xl font-bold'> {priceEth}$</span>}</p>
                 <button onClick={handleGetPrice} className="font-bold hover:text-blue-100 ml-3 hover:shadow-xl rounded-xl text-3xl border-2 border-red-400 px-[15px] hover:bg-red-400">Check</button>
               </div>
           </div>
           <div className='bg-blue-100 mt-3 text-xl font-semibold rounded-2xl border-2 hover:shadow-2xl border-red-400 p-5 text-center hover:bg-blue-200 flex flex-col'>
-          <h1>Random Number</h1>
+          <h1 className='text-3xl'>Random Number</h1>
           <p>comming soon....</p>
           </div>
           <div className='bg-blue-100 mt-3 rounded-2xl border-2 text-xl font-semibold hover:shadow-2xl border-red-400 p-5 text-center hover:bg-blue-200 flex flex-col'>
-          <h1>Call External APIs</h1>
+          <h1 className='text-3xl'>Call External APIs</h1>
           <p>comming soon....</p>
           </div>
 

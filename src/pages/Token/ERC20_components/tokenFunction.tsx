@@ -96,13 +96,13 @@ const currentAccount = contextState?.currentAccount;
    
        <div className='rounded-2xl border-2 border-red-400 px-[15px] p-2 m-2 hover:bg-blue-200 hover:shadow-xl'>
           <h1 className='text-center font-bold mb-1'>Check your balance</h1>
-            <input placeholder='Enter your address' onChange={(event)=>setAdd(event.target.value)} className = 'rounded' />
+            <input placeholder='Enter your address' onChange={(event)=>setAdd(event.target.value)} className = 'rounded text-center w-2/3 hover:shadow-xl' />
             
             {loaderBal ? 
-           <Loader /> : <button onClick={hadleSupply} className="font-bold ml-3 rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400">Check</button>}
+           <Loader /> : <button onClick={hadleSupply} className="font-bold ml-3 px-10 rounded-xl border-2 border-red-400 hover:bg-red-400 hover:shadow-xl">Check</button>}
             
             {balance ? <h1 className='font-bold'>Your balance: {balance} CWT</h1> 
-                      : (errorBal ? <h1 className='font-bold text-red-500 text-2xl '>{errorBal}</h1> : null) }
+                      : (errorBal ? <h1 className='font-bold text-red-500 text-2xl text-center '>{errorBal}</h1> : null) }
         </div>
 
         <div className='rounded-2xl border-2 border-red-400 px-[15px] p-2 m-2 hover:bg-blue-200 hover:shadow-xl'>

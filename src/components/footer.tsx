@@ -7,7 +7,7 @@ const Footer = () => {
     const [openFeedback, setOpenFeedback] = useState(false)
     
     return ( <>
- <button onClick={()=>{setOpenFeedback(true)}} className='hover:text-pink-300 px-4 py-1 font-semibold text-white text-lg opacity-60'>
+ <button onClick={()=>{setOpenFeedback(true)}} className='hover:text-pink-300 px-4 py-1 font-semibold text-white text-xl animate-pulse opacity-60'>
     @leave us a feedback</button>
    
     <Modal 
