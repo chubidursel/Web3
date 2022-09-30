@@ -11,7 +11,7 @@ export function ERC20() {
 
   return (
     <>
-    <Header>
+    <Header marginFromTop={'1/3'}>
       <div className='text-center'>
         <h1 className='text-4xl underline'>ERC20 token</h1>
         <p>In this section you can see our simple ERC20 token wich you can use in other section like Exchange or Vault. At this moment we have deployed this smart contract only in Goerli testnet, but soon we will do the same to other network like BNB or Poligon</p>

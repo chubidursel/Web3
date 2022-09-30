@@ -5,7 +5,7 @@ import Header from './headerNew'
 
 export function Wait() {
   return (<>
-  <Header>Stay tune</Header>
+  <Header marginFromTop={'1/3'}>Stay tune</Header>
 
     <div className='grid h-screen place-items-center'>
         <div>

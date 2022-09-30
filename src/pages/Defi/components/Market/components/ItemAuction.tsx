@@ -5,6 +5,7 @@ import defaultProvider from '../../../../../abi/defaultProvider';
 import { auctionPutAddress } from '../../../../../components/smart_contract/AuctionSingle';
 import { contractAuctionFactory } from '../../../../../components/smart_contract/AuctionFactory';
 import Modal from '../../../../../components/modal';
+import Loader from '../../../../../components/loader';
 
 
 export function ItemAuction() {
@@ -12,7 +13,7 @@ export function ItemAuction() {
   const [arrAucWithProvider, setArrAucWithProvider] = useState([]);
   const [amountAuc, setAmountAuc] = useState();
   const [addressForCard, setAddressForCard] = useState();
-
+  const [loader, setLoader] = useState(false)
 
   type infoAuction = {
     start : boolean
@@ -21,11 +22,12 @@ export function ItemAuction() {
     addressAuc : string
   }
   
-
+  const [all, setAll] = useState(true)
   // UPDATE ALL 
   useEffect((()=>{
     (async()=>{
       try {
+        setLoader(true)
         let arrIndex = await contractAuctionFactory.getLenght()
         const index = arrIndex.toString()
         setAmountAuc(index)
@@ -48,15 +50,15 @@ export function ItemAuction() {
         arrAddressAuction.push(newAuc)
       }
       setArrAucWithProvider([...arrAddressAuction] as any)
-        
+        setLoader(false)
       } catch (error) {
         console.log(error)
       }
       
     })()
-  }),[])
+  }),[all])
 
-  const arr = ["sdcsdc", "dscsdcsdc"]
+  // const arr = ["sdcsdc", "dscsdcsdc"]
 
   const testingAuc = ()=>{
     console.log("Call func")
@@ -74,7 +76,7 @@ export function ItemAuction() {
     return(<>
       <tr key={id} className='text-center'>
         {
-          !el.start ? <td className='bg-gray-300 text-center py-1'>error ❌</td> : el.end ? <td className='bg-red-300 text-center py-1'>finished</td> : <td className='bg-green-300 text-center py-1'>live</td>
+          !el.start ? <td className='bg-red-300 text-center py-1'>error ❌</td> : el.end ? <td className='bg-green-300 text-center py-1'>finished</td> : <td className='bg-green-300 text-center py-1'>live</td>
         }
         <td>{el.tokenId}</td>
         <td>{el.addressAuc}</td>
@@ -87,25 +89,29 @@ export function ItemAuction() {
 
   return (
     <>
-       <div className='text-purple-800'>
-       <h1 className='font-bold text-2xl  text-center mb-2'>total amount of Auction: {amountAuc}</h1>
-<div className='flex justify-center'><button onClick={testingAuc} className='font-bold w-full m-2 rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400'>Refresh</button>
+    {loader ? <Loader /> : 
+    
+    <div className='text-purple-800'>
+    <h1 className='font-bold text-2xl  text-center mb-2'>total amount of Auction: {amountAuc}</h1>
+<div className='flex justify-center'><button onClick={() => setAll(!all)} className='font-bold w-full m-2 rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400'>Refresh</button>
 </div>
 
-    <table className='bg-orange-100 rounded-xl w-full'>
-          <tr className='bg-orange-300 text-center'>
-          <th>Type</th>
-            <th>Token ID</th>
-            <th>Address</th>
-            <th>OPEN</th>
-          </tr>
-          {listTx}
-        </table>
+ <table className='bg-orange-100 rounded-xl w-full'>
+       <tr className='bg-orange-300 text-center'>
+       <th>Type</th>
+         <th>Token ID</th>
+         <th>Address</th>
+         <th>OPEN</th>
+       </tr>
+       {listTx}
+     </table>
 </div>
+    }
 
     {display &&
      <Modal  active={display}
-     setActive={setDisplay}>
+     setActive={setDisplay}
+     marginFromTop={'1/3'}>
     <AuctionLot address = {addressForCard}/>
     </Modal>
     }

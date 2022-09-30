@@ -91,7 +91,7 @@ console.log(contractAuctionWithSigner)
 
   return (
     <>
-   <Header>
+   <Header marginFromTop={'1/3'}>
     <div className='text-center py-3'>
       <h1 className='font-bold'>Here you can create a new smart contract and sell NFT!</h1>
       <p>without write a single line of code</p>
@@ -132,7 +132,9 @@ console.log(contractAuctionWithSigner)
   </div>
 
     <Modal  active={showDeploySC}
-    setActive={setShowDeploySC}>
+    setActive={setShowDeploySC}
+    >
+      
 <div className='rounded-2xl border-4 border-red-400 text-xl px-[15px] text-center py-5 m-8 text-purple-800'>
   <h1>Before you will create a new Auction we have to check the ownershit of current NFT 🧐</h1>
   
@@ -144,8 +146,9 @@ console.log(contractAuctionWithSigner)
  </Modal>
 
  <Modal  active={showDeploySCSecond}
-    setActive={setShowDeploySCSecond}>
-<div className='w-full rounded-2xl border-4 border-red-400 text-xl px-[15px] py-5 m-8 text-purple-800'>
+    setActive={setShowDeploySCSecond}
+    higBidder>
+<div className='w-max rounded-2xl border-4 border-red-400 text-xl px-[15px] py-5 m-8 text-purple-800'>
 
       <h1>Congatulation! You just created your own smart contract with Auction</h1>
       <h1>You can started any time, just put time, and than u can see ur smart contract in the list below</h1>
@@ -155,7 +158,7 @@ console.log(contractAuctionWithSigner)
     </div></div>
  </Modal>
     
- <div className='bg-blue-100 w-1/2 rounded-2xl border-4 border-red-400 text-xl px-[15px] py-5 m-8 text-purple-800'>
+ <div className='bg-blue-100 w-max rounded-2xl border-4 border-red-400 text-xl px-[15px] py-5 m-8 text-purple-800'>
           <div className='font-bold text-center text-5xl m-1'>All Auctions</div>
 
         <ItemAuction />
