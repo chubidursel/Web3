@@ -16,7 +16,7 @@ export function ChainLink() {
   
   return (
   <>
-  <Header >
+  <Header marginFromTop={'1/3'}>
     <h1>Here we implement simple chainLink contract to get data from off-chain</h1>
   </Header>
   <h2 className="flex justify-center text-6xl text-blue-100 font-bold">ChainLink</h2>

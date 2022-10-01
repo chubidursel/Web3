@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { contractDAO} from '../../../components/smart_contract/Dao_contract';
 import Modal from '../../../components/modal';
 import {Vote} from './vote';
+import Loader from '../../../components/loader';
 
 //import { contractERC20 } from '../../../components/smart_contract/erc20';
 type Proposal = {
@@ -21,10 +22,13 @@ export function PrposalTable() {
   const [allProp, setAllProp] = useState ([])
   const[displayCard, setDisplayCard] = useState(false)
   const [objForCard, setObjForCard] = useState()
+  const [all, setAll] = useState(true)
+  const [loader, setLoader] = useState(false)
 
   useEffect((()=>{
     (async()=>{
       try {
+        setLoader(true)
         const indexProp = await contractDAO.nextProposal();
         const index = indexProp -1;
 
@@ -47,11 +51,13 @@ export function PrposalTable() {
         }
         setAllProp([...arrAllProp] as any)
         console.log(allProp)
+        setLoader(false)
       } catch (error) {
         console.log(error)
       }
     })()
-  }),[])
+  }),[all])
+
 
   const showCard = (event) => {
     setDisplayCard(!displayCard)
@@ -70,36 +76,41 @@ export function PrposalTable() {
         <td>{el.id}</td>
         <td>{el.desc}</td>
         <td>{el.voteUp}</td>
-        <button value={el.id} onClick={showCard}>VOTE</button>
+        <button value={el.id} onClick={showCard} className='text-sm font-bold rounded-xl m-2 border-2 border-red-400 px-[15px] hover:bg-red-400'>VOTE</button>
       </tr>
     )
   }) //{el.passed ? "active" : "finished"}
 
   return (<>
-    <div className='bg-blue-100 w-1/2 rounded-2xl border-4 border-red-400 px-[15px] text-purple-800'>
-        <p className='font-bold text-3xl p-1 text-center'>Token transfer history</p>
-        <div className='flex justify-center'> 
-        <button className='ml-3 w-1/2 className="font-bold rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400'>REFRESH</button>
-        
-        
-        </div>
-        <table className='bg-orange-100 w-full  my-2 text-xl rounded-2xl text-center'>
-          <tr className='bg-orange-300 '>
-            <th>id</th>
-            <th>desciption</th>
-            <th>votes</th>
-            <th>status</th>
-          </tr>
-          {listTx}
-        </table>
-    </div>
-    <Modal 
-    active={displayCard}
-    setActive={setDisplayCard}
-    >
-      <Vote objInfo = {objForCard}/>
-    </Modal>
-    </>
+{loader ? <Loader /> : 
+   <><div className='bg-blue-100 w-1/2 rounded-2xl border-4 border-red-400 px-[15px] text-purple-800'>
+   <p className='font-bold text-3xl p-1 text-center'>Token transfer history</p>
+   <div className='flex justify-center'> 
+   <button onClick={() => setAll(!all)}
+   className='ml-3 w-1/2 className="font-bold rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400'>REFRESH</button>
+   
+   
+   </div>
+   <table className='bg-orange-100 w-full  my-2 text-xl rounded-2xl text-center'>
+     <tr className='bg-orange-300 '>
+       <th>id</th>
+       <th>desciption</th>
+       <th>votes</th>
+       <th>status</th>
+     </tr>
+     {listTx}
+   </table>
+</div>
+<Modal 
+active={displayCard}
+setActive={setDisplayCard}
+>
+ <Vote objInfo = {objForCard}/>
+</Modal></>
+}
+</>
+ 
+    
   )
 }
 // 

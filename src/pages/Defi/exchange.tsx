@@ -10,6 +10,7 @@ import { contractERC20 } from '../../components/smart_contract/erc20';
 import conectSigner from '../../components/smart_contract/SIGNER';
 import Loader from '../../components/loader';
 
+
 export function Exchange() {
   const [cwt, setCwt] = useState();
   const [eth, setEth] = useState();
@@ -25,6 +26,7 @@ export function Exchange() {
   const [error, setError] = useState()
   const [loader, setLoader] = useState(false)
   const [loaderSell, setLoaderSell] = useState(false)
+
 
 
   useEffect(()=>{
@@ -102,7 +104,7 @@ const contractExchangeWithSigner = conectSigner(contractExchange)
 
   return (
     <>
-  <Header>
+  <Header marginFromTop={'1/3'}>
     <div className='text-center'>
       Simple app where you can exchange Ethreum (Goerli) token  to CryptoWorldToken 💱
       <h1 className='mt-3'>💡 If u do not have any of these token, we recommend  you to visit one of Goerli faucet website, to get free goerli token</h1>

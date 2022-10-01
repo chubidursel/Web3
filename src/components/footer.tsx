@@ -11,6 +11,7 @@ const Footer = () => {
     @leave us a feedback</button>
    
     <Modal 
+    marginFromTop={'1/3'}
     active={openFeedback}
     setActive={setOpenFeedback}
     >

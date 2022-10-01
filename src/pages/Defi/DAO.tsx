@@ -48,7 +48,7 @@ export function DAO() {
             Amount of votes</button> 
             </div>
             <div className='flex justify-center'>
-            <button onClick={()=>{setInitiateProp(!initiateProp)}} className='w-1/2 text-white font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-4xl hover:bg-red-400'>
+            <button onClick={()=>{setInitiateProp(!initiateProp)}} className='w-1/3 text-white font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-4xl hover:bg-red-400'>
             Initiate proposal</button> </div>
         </div>
         <div className='flex justify-center mt-5'> 
@@ -56,11 +56,14 @@ export function DAO() {
     <PrposalTable /></div>
     <Modal 
     active={initiateProp}
-    setActive={setInitiateProp}>
+    setActive={setInitiateProp}
+    marginFromTop={'1/3'}
+    >
+      
       <InitiatePropse />
     </Modal>
 
-    <Modal  active={amount} setActive={setAmount}>
+    <Modal  active={amount} setActive={setAmount} marginFromTop={'1/3'}>
       <div className='text-center'>
         <p className='font-bold text-2xl mt-5 text-purple-800'> Amount of votes: {amountVote}</p> <br />
         <p>Right now this amount of NFT token has been minted.</p>

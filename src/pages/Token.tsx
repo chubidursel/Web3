@@ -12,7 +12,7 @@ export function Token() {
 
   return (
     <>
-    <Header>There are 3 most common standart of token implementation</Header>
+    <Header marginFromTop={'1/3'}>There are 3 most common standart of token implementation</Header>
  
     <h2 className="flex justify-center text-6xl mt-3 text-blue-100 font-bold">Token</h2>
 

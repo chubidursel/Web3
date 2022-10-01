@@ -73,10 +73,10 @@ export function AuctionLot({address}) {
   return (
     <>
      <div className='rounded-2xl border-4 border-red-400 px-[15px] text-purple-800'>
-        <img src={Pic} className="h-32 ml-40" />
-        <p className='font-bold'>address:</p><p> {address}</p>
+       <div className='flex justify-center'><img src={Pic} className="h-32" /></div> 
+        <p className='font-bold'>address:</p><p>{address.toString().slice(0, 7) + "..." + address.toString().slice(34)}</p>
         <p className='font-bold'>highest bid: </p><p>{highestBid} ETH</p>
-        <p className='font-bold'>highest Bitter from address:</p><p> {higBidder} </p>
+        <p className='font-bold'>highest Bitter from address:</p><p>{higBidder.toString().slice(0, 7) + "..." + higBidder.toString().slice(34)}</p>
         {finished ?  <p className='font-bold text-center text-green-500'>Status: active until {timeFinished}</p> : <p className='font-bold text-center text-red-500'>Status: finished!</p>}
         <input type="number"onChange={e => setBid(e.target.value as any)} className='m-2 rounded border-solid border-2 pl-2 border-purple-800' placeholder='amount of ETH'></input>
         <button  className='text-lg font-bold rounded-2xl m-2 border-2 border-red-400 px-[15px] hover:bg-red-400' onClick={handleBid}>BID</button>

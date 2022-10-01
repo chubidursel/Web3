@@ -5,25 +5,27 @@ import Header from '../components/headerNew'
 export function Defi() {
   return (
     <>
-    <Header>
+    <Header marginFromTop={'1/3'}>
       <h1 className='text-center'>There are few main technoly that are going to help us to switch to the decentralized world 😉 </h1>
     
     </Header>
     <div className='text-white text-7xl font-bold text-center pt-10'>DeFi</div>
-    <div className='grid grid-cols-2 gap-5 mt-5 mx-10 text-center'>
+    <div className='flex justify-center w-full '>
+    <div className='grid grid-cols-2 w-2/3 gap-3 text-5xl text-purple-800 text-center font-bold justify-center mt-5'>
 
-  <Link to="/Defi/exchange"><h1 className='font-bold rounded-2xl border-2 bg-blue-100 border-red-400 px-10 py-5 text-6xl hover:bg-red-200 text-purple-900 hover:animate-pulse'>Exchange</h1></Link>
+  <Link to="/Defi/exchange" className="bg-blue-100 rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse">Exchange</Link>
 
-  <Link to="/Defi/vault" className='font-bold rounded-2xl border-2 bg-blue-100 border-red-400 px-10 py-5 text-6xl hover:bg-red-200 text-purple-900 hover:animate-pulse'><h1>Vault</h1></Link>
+  <Link to="/Defi/vault" className="bg-blue-100 rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse">Vault</Link>
 
-  <Link to="/Coming_soon" className='font-bold rounded-2xl border-2 bg-blue-100 border-red-400 px-10 py-5 text-6xl hover:bg-red-200 text-purple-900 hover:animate-pulse'><h1>Swap</h1></Link>
+  <Link to="/Coming_soon" className="bg-blue-100 rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse">Swap</Link>
 
-  <Link to="/ChainLink" className='font-bold rounded-2xl border-2 bg-blue-100 border-red-400 px-10 py-5 text-6xl hover:bg-red-200 text-purple-900 hover:animate-pulse'><h1>ChainLink</h1></Link>
+  <Link to="/ChainLink" className="bg-blue-100 rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse">ChainLink</Link>
 
-  <Link to="/DAO" className='font-bold rounded-2xl border-2 bg-blue-100 border-red-400 px-10 py-5 text-6xl hover:bg-red-200 text-purple-900 hover:animate-pulse'><h1>DAO</h1></Link>
+  <Link to="/DAO" className="bg-blue-100 rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse">DAO</Link>
 
-  <Link to="/Defi/Market/Auction" className='font-bold rounded-2xl border-2 bg-blue-100 border-red-400 px-10 py-5 text-6xl hover:bg-red-200 text-purple-900 hover:animate-pulse'><h1>Auction</h1></Link>
-</div>
+  <Link to="/Defi/Market/Auction" className="bg-blue-100 rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse">Auction</Link>
+</div></div>
+
     </>
   )
 }

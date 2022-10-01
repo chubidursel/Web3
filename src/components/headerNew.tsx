@@ -9,7 +9,7 @@ import Modal from "./modal";
 
 declare let window: any;
 
-const Header = ({children}) => {
+const Header = ({children, marginFromTop}) => {
   const [active, setActive] = useState(false);
   const [isLogOutVisible, setLogOutVisible] = useState(false);
   const { contextState, updateContextState } = useAppContext();
@@ -56,7 +56,7 @@ const handleConnectMetamaskClick  = async () => {
 
   return (
         <div className="text-2xl text-white ">
-          <header className="flex relative justify-center p-4 font-semibold">
+          <header className="navbar navbar-expand-lg relative flex justify-center p-4 font-semibold flex-wrap">
             <nav className="rounded-2xl border-2 border-red-400 opacity-40 hover:opacity-100  hover:px-10 ">
           <ul className="flex space-x-8  font-semibold">
             <li>
@@ -106,6 +106,7 @@ const handleConnectMetamaskClick  = async () => {
     <Modal 
     active={active}
     setActive={setActive}
+    marginFromTop={marginFromTop}
     >{children}</Modal>
 </div>
   );
