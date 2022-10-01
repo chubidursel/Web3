@@ -1,7 +1,7 @@
 const Modal = ({ children, active, setActive}) => {
 
-    
     const handleStopPropag =(e) => {
+      
     e.stopPropagation()
     }
     const handleOverlayClick = () => {setActive(false)}

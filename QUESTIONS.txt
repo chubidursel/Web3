@@ -43,7 +43,7 @@ DAN
 > Set up types TS ?? 🏃
 >alret if no MetaMask ✅
 
-ALEX
+ALEX 
 > DEFI main menu refactor blocks
 > Create modal -> center | create modal for big text (modalForBig)
 >  NFT main page slice ipfs address and owner address after check info
