@@ -17,7 +17,7 @@ export function Proxy() {
     
       <div  className="container">
       <div className="cels">
-      <Header>
+      <Header marginFromTop={'1/3'}>
         <div className='text-center p-4'>
           <h1 className='font-bold'>There is a simple implemetation of PROXY contract</h1>
           <p>How does it work?🤔</p>
@@ -56,6 +56,7 @@ export function Proxy() {
     <Modal 
     active={showModule}
     setActive={setShowModule}
+    marginFromTop={'1/3'}
     >
       <FuncProxy />
 

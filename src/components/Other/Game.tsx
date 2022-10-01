@@ -4,7 +4,7 @@ import Header from '../headerNew'
 
 function Game() {
   return (<>
-    <Header >FCK TS</Header>
+    <Header marginFromTop={'1/3'}>FCK TS</Header>
    
     <div>Game</div>
     </>)

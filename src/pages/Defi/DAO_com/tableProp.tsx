@@ -104,6 +104,7 @@ export function PrposalTable() {
 <Modal 
 active={displayCard}
 setActive={setDisplayCard}
+marginFromTop={2}
 >
  <Vote objInfo = {objForCard}/>
 </Modal></>

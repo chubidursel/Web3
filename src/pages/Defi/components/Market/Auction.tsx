@@ -133,6 +133,7 @@ console.log(contractAuctionWithSigner)
 
     <Modal  active={showDeploySC}
     setActive={setShowDeploySC}
+    marginFromTop={'1/3'}
     >
       
 <div className='rounded-2xl border-4 border-red-400 text-xl px-[15px] text-center py-5 m-8 text-purple-800'>
@@ -147,7 +148,7 @@ console.log(contractAuctionWithSigner)
 
  <Modal  active={showDeploySCSecond}
     setActive={setShowDeploySCSecond}
-    higBidder>
+    marginFromTop={'1/3'}>
 <div className='w-max rounded-2xl border-4 border-red-400 text-xl px-[15px] py-5 m-8 text-purple-800'>
 
       <h1>Congatulation! You just created your own smart contract with Auction</h1>

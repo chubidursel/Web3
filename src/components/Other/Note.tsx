@@ -4,7 +4,7 @@ import Header from '../headerNew'
 function Note() {
   return (
     <>
-    <Header >FCK TS</Header>
+    <Header marginFromTop={2} >FCK TS</Header>
     <div>
         <h1>Write your note: </h1>
         <h1>IPFS</h1>

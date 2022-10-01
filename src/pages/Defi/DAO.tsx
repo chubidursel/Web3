@@ -27,7 +27,7 @@ export function DAO() {
   const handleToggle=()=>{setAmount(true)} 
 
   return (<>
-  <Header>
+  <Header marginFromTop={'1/3'}>
     <div className='text-center p-4'>
       <h1 className='font-bold'>There is a simple implemetation of DAO</h1>
       <p>How does it work?</p>
