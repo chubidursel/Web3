@@ -74,7 +74,7 @@ export function Conveter() {
 
   return (
   <>
-  <Header marginFromTop={'1/3'}>
+  <Header marginFromTop={'top-1/3'}>
     <div className='text-center'>
     <h1>Most common data type convertor 🛠️</h1>
     <p>All functionality of how this app convert data you can check on the etherscan just click on Convertor (except eth to wei because solidity does not support float-pointing number 😔)</p>

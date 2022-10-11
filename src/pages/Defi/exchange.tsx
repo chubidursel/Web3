@@ -104,7 +104,7 @@ const contractExchangeWithSigner = conectSigner(contractExchange)
 
   return (
     <>
-  <Header marginFromTop={'1/3'}>
+  <Header marginFromTop={'top-1/3'}>
     <div className='text-center'>
       Simple app where you can exchange Ethreum (Goerli) token  to CryptoWorldToken 💱
       <h1 className='mt-3'>💡 If u do not have any of these token, we recommend  you to visit one of Goerli faucet website, to get free goerli token</h1>

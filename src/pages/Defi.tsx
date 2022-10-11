@@ -5,7 +5,7 @@ import Header from '../components/headerNew'
 export function Defi() {
   return (
     <>
-    <Header marginFromTop={'1/3'}>
+    <Header marginFromTop={'top-1/3'}>
       <h1 className='text-center'>There are few main technoly that are going to help us to switch to the decentralized world 😉 </h1>
     
     </Header>

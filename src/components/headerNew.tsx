@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import Jazzicon, { jsNumberForAddress } from 'react-jazzicon';
-import { LogoutIcon } from "../icons/LogoutIcon";
 import { useAppContext } from "../hooks/useAppContext";
 import connectMetamask from "../utils/connectMetamask";
 import disconnectMetamask from "../utils/disconnectMetamask";
 import { Link } from "react-router-dom";
 import Modal from "./modal";
+import { LogoutIcon } from "./LogoutIcon";
 
 declare let window: any;
 
@@ -56,7 +56,8 @@ const handleConnectMetamaskClick  = async () => {
 
   return (
         <div className="text-2xl text-white ">
-          <header className="navbar navbar-expand-lg relative flex justify-center p-4 font-semibold flex-wrap">
+          <header className="navbar navbar-expand-lg relative flex justify-between p-4 font-semibold flex-wrap">
+          <div className="invisible rounded-2xl border-2 px-[15px] py-2 text-xl">Connect MetaMask</div>
             <nav className="rounded-2xl border-2 border-red-400 opacity-40 hover:opacity-100  hover:px-10 ">
           <ul className="flex space-x-8  font-semibold">
             <li>
@@ -80,7 +81,7 @@ const handleConnectMetamaskClick  = async () => {
       {currentAccount ? (
   <>
     <span
-          className="absolute right-0 mr-6 flex rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400"
+          className="flex rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400"
           onClick={() => setLogOutVisible(!isLogOutVisible)}
         >
         <Jazzicon diameter={30} seed={jsNumberForAddress(currentAccount)}/>
@@ -96,7 +97,7 @@ const handleConnectMetamaskClick  = async () => {
       </>
       ) : (
         <button
-          className="absolute right-0 mr-6 rounded-2xl border-2 border-red-400 px-[15px] py-2 font-semibold text-xl hover:bg-red-400"
+          className="rounded-2xl border-2 border-red-400 px-[15px] py-2 font-semibold text-xl hover:bg-red-400"
           onClick={handleConnectMetamaskClick}
         >
           Connect Metamask

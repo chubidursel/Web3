@@ -34,21 +34,21 @@ const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
   const [errorAp, setErrorAp] = useState('')
 
   async function pasingMetaData(){
-  
-    const response = await fetch(metadataJson);
+      const response = await fetch(metadataJson);
     const data = await response.json();
     return data
     
   }
+  useEffect(() => {
+    setLoader(true)
   pasingMetaData().then((data)=>{
-   
     const link = data.image; 
     const cutSting = link.substring(7)
     const imgURL = `https://ipfs.io/ipfs/${cutSting}`
     setImgUri(imgURL)
     setMetaName(data.name)
-    
-  })
+    setLoader(false)
+  })}, [])
 
 // >>>>>>>> FUNC 1
   const handleTransfer = async(event:any)=>{

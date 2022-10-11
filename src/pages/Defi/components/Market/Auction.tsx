@@ -91,7 +91,7 @@ console.log(contractAuctionWithSigner)
 
   return (
     <>
-   <Header marginFromTop={'1/3'}>
+   <Header marginFromTop={'mt-10'}>
     <div className='text-center py-3'>
       <h1 className='font-bold'>Here you can create a new smart contract and sell NFT!</h1>
       <p>without write a single line of code</p>
