@@ -2,15 +2,15 @@ import React, {useState} from 'react';
 import { ethers } from 'ethers';
 import { contractDAO} from '../../../components/smart_contract/Dao_contract';
 import conectSigner from '../../../components/smart_contract/SIGNER';
+import getErrorMessage from '../../../components/getErrorMessage';
 
 export function Vote({objInfo}) {
 
-  const [displayResult, setDisplayResult] = useState(false)
   const [resultTx, setResultTx] = useState('');
 
   const handleVote = async(event)=>{
     try {
-      setDisplayResult(true)
+
       setResultTx("Sign the transaction in MetaMask and wait a bit 🙌")
       const resuslt = event.target.value
       const res = resuslt ? true : false;
@@ -25,9 +25,9 @@ export function Vote({objInfo}) {
       console.log(txVote)
       
     } catch (error) {
-      setResultTx("Oi wei! We got problems! 😰")
-      console.log(error)
-      setTimeout(() => {setDisplayResult(false)}, 10000)
+      const message = getErrorMessage(error);
+      setResultTx(message)
+      setTimeout(() => {setResultTx('')}, 5000)
     }
 
   }
@@ -42,7 +42,10 @@ export function Vote({objInfo}) {
       <div className='flex flex-row justify-around mt-2'>
       <button className='font-bold ml-1 w-1/2 rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400' value={1} onClick={handleVote}>up</button>
       <button className='font-bold ml-1 w-1/2 rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400' value={0} onClick={handleVote}>down</button>
-    </div> </div>
+      
+    </div> 
+    <div className='flex justify-center'> {resultTx && <h1 className='font-bold mt-3 bg-yellow-100 w-full py-2 text-center  px-1 rounded-xl text-purple-900 text-xl '>{resultTx}</h1>}   </div>
+    </div>
   )
 }
 

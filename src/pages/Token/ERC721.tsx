@@ -84,20 +84,20 @@ useEffect((()=>{
                   <p className='font-semibold'>Check the NFT info by token ID:</p></div>
                   
                 <div className='flex flex-row justify-center'>
-          <input className='rounded-xl text-center ml-1' type='number' min={1} onChange={(e:any)=>setTokenId(e.target.value)} placeholder='token ID'/>
+          <input className='rounded-xl text-center ml-1 w-1/2' type='number' max={8} min={1}  onChange={(e:any)=>setTokenId(e.target.value)} placeholder='token ID'/>
           <button onClick={habdleGetInfo} className='ml-2 font-semibold rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400'>check</button>
           </div>
 
           { opneTokenInfo == true ? <div>
                 <p className='font-semibold'>address:</p><p>{tokenUri.toString().slice(0, 10) + "..." + tokenUri.toString().slice(48)}</p>
 
-                <p className='font-semibold'>owner:</p><p> {tokenOwner.toString().slice(0, 5) + "..." + tokenOwner.toString().slice(38)}</p>
+                <p className='font-semibold'>owner:</p><p> {tokenOwner.toString().slice(0, 7) + "..." + tokenOwner.toString().slice(33)}</p>
               </div> : <div className='flex justify-center text-red-500 font-bold'>{error}</div>}
 
               </div><h1 className=" text-3xl text-center font-bold m-1">Interact</h1>
           <div className='bg-blue-100 rounded-xl border-2 border-red-400 text-xl px-[15px] py-5 flex flex-row justify-center'>
            
-            <input className='w-1/2 rounded-xl hover:shadow-xl text-center ml-1' type='number' min={1} onChange={(e:any)=>setNumInteract(e.target.value)} placeholder='token ID'/>
+            <input className='w-1/2 rounded-xl hover:shadow-xl text-center ml-1' type='number' min="1" max="8" onChange={(e:any)=>setNumInteract(e.target.value)} placeholder='token ID'/>
             <button onClick={handleMod} className='ml-2 font-semibold rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400'>show</button>
             </div>
             {errorQ ? <div className='top- flex justify-center text-red-500 font-bold'> {errorQ}</div> :

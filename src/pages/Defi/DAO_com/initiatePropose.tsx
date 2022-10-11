@@ -3,10 +3,12 @@ import { contractDAO} from '../../../components/smart_contract/Dao_contract';
 import { contractERC721} from '../../../components/smart_contract/ERC721';
 import { useAppContext } from "../../../hooks/useAppContext";
 import conectSigner from '../../../components/smart_contract/SIGNER';
+import getErrorMessage from '../../../components/getErrorMessage';
 
 export function InitiatePropse() {
   const [descProp, setDescProp] = useState('')
   const [timeProp, setTimeProp] = useState(0)
+  const [result, setResult] = useState(''); 
 
 // GET OWNER
 const[ownerOrNot, setOwnrOrNot ] = useState(false)
@@ -26,11 +28,20 @@ useEffect((()=>{
 
 
   const handleCreate = async() =>{
-    const minTime = timeProp * 60
-    const contractDAOWithSigner = conectSigner(contractDAO)
-    const txCreate = await contractDAOWithSigner.createProposal(descProp, minTime)
-    await txCreate.wait(1);
-    console.log(txCreate);
+    try {
+      setResult("Please sign the transation in MetaMask 📝 and wait till this tx will be confirmed in blockchain")
+      const minTime = timeProp * 60
+      const contractDAOWithSigner = conectSigner(contractDAO)
+      const txCreate = await contractDAOWithSigner.createProposal(descProp, minTime)
+      await txCreate.wait(1);
+      console.log(txCreate);
+      setTimeout(() => {setResult('')}, 5000)
+    } catch (error) {
+      const message = getErrorMessage(error);
+      setResult(message)
+      setTimeout(() => {setResult('')}, 5000)
+    }
+
   }
 
   return (<>
@@ -45,6 +56,7 @@ useEffect((()=>{
             <input type='number' className='ml-2 mb-3 rounded border-solid border-2 pl-2 border-purple-800' placeholder='min' onChange={(e)=>{setTimeProp(e.target.value as any)}} />
         </form>
         <button disabled={!ownerOrNot} onClick={handleCreate} className='w-full font-bold ml-1 rounded-lg hover:shadow-xl border-2 border-red-400 px-[15px] hover:bg-red-400'>submit</button>
+        <div className='flex justify-center'> {result && <h1 className='font-bold mt-3 bg-yellow-100 w-full py-2 text-center  px-1 rounded-xl text-purple-900 text-xl '>{result}</h1>}   </div>
     </div>
     </>
   )

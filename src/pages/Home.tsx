@@ -18,16 +18,16 @@ export function Home() {
   const handleModal = () => setActive(true)
 
   const desc = (<>
-  <div >
-    <div className="text-center mb-2 italic ">
-    <p>Heyy user! 👋 </p>
-    <p>Nice to see ya here! </p>
-    <p>Do you want to see  and interact with the new generation of WEB?</p>
+  <div className="text-center" >
+    <div className="mb-2 italic ">
+    <p>Hey user! 👋 </p>
+    <p>Nice to see you here! </p>
+    <p>Do you want to see and interact with the new generation of WEB?</p>
     <p>There are no private servers where we store ur data and all codes that run under the hood which you can see on open sourses (like Etherscan) </p>
-    <p>Check out the whole app on <a href="https://github.com/chubidursel/Web3" className="hover:underline font-semibold">github</a></p>
+    <p>Check out the code on <a href="https://github.com/chubidursel/Web3" className="hover:underline font-semibold">github</a></p>
     </div>
   <h1 className="text-2xl font-bold underline text-center">Desciptions</h1>
-  <h1 className="pb-2 ">This projest is made for educational purposes and to represent skills of these dudes <a href="https://www.linkedin.com/in/danil-kozhevnikov-a14b66232/" className="hover:animate-ping" target='_blank'>👨</a> 👨</h1>
+  <h1 className="pb-2 ">This wonderful project is made for educational purposes and to represent the skills and knowledge of these dudes<a href="https://www.linkedin.com/in/danil-kozhevnikov-a14b66232/" className="hover:animate-ping" target='_blank'>👨</a> 👨</h1>
     <h1 className="pt-4 text-gray-400">PS: You can always click FAQ and see how does a certain feature work</h1>
   </div></>)
 

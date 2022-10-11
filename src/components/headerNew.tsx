@@ -52,6 +52,14 @@ const handleConnectMetamaskClick  = async () => {
     disconnectMetamask(updateContextState);
   };
 
+  async function copyTextToClipboard(text:string) {
+    if ('clipboard' in navigator) {
+      return await navigator.clipboard.writeText(text);
+    } else {
+      return document.execCommand('copy', true, text);
+    }
+  }
+
   const handleModal = () => setActive(true)
 
   return (
@@ -86,7 +94,7 @@ const handleConnectMetamaskClick  = async () => {
           onClick={() => setLogOutVisible(!isLogOutVisible)}
         >
         <Jazzicon diameter={30} seed={jsNumberForAddress(currentAccount)}/>
-          <div className="ml-1">{currentAccount.toString().slice(0, 5) +
+          <div className="ml-1 hover:underline hover:cursor-copy active:animate-ping" onClick={()=>{copyTextToClipboard(currentAccount.toString())}}>{currentAccount.toString().slice(0, 5) +
             "..." +
             currentAccount.toString().slice(38)}</div>
             <button className="ml-3"

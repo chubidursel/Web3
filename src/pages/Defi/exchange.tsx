@@ -2,13 +2,13 @@ import React from 'react'
 import { ethers } from "ethers";
 import {useState, useEffect} from 'react';
 import { contractExchange } from '../../components/smart_contract/exchange'
-import Result from './components/exchange/Result';
 import Header from '../../components/headerNew';
 import EventsExchange from './components/exchange/EventsExchange';
 import HeaderExchange from './components/exchange/headerExchange';
 import { contractERC20 } from '../../components/smart_contract/erc20';
 import conectSigner from '../../components/smart_contract/SIGNER';
 import Loader from '../../components/loader';
+import getErrorMessage from '../../components/getErrorMessage';
 
 
 export function Exchange() {
@@ -17,15 +17,18 @@ export function Exchange() {
   const [rateCwt, setRateCwt] = useState<any>(); // How much ETH for 1 CWT
   const [amountBuy, setAmountBuy] = useState<any>();
   const [amountSell, setAmountSell] = useState(0);
-  const [result, setResult] = useState('');
+
   // const [showEvents, setShowEvents] =useState(false)
   const [showEvent, setShowEvent] = useState(false)
   const handleToggle = () =>setShowEvent(!showEvent)
 
-  const [succs, setSuccs] = useState()
-  const [error, setError] = useState()
   const [loader, setLoader] = useState(false)
   const [loaderSell, setLoaderSell] = useState(false)
+
+
+  const [result, setResult] = useState('');   // ALL RESULT (SUCC , ERR, Pand)
+  
+
 
 
 
@@ -50,8 +53,7 @@ export function Exchange() {
   const handleBuy = async()=>{
     //contract get amount of ETH u want to send to this SC and according to Rate recive certain amount of CWT
     const convertEthToCwt = amountBuy * rateCwt // 1 * 0.01 
-    console.log(convertEthToCwt)
-    console.log(ethers.utils.parseEther(convertEthToCwt.toString()))
+
     try {
       if(convertEthToCwt * 100 <= Number(cwt) ){setLoader(true)
         //contract get amount of ETH u want to send to this SC and according to Rate recive certain amount of CWT
@@ -64,17 +66,17 @@ export function Exchange() {
         const res = await callFunc.wait(1)
         console.log(res.events)
 
-        setResult(`✅ Complete! You just bought ${cwt} CWT`)
+        setResult(`✅ Complete! You just bought ${amountBuy} CWT`)
         setTimeout(() => {setResult('')}, 7000)
       } 
       else{
         setResult('Not enough fund here 😞')
-        setTimeout(() => {setResult('')}, 4000)
+        setTimeout(() => {setResult('')}, 7000)
       }
     } catch (error) {
-      console.log(error)
-      setResult('Oii wei, we got problems! 😞')
-      setTimeout(() => {setResult('')}, 4000)
+      const message = getErrorMessage(error);
+      setResult(message)
+      setTimeout(() => {setResult('')}, 7000)
     }setLoader(false)
   }
 
@@ -88,7 +90,7 @@ const contractERC20WithSigner = conectSigner(contractERC20)
       const resApprove = await contractERC20WithSigner.approve(contractExchange.address, amount);
       await resApprove.wait()
   console.log(resApprove)
-      setResult(`✅ Approve completed! Now please sign the second transaction to sell your token`)
+      setResult(`✅ Approve completed! Now please sign the second transaction📝 to sell your token`)
 // #2 calling this SC to sell tokens
 const contractExchangeWithSigner = conectSigner(contractExchange)
       const resSell = await contractExchangeWithSigner.sellToken(amountSell);
@@ -96,9 +98,9 @@ const contractExchangeWithSigner = conectSigner(contractExchange)
       setResult(`✅ Sell Token completed!`)
       setTimeout(() => {setResult('')}, 8000)
     } catch (error) {
-      console.log(error)
-      setResult('Oii wei, we got problems! 😞')
-      setTimeout(() => {setResult('')}, 2000)
+      const message = getErrorMessage(error);
+      setResult(message)
+      setTimeout(() => {setResult('')}, 7000)
     }setLoaderSell(false)
   }
 

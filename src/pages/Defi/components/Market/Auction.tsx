@@ -140,7 +140,7 @@ console.log(contractAuctionWithSigner)
   <h1>Before you will create a new Auction we have to check the ownershit of current NFT 🧐</h1>
   
   <div className='grid grid-cols-1 justify-center'>
-    <button disabled={!resCheckOwner} onClick={handleDeploy} className='ml-3 m-3 className="font-bold rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400'>DEPLOY</button>
+    <button disabled={!resCheckOwner} onClick={handleDeploy} className='ml-3 m-3 className="font-bold rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400 hover:cursor-pointer'>DEPLOY</button>
     {resCheckOwner ? <p className='bg-green-300 p-2 text-center'>You are the Owner!</p> : <p className='text-center rounded-xl bg-red-300 p-2'>You are not an Owner!</p>}
     <div>{resultDeployment}</div>
     </div></div>

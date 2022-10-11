@@ -9,7 +9,13 @@ export function Other() {
   const [openFeedback, setOpenFeedback] = useState(false)
 
   return (<>
-   <Header marginFromTop={'top-1/3'}>info about other functions</Header>
+   <Header marginFromTop={'top-1/3'}>
+    <div className='text-center'>
+    <p>Other cool features</p>
+    <p>We have many ideas which we will implement here very soon...</p>
+    </div>
+
+   </Header>
    
       <h2 className="flex justify-center text-6xl mt-3 text-blue-100 font-bold">Other</h2>
      
@@ -19,7 +25,7 @@ export function Other() {
           <Link to="/Coming_soon" className='bg-blue-100 rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse'>Game</Link>
           <Link to="Proxy" className='bg-blue-100 rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse'>Proxy</Link>
           <button onClick={()=>{setOpenFeedback(true)}} className='bg-blue-100 text-4xl rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse'>
-    @leave us a feedback</button>
+    @ Feedback</button>
     </div>
     </div>
 

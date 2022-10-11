@@ -78,11 +78,11 @@ export function Vault() {
      </div>
      <h1 className='text-center text-xl'>Check out amount CWT by address: </h1>
      <div className='flex justify-center mt-1 text-lg mb-3'>
-     
-            <input type='text' placeholder='address' onChange={(e)=>setGetBalanCheck(e.target.value)} className='text-center outline ml-2 rounded-lg pl-2'/>
-            </div><div className='flex justify-center mt-1 text-lg mb-1'>
-            <button onClick={habdleCheckBallance} className='font-semibold rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400 text-lg'>check</button>
-            </div>
+     </div>
+            <div className='flex flex-row'>
+              <input type='text' placeholder='address' onChange={(e)=>setGetBalanCheck(e.target.value)} className='text-center outline ml-2 w-1/2 rounded-lg pl-2'/>
+              <button onClick={habdleCheckBallance} className='font-semibold w-1/2 rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400 ml-2 text-lg'>check</button>
+            </div>    
            { checkBalance && <div className='font-bold mt-3 bg-yellow-100 w-full py-2 text-center  px-1 rounded-xl text-purple-900 text-xl'>{checkBalance}</div>}
     </div>
           <div className='rounded-2xl border-4 border-red-400 px-[15px] p-2 m-2 bg-blue-100 mt-5'>

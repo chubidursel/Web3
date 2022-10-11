@@ -78,7 +78,7 @@ export function ItemAuction() {
         {
           !el.start ? <td className='bg-red-300 text-center py-1'>error ❌</td> : el.end ? <td className='bg-green-300 text-center py-1'>finished</td> : <td className='bg-green-300 text-center py-1'>live</td>
         }
-        <td>{el.tokenId}</td>
+        <td  className='px-3'>{el.tokenId}</td>
         <td>{el.addressAuc}</td>
         <td className='ml-5 font-bold'><button className='text-sm font-bold rounded-xl m-2 border-2 border-red-400 px-[15px] hover:bg-red-400' value={el.addressAuc} onClick={getCard}>OPEN</button></td>
       </tr>
@@ -99,7 +99,7 @@ export function ItemAuction() {
  <table className='bg-orange-100 rounded-xl w-full'>
        <tr className='bg-orange-300 text-center'>
        <th>Type</th>
-         <th>Token ID</th>
+         <th>ID</th>
          <th>Address</th>
          <th>OPEN</th>
        </tr>
