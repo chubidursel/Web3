@@ -3,7 +3,6 @@ import { NftCard } from './ERC721_components/NftCard';
 import Header from '../../components/headerNew';
 import { contractERC721 } from '../../components/smart_contract/ERC721';
 import HeaderTokenNft from './ERC721_components/headerToken721';
-// import ModalBig from '../../components/modalBig';
 import Modal from '../../components/modal';
 
 

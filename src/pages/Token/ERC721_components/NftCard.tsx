@@ -5,7 +5,6 @@ import conectSigner from '../../../components/smart_contract/SIGNER';
 import Loader from '../../../components/loader';
 import { useAppContext } from "../../../hooks/useAppContext";
 
-// https://gateway.pinata.cloud/ipfs/ <<<<gateway to ipfs
 type tokId = number;
 export function NftCard({tokenId}) {
   const [loader, setLoader] = useState(false)
@@ -34,20 +33,20 @@ const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
   const [errorAp, setErrorAp] = useState('')
 
   async function pasingMetaData(){
-  
+    
     const response = await fetch(metadataJson);
     const data = await response.json();
     return data
     
   }
   pasingMetaData().then((data)=>{
-   
+    setLoader(true)
     const link = data.image; 
     const cutSting = link.substring(7)
     const imgURL = `https://ipfs.io/ipfs/${cutSting}`
     setImgUri(imgURL)
     setMetaName(data.name)
-    
+    setLoader(false)
   })
 
 // >>>>>>>> FUNC 1

@@ -55,6 +55,7 @@ const handleConnectMetamaskClick  = async () => {
   const handleModal = () => setActive(true)
 
   return (
+
         <div className="text-2xl text-white ">
           <header className="navbar navbar-expand-lg relative flex justify-center p-4 font-semibold flex-wrap">
             <nav className="rounded-2xl border-2 border-red-400 opacity-40 hover:opacity-100  hover:px-10 ">
@@ -103,6 +104,10 @@ const handleConnectMetamaskClick  = async () => {
         </button>
       )}
     </header>
+
+
+
+
     <Modal 
     active={active}
     setActive={setActive}
