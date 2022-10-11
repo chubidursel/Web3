@@ -35,10 +35,13 @@ const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
   async function pasingMetaData(){
     
     const response = await fetch(metadataJson);
+
     const data = await response.json();
     return data
     
   }
+  useEffect(() => {
+    setLoader(true)
   pasingMetaData().then((data)=>{
     setLoader(true)
     const link = data.image; 
@@ -47,7 +50,7 @@ const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
     setImgUri(imgURL)
     setMetaName(data.name)
     setLoader(false)
-  })
+  })}, [])
 
 // >>>>>>>> FUNC 1
   const handleTransfer = async(event:any)=>{

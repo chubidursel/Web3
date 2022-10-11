@@ -111,7 +111,7 @@ export function ItemAuction() {
     {display &&
      <Modal  active={display}
      setActive={setDisplay}
-     marginFromTop={'1/3'}>
+     marginFromTop={'top-1/4'}>
     <AuctionLot address = {addressForCard}/>
     </Modal>
     }

@@ -64,34 +64,36 @@ export function Vault() {
 
   return (
   <>
-  <Header marginFromTop={'1/3'}>Just a simple Vault</Header>
+  <Header marginFromTop={'top-1/3'}>Just a simple Vault</Header>
   <h2 className="flex justify-center text-6xl text-blue-100 font-bold m-3 mb-5">Vault</h2>
 
 
 <div className='grid grid-col-1 justify-center text-purple-800  text-lg'>
     <div className='rounded-2xl border-4 border-red-400 px-[15px] p-2 m-2 bg-blue-100'>
-          <h1 className='font-bold text-center text-2xl'>INFO: </h1>
-          <div className='flex flex-row justify-around mt-2'>
+          <h1 className='font-bold text-center text-2xl'>INFO</h1>
+          <div className='flex justify-center mt-1 text-lg mb-3'>
           <a target='_blanck' href="https://goerli.etherscan.io/address/0xBd9bb2397512527718125661faC4c5b63d0b0c2d#code"><button className='font-semibold rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400 text-lg' >Etherscan</button> </a>
+          </div><div className='flex justify-center mt-1 text-lg mb-3'>
           <div className='flex flex-row'><p className='font-semibold rounded-xl border-2 border-red-400 px-[15px] text-lg'>CWT Locked: {totalSupply}</p></div>
      </div>
-     <h1 className='text-center text-xl m-5'>Check out amount CWT by address: </h1>
-     <div className='flex flex-row justify-center mt-1 text-lg'>
+     <h1 className='text-center text-xl'>Check out amount CWT by address: </h1>
+     <div className='flex justify-center mt-1 text-lg mb-3'>
      
-            <input type='text' placeholder='address' onChange={(e)=>setGetBalanCheck(e.target.value)} className='text-center outline ml-2 rounded-lg pl-2'></input>
-            <button onClick={habdleCheckBallance} className='ml-5 font-semibold rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400 text-lg'>check</button>
+            <input type='text' placeholder='address' onChange={(e)=>setGetBalanCheck(e.target.value)} className='text-center outline ml-2 rounded-lg pl-2'/>
+            </div><div className='flex justify-center mt-1 text-lg mb-1'>
+            <button onClick={habdleCheckBallance} className='font-semibold rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400 text-lg'>check</button>
             </div>
-           { checkBalance && <div className='font-bold mt-3 bg-yellow-100 w-full py-2 text-center  px-1 rounded-xl text-purple-900 text-xl '>{checkBalance}</div>}
+           { checkBalance && <div className='font-bold mt-3 bg-yellow-100 w-full py-2 text-center  px-1 rounded-xl text-purple-900 text-xl'>{checkBalance}</div>}
     </div>
-          <div className='rounded-2xl border-4 border-red-400 px-[15px] p-2 m-2 bg-blue-100'>
+          <div className='rounded-2xl border-4 border-red-400 px-[15px] p-2 m-2 bg-blue-100 mt-5'>
           <div>
             <h1 className='font-bold text-center text-2xl'>Functions</h1>
             </div>
-            <div className='grid grid-cols-2 justify-center'>
-                <div className='grid grid-cols-1'>
+            <div className='grid grid-cols-2'>
+                <div className='grid grid-cols-1 justify-center'>
                 <h1 className='text-center font-bold m-3'>Lock CWT Token</h1>
                 <input type="number" min="1" onChange={(e:any) => setLockAmount(e.target.value)} className="mr-5 text-center outline rounded-lg" />
-                <button onClick={handleLock} className='m-5 font-semibold rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400 text-lg'>LOCK</button>
+                <button onClick={handleLock} className='m-5 font-semibold rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400 text-lg'>Lock</button>
                 </div>
 
                 <div className='grid grid-cols-1'>

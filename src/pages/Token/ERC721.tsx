@@ -11,15 +11,16 @@ export function ERC721() {
   const [tokenUri, setTokenUri] = useState('');
   const [tokenOwner, setTokenOwner] = useState('');
   const [opneTokenInfo, setOpneTokenInfo] = useState(false);
-
-  const [numInteract, setNumInteract] = useState() // toos this number to NFT card
+  const [numInteract, setNumInteract] = useState(0) // toos this number to NFT card
   const [active, setActive] = useState(false);
-
-
   const [error, setError] = useState('')
+  const [errorQ, setErrorQ] = useState('')
+
+
   const handleMod = () => {
-   if(numInteract) setActive(true)
-  }
+   if(numInteract < 9) {setActive(true)} 
+  else {setErrorQ('This token ID is not valid! 😞')
+  setTimeout(() => {setErrorQ('')}, 2000)}}
   const [amountMinted, setAmountMinted] = useState();
 
 // BLOCK 1 INFO
@@ -98,19 +99,24 @@ useEffect((()=>{
            
             <input className='w-1/2 rounded-xl hover:shadow-xl text-center ml-1' type='number' min={1} onChange={(e:any)=>setNumInteract(e.target.value)} placeholder='token ID'/>
             <button onClick={handleMod} className='ml-2 font-semibold rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400'>show</button>
-           
-           
             </div>
+            {errorQ ? <div className='top- flex justify-center text-red-500 font-bold'> {errorQ}</div> :
+   <Modal
+   active={active}
+   setActive={setActive}
+   marginFromTop={'top-16'}
+   >
+   <NftCard tokenId={numInteract}/> 
+   
+   </Modal>
+}
+            
           </div>
     </div>
-    <Modal
-    active={active}
-    setActive={setActive}
-    marginFromTop={2.5}
-    >
-    <NftCard tokenId={numInteract}/> 
-    
-    </Modal>
+
+
+
+ 
     </>
   )
 }

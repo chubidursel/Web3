@@ -57,13 +57,13 @@ export function DAO() {
     <Modal 
     active={initiateProp}
     setActive={setInitiateProp}
-    marginFromTop={'1/3'}
+    marginFromTop={'top-1/3'}
     >
       
       <InitiatePropse />
     </Modal>
 
-    <Modal  active={amount} setActive={setAmount} marginFromTop={'1/3'}>
+    <Modal  active={amount} setActive={setAmount} marginFromTop={'top-1/3'}>
       <div className='text-center'>
         <p className='font-bold text-2xl mt-5 text-purple-800'> Amount of votes: {amountVote}</p> <br />
         <p>Right now this amount of NFT token has been minted.</p>

@@ -4,7 +4,7 @@ import Header from '../../components/headerNew'
 
 export function Market() {
   return (<>
-  <Header marginFromTop={'1/3'}>Our marketplace</Header>
+  <Header marginFromTop={'ещз-1/3'}>Our marketplace</Header>
   <h2 className="flex justify-center text-5xl text-blue-100 font-bold m-3">Market</h2>
 
     <div className='flex flex-wrap justify-center mt-10 gap-10'>
