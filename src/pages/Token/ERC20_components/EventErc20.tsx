@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import {useEffect, useState} from 'react'
 import { contractERC20 } from '../../../components/smart_contract/erc20';
 
 function EventErc20() {

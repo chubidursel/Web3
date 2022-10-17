@@ -25,7 +25,7 @@ export function Other() {
           <Link to="/Coming_soon" className='bg-blue-100 rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse'>Game</Link>
           <Link to="Proxy" className='bg-blue-100 rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse'>Proxy</Link>
           <button onClick={()=>{setOpenFeedback(true)}} className='bg-blue-100 text-4xl rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse'>
-    @ Feedback</button>
+    @Feedback</button>
     </div>
     </div>
 

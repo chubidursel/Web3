@@ -84,7 +84,6 @@ export function Conveter() {
   <div className="flex justify-center" >
   <a href='https://goerli.etherscan.io/address/0x1B493aC3C02735546736b2db2c29A02F49285731' target="_blank" ><h2 className="hover:underline text-5xl text-blue-100 font-bold m-3 mb-10">Convertor</h2></a>
         </div>
-
       {/*-------------- WEI TO ETH -------------------*/}
 <div className='flex justify-center flex-wrap'>
   <div className='bg-blue-100 w-max rounded-2xl border-4 border-red-400 hover:bg-blue-200 px-[15px] py-2 m-8'>

@@ -4,6 +4,7 @@
     2. Toss the props to react component (main\src\pages\Token\ERC721_components\NftCard.tsx) // Faq
         >should i declare all props as a type in types folder? 
     3. Set up global types
+    4. ROUTS???
 >>>> IPFS
     2. What happend if all nodes with ur file  will cut off from the network, so i can't reach my files?
 >>>> .env !!
