@@ -15,6 +15,7 @@ import {Auction} from "./pages/Defi/components/Market/Auction";
 import { ShopNft } from "./pages/Defi/components/Market/ShopNft";
 import { DAO } from "./pages/Defi/DAO";
 import { Proxy } from "./pages/Other/Proxy";
+import {Ipfs} from "./pages/Other/Ipfs"
 
 function App() {
   return (
@@ -35,6 +36,8 @@ function App() {
       <Route path="/ChainLink" element={<ChainLink />} />
       <Route path="/Other/Converter" element={<Conveter />} />
       <Route path="/Other/Proxy" element={<Proxy />} />
+      <Route path="/Other/Ipfs" element={<Ipfs />} />
+
     </Routes>
   )
 }
