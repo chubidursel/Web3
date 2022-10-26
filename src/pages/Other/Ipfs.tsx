@@ -210,7 +210,7 @@ export function Ipfs() {
               </select>
       
                 <input value={ipfsToFind} onChange={(event: React.ChangeEvent<HTMLInputElement>)=>(setIpfsToFind(event.target?.value))} type="text" placeholder="ipfs CID" className="mx-2 w-1/2 rounded-xl text-center hover:shadow-xl px-4" />
-                <button className="font-bold py-1 text-2xl hover:shadow-xl w-1/3 rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400 active:bg-red-500 active:text-blue-100" type="submit">get URL</button>
+                <button type="submit">get URL</button>
                
               </div>
               <div className='flex justify-center'> {resultSearch && <h1 className='font-bold mt-3 bg-yellow-100 w-full py-2 text-center  px-1 rounded-xl text-purple-900 text-xl hover:underline'><a href={resultSearch} target="_blank">
