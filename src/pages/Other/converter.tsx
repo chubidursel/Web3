@@ -1,6 +1,7 @@
 import {useState, useRef} from 'react'
 import Header from '../../components/headerNew';
 import { contractConvertor } from '../../components/smart_contract/convertor_Contract';
+import { ethers } from 'ethers';
 
 export function Conveter() {
     const [eth, setEth] = useState<number>(0);
@@ -20,21 +21,37 @@ export function Conveter() {
      const bytesStrRef = useRef<HTMLInputElement>()
      const strBytesRef = useRef<HTMLInputElement>()
 
+          // Bytes > string 
+    const [resBigNum, setResBigNum] = useState<string>('')
+    const bigNumToNum = useRef<HTMLInputElement | undefined>()
+    const numToBigNUm = useRef<HTMLInputElement | undefined>()
+
 
 
     const handleFuncSelector = async() =>{
+      try{
       const data = await contractConvertor.funcSelector(funcSelRef.current);
       setResSelector(data)
+    } catch (error) {
+      console.log(error)
+      setResSelector("Opps, error 💀")  
     }
+    }
+
     const handleKeccak = async() =>{
+      try{
       const data = await contractConvertor.getHash(keccakRef.current?.value);
       setResKeccak(data)
+    } catch (error) {
+      console.log(error)
+      setResKeccak("💀")  
     }
+    }
+
     const handleBytesNumber = async() =>{
       const bytes = bytesNumRef.current?.value
       const num = numberBytesRef.current?.value
-    
-
+    try{
       if(num && bytes){
         setResBytesNumber("WHYYYYYYY")
       } else if (num) {
@@ -45,7 +62,12 @@ export function Conveter() {
         const data = await contractConvertor.bytesToNum(bytes);
         setResBytesNumber(Number(data.toString()))
       }
+    } catch (error) {
+      console.log(error)
+      setResBytesNumber("💀")  
     }
+    }
+
     const handleStringBytes = async() =>{
       const str = strBytesRef.current?.value
       const byt = bytesStrRef.current?.value
@@ -60,6 +82,30 @@ export function Conveter() {
         setresStrBytes("I got mistake in Smart Contract 😢 ")
         console.log(data, "Return UINT intead stirng!!!")
       }
+    }
+
+
+    const handleBigNum = () =>{
+      const num = numToBigNUm.current?.value
+      const bigNum = bigNumToNum.current?.value
+
+      try {
+        if(num){
+          const data = "WRITE the func to convert from Ehter.js";
+          const objNum = {numm: num}
+          setResBigNum(`${objNum}`)
+          }else if(bigNum){
+            const data = "WRITE the func to convert from Ehter.js";
+            setResBigNum(bigNum)
+          }else{
+            setResBigNum("No data ❌")  
+          }
+      } catch (error) {
+        console.log(error)
+        setResBigNum("Opps, error 💀")  
+      }
+
+
     }
 // ADD incode packed
 
@@ -84,8 +130,9 @@ export function Conveter() {
   <div className="flex justify-center" >
   <a href='https://goerli.etherscan.io/address/0x1B493aC3C02735546736b2db2c29A02F49285731' target="_blank" ><h2 className="hover:underline text-5xl text-blue-100 font-bold m-3 mb-10">Convertor</h2></a>
         </div>
-      {/*-------------- WEI TO ETH -------------------*/}
+      
 <div className='flex justify-center flex-wrap'>
+  {/*-------------- WEI TO ETH -------------------*/}
   <div className='bg-blue-100 w-max rounded-2xl border-4 border-red-400 hover:bg-blue-200 px-[15px] py-2 m-8'>
     <div className='p-1 flex flex-col w-max' onClick={()=>{setEth(0)}}>
         <h1 className='text-xl font-bold text-center'>ETH 🔄 WEI</h1>
@@ -125,25 +172,39 @@ export function Conveter() {
             resStrBytes.toString().slice(185)) : resStrBytes
           }</h1>}
     </div>
- {/*-------------- FUNC SELECTOR -------------------*/}
-    <div className=' flex flex-col w-max bg-blue-100 rounded-2xl border-4 border-red-400 px-[19px] py-3 m-8 hover:bg-blue-200' onClick={()=>{setResSelector('')}}>
-        <h1 className='text-2xl font-bold text-center underline'>Funcion Selector</h1>
-        <label>func name and param type</label>
-        <input ref={funcSelRef as any} placeholder='name(unit256, address)' className='hover:shadow-xl rounded-lg pl-2 mt-3'></input>
-       <button className='bg-blue-200 rounded-lg mt-4 text-lg font-bold hover:bg-blue-300 hover:shadow-xl' onClick={handleFuncSelector} >convert</button>
-        {(resSelecotr) && <h1 className='mt-2 text-center font-bold hover:underline cursor-pointer active:text-xl'  onClick={()=>{copyTextToClipboard(resSelecotr)}}>{resSelecotr}</h1>}
-    </div>
 
- {/*-------------- KECCAK -------------------*/}
-    <div className=' flex flex-col w-max bg-blue-100 rounded-2xl border-4 border-red-400 px-[19px] py-3 m-8 hover:bg-blue-200' onClick={()=>{setResKeccak('')}}>
-        <h1 className='text-2xl font-bold text-center underline'>SHA-256</h1>
-        <label className='text-center'>cryptographic hash</label>
-        <input ref={keccakRef} placeholder='any data type' className='hover:shadow-xl rounded-lg pl-2 mt-3'></input>
-       <button className='bg-blue-200 text-lg font-bold rounded-lg mt-4 hover:bg-blue-300 hover:shadow-xl' onClick={handleKeccak} >convert</button>
-        {(resKeccak) && <h1 className='mt-2 text-center font-bold hover:underline cursor-pointer active:text-xl' onClick={()=>{copyTextToClipboard(resKeccak)}}>{resKeccak.toString().slice(0, 5) +
-            "..." +
-            resKeccak.toString().slice(60)}</h1>}
-    </div>
+
+   
+        {/*-------------- FUNC SELECTOR -------------------*/}
+            <div className=' flex flex-col w-max bg-blue-100 rounded-2xl border-4 border-red-400 px-[19px] py-3 m-8 hover:bg-blue-200' onClick={()=>{setResSelector('')}}>
+                <h1 className='text-2xl font-bold text-center underline'>Funcion Selector</h1>
+                <label>func name and param type</label>
+                <input ref={funcSelRef as any} placeholder='name(unit256, address)' className='hover:shadow-xl rounded-lg pl-2 mt-3'></input>
+              <button className='bg-blue-200 rounded-lg mt-4 text-lg font-bold hover:bg-blue-300 hover:shadow-xl' onClick={handleFuncSelector} >convert</button>
+                {(resSelecotr) && <h1 className='mt-2 text-center font-bold hover:underline cursor-pointer active:text-xl'  onClick={()=>{copyTextToClipboard(resSelecotr)}}>{resSelecotr}</h1>}
+            </div>
+
+        {/*-------------- KECCAK -------------------*/}
+            <div className=' flex flex-col w-max bg-blue-100 rounded-2xl border-4 border-red-400 px-[19px] py-3 m-8 hover:bg-blue-200' onClick={()=>{setResKeccak('')}}>
+                <h1 className='text-2xl font-bold text-center underline'>SHA-256</h1>
+                <label className='text-center'>cryptographic hash</label>
+                <input ref={keccakRef} placeholder='any data type' className='hover:shadow-xl rounded-lg pl-2 mt-3'></input>
+              <button className='bg-blue-200 text-lg font-bold rounded-lg mt-4 hover:bg-blue-300 hover:shadow-xl' onClick={handleKeccak} >convert</button>
+                {(resKeccak) && <h1 className='mt-2 text-center font-bold hover:underline cursor-pointer active:text-xl' onClick={()=>{copyTextToClipboard(resKeccak)}}>{resKeccak.toString().slice(0, 5) +
+                    "..." +
+                    resKeccak.toString().slice(60)}</h1>}
+            </div>
+
+        {/*-------------- Big Number -------------------*/}
+              <div className=' flex flex-col w-max bg-blue-100 rounded-2xl border-4 border-red-400 px-[19px] py-3 m-8 hover:bg-blue-200' > 
+                <h1 className='text-xl font-bold text-center'>Number 🔄 BigNumber</h1>
+                <label className='text-center'>BigNum obj</label>
+                <input ref={bigNumToNum} placeholder='BigNum' className='hover:shadow-xl rounded-lg pl-2 my-2'></input>
+                <input ref={numToBigNUm} placeholder='Num' className='hover:shadow-xl rounded-lg pl-2'></input>
+                <button className='bg-blue-200 text-lg font-bold rounded-lg mt-4 hover:bg-blue-300 hover:shadow-xl' onClick={handleBigNum} >convert</button>
+                {(resBigNum) && <h1 className='mt-2 text-center font-bold hover:underline cursor-pointer active:text-xl' onClick={()=>{copyTextToClipboard(resBigNum)}}>{resBigNum}</h1>}
+                </div>
+
     </div>
   </>
     

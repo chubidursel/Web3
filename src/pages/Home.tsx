@@ -27,7 +27,7 @@ export function Home() {
     <p>Check out the code on <a href="https://github.com/chubidursel/Web3" className="hover:underline font-semibold">github</a></p>
     </div>
   <h1 className="text-2xl font-bold underline text-center">Desciptions</h1>
-  <h1 className="pb-2 ">This wonderful project is made for educational purposes and to represent the skills and knowledge of these dudes<a href="https://www.linkedin.com/in/daniel-web3/" className="hover:animate-ping" target='_blank'>👨</a> 👨</h1>
+  <h1 className="pb-2 ">This wonderful project is made for educational purposes and to represent skills and knowledge of these dudes: <a href="https://www.linkedin.com/in/daniel-web3/" className="hover:animate-ping" target='_blank'>👨</a> 👨</h1>
     <h1 className="pt-4 text-gray-400">PS: You can always click FAQ and see how does a certain feature work</h1>
   </div></>)
 

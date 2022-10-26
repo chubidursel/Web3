@@ -44,7 +44,7 @@ export function FeedBack() {
         <h2>➡️ Contract supports only Latin alphabet</h2>
         <h2>➡️ Smart contract: <a href='https://goerli.etherscan.io/address/0x99f2eaafab75a5c8BeCCE44861a4a97e79ad83d2' target='_blank' className='hover:cursor-pointer hover:underline'>ETHERSCAN</a></h2>
         <h2>➡️ Contact with developer: <a href='https://twitter.com/chubidurcel' target='_blank' className='hover:cursor-pointer hover:animate-pulse'>👨‍💻</a></h2>
-<input ref={testRef} type="text" className='w-full h-20 border-red-400 border-2 pl-3 rounded-xl hover:shadow-xl' placeholder='write here'/>
+<input ref={testRef} type="text" className='w-full h-20 mt-3 border-red-400 border-2 pl-3 rounded-xl hover:shadow-xl' placeholder='write here'/>
 {resultTx && <div className='bg-yellow-200 text-center text-xl mt-1 rounded-xl py-2'>{resultTx}</div>}
 
 {loader ? <Loader /> :

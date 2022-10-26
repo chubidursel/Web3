@@ -16,6 +16,7 @@ import { ShopNft } from "./pages/Defi/components/Market/ShopNft";
 import { DAO } from "./pages/Defi/DAO";
 import { Proxy } from "./pages/Other/Proxy";
 import {Ipfs} from "./pages/Other/Ipfs"
+import { Address } from "./pages/Other/Address";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
       <Route path="/Other/Converter" element={<Conveter />} />
       <Route path="/Other/Proxy" element={<Proxy />} />
       <Route path="/Other/Ipfs" element={<Ipfs />} />
+      <Route path="/Other/Address" element={<Address />} />
 
     </Routes>
   )
