@@ -1,7 +1,10 @@
 import React from 'react';
 import Header from '../../components/headerNew';
 import copyTextToClipboard from '../../utils/copyPast';
-import generateQRCode from '../../utils/qrCode';
+import QrCode from "../../utils/qrCode";
+import Modal from '../../components/modal';
+import Shcheme from '../../assets/pi.jpeg'
+import Tx from './Address_comp/tx'
 
 
 
@@ -9,8 +12,8 @@ import {newWallet} from './Address_comp/ethersJsWallet.js';
 
 export function Address() {
     const [result, setResult] = React.useState<any>();
-    const [qr, setQr] = React.useState<any>();
-    // const [randInput, setRandInput] = React.useState<any>();
+    const [active, setActive] = React.useState(false);
+    const [publicQr, setPublicQr] = React.useState('');
 
 
     const onCreateAddr = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -24,7 +27,7 @@ export function Address() {
             const mnemonic = wallet.mnemonic
        
             setResult(
-            <div className='font-bold mt-3 bg-yellow-100 w-full py-2 text-center  px-1 rounded-xl text-purple-900 text-xl relative'>
+            <div className='flex flex-col items-center font-bold mt-3 bg-yellow-100 w-full py-2 text-center  px-1 rounded-xl text-purple-900 text-xl relative'>
 
                 <h1 >Private key: <span className='hover:underline hover:cursor-copy text-lg' onClick={()=>{copyTextToClipboard(privateKey)}}>{privateKey.toString().slice(0, 15) + "..." + privateKey.toString().slice(60)}</span></h1>
                 <h1>Public key: <span className='hover:underline hover:cursor-copy text-lg' onClick={()=>{copyTextToClipboard(publicKey)}}>{publicKey.toString().slice(0, 15) + "..." + publicKey.toString().slice(110)}</span></h1>
@@ -32,7 +35,7 @@ export function Address() {
                 <h1>Mnemonic: <span className='hover:underline hover:cursor-copy text-lg' onClick={()=>{copyTextToClipboard(mnemonic)}}>{mnemonic}</span></h1>
                 
                 <div className='absolute top-3 right-3 hover:cursor-pointer' onClick={()=>setResult('')}>❌</div>  
-                <div className="mt-3 w-full font-bold py-1 text-2xl hover:shadow-xl hover:cursor-pointer rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400 active:bg-red-500 active:text-blue-100">generete QR-code</div>
+                <div className="mt-3 w-max font-bold py-1 text-2xl hover:shadow-xl hover:cursor-pointer rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400 active:bg-red-500 active:text-blue-100" onClick={()=>{setPublicQr(mnemonic); setActive(true)}}>QR-CODE</div>
 
             </div>
             )
@@ -44,24 +47,18 @@ export function Address() {
 
     }
 
-    // let str = "Zalupa"
-    // const qrCode = (str) =>{
-    //   const el = generateQRCode(str)
-    //   setQr(el)
-    // }
 
 
   return (
     <>
-
-   
     <Header marginFromTop={'1/3'}>
         <div className='text-center p-1'> 
           <h1 className="font-bold text-3xl">Create Ethreum Address</h1>
-          <p>ETH addresses are derived in 3 steps</p>
+          <p>ETH addr are derived in 3 steps</p>
           <p>In this block you can get them all just in one click</p>
           
-          <img src="" alt="sheme of address" />
+          <p className='mt-3 text-gray-400 italic'>Check out our scheme:</p>
+          <img src={Shcheme} alt="sheme of address" />
 
           <p className='font-bold mt-3'>💡 Usefull links: </p>
           <div className='flex flex-col'>
@@ -78,7 +75,7 @@ export function Address() {
 
 
        <div className="flex justify-center">
-      <div className="bg-blue-100 m-10 px-5 py-2 text-lg rounded-lg w-1/2 border-4 text-purple-800 border-red-400">
+      <div className="bg-blue-100 mt-20 px-5 py-2 text-lg rounded-lg w-1/2 border-4 text-purple-800 border-red-400">
       <p className="py-2 font-bold text-3xl text-center">Create New Ethereum Account</p>
       <div className="text-start ml-10 mb-3">
                 <h2>🔑 Private key is securely generated (SHA256)</h2>  
@@ -92,6 +89,17 @@ export function Address() {
           <div className='flex justify-center mb-3'> {result && result}</div>
       </div>
       </div>
+
+      <Modal
+   active={active}
+   setActive={setActive}
+   marginFromTop={'top-16'}
+   >
+   <QrCode address={publicQr}/>
+   
+   </Modal>
+
+   <Tx />
 
     </>
     
