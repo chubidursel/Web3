@@ -6,6 +6,11 @@ import Header from '../../components/headerNew';
 // const projectSecret = '<YOUR PROJECT SECRET>';
 // const authorization = "Basic " + btoa(projectId + ":" + projectSecret);
 
+
+// https://medium.com/building-the-open-data-stack/how-to-run-your-own-ipfs-gateway-7aa13aa9ad45
+// https://www.youtube.com/watch?v=jI6wcuY8p2Y&t=772s
+//
+
 export function Ipfs() {
   const [images, setImages] = React.useState<{ cid: CID; path: string }[]>([]);
   const [selectUrl, setSelectUrl] = React.useState<any>();
