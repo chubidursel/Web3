@@ -3,9 +3,15 @@ import { ethers } from 'ethers'
 // dotenv.config({ path: '../../../../.env' })
 
 
-export const SendTx = async (mnemonic, to, amount) =>{
+export const SendTx = async (mnemonic, to, amount, data) =>{
 
-    console.log(mnemonic, to, amount)
+    console.log('🦶 0', mnemonic, to, amount, data)
+
+    // if(!data){
+    //     data = '0x'
+    // } else if(!amount){
+    //     amount = "0"
+    // }
    
 
     try {
@@ -28,6 +34,7 @@ export const SendTx = async (mnemonic, to, amount) =>{
             from: wallet.address,
             to: to,
             value: ethers.utils.parseUnits(amount.toString(), 'ether'),
+            data: data,
             gasPrice: gasPrice,
             gasLimit: ethers.utils.hexlify(100000), // 100gwei
             nonce: provider.getTransactionCount(wallet.address, 'latest'),

@@ -17,7 +17,13 @@ dotenv.config({ path: '../../../../.env' })
 
 console.log('Start')
 
-console.log(`Yooo we got it = ${process.env.INFURA_API}`)
+console.log(`🙋 Yooo we got it = ${process.env.INFURA_API}`)  
 console.log(process.env.TEST)
 
 console.log('Done!')
+
+let numer = 21;
+
+for(let i = 0; i < numer; i++){
+    console.log(numer)
+}

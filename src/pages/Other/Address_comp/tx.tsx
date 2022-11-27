@@ -15,6 +15,7 @@ export default function Tx() {
     //data for TX
     const [mnemonic, setMnemonic] = useState('')
     const [to, setTo] = useState('')
+    const [data, setData] = useState('')
     const [value, setValue] = useState(0)
 
 
@@ -23,13 +24,13 @@ export default function Tx() {
       event.preventDefault();
       setLoader(true)
 
-      if(to[0] != '0' || mnemonic.length < 30 || value == 0){
+      if(to[0] != '0' || mnemonic.length < 30){ // || value == 0
         setResultTx(`Invalid input 😢`)  
         setTimeout(() => {setResultTx('')}, 6000)
         return null
       }
 
-        const res = await SendTx(mnemonic, to, value)
+        const res = await SendTx(mnemonic, to, value, data)
         
         setLoader(false)
 
@@ -59,7 +60,8 @@ export default function Tx() {
     {result && <form onSubmit={onGenereteTx} className="h=30 flex justify-center flex-col">
 
             <div className="text-start ml-10 mb-3">
-                <h2>There is a simple implementaion of Ethereum wallet like MetaMask. In this block you can send transation to another account by creating a custom transation via EtherJs and send it to Infura node </h2>  
+                <h2>There is a simple implementaion of Ethereum wallet. In this block you can send transation to another account by creating a custom transation via EtherJs and send it to Alchemy node.</h2>
+                <h2>In case you want to interact with smart contract, put the function selector  (check out converter) into data field.</h2>  
               </div>
 <div className="flex justify-center items-center flex-col">
     <label htmlFor="sender" className='font-bold text-xl'>Mnemonic phrase</label>
@@ -67,6 +69,9 @@ export default function Tx() {
     
     <label htmlFor="to" className='font-bold text-xl mt-3'>Address recipient</label>
     <input id='to' value={to} onChange={(event: React.ChangeEvent<HTMLInputElement>)=>(setTo(event.target?.value))} type="text" placeholder="address to" className='w-2/3 hover:shadow-xl h-30 mr-3 rounded-lg text-center px-3'/>
+    
+    <label htmlFor="to" className='font-bold text-xl mt-3'>Data</label>
+    <input id='to' value={data} onChange={(event: React.ChangeEvent<HTMLInputElement>)=>(setData(event.target?.value))} type="text" placeholder="function selector" className='w-2/3 hover:shadow-xl h-30 mr-3 rounded-lg text-center px-3'/>
     
     <label htmlFor="num" className='font-bold text-xl mt-3'>Value</label>
     <input id='num' value={value} onChange={(event: any)=>(setValue(event.target?.value))} type="number" step='0.001' min='0' placeholder="ETH amount" className='w-2/3 hover:shadow-xl h-30 mr-3 rounded-lg text-center px-3'/>

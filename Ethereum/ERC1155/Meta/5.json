@@ -1,0 +1,12 @@
+{
+   "name":"BITCOIN",
+   "description":"simple implementation of ERC1155 token. TESTING",
+   "external_url":"https://web3-space.netlify.app",
+   "image":"ipfs://QmQDAKXJjPr1wCx8Y2NjMfjiiQ9tgU1v15zCGMddZvrZFH/5.png",
+   "attributes":[
+      {
+         "trait_type": "unique",
+         "value": 9999999
+      }
+   ]
+}

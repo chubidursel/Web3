@@ -2,6 +2,7 @@ import { Routes, Route} from "react-router-dom";
 import { Home } from "./pages/Home"
 import  { Token }  from "./pages/Token"
 import  { ERC20 }  from "./pages/Token/ERC20"
+import  { ERC1155 }  from "./pages/Token/ERC1155"
 import { Defi } from "./pages/Defi"
 import { Other } from "./pages/Other"
 import {Exchange} from "./pages/Defi/exchange"
@@ -25,6 +26,7 @@ function App() {
       <Route path="/Token" element={<Token />} />
       <Route path="/Token/ERC20" element={<ERC20 />} />
       <Route path="/Token/ERC721" element={<ERC721 />} />
+      <Route path="/Token/ERC1155" element={<ERC1155 />} />
       <Route path="/Defi" element={<Defi />} />
       <Route path="/Defi/exchange" element={<Exchange />} />
       <Route path="/Defi/vault" element={<Vault />} />

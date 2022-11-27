@@ -20,7 +20,7 @@ export function Token() {
 <div className='grid grid-cols-1 w-1/3 text-5xl text-purple-800 text-center font-bold justify-center mt-5'>
   <Link to="/Token/ERC20"><div className="bg-blue-100 rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse">ERC20</div></Link>
       <Link to="/Token/ERC721" className="bg-blue-100 rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse"> <div>ERC721</div></Link>
-      <Link to="/Coming_soon" className="bg-blue-100 rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse"><h1>ERC1155</h1></Link>
+      <Link to="/Token/ERC1155" className="bg-blue-100 rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse"><h1>ERC1155</h1></Link>
     </div>
     </div>
 
