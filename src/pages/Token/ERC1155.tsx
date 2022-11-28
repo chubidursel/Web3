@@ -70,14 +70,10 @@ useEffect((()=>{
              {/* <h1 className='font-bold text-center my-3 text-2xl'>TOKENS SHOP</h1> */}
 
             <div className='flex space-between flex-row'>
-                <NftCard />
-                <NftCard />
-                <NftCard />
-                <NftCard />
-                {/* <img src={Gold} alt="tools" className='h-32'/>
-                <img src={Silver} alt="tools" className='h-32'/>
-                <img src={Bronze} alt="tools" className='h-32'/>
-                <img src={Iron} alt="tools" className='h-32'/> */}
+                <NftCard pic={Gold}/>
+                <NftCard pic={Silver}/>
+                <NftCard pic={Bronze}/>
+                <NftCard pic={Iron}/>
             </div>
 
         </div>
