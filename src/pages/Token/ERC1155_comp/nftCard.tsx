@@ -2,6 +2,8 @@ import Gold from "../../../../Ethereum/ERC1155/Pic/1.png"
 
 const NftCard = ({pic}) => {
 
+// https://www.youtube.com/watch?v=9uwZkqoFAfg
+
     //get the price from contract?? 
     let price = "0.01 ETH"
     let totalSuply = "1000"

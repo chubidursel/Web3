@@ -3,6 +3,10 @@ pragma solidity ^0.8.9;
 
 import "./IERC20.sol";
 
+// try add some function from here ->
+// https://github.com/JoshWeb3/eth-to-am3crv-vault-strategy
+
+
 contract Vault {
     event Lock(address from, uint amount, uint time);
     event Withdraw(address to, uint amount, uint time);
