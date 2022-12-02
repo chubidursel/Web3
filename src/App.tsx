@@ -18,6 +18,7 @@ import { DAO } from "./pages/Defi/DAO";
 import { Proxy } from "./pages/Other/Proxy";
 import {Ipfs} from "./pages/Other/Ipfs"
 import { Address } from "./pages/Other/Address";
+import { Game } from "./pages/Other/Game";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
       <Route path="/Other/Proxy" element={<Proxy />} />
       <Route path="/Other/Ipfs" element={<Ipfs />} />
       <Route path="/Other/Address" element={<Address />} />
+      <Route path="/Game" element={<Game />} />
 
     </Routes>
   )

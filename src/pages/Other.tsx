@@ -25,14 +25,15 @@ export function Other() {
           <Link to="/Other/Converter" className="bg-blue-100 rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse">Converter 🔄</Link>
           <Link to="/Other/Address" className='bg-blue-100 rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse'>Account 📮</Link> 
           <Link to="/Other/Proxy" className='bg-blue-100 rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse'>Proxy 👷</Link>
+          <Link to="/Game" className='bg-blue-100 rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse'>Game 🎮</Link>
           <Link to="/Other/Ipfs" className='bg-blue-100 rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse'>IPFS 💾</Link>
-          <button onClick={()=>{setOpenFeedback(true)}} className='bg-blue-100 text-4xl rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse mb-10'>@Feedback 📝</button>
+
     
     </div>
     </div>
-
+    <button onClick={()=>{setOpenFeedback(true)}} className='absolute top-20 right-10 text-blue-100 text-2xl rounded-xl hover:text-2xl hover:animate-pulse mb-10'>@Feedback 📝</button>
 <Modal 
-    marginFromTop={"top-1/3"}
+    marginFromTop={"top-16"}
     active={openFeedback}
     setActive={setOpenFeedback}
     >
