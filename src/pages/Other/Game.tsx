@@ -16,10 +16,13 @@ export function Game() {
 
     <div className='bg-yellow-300 text-5xl text-center py-4'>
         comming soon ...
-    <FlipCoin />
+  
+        <FlipCoin />
 
     </div>
-
+  
+     
+ 
     </>
     
   )

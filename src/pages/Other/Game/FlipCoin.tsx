@@ -11,9 +11,12 @@ export function FlipCoin() {
 
   return (
     <>
-<div className="container">
-  <div className="bitcoin"></div>
-</div>
+
+        <div className="container">
+            <div className="bitcoin"></div>
+        </div>
+
+
 
    {/* <div className="container">
         <div className="stats">

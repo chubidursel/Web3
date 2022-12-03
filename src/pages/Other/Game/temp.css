@@ -3,15 +3,14 @@
     width: 200px;
     height: 200px;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 55%;
+    left: 40%;
     transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
   }
   
   .bitcoin {
-    position: relative;
-    top: -10px;
-    left: -10px;
     animation: x 1s infinite;
     -webkit-animation: x 1s infinite;
     -moz-animation: x 1s infinite;
