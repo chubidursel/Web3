@@ -4,6 +4,7 @@ import { FlipCoin } from './Game/FlipCoin';
 
 export function Game() {
    
+// https://freefrontend.com/css-coins/
 
   return (
     <>
@@ -13,9 +14,9 @@ export function Game() {
           </div>
        </Header>
 
-    <div className='bg-yellow-300 text-5xl'>
+    <div className='bg-yellow-300 text-5xl text-center py-4'>
         comming soon ...
-    {/* <FlipCoin /> */}
+    <FlipCoin />
 
     </div>
 

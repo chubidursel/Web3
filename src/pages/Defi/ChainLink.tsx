@@ -1,14 +1,28 @@
 import React, {useState} from 'react'
 import { ethers } from "ethers";
 import Header from '../../components/headerNew';
-import { contractChainLink } from '../../components/smart_contract/ChainLinkEth';
+import { contractChainLink, contractChainLinkRandom } from '../../components/smart_contract/ChainLinkEth';
 
 export function ChainLink() {
   const[priceEth, setPriceEth] = useState();
+
+  const[lengthRandom, setLengthRandom] = useState('');
+  const[randomNum, setRandomNum] = useState(0);
   
   const handleGetPrice = async() => {
     const priceEth = await contractChainLink.getLatestPrice();
     setPriceEth(priceEth.toString())
+  }
+
+  const handleRandomRequests = async (event: React.FormEvent<HTMLFormElement>) =>{
+    event.preventDefault();
+
+    const tempSolution = Math.floor(Math.random() * Number(lengthRandom)) + 1;
+
+    setRandomNum(tempSolution);
+
+    setTimeout(() => {setRandomNum(0)}, 7000)
+
   }
 
   // THis for pop up description
@@ -36,9 +50,14 @@ export function ChainLink() {
               </div>
           </div>
           <div className='bg-blue-100 mt-3 text-xl font-semibold rounded-2xl border-2 hover:shadow-2xl border-red-400 p-5 text-center hover:bg-blue-200 flex flex-col'>
-          <h1 className='text-3xl'>Random Number</h1>
-          <p>comming soon....</p>
-          </div>
+          <h1 className='text-3xl mb-2'>Random Number</h1>
+
+          <form onSubmit={handleRandomRequests}>
+            <input type="number" onChange={(event: React.ChangeEvent<HTMLInputElement>)=>(setLengthRandom(event.target?.value))} placeholder='length' min='0' className='text-center h-10 rounded-lg hover:shadow-xl'/>
+            <button type='submit' className="w-1/3 font-bold hover:text-blue-100 ml-3 hover:shadow-xl rounded-xl text-3xl border-2 border-red-400 px-[15px] hover:bg-red-400">Request</button>
+          </form>
+           {randomNum ? <span className='mt-2 py-3 rounded-lg bg-yellow-100 text-5xl font-bold'>{randomNum}</span> : null}
+           </div>
           <div className='bg-blue-100 mt-3 rounded-2xl border-2 text-xl font-semibold hover:shadow-2xl border-red-400 p-5 text-center hover:bg-blue-200 flex flex-col'>
           <h1 className='text-3xl'>Call External APIs</h1>
           <p>comming soon....</p>

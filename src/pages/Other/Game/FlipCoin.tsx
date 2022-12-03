@@ -1,4 +1,5 @@
 import "./style.css"
+import "./temp.css"
 import Header from "./heads.svg"
 import Tail from "./tails.svg"
 
@@ -10,7 +11,11 @@ export function FlipCoin() {
 
   return (
     <>
-   <div className="container">
+<div className="container">
+  <div className="bitcoin"></div>
+</div>
+
+   {/* <div className="container">
         <div className="stats">
 
         </div>
@@ -30,7 +35,7 @@ export function FlipCoin() {
                 Reset
             </button>
         </div>
-    </div>
+    </div> */}
     </>
     
   )
