@@ -12,7 +12,7 @@ export function FlipCoin() {
   return (
     <>
 
-        <div className="container">
+        <div className="containerBTC">
             <div className="bitcoin"></div>
         </div>
 
