@@ -171,10 +171,11 @@ export function Conveter() {
             "..." +
             resStrBytes.toString().slice(185)) : resStrBytes
           }</h1>}
-    </div>
+    </div> </div>
 
 
-   
+    <div className="flex justify-center gap-16" >
+
         {/*-------------- FUNC SELECTOR -------------------*/}
             <div className=' flex flex-col w-max bg-blue-100 rounded-2xl border-4 border-red-400 px-[19px] py-3 m-8 hover:bg-blue-200' onClick={()=>{setResSelector('')}}>
                 <h1 className='text-2xl font-bold text-center underline'>Funcion Selector</h1>

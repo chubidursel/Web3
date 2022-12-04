@@ -61,25 +61,16 @@ useEffect((()=>{
         </div>
     </Header>
 
-    <div className="flex justify-center">
     <HeaderToken handleToggle={false} />
-    </div>
 
-    <div className='flex justify-center mt-10'>
-        <div className='bg-blue-100 w-1/2 flex flex-col m-3 text-purple-800 p-4 rounded-2xl border-4 hover:shadow-2xl border-red-400'>
-             {/* <h1 className='font-bold text-center my-3 text-2xl'>TOKENS SHOP</h1> */}
+    <div className='flex justify-center mt-10 m-10 space-between gap-7'>
+                <NftCard pic={Gold} title='Gold'/>
+                  <NftCard pic={Silver} title='Silver'/>
+                  <NftCard pic={Bronze} title='Bronze' />
+                  <NftCard pic={Iron} title='Iron'/>
 
-            <div className='flex space-between flex-row'>
-                <NftCard pic={Gold}/>
-                <NftCard pic={Silver}/>
-                <NftCard pic={Bronze}/>
-                <NftCard pic={Iron}/>
-            </div>
+                  </div>
 
-        </div>
-    </div>
-  
- 
     </>
   )
 }
