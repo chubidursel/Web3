@@ -3,8 +3,10 @@ import { ethers } from "hardhat";
 // npx hardhat run --network localhost scripts/deployERC1155.ts
 // npx hardhat run --network goerli scripts/deployERC1155.ts
 
+
+// VERIFY IT THRU REMIX AND FLAT
 // verify SC on etherscan 
-//npx hardhat verify 0xc7Afde5bF7011eC415e7107BaA6FF02559E6f44f --network goerli
+//npx hardhat verify 0x40BFF722849AB0eb274b94Bf7501B37f4281F5cA --network goerli
 
 async function main() {
   console.log("🚀 deploying smart contract.....");

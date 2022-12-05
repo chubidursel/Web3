@@ -11,10 +11,15 @@ import Iron from "../../../Ethereum/ERC1155/Pic/4.png"
 
 import NftCard from './ERC1155_comp/nftCard';
 
-
+type Coin = {
+  title: string;
+  price: string;
+  suply: string;
+}
 
 export function ERC1155() {
   const [tokenId, setTokenId] = useState();
+  const [arrCoins, setCrrCoins] = useState<Coin[]>();
 
 useEffect((()=>{
   (async()=>{
@@ -26,6 +31,8 @@ useEffect((()=>{
     }
   })()
 }),[])
+
+
 
 
 // BLOCK 2 CHECK OWNER

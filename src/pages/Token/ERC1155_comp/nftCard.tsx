@@ -1,13 +1,22 @@
-import Gold from "../../../../Ethereum/ERC1155/Pic/1.png";
-import Btn from "./btn";
-
+import { useState } from 'react';
 
 const NftCard = ({ pic, title }) => {
-  // https://www.youtube.com/watch?v=9uwZkqoFAfg
+  const[amount, setAmount] = useState(0);
+  const[tempPrice, setTempPrice] = useState(0);
 
   //get the price from contract??
-  let price = "0.01 ETH";
+  let price = 0.02;
   let totalSuply = "1000";
+
+  const handleBuy = async()=>{
+
+    const temp = amount * price
+    setTempPrice(temp)
+
+    setTimeout(() => {
+      setTempPrice(0)
+    }, 6500);
+  }
 
   return (
     <>
@@ -37,10 +46,13 @@ const NftCard = ({ pic, title }) => {
             <div
               className="text-center flex flex-col items-center justify-center text-purple-800 px-2 pb-24 "
             >
-              <h1 className="text-xl font-semibold m-4">How much do you want to buy?</h1>
-              <input type="number" className="w-32 rounded-md"/>
-              <button onClick={() => console.log('click')}
-                className="bg-purple-500 px-6 py-2 font-semibold text-white rounded-full 
+              <h1 className="text-3xl font-semibold m-4">PURCHASE</h1>
+              <input onChange={(e:any)=>setAmount(e.target.value)} type="number" min='0' className="w-32 rounded-md text-center"/>
+
+              {amount != 0 && <h1 className="bg-yellow-100 p-2 rounded-lg text-xl font-semibold m-4">Price: {amount * price} ETH</h1>}
+
+              <button onClick={handleBuy}
+                className="bg-purple-500 px-10 py-2 font-semibold text-white rounded-lg 
                 absolute -bottom-20 delay-500 duration-1000 group-hover:bottom-10 scale-0 group-hover:scale-100 "
               >
               Buy
