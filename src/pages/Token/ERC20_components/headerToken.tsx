@@ -17,6 +17,9 @@ const HeaderToken = ({handleToggle}) => {
             <Link to="/Defi/exchange" className="font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400">
             Exchange</Link>
 
+            <Link to="/Game" className="font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400">
+            Game</Link>
+
             <button onClick={()=>setActive(true)} className="font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400">
             Faucet</button> 
             

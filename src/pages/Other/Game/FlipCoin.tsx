@@ -1,7 +1,4 @@
-import "./style.css"
 import "./temp.css"
-import Header from "./heads.svg"
-import Tail from "./tails.svg"
 
 export function FlipCoin() {
    

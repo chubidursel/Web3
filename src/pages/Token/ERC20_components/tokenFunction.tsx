@@ -1,4 +1,3 @@
-import defaultProvider from '../../../abi/defaultProvider';
 import { contractERC20 } from '../../../components/smart_contract/erc20';
 import conectSigner from '../../../components/smart_contract/SIGNER';
 import {useState} from 'react';
