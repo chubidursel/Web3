@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom"
-
+import { useState } from 'react';
+import Modal from '../../../components/modal';
+import { Faucet } from "./faucet";
 
 const HeaderToken = ({handleToggle}) => {
+    const [active, setActive] = useState(false);
    
     return ( <>
         <div>
@@ -14,6 +17,8 @@ const HeaderToken = ({handleToggle}) => {
             <Link to="/Defi/exchange" className="font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400">
             Exchange</Link>
 
+            <button onClick={()=>setActive(true)} className="font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400">
+            Faucet</button> 
             
             <button onClick={handleToggle} className="font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400">
             Events</button> 
@@ -21,6 +26,16 @@ const HeaderToken = ({handleToggle}) => {
             
             </div>
         </div>
+
+
+<Modal
+   active={active}
+   setActive={setActive}
+   marginFromTop={'top-1/5'}
+   >
+   <Faucet />
+   
+   </Modal>
         </> );
 }
  

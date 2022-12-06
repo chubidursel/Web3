@@ -1,6 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.10;
 
+
+// GIVE NFT FOR THE FEEDBACK!!!!
+
 contract Feedback {
     event FeedBack(address who, string feedBack, uint time);
 

@@ -41,8 +41,8 @@ export function Home() {
     <Link to="Defi" onMouseEnter={() => setDefi(!isDefi)} onMouseLeave={() => setDefi(!isDefi)}><img src={Defi} alt="Defi" className='h-60 hover:animate-bounce'/>
     {isDefi && <div className="text-5xl font-bold text-white text-center">DeFi</div>}
     </Link>
-    <Link to="Other" onMouseEnter={() => setOther(!isOther)} onMouseLeave={() => setOther(!isOther)}><img src={Tool} alt="tools" className='h-60 hover:animate-spin'/>
-    {isOther && <div className="text-5xl font-bold text-white text-center">Other</div>}
+    <Link to="Tools" onMouseEnter={() => setOther(!isOther)} onMouseLeave={() => setOther(!isOther)}><img src={Tool} alt="tools" className='h-60 hover:animate-spin'/>
+    {isOther && <div className="text-5xl font-bold text-white text-center">Tools</div>}
     </Link>
     </div>
 

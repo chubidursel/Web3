@@ -35,7 +35,7 @@ function App() {
       <Route path="/Defi/Market/Auction" element={<Auction />} />
       <Route path="/Defi/Market/Shop" element={<ShopNft />} />
       <Route path="/DAO" element={<DAO />} />
-      <Route path="/Other" element={<Other />} />
+      <Route path="/Tools" element={<Other />} />
       <Route path="/Coming_soon" element={<Wait />} />
       <Route path="/ChainLink" element={<ChainLink />} />
       <Route path="/Other/Converter" element={<Conveter />} />
