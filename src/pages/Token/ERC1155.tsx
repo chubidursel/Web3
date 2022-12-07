@@ -61,10 +61,10 @@ useEffect((()=>{
    <Header marginFromTop={2}>
         <div className='text-center py-2'>
             <h1 className='font-bold mb-2'>Demo ERC1155 smart contract</h1>
-            <p>📌 There are 8 pictures with metadata jons files stored on IPFS</p>
-            📌Function to mint a new token is avalible only for owner, but other users can use function payToMin() to buy token. Or you can get this NFT from Auction if curent holdder has a willing ro sell it.
-            <p>🔜There are some features which we want to implement in this block soon:  </p>
-            <p>1.On-chain stored NFT <br/> 2. Generator to mint more than 8 tokens 😉</p>
+            <p>📌 There are 4 coins with metadata Json files stored on IPFS</p>
+
+            <a href='https://goerli.etherscan.io/address/0xa361b53deA0878fe9310B4ac941AFE3ba2C56a63#code' target="_blank" 
+                className="font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400">Etherscan </a>
         </div>
     </Header>
 

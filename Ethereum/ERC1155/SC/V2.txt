@@ -10,7 +10,7 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 
 contract CoinCollection is ERC1155, Ownable, Pausable, ERC1155Burnable, ERC1155Supply {
     constructor()
-        ERC1155("ipfs://QmcoJagvx5dBV3VeUDsJFZeGZrrWNHxd9txjfyj9b6kNYg/")
+        ERC1155("\"ipfs://QmcoJagvx5dBV3VeUDsJFZeGZrrWNHxd9txjfyj9b6kNYg/\"")
     {
         tokenSupplyLimit[BTC] = 5;
         tokenSupplyLimit[GOLD] = 100;
@@ -35,10 +35,8 @@ contract CoinCollection is ERC1155, Ownable, Pausable, ERC1155Burnable, ERC1155S
     uint8 public constant IRON = 4;
     uint8 public constant BTC = 5;
 
-    mapping(uint8 => uint256) public tokenPrice; // Create a struct?
+    mapping(uint8 => uint256) public tokenPrice;
     mapping(uint8 => uint32) public tokenSupplyLimit;
-
-// >>> Func to trace funds for specific address
 
 // --------------  URL --------------
     function uri(uint256 _id) public view override returns (string memory) {
@@ -107,7 +105,7 @@ contract CoinCollection is ERC1155, Ownable, Pausable, ERC1155Burnable, ERC1155S
 
 ////////////////////////////////  DEFAULT FUNC \\\\\\\\\\\\\\\\\\\\\\\\\\\\
     function setURI(string memory newuri) public onlyOwner {
-        _setURI(newuri); //????? Does it change previous uri?
+        _setURI(newuri);
     }
 
     function pause() public onlyOwner {

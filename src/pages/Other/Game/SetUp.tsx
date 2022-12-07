@@ -100,6 +100,7 @@ export function SetUp() {
 
   return (
     <>
+  
         <div>
             <h1 className='text-center text-3xl font-bold'>SET UP UR GAME</h1>
             <h1 className='text-center text-2xl hover:underline hover:cursor-pointer'><a href="https://goerli.etherscan.io/address/0x96F7010a4706756faFd6ee43969993334F80cfA1" target="_blank">Etherscan</a></h1>
@@ -114,9 +115,9 @@ export function SetUp() {
        </div>
       
                 <h1>-----------------------setting-----------------</h1>
-        
+       
                 {loader ? 
-            <Loader /> : <>
+                  <div className='my-10'> <Loader /></div> : <>
             
         <form onSubmit={onSetUp} className=" flex justify-center flex-col">
                     

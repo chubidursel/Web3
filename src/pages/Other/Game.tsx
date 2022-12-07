@@ -40,7 +40,8 @@ export function Game() {
   
         const didWin = info.won // CHANGE !!!!!!!!!!!!!!!!!!!!!!!
         const gameLeft = Number(info.bank.toString()) - Number(info.bet.toString())
-    
+        
+        
         didWin ? setResult(`🥳 Congratulation! Your bank: ${info.bank}CWT 🥳`) : setResult(`Ops, you lost 😔 There are ${gameLeft} game left. Good luck 🍀`)
 
       setTimeout(() => {setResult('')}, 10000)
@@ -62,6 +63,7 @@ export function Game() {
 
   return (
     <>
+    
     <Header marginFromTop={'1/3'}>
         <div className='text-center p-1'> 
           <h1 className="font-bold text-3xl">Flip a Coing</h1>
@@ -74,10 +76,12 @@ export function Game() {
   
         <FlipCoin />
         
-   
+        <h1 className='text-5xl text-center text-white'>BETA</h1>
+
+
   <div className=' absolute bottom-20 left-1/3 w-1/3'>
-  <button onClick={handleFlip} className="w-[300px] font-bold bg-orange-400 text-white py-2 rounded-xl text-5xl border-4 border-orange-300 px-[15px] hover:bg-orange-600 hover:shadow-xl">{loader ? <Loader /> : "FLIP"}</button>
-  <button onClick={()=>setActive(true)} className="w-max font-bold text-white py-2 rounded-xl text-5xl border-4 border-orange-300 px-[15px] hover:bg-orange-600 hover:shadow-xl ml-2">SETUP</button>
+   <button onClick={handleFlip} className="w-[300px] font-bold bg-orange-400 text-white py-2 rounded-xl text-5xl border-4 border-orange-300 px-[15px] hover:bg-orange-600 hover:shadow-xl">{loader ? <Loader /> : "FLIP"}</button>
+    <button onClick={()=>setActive(true)} className="w-max font-bold text-white py-2 rounded-xl text-5xl border-4 border-orange-300 px-[15px] hover:bg-orange-600 hover:shadow-xl ml-2">SETUP</button>
               
         
         {result && <h1 className='text-center text-xl bg-blue-200 rounded-xl mt-3 py-4 px-2'>{result}</h1> }

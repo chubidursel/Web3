@@ -6,14 +6,14 @@ import { ethers } from "hardhat";
 
 // VERIFY IT THRU REMIX AND FLAT
 // verify SC on etherscan 
-//npx hardhat verify 0x40BFF722849AB0eb274b94Bf7501B37f4281F5cA --network goerli
+//npx hardhat verify 0x3eFE4982C0F35721e46f195Cac74Cbbe48F625B9 --network goerli
 
 async function main() {
   console.log("🚀 deploying smart contract.....");
 
   const [deployer] = await ethers.getSigners();
   
-  const Nft = await ethers.getContractFactory("MyCoin");
+  const Nft = await ethers.getContractFactory("CoinCollection");
   const token = await Nft.deploy();
 
   await token.deployed();
