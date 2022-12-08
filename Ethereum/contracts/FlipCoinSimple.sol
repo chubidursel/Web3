@@ -12,9 +12,8 @@ pragma solidity ^0.8.15;
 */
 
 // !!!!!!!!!!!!!!!!!!!!!   TEMP  !!!!!!!!!!!!!!!!!!!!!
-// 0x084f04362c2B72b34cf194296c3614861F7d8DF4 << V1
 
-contract FlipCoinSimple{
+contract FlipCoinSimpleV4{
 
     event Flip(address who, uint when, bool didWin, uint randomNum);
 
@@ -26,6 +25,8 @@ contract FlipCoinSimple{
         uint gameCount;
     }
 
+    // ENUM to chose what curency player will use: 1) CWT (ERC20) | 2) ERC1155 || 3) ETH 
+
     mapping(address => UserInfo) public userInfo;
 
     address owner;
@@ -33,12 +34,9 @@ contract FlipCoinSimple{
     IERC20 public token;
 
 
-// There are few solution how to play with ERC20 tokens;
-// 1. Straight > Front 2 tx (approve  then flip)
-// 2. Make a valut in this sc, and then user can sign just 1 tx, and after he can withdraw the rest
-// SIMPLE = play with ETH
 
-    function flip() external {
+// generete salt in JS and toss it here >> _saltFromJS
+    function flip(uint _saltFromJS, bool choise) external {
         require(userInfo[msg.sender].bet <= userInfo[msg.sender].bank, "Someone lost all his tokens? Its just not ur day mate");
         require(userInfo[msg.sender].bank > 0, "Hey, you broke! lol");
         require(userInfo[msg.sender].bank < getBalance(), "You Won this game!");  
@@ -49,9 +47,11 @@ contract FlipCoinSimple{
 
         userInfo[msg.sender].bank -= _bet;
 
-        uint randomNum = _pseudoRandom(uint(uint160(msg.sender))) + block.timestamp;
+        uint randomNum = _pseudoRandom(_saltFromJS);
 
-        if((randomNum % 2) == 0){
+        bool evenNum = (randomNum % 2) == 0; // HEAD IS EVENnum
+
+        if(evenNum == choise){
 
             userInfo[msg.sender].bank += _bet * 2;
 
@@ -81,8 +81,8 @@ contract FlipCoinSimple{
 
     function withdrawPlayer()external{
         require(userInfo[msg.sender].bank > 0, "Are u scamer? You aint have shit here!");
-        userInfo[msg.sender].bank = 0;
         token.transfer(msg.sender, checkUrBalance());
+        userInfo[msg.sender].bank = 0;
     }
 
     function checkUrBalance() public view returns(uint){
@@ -129,3 +129,6 @@ interface IERC20 {
 
     event Transfer(address indexed from, address indexed to, uint256 value);
 }
+
+// 0x084f04362c2B72b34cf194296c3614861F7d8DF4 << V1
+// 0x581f9c7a2FD6b53041332Bcb7B01d14efB40741F << V2

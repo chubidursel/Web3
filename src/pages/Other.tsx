@@ -3,7 +3,7 @@ import Header from '../components/headerNew'
 import { Link } from 'react-router-dom'
 import Modal from '../components/modal'
 import { FeedBack } from './Other/feedBack'
-
+import Feedback from "../assets/feedbackPIC.jpg"
 
 export function Other() {
   const [openFeedback, setOpenFeedback] = useState(false)
@@ -31,7 +31,7 @@ export function Other() {
     
     </div>
     </div>
-    <button onClick={()=>{setOpenFeedback(true)}} className='absolute top-20 right-10 text-blue-100 text-2xl rounded-xl hover:text-2xl hover:animate-pulse mb-10'>@Feedback 📝</button>
+    <button onClick={()=>{setOpenFeedback(true)}} className='absolute top-20 right-10 text-blue-100 text-2xl rounded-xl hover:text-2xl hover:animate-pulse mb-10'><img src={Feedback} alt="tools" className='h-24 rounded-2xl'/></button>
 <Modal 
     marginFromTop={"top-16"}
     active={openFeedback}

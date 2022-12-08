@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import Header from '../../components/headerNew';
 import HeaderToken from './ERC1155_comp/header1155';
-import { contractERC1155 } from '../../components/smart_contract/erc1155';
+
 import Modal from '../../components/modal';
+
 
 import Gold from "../../../Ethereum/ERC1155/Pic/1.png"
 import Silver from "../../../Ethereum/ERC1155/Pic/2.png"
@@ -11,50 +12,10 @@ import Iron from "../../../Ethereum/ERC1155/Pic/4.png"
 
 import NftCard from './ERC1155_comp/nftCard';
 
-type Coin = {
-  title: string;
-  price: string;
-  suply: string;
-}
+
 
 export function ERC1155() {
-  const [tokenId, setTokenId] = useState();
-  const [arrCoins, setCrrCoins] = useState<Coin[]>();
 
-useEffect((()=>{
-  (async()=>{
-    try {
-        //INFO
-
-    } catch (error) {
-      console.log(error)
-    }
-  })()
-}),[])
-
-
-
-
-// BLOCK 2 CHECK OWNER
-  const habdlePurchase = async()=>{
-    try {
-    //   const owner = await contractERC721.ownerOf(tokenId);
-    //   setTokenOwner(owner)
-  
-    //   const urlById = await contractERC721.tokenURI(tokenId)
-    //   setTokenUri(urlById);
-  
-    //   setOpneTokenInfo(true) // display the info below
-    //   setTimeout(() => {
-    //     setOpneTokenInfo(false)
-    //   }, 6500);
-    }
-    catch (error) {
-    //   console.log(error)
-    //   setError('This token ID is not valid! 😞')
-    //   setTimeout(() => {setError('')}, 6000)
-    }  
-  }
 
   return (
     <>
@@ -68,13 +29,13 @@ useEffect((()=>{
         </div>
     </Header>
 
-    <HeaderToken handleToggle={false} />
+    <HeaderToken />
 
     <div className='flex justify-center mt-10 m-10 space-between gap-7'>
-                <NftCard pic={Gold} title='Gold'/>
-                  <NftCard pic={Silver} title='Silver'/>
-                  <NftCard pic={Bronze} title='Bronze' />
-                  <NftCard pic={Iron} title='Iron'/>
+                <NftCard pic={Gold} title='Gold' id='1' />
+                  <NftCard pic={Silver} title='Silver' id='2' />
+                  <NftCard pic={Bronze} title='Bronze' id='3' />
+                  <NftCard pic={Iron} title='Iron' id='4'/>
 
                   </div>
 

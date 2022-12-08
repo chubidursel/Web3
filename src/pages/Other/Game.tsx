@@ -29,10 +29,10 @@ export function Game() {
       console.log("👨‍💻 DEV >>>", res2)
 
         //-------- HISTORY
-        // let eventFilter = contractFlipSimple.filters.Flip()
-        // let events = await contractFlipSimple.queryFilter(eventFilter)
-        // const reqId = events[events.length - 1].args[0].toString()
-        // console.log(events)
+        let eventFilter = contractFlipSimple.filters.Flip()
+        let events = await contractFlipSimple.queryFilter(eventFilter)
+        const reqId = events[events.length - 1].args[4].toString()
+        console.log('events>> ', events)
 
         //-------- check status
         const info = await contractWithSigner.userInfo(currentAccount);
