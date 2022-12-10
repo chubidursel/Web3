@@ -90,10 +90,7 @@ export function SetUp() {
 
         }catch (error) {
             console.log("👨‍💻 DEV >>>", error)
-            const message = getErrorMessage(error);
-            setResult(message)
             setTimeout(() => {setResult('')}, 7000)
-            setLoader(false)
         }
   }
 
@@ -126,18 +123,18 @@ export function SetUp() {
         <option value="">CWT</option>
         <option value="">GOLD</option>
     </section> */}
-                        <label>Your Bank: </label>
-                        <input type='number' min='0' className='rounded-xl text-center p-1 hover:shadow-lg' onChange={e => setAmountBank(e.target.value as any)} placeholder='amount of CWT token' />
+                        <label className='text-xl'>Your Bank: </label>
+                        <input type='number' min='0' className='rounded-xl text-center p-1 hover:shadow-lg border-2 border-orange-200' onChange={e => setAmountBank(e.target.value as any)} placeholder='amount of CWT token' />
                         
-                        <label>Your Bet: </label>
-                        <input type='number' min='0' className='rounded-xl text-center p-1 hover:shadow-lg' onChange={e => setAmountBet(e.target.value as any)} placeholder='CWT pro flip' />
+                        <label className='text-xl'>Your Bet: </label>
+                        <input type='number' min='0' className='rounded-xl text-center p-1 hover:shadow-lg border-2 border-orange-200' onChange={e => setAmountBet(e.target.value as any)} placeholder='CWT pro flip' />
                    
-            <button className='bg-orange-300 p-4 mt-2' type='submit'>submit</button>
+            <button className='bg-orange-300 p-4 mt-2 text-white text-3xl font-semibold rounded-lg hover:bg-orange-400' type='submit'>submit</button>
            </form>
 
                 <div className='flex flex-row'>
-                   <button onClick={handleWithdraw} className='bg-red-200 mt-2 w-full p-4' type='submit'>WITHDRAW</button>
-                  <button onClick={handleInfo} className='bg-orange-200 mt-2 w-full p-4' type='submit'>INFO</button>
+                   <button onClick={handleWithdraw} className='bg-red-200 mt-2 w-full p-4 rounded-lg mr-2 hover:bg-red-300' type='submit'>WITHDRAW</button>
+                  <button onClick={handleInfo} className='bg-purple-200 mt-2 w-full p-4 rounded-lg ml-2 hover:bg-purple-300' type='submit'>INFO</button>
                </div>
 
                </>

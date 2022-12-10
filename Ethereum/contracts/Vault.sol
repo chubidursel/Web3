@@ -7,6 +7,8 @@ import "./IERC20.sol";
 // https://github.com/JoshWeb3/eth-to-am3crv-vault-strategy
 
 
+// DEPOSIT CWT here >> exchange them >> toss into luqidity pool || where wrtite all this funcs? / PROXY?
+
 contract Vault {
     event Lock(address from, uint amount, uint time);
     event Withdraw(address to, uint amount, uint time);

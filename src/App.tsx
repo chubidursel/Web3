@@ -19,6 +19,7 @@ import { Proxy } from "./pages/Other/Proxy";
 import {Ipfs} from "./pages/Other/Ipfs"
 import { Address } from "./pages/Other/Address";
 import { Game } from "./pages/Other/Game";
+import { AAVE } from "./pages/Defi/AAVE";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
       <Route path="/Defi" element={<Defi />} />
       <Route path="/Defi/exchange" element={<Exchange />} />
       <Route path="/Defi/vault" element={<Vault />} />
+      <Route path="/Defi/AAVE" element={<AAVE />} />
       <Route path="/Defi/Market" element={<Market />} />
       <Route path="/Defi/Market/Auction" element={<Auction />} />
       <Route path="/Defi/Market/Shop" element={<ShopNft />} />

@@ -97,9 +97,9 @@ const NftCard = ({ pic, title, id }) => {
               className="text-center flex flex-col items-center justify-center text-purple-800 px-2 pb-24 "
             >
               <h1 className="text-3xl font-semibold m-4">PURCHASE</h1>
-              <input onChange={(e:any)=>setAmount(e.target.value)} type="number" min='0' className="w-32 rounded-md text-center"/>
+              <input onChange={(e:any)=>setAmount(e.target.value)} type="number" min='0' placeholder='amount' className="w-32 rounded-md text-center"/>
 
-              {amount != 0 && <h1 className="bg-yellow-100 p-2 rounded-lg text-xl font-semibold m-4">Price: {price[Number(id)] * amount} ETH</h1>}
+              {amount != 0 && <h1 className="bg-yellow-100 p-2 rounded-lg text-small font-semibold m-4">Price: {price[Number(id)] * amount} ETH</h1>}
 
               <button onClick={habdlePurchase}
                 className="bg-purple-500 px-10 py-2 font-semibold text-white rounded-lg 
@@ -107,7 +107,7 @@ const NftCard = ({ pic, title, id }) => {
               >
               {loader ? <Loader /> : "BUY"}
               </button>
-              {result && <h1 className='text-center text-xl bg-orange-200 rounded-xl mt-3 py-4 px-2'>{result}</h1> }
+              {result && <h1 className='text-center text-s bg-orange-200 rounded-xl mt-3 py-4 px-2'>{result}</h1> }
             </div>
           </div>
         </div>

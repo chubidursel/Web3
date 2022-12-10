@@ -84,19 +84,20 @@ export function Conveter() {
       }
     }
 
-
+// EXAMPLE >>  {_hex: '0x5e8dc8', _isBigNumber: true}
     const handleBigNum = () =>{
       const num = numToBigNUm.current?.value
       const bigNum = bigNumToNum.current?.value
 
       try {
         if(num){
-          const data = "WRITE the func to convert from Ehter.js";
-          const objNum = {numm: num}
-          setResBigNum(`${objNum}`)
+          // const data = ethers.BigNumber.toBigInt(num);
+          
+           setResBigNum(`Doesnt work now`)
           }else if(bigNum){
-            const data = "WRITE the func to convert from Ehter.js";
-            setResBigNum(bigNum)
+            const data = ethers.BigNumber.from(bigNum);
+            setResBigNum(`${data}`)
+            console.log("RES bigNum >> number", bigNum, '>>>>', data)
           }else{
             setResBigNum("No data ❌")  
           }
