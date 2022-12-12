@@ -1,9 +1,75 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useRef} from 'react'
 import Header from '../../components/headerNew';
+import { contractAAVE_liq } from '../../components/smart_contract/AAVE_liq';
+import conectSigner from '../../components/smart_contract/SIGNER';
+import getErrorMessage from '../../components/getErrorMessage';
+
 
 export function AAVE() {
+  const [amountLocked, setAmountLocked] = useState()
+  const [result, setResult] = useState('');
+  const [loader, setLoader] = useState(false) // ADD LOADER TO BTN
+  const amountRef = useRef<HTMLInputElement>()
 
+  useEffect((()=>{
+    (async()=>{
+      try {
+        const amountTokenLocked = await contractAAVE_liq.getContractAWETHBalance()
+        setAmountLocked(amountTokenLocked.toString())
+        
+        console.log("👨‍💻 Thew whole number of locked ETH: ", amountTokenLocked.toString())
+      } catch (error) {
+        console.log(error)
+      }
+    })()
+  }),[])
 
+  const handleDeposit = async()=>{
+    const num = Number(amountRef.current?.value)
+    try {
+      setResult(`Pls sign the tx`)
+         const contractWithSigner = conectSigner(contractAAVE_liq)
+
+         const overrides = {
+          value: num,
+      }
+      
+        const callFunc = await contractWithSigner.stakeEther(overrides)
+        const res = await callFunc.wait(1)
+        console.log("👨‍💻 DEV >> ", res)
+
+        setResult(`✅ Confirmed! You just locked ${(Number(num) / 1000000000000000000).toString().slice(0, 7)} ETH`)
+        setTimeout(() => {setResult('')}, 7000)
+      } 
+
+    catch (error) {
+      const message = getErrorMessage(error);
+      setResult(message)
+      setTimeout(() => {setResult('')}, 7000)
+    }setLoader(false)
+  }
+
+  const handleWithdraw = async()=>{
+    const num = Number(amountRef.current?.value)
+    try {
+      setResult(`Pls sign the tx to withdraw funds`)
+         const contractWithSigner = conectSigner(contractAAVE_liq)
+
+       
+        const callFunc = await contractWithSigner.withdrawEther(num)
+        const res = await callFunc.wait(1)
+        console.log("👨‍💻 DEV >> ", res)
+
+        setResult(`✅ Confirmed! You just withdraw ${(Number(num) / 1000000000000000000).toString().slice(0, 7)} ETH`)
+        setTimeout(() => {setResult('')}, 7000)
+      } 
+
+    catch (error) {
+      const message = getErrorMessage(error);
+      setResult(message)
+      setTimeout(() => {setResult('')}, 7000)
+    }setLoader(false)
+  }
 
   return (<>
   <Header marginFromTop={'1/3'}>
@@ -28,11 +94,13 @@ export function AAVE() {
                     {/* https://staging.aave.com/   << design from here*/}
                     <div className='flex flex-row'>
                     <h1 className='font-bold  my-3 text-2xl mr-5'>ETH </h1>
-                    <h1 className='font-bold  my-3 text-2xl'>100000</h1>
-                        <button className="font-bold py-1 text-2xl hover:shadow-xl mx-10 rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400 active:bg-red-500 active:text-blue-100">supply</button>
-                        <button className="font-bold py-1 text-2xl hover:shadow-xl  mx-10 rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400 active:bg-red-500 active:text-blue-100">withdraw</button>
+                    <h1 className='font-bold  my-3 text-2xl'>{(Number(amountLocked) / 1000000000000000000).toString().slice(0, 6)}</h1>
+                        <input ref={amountRef} placeholder='amount ETH in wei' className='hover:shadow-xl ml-4 rounded-lg pl-2 my-2'></input>
+                        <button onClick={handleDeposit} className="font-bold py-1 text-2xl hover:shadow-xl mx-10 rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400 active:bg-red-500 active:text-blue-100">supply</button>
+                        <button onClick={handleWithdraw} className="font-bold py-1 text-2xl hover:shadow-xl  mx-10 rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400 active:bg-red-500 active:text-blue-100">withdraw</button>
                     </div>
-                   
+                    <div className='flex justify-center'> {result && <h1 className='font-bold mt-3 bg-yellow-100 w-full py-2 text-center  px-1 rounded-xl text-purple-900 text-xl '>{result}</h1>}   </div>
+          
                 </div>
 
                 <div className='bg-blue-100 w-1/2 flex flex-col m-3 text-purple-800 p-4 rounded-2xl border-4 hover:shadow-2xl border-red-400'>

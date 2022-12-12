@@ -1,0 +1,7 @@
+import { ethers } from "ethers";
+import walletProvider from "../../abi/walletProvider"
+import defaultProvider from "../../abi/defaultProvider";
+
+const address = "0x8Da8B195597bCaC143b9b0D23e5fcaE8fC5293F2"
+const abi = [{"inputs":[],"stateMutability":"payable","type":"constructor"},{"inputs":[],"name":"aWethAddress","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getContractAWETHBalance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"iLendingPool","outputs":[{"internalType":"contract ILendingPool","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"iWethGateway","outputs":[{"internalType":"contract IWETHGateway","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"lendingPoolAddress","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"stakeEther","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"withdrawEther","outputs":[],"stateMutability":"nonpayable","type":"function"},{"stateMutability":"payable","type":"receive"}]
+export const contractAAVE_liq = new ethers.Contract(address, abi, defaultProvider)
