@@ -3,6 +3,7 @@ import Header from '../../components/headerNew';
 import { contractAAVE_liq } from '../../components/smart_contract/AAVE_liq';
 import conectSigner from '../../components/smart_contract/SIGNER';
 import getErrorMessage from '../../components/getErrorMessage';
+import { Borrow } from './AAVE_com/Borrow';
 
 
 export function AAVE() {
@@ -88,7 +89,7 @@ export function AAVE() {
          
 
                 <div className='bg-blue-100 w-1/2 flex flex-col m-3 text-purple-800 p-4 rounded-2xl border-4 hover:shadow-2xl border-red-400'>
-                    <h1 className='font-bold text-center my-3 text-5xl'>Liquidity Pool</h1>
+                    <h1 className='font-bold text-center my-3 text-5xl'><a className='text-center hover:underline' href="https://goerli.etherscan.io/address/0x8Da8B195597bCaC143b9b0D23e5fcaE8fC5293F2#code" target="_blank">Liquidity Pool </a></h1>
                     
                     
                     {/* https://staging.aave.com/   << design from here*/}
@@ -104,13 +105,16 @@ export function AAVE() {
                 </div>
 
                 <div className='bg-blue-100 w-1/2 flex flex-col m-3 text-purple-800 p-4 rounded-2xl border-4 hover:shadow-2xl border-red-400'>
+                    <h1 className='font-bold text-center my-3 text-2xl'>BORROW</h1>
+                    <Borrow />
+                </div>
+
+                <div className='bg-blue-100 w-1/2 flex flex-col m-3 text-purple-800 p-4 rounded-2xl border-4 hover:shadow-2xl border-red-400'>
                     <h1 className='font-bold text-center my-3 text-2xl'>FlashLoan</h1>
                     <a className='text-center hover:underline' href="https://github.com/chubidursel/smart_contracts/tree/main/AAVE/Flashloan">check out github </a>
                 </div>
 
-                <div className='bg-blue-100 w-1/2 flex flex-col m-3 text-purple-800 p-4 rounded-2xl border-4 hover:shadow-2xl border-red-400'>
-                    <h1 className='font-bold text-center my-3 text-2xl'>Loan</h1>
-                </div>
+
  
             </div>
 

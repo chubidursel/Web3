@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import {useState, useEffect} from 'react'
 import {PrposalTable} from './DAO_com/tableProp'
 import Modal from '../../components/modal';
 import { InitiatePropse } from './DAO_com/initiatePropose';

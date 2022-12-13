@@ -25,7 +25,7 @@ export function ERC20() {
     
 
       <div className="flex justify-center p-3 m-5 space-x-8">
-      <Info />
+      <Info chainId={2}/>
       <TokenFunction />
       </div>
       </div>

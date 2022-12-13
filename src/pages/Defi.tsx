@@ -27,7 +27,7 @@ export function Defi() {
 
   <Link to="/Defi/AAVE" className="bg-blue-100 rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-1 hover:bg-blue-200 hover:animate-pulse flex justify-center"><img src={AAVE} alt="coin"  className='h-20'/></Link>
 
-  <Link to="/Coming_soon" className="bg-blue-100 rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse">Bridge</Link>
+  <Link to="/Defi/Bridge" className="bg-blue-100 rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse">Bridge</Link>
 
 
 </div></div>

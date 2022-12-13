@@ -28,10 +28,6 @@ export function Exchange() {
 
   const [result, setResult] = useState('');   // ALL RESULT (SUCC , ERR, Pand)
   
-
-
-
-
   useEffect(()=>{
     (async()=>{
       try {

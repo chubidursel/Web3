@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { ethers } from "ethers";
+
 import Header from '../../components/headerNew';
 import { contractChainLink, contractChainLinkRandom } from '../../components/smart_contract/ChainLinkEth';
 import conectSigner from '../../components/smart_contract/SIGNER';
@@ -12,8 +12,6 @@ export function ChainLink() {
   const[lengthRandom, setLengthRandom] = useState('');
   const[randomNum, setRandomNum] = useState('');
 
-//-------------------
-const [getLastId, setGetLastId] = useState('')
 
 // useEffect((()=>{
 //   (async()=>{
