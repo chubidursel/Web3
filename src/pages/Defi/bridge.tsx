@@ -68,7 +68,7 @@ export function Bridge() {
         
     <h1>-------------------------func----------------</h1>
 
-    <h1> ETH burn() ==> BSC mint()</h1>
+    <h1> ETH burn() ➡️ BSC mint()</h1>
         <BridgeFunc contract={contractERC20}/>
         </div>
       </div>
