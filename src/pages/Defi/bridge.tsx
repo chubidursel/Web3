@@ -7,7 +7,6 @@ import {ListenEvent} from './Bridge_com/Bridge_API'
 import { BridgeFunc } from './Bridge_com/Func';
 
 
-
 export function Bridge() {
   const [amountETH, setAmountETH] = useState('');
   const [amountBSC, setAmountBSC] = useState('');
@@ -46,7 +45,6 @@ export function Bridge() {
         ListenEvent(contractERC20, contractERC20BSC);
         console.log("IT HAS TO BE CALLED JUST ONCE!!!")
   }, [])
-
 
 
   return (<>

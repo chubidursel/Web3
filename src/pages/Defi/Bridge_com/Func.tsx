@@ -35,36 +35,36 @@ export function BridgeFunc({contract}) {
 
 
   // --------------------------DEMO----------------
-  const handleDemo = async() =>{
-    console.log("🏃 Strarting") 
-    console.log("Contract is in REMIX")
-    // STEP 1 -----------> sign the message //https://www.youtube.com/watch?v=Y6MtQG6IEGk
-    const signer = walletProvider.getSigner();
-    const from = "0x98162D17D4d15c945B7418475EdEb4d9c0335684"
-    const amount = 7;
-    const nonce = 69;
-    const hash = await contractBirdgeETH.getMessageHash(from, from, amount, nonce)
-    console.log(" 🖊  Hash of ur message: ", hash)
-    const signature = await signer.signMessage(ethers.utils.arrayify(hash));
-    console.log(" 🖊  sign message: ", signature)
+  // const handleDemo = async() =>{
+  //   console.log("🏃 Strarting") 
+  //   console.log("Contract is in REMIX")
+  //   // STEP 1 -----------> sign the message //https://www.youtube.com/watch?v=Y6MtQG6IEGk
+  //   const signer = walletProvider.getSigner();
+  //   const from = "0x98162D17D4d15c945B7418475EdEb4d9c0335684"
+  //   const amount = 7;
+  //   const nonce = 69;
+  //   const hash = await contractBirdgeETH.getMessageHash(from, from, amount, nonce)
+  //   console.log(" 🖊  Hash of ur message: ", hash)
+  //   const signature = await signer.signMessage(ethers.utils.arrayify(hash));
+  //   console.log(" 🖊  sign message: ", signature)
 
-    // STEP 2 -----------> SeendTX on ETH
-    console.log("Starting 2 step") 
-    const tokenETHwiithSigner = conectSigner(contractBirdgeETH);
+  //   // STEP 2 -----------> SeendTX on ETH
+  //   console.log("Starting 2 step") 
+  //   const tokenETHwiithSigner = conectSigner(contractBirdgeETH);
 
-    const callFunc = await tokenETHwiithSigner.burn(from, from, amount, nonce, signature)
-    const res = await callFunc.wait(1)
-    console.log("👨‍💻 DEV >> ", res)
+  //   const callFunc = await tokenETHwiithSigner.burn(from, from, amount, nonce, signature)
+  //   const res = await callFunc.wait(1)
+  //   console.log("👨‍💻 DEV >> ", res)
 
-    // STEP 3 -----------> SeendTX on ETH
-    console.log("Starting 3 step") 
-    // Deploy BNB Bridge
+  //   // STEP 3 -----------> SeendTX on ETH
+  //   console.log("Starting 3 step") 
+  //   // Deploy BNB Bridge
     
-  }
+  // }
   
 
   return (<>
- <button onClick={handleDemo} className='bg-red-300 py-5 rounded-2xl w-full'>TEST</button>
+ {/* <button onClick={handleDemo} className='bg-red-300 py-5 rounded-2xl w-full'>TEST</button> */}
     <div>
         <input ref={amountRef} placeholder='amount ETH in wei' className='text-center hover:shadow-xl ml-4 rounded-lg pl-2 my-2'></input>
         <button onClick={handleTransfer} className="font-bold py-1 text-2xl hover:shadow-xl mx-10 rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400 active:bg-red-500 active:text-blue-100">Convert</button>
