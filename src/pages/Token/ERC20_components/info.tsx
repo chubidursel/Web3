@@ -19,7 +19,7 @@ export function Info({chainId}) {
           setTotalSupply(balanceCWT.toString())  
         } else if(chainId === 2){
           const balanceCWTBSC = await contractERC20BSC.totalSupply();
-          console.log(contractERC20BSC.address)
+
           setTotalSupply(balanceCWTBSC.toString())  
         }
      
@@ -36,14 +36,14 @@ export function Info({chainId}) {
     <div className='bg-blue-100 rounded-2xl border-4 border-red-400 px-[15px] hover:bg-blue-200'>
         <h1 className=" text-3xl text-center font-bold m-3">INFO</h1>
 <div className='text-xl'>
-            <p className='font-bold'>Network:</p>
-            <select className="rounded-xl px-1 py-1">
+            <p className='font-bold'>Network:</p><p>Ethreum Testnet ( Goerli )</p>
+            {/* <select className="rounded-xl px-1 py-1">
                 <option disabled>Network</option>
                     <option value="ipfs">Ethreum Testnet ( Goerli )</option>
                     <option value="pinata">BNB TestNet</option>
                     <option value="cloudflare">Poligon</option>
                     <option value="AWS">Layer2</option>
-              </select>
+              </select> */}
             <p className='font-bold'>Token name / symbol:</p> <p>CryptoWorldToken / CWT</p>
             <p className='font-bold'>Token address:</p> <p>0x9fa7096177A9eDC1547cCA1345B6a9C9e3A7eA6D</p>
             <p className='font-bold'>Owner:</p> <p>0x98162D17D4d15c945B7418475EdEb4d9c0335684</p>
