@@ -34,7 +34,9 @@ function App() {
       <Route path="/Defi/exchange" element={<Exchange />} />
       <Route path="/Defi/vault" element={<Vault />} />
       <Route path="/Defi/AAVE" element={<AAVE />} />
+
       <Route path="/Defi/Bridge" element={<Bridge />} />
+
       <Route path="/Defi/Market" element={<Market />} />
       <Route path="/Defi/Market/Auction" element={<Auction />} />
       <Route path="/Defi/Market/Shop" element={<ShopNft />} />
