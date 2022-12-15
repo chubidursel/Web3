@@ -4,7 +4,7 @@ import conectSigner from '../../../components/smart_contract/SIGNER';
 
 // ETH BRIDGE = https://goerli.etherscan.io/address/0x26ade1571862a7d69569e35393b9acf9cc3a72b7#code
 // https://github.com/jklepatch/eattheblocks/blob/master/screencast/317-eth-bsc-decentralized-bridge/scripts/eth-bsc-bridge.js
-export async function ListenEvent(scETH, scBSC){
+export async function ListenEvent(scETH : any, scBSC : any){
 
     const tokenETHwiithSigner = conectSigner(scETH);
     const tokenBSCwiithSigner = conectSigner(scBSC);

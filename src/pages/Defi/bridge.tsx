@@ -11,10 +11,9 @@ export function Bridge() {
   const [amountETH, setAmountETH] = useState('');
   const [amountBSC, setAmountBSC] = useState('');
 
-
+// GET TOKEN BALANCE FROM BOTH CONTRACT
   const { contextState, } = useAppContext();
   const currentAccount = contextState?.currentAccount;
-// GET TOKEN BALANCE FROM BOTH CONTRACT
   useEffect((()=>{
     (async()=>{
       try {
@@ -51,7 +50,7 @@ export function Bridge() {
   <Header marginFromTop={'1/3'}>
     <div className='text-center p-4'>
       <h1 className='font-bold'>ETH to BSC bridge</h1> 
- </div>
+    </div>
   </Header> 
 
 
@@ -67,7 +66,7 @@ export function Bridge() {
     <h1>-------------------------func----------------</h1>
 
     <h1> ETH burn() ➡️ BSC mint()</h1>
-        <BridgeFunc contract={contractERC20}/>
+        <BridgeFunc />
         </div>
       </div>
  

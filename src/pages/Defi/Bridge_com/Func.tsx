@@ -5,7 +5,7 @@ import walletProvider from "../../../abi/walletProvider" // to sign the message
 import { contractBirdgeETH} from '../../../components/smart_contract/Bridge';
 import { ethers } from "ethers";
 
-export function BridgeFunc({contract}) {
+export function BridgeFunc() {
   const [result, setResult] = useState('');
   const amountRef = useRef<HTMLInputElement>()
 
@@ -32,35 +32,33 @@ export function BridgeFunc({contract}) {
     }
   }
 
+  //--------------------------DEMO----------------
+  const handleDemo = async() =>{
+    console.log("🏃 Strarting") 
+    console.log("Contract is in REMIX")
+    // STEP 1 -----------> sign the message //https://www.youtube.com/watch?v=Y6MtQG6IEGk
+    const signer = walletProvider.getSigner();
+    const from = "0x98162D17D4d15c945B7418475EdEb4d9c0335684"
+    const amount = 7;
+    const nonce = 69;
+    const hash = await contractBirdgeETH.getMessageHash(from, from, amount, nonce)
+    console.log(" 🖊  Hash of ur message: ", hash)
+    const signature = await signer.signMessage(ethers.utils.arrayify(hash));
+    console.log(" 🖊  sign message: ", signature)
 
+    // STEP 2 -----------> SeendTX on ETH
+    console.log("Starting 2 step") 
+    const tokenETHwiithSigner = conectSigner(contractBirdgeETH);
 
-  // --------------------------DEMO----------------
-  // const handleDemo = async() =>{
-  //   console.log("🏃 Strarting") 
-  //   console.log("Contract is in REMIX")
-  //   // STEP 1 -----------> sign the message //https://www.youtube.com/watch?v=Y6MtQG6IEGk
-  //   const signer = walletProvider.getSigner();
-  //   const from = "0x98162D17D4d15c945B7418475EdEb4d9c0335684"
-  //   const amount = 7;
-  //   const nonce = 69;
-  //   const hash = await contractBirdgeETH.getMessageHash(from, from, amount, nonce)
-  //   console.log(" 🖊  Hash of ur message: ", hash)
-  //   const signature = await signer.signMessage(ethers.utils.arrayify(hash));
-  //   console.log(" 🖊  sign message: ", signature)
+    const callFunc = await tokenETHwiithSigner.burn(from, from, amount, nonce, signature)
+    const res = await callFunc.wait(1)
+    console.log("👨‍💻 DEV >> ", res)
 
-  //   // STEP 2 -----------> SeendTX on ETH
-  //   console.log("Starting 2 step") 
-  //   const tokenETHwiithSigner = conectSigner(contractBirdgeETH);
-
-  //   const callFunc = await tokenETHwiithSigner.burn(from, from, amount, nonce, signature)
-  //   const res = await callFunc.wait(1)
-  //   console.log("👨‍💻 DEV >> ", res)
-
-  //   // STEP 3 -----------> SeendTX on ETH
-  //   console.log("Starting 3 step") 
-  //   // Deploy BNB Bridge
+    // STEP 3 -----------> SeendTX on ETH
+    console.log("Starting 3 step") 
+    // Deploy BNB Bridge
     
-  // }
+  }
   
 
   return (<>
