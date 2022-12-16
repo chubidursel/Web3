@@ -27,16 +27,16 @@ export async function ListenEvent(scETH : any, scBSC : any){
         console.log(JSON.stringify(transferEvent, null, 4))
 
      //after we invoke this tx in bridge contract > we sent tx into BSC to sender
-    try {
+    // try {
 
-        console.log("Starting tx")
-        const callFunc = await tokenETHwiithSigner.approve('0x63018F44E822875Be96e7CE6F5b53cB1dEcA1B96', 10);
-        const res = await callFunc.wait(1)
-        console.log(res)
-        console.log("DONE!!!")
-    } catch (error) {
-        console.log("💻 Opps, problems =(", error)  
-    }
+    //     console.log("Starting tx")
+    //     const callFunc = await tokenETHwiithSigner.approve('0x63018F44E822875Be96e7CE6F5b53cB1dEcA1B96', 10);
+    //     const res = await callFunc.wait(1)
+    //     console.log(res)
+    //     console.log("DONE!!!")
+    // } catch (error) {
+    //     console.log("💻 Opps, problems =(", error)  
+    // }
 
     })
 }

@@ -10,6 +10,7 @@ import Loader from '../../components/loader';
 import { useAppContext } from "../../hooks/useAppContext";
 import b from "../../assets/b.png"
 import e from "../../assets/e.png"
+
 export function Game() {
   const [active, setActive] = useState(false);
   const [coin, setCoin] = useState({run:false, win:''})
@@ -19,32 +20,35 @@ export function Game() {
   const { contextState } = useAppContext(); // CHECK INFO about players acc
   const currentAccount = contextState?.currentAccount;
    
-  const handleFlip = async()=>{
+  const handleFlip = async(headOrTail : boolean)=>{
     try {
+      
+
       setLoader(true)
       setCoin({...coin, run:true})
       setResult('Pls sign the tx and we will flip the coin! 📝')
 
+      const saltJS = Math.floor(Math.random() * 1000)
       const contractWithSigner = conectSigner(contractFlipSimple)
-      const txTransfer = await contractWithSigner.flip();
+      const txTransfer = await contractWithSigner.flip(saltJS, headOrTail);
       const res2 = await txTransfer.wait()
       console.log("👨‍💻 DEV >>>", res2)
 
         //-------- HISTORY
-        let eventFilter = contractFlipSimple.filters.Flip()
-        let events = await contractFlipSimple.queryFilter(eventFilter)
-        const reqId = events[events.length - 1].args[4].toString()
-        console.log('events>> ', events)
+        // let eventFilter = contractFlipSimple.filters.Flip()
+        // let events = await contractFlipSimple.queryFilter(eventFilter)
+        // const reqId = events[events.length - 1].args[4].toString()
+        // console.log('events>> ', events)
 
         //-------- check status
         const info = await contractWithSigner.userInfo(currentAccount);
         console.log("👨‍💻 DEV INFO ACC >>>", info)
   
-        const didWin = info.won // CHANGE !!!!!!!!!!!!!!!!!!!!!!!
-        const gameLeft = Number(info.bank.toString()) - Number(info.bet.toString())
+        // const didWin = info.won // CHANGE !!!!!!!!!!!!!!!!!!!!!!!
+        // const gameLeft = Number(info.bank.toString()) - Number(info.bet.toString())
         
         
-        didWin ? setResult(`🥳 Congratulation! Your bank: ${info.bank}CWT 🥳`) : setResult(`Ops, you lost 😔 There are ${gameLeft} game left. Good luck 🍀`)
+        // didWin ? setResult(`🥳 Congratulation! Your bank: ${info.bank}CWT 🥳`) : setResult(`Ops, you lost 😔 There are ${gameLeft} game left. Good luck 🍀`)
 
       setTimeout(() => {setResult('')}, 3000)
       setCoin({...coin, run:false})      
@@ -97,9 +101,12 @@ export function Game() {
 
   <div className='flex items-center mt-32 flex-col'>
     <div>
-   <button onClick={handleFlip} className="w-64 font-bold bg-orange-400 text-white py-2 rounded-xl text-5xl border-4 border-orange-300 px-[15px] hover:bg-orange-600 hover:shadow-xl">{loader ? <Loader /> : "FLIP"}</button>
+   <button  className="w-64 font-bold bg-orange-400 text-white py-2 rounded-xl text-5xl border-4 border-orange-300 px-[15px] hover:bg-orange-600 hover:shadow-xl">{loader ? <Loader /> : "FLIP"}</button>
     <button onClick={()=>setActive(true)} className="w-64 font-bold text-white py-2 rounded-xl text-5xl border-4 border-orange-300 px-[15px] hover:bg-orange-600 hover:shadow-xl ml-2">SETUP</button>
 
+
+    <button onClick={()=>handleFlip(true)} className='bg-green-200 p-10'>head</button>
+    <button onClick={()=>handleFlip(false)} className='bg-red-200 p-10'>tail</button>
     </div>
               
         <div className='flex justify-center'>

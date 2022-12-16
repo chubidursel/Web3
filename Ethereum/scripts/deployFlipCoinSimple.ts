@@ -6,7 +6,7 @@ import hre from 'hardhat';
 // npx hardhat run --network goerli scripts/deployFlipCoinSimple.ts
 
 // verify SC on etherscan 
-// npx hardhat verify --network goerli 0x96F7010a4706756faFd6ee43969993334F80cfA1 0x9fa7096177A9eDC1547cCA1345B6a9C9e3A7eA6D
+// npx hardhat verify --network goerli 0x05AEfb4C6620C81830b4C053fcDFa15a91428e68 0x9fa7096177A9eDC1547cCA1345B6a9C9e3A7eA6D
 
 async function main() {
   console.log("🚀 deploying smart contract.....");
