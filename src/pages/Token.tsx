@@ -14,7 +14,7 @@ export function Token() {
     <>
     <Header marginFromTop={"top-1/3"}>There are 3 most common standart of token implementation</Header>
  
-    <h2 className="flex justify-center text-6xl mt-3 text-blue-100 font-bold">Token</h2>
+    <h2 className="text-center text-6xl mt-3 text-blue-100 font-bold">Token</h2>
 
 <div className='flex justify-center'>
 <div className='grid grid-cols-1 w-1/3 text-5xl text-purple-800 text-center font-bold justify-center mt-5'>

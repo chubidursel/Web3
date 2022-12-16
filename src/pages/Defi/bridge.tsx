@@ -55,15 +55,16 @@ export function Bridge() {
 
 
 
-      <div>
-        <h1 className='bg-yellow-300 text-3xl text-center'>BETA</h1>
-            
+  
+        {/* <h1 className='bg-yellow-300 text-3xl text-center'>BETA</h1> */}
+        <h1 className="text-center text-6xl text-blue-100 font-bold m-3 mb-5">Bridge</h1  >
+        <div className='flex justify-center'>
         <div className='rounded-2xl border-4 border-red-400 px-[15px] w-1/3 p-2 m-2 bg-blue-100'>
               <h1 className='font-bold text-center text-2xl'>INFO</h1>
               <h1>ETH: <span className='font-bold text-2xl'>{amountETH}</span> CWT</h1>
               <h1>BSC: <span className='font-bold text-2xl'>{amountBSC}</span> CWT</h1>
         
-    <h1>-------------------------func----------------</h1>
+    <h1>Function</h1>
 
     <h1> ETH burn() ➡️ BSC mint()</h1>
         <BridgeFunc />
