@@ -65,12 +65,13 @@ export function BridgeFunc({contract}) {
 
   return (<>
  {/* <button onClick={handleDemo} className='bg-red-300 py-5 rounded-2xl w-full'>TEST</button> */}
-    <div>
-        <input ref={amountRef} placeholder='amount ETH in wei' className='text-center hover:shadow-xl ml-4 rounded-lg pl-2 my-2'></input>
+ <div className='flex flex-col items-center'>
+        <input ref={amountRef} placeholder='amount ETH in wei' className='text-center hover:shadow-xl m-4 rounded-lg pl-2 my-2'></input>
         <button onClick={handleTransfer} className="font-bold py-1 text-2xl hover:shadow-xl mx-10 rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400 active:bg-red-500 active:text-blue-100">Convert</button>
-    </div>
+
+ </div>
     
-    <div className='flex justify-center'> {result && <h1 className='font-bold mt-3 bg-yellow-100 w-full py-2 text-center  px-1 rounded-xl text-purple-900 text-xl '>{result}</h1>}   </div>
+    <div className='flex justify-center'> {result && <h1 className='font-bold m-4 bg-yellow-100 w-full py-2 text-center  px-1 rounded-xl text-purple-900 text-xl '>{result}</h1>}   </div>
           
     </>
   )

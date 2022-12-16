@@ -11,11 +11,10 @@ type Coin = {
   suply: string;
 }
 
-const NftCard = ({ pic, title, id }) => {
+const NftCard = ({ pic, title, id, setResult }) => {
   const[amount, setAmount] = useState(0);
 
   const [loader, setLoader] = useState(false)
-  const[result, setResult ] = useState('')
 
   const [price, setPrice] = useState([]) // Make an obj??
 
@@ -31,7 +30,7 @@ const NftCard = ({ pic, title, id }) => {
           const getPriceGold = await contractERC1155.tokenPrice(index)
           setPrice(old => [...old, ethers.utils.formatEther(getPriceGold)])
         }
-        //console.log(price)
+        console.log(price)
       } catch (error) {
         console.log(error)
       }
@@ -41,7 +40,7 @@ const NftCard = ({ pic, title, id }) => {
   const habdlePurchase = async()=>{
     try {
       setLoader(true)
-      setResult(' sign the tx 📝')
+      setResult('sign the tx 📝')
 
       const contractWithSigner = conectSigner(contractERC1155)
 
@@ -72,7 +71,7 @@ const NftCard = ({ pic, title, id }) => {
     <>
 
 <section
-      className="bg-transparent flex justify-center items-center text-white rounded-md"
+      className="bg-transparent text-white rounded-md"
     >
       <div
         className="w-[300px] h-[420px] bg-transparent cursor-pointer group [perspective:500px]"
@@ -107,7 +106,6 @@ const NftCard = ({ pic, title, id }) => {
               >
               {loader ? <Loader /> : "BUY"}
               </button>
-              {result && <h1 className='text-center text-s bg-orange-200 rounded-xl mt-3 py-4 px-2'>{result}</h1> }
             </div>
           </div>
         </div>

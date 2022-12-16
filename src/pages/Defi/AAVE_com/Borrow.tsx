@@ -49,12 +49,15 @@ export function Borrow() {
 
   return (<>
 
-<div className='flex flex-row'>
-   
-    <input ref={amountRef} placeholder='amount ETH in wei' className='hover:shadow-xl ml-4 rounded-lg pl-2 my-2'></input>
+<div className='flex items-center flex-col'>
+
+    <input ref={amountRef} placeholder='amount ETH in wei' className='hover:shadow-xl rounded-lg pl-2 mb-5 w-72' /></div>
+    <div className="justify-center flex">
+
     <button onClick={handleBorrow} className="font-bold py-1 text-2xl hover:shadow-xl mx-10 rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400 active:bg-red-500 active:text-blue-100">Borrow</button>
     <button  className="font-bold py-1 text-2xl hover:shadow-xl  mx-10 rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400 active:bg-red-500 active:text-blue-100">Repay</button>
 </div>
+
     <div className='flex justify-center'> {result && <h1 className='font-bold mt-3 bg-yellow-100 w-full py-2 text-center  px-1 rounded-xl text-purple-900 text-xl '>{result}</h1>}   </div>
 
     </>
