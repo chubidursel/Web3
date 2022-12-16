@@ -20,7 +20,7 @@ import {Ipfs} from "./pages/Other/Ipfs"
 import { Address } from "./pages/Other/Address";
 import { Game } from "./pages/Other/Game";
 import { AAVE } from "./pages/Defi/AAVE";
-import { Bridge } from "./pages/Defi/Bridge";
+import { Bridge } from './pages/Defi/bridge'
 
 function App() {
   return (
