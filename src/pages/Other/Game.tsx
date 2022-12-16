@@ -65,7 +65,7 @@ export function Game() {
 
 // https://freefrontend.com/css-coins/
 
-  return (
+ return (
     <>
     
     <Header marginFromTop={'1/3'}>
