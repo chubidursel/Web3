@@ -136,7 +136,7 @@ const contractExchangeWithSigner = conectSigner(contractExchange)
         </div>
 
         <div className="grid grid-cols-1 gap-3 w-72 my-1">
-                <input type='number' min='0' className='rounded-xl text-center p-1 hover:shadow-lg' onChange={e => setAmountSell(e.target.value as any)} placeholder='amount of CWT' />
+                <input type='number' min='0' className='border-none outline-none rounded-xl text-center p-1 bg-blue-100' onChange={e => setAmountSell(e.target.value as any)} placeholder='amount of CWT' />
                 {loaderSell ? 
             <Loader /> : <button onClick={handleSell} className="font-bold py-1 text-2xl hover:shadow-xl rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400">sell</button>}           
             </div>
@@ -147,6 +147,22 @@ const contractExchangeWithSigner = conectSigner(contractExchange)
         {/* {error && <div>{error}</div>} */}
     </div></div>
     <div className='flex justify-center'>{showEvent && <EventsExchange />}</div>
+
+<div className="grid gap-2 p-2 grid-cols-[1fr_1fr] grid-rows-[1fr_1fr_1fr_1fr] content-center justify-items-stretch rounded-2xl border-4 bg-blue-100 w-1/2 m-[0_auto] h-96 border-red-400 text-xl">
+  <div className='border-2 border-black h-12 font-bold'>You can swap</div>
+  <div className='border-2 border-black h-12 justify-self-end'><button className=" font-bold rounded-xl py-1 text-2xl hover:shadow-xl border-2 border-red-400 px-[15px] hover:bg-red-400">modal</button></div>
+  <div className='border-2 border-black h-28'></div>
+  <div className='border-2 border-black h-28'></div>
+  <div className='border-2 border-black h-28'>
+  <input min='0' className='border-none outline-none rounded-xl text-center p-1 bg-blue-100' 
+  onChange={e => setAmountSell(e.target.value as any)} placeholder='amount of CWT' />
+  </div>
+  <div className='border-2 border-black h-28'>CWT
+  </div>
+  <div className='border-2 border-black h-16 col-span-2'></div>
+</div>
+
+
     </>
   )
 }
