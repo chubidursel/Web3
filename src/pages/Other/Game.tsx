@@ -8,8 +8,8 @@ import { contractFlipSimple } from '../../components/smart_contract/FlipCoin';
 import conectSigner from '../../components/smart_contract/SIGNER';
 import Loader from '../../components/loader';
 import { useAppContext } from "../../hooks/useAppContext";
-import b from "../../assets/b.png"
-import e from "../../assets/e.png"
+import head from "../../assets/head.png"
+import tail from "../../assets/tail.png"
 
 export function Game() {
   const [active, setActive] = useState(false);
@@ -22,8 +22,6 @@ export function Game() {
    
   const handleFlip = async(headOrTail : boolean)=>{
     try {
-      
-
       setLoader(true)
       setCoin({...coin, run:true})
       setResult('Pls sign the tx and we will flip the coin! 📝')
@@ -85,28 +83,30 @@ export function Game() {
 ? (<div className='flex justify-center h-72'>
 <div className="coin-flip">
   <div className="coin-tails">
-  <img src={b} alt="coin"  className=''/>  </div>   
+  <img src={head} alt="coin"  className=''/>  </div>   
   
   <div 
   className="coin-heads">
-  <img src={e} alt="coin"  className=''/>  </div>
+  <img src={tail} alt="coin"  className=''/>  </div>
   </div></div>)
 : 
-<div className='flex justify-center mt-32'><img src={b} alt="coin"  className='w-[200px] h-[200px]'/></div>
+<div className='flex justify-center mt-32'><img src={head} alt="coin"  className='w-[200px] h-[200px]'/></div>
 }
   
         {/* <FlipCoin /> */}
         
 
 
-  <div className='flex items-center mt-32 flex-col'>
+  <div className='flex items-center mt-24 flex-col'>
     <div>
-   <button  className="w-64 font-bold bg-orange-400 text-white py-2 rounded-xl text-5xl border-4 border-orange-300 px-[15px] hover:bg-orange-600 hover:shadow-xl">{loader ? <Loader /> : "FLIP"}</button>
-    <button onClick={()=>setActive(true)} className="w-64 font-bold text-white py-2 rounded-xl text-5xl border-4 border-orange-300 px-[15px] hover:bg-orange-600 hover:shadow-xl ml-2">SETUP</button>
+   {/* <button  className="w-64 font-bold bg-orange-400 text-white py-2 rounded-xl text-5xl border-4 border-orange-300 px-[15px] hover:bg-orange-600 hover:shadow-xl">{loader ? <Loader /> : "FLIP"}</button> */}
+    <button onClick={()=>setActive(true)} className="w-64 font-bold text-white py-2 rounded-xl text-5xl border-4 border-orange-300 px-[15px] hover:bg-orange-600 hover:shadow-xl">SETUP</button>
 
+<div className='mt-3'>
+    <button onClick={()=>handleFlip(true)} className="w-32 font-bold bg-green-400 border-4 border-orange-300 border-r-0  text-white py-2 rounded-xl rounded-r-none text-5xl  px-[15px] hover:bg-orange-600 hover:shadow-xl">head</button>
+    <button onClick={()=>handleFlip(false)} className="w-32 font-bold bg-yellow-400 text-white py-2 rounded-xl border-4 border-orange-300 border-l-0  rounded-l-none text-5xl  px-[15px] hover:bg-orange-600 hover:shadow-xl">tail</button>
+</div>
 
-    <button onClick={()=>handleFlip(true)} className='bg-green-200 p-10'>head</button>
-    <button onClick={()=>handleFlip(false)} className='bg-red-200 p-10'>tail</button>
     </div>
               
         <div className='flex justify-center'>
