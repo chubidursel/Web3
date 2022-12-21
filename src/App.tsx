@@ -10,7 +10,7 @@ import { Vault } from "./pages/Defi/vault"
 import { ERC721 } from "./pages/Token/ERC721";
 import { Wait } from "./components/waiting";
 import { ChainLink } from "./pages/Defi/ChainLink";
-import { Conveter } from "./pages/Other/converter";
+import { Conveter } from "./pages/Other/converter"; 
 import { Market } from "./pages/Defi/Market";
 import {Auction} from "./pages/Defi/components/Market/Auction";
 import { ShopNft } from "./pages/Defi/components/Market/ShopNft";

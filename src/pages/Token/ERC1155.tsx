@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import Header from "../../components/headerNew";
 import HeaderToken from "./ERC1155_comp/header1155";
-
-import Modal from "../../components/modal";
 
 import Gold from "../../../Ethereum/ERC1155/Pic/1.png";
 import Silver from "../../../Ethereum/ERC1155/Pic/2.png";
@@ -38,10 +36,11 @@ export function ERC1155() {
         <NftCard pic={Silver} title="Silver" id="2" setResult={setResult} />
         <NftCard pic={Bronze} title="Bronze" id="3" setResult={setResult} />
         <NftCard pic={Iron} title="Iron" id="4" setResult={setResult} />
+       
         </div>
         <div className="flex justify-center items-start">
           {result && (
-            <h1 className="text-center text-2xl font-bold bg-orange-200 rounded-xl mt-3 py-4 px-2">
+            <h1 className="text-center text-2xl font-bold bg-orange-200 rounded-xl mb-5 py-4 px-10">
               {result}
             </h1>
           )}

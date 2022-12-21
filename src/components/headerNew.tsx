@@ -64,7 +64,7 @@ const handleConnectMetamaskClick  = async () => {
 
   return (
 
-        <div className="text-2xl text-white ">
+        <div className="text-lg text-white sm:text-2xl">
           <header className="navbar navbar-expand-lg relative flex justify-between p-4 font-semibold flex-wrap">
           <div className="invisible rounded-2xl border-2 px-[15px] py-2 text-xl">Connect MetaMask</div>
             <nav className="rounded-2xl border-2 border-red-400 opacity-40 hover:opacity-100  hover:px-10 ">

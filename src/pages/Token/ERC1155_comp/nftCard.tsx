@@ -29,8 +29,10 @@ const NftCard = ({ pic, title, id, setResult }) => {
         for (let index = 1; index <= 4; index++) {
           const getPriceGold = await contractERC1155.tokenPrice(index)
           setPrice(old => [...old, ethers.utils.formatEther(getPriceGold)])
+
+          // DO TOTAL SUPPLY
         }
-        console.log(price)
+        console.log("🤷‍♀️ PROBLEM: ", price) // Why does it update so many times?
       } catch (error) {
         console.log(error)
       }
@@ -44,7 +46,7 @@ const NftCard = ({ pic, title, id, setResult }) => {
 
       const contractWithSigner = conectSigner(contractERC1155)
 
-      const ethToPay = price[Number(id)] * amount;
+      const ethToPay = price[Number(id) + 1] * amount; //CUZ ARR STARTS AT 0
 
       const overrides = {
         value: ethers.utils.parseEther(ethToPay.toString()),
@@ -52,9 +54,9 @@ const NftCard = ({ pic, title, id, setResult }) => {
 
       const txTransfer = await contractWithSigner.purchaseNFT(Number(id), amount, overrides);
       const res = await txTransfer.wait()
-      console.log("👨‍💻 DEV >>>", res)
- 
-      setResult('Confirmed')
+      console.log("👨‍💻 DEV >>>", res) 
+      
+      setResult('✔️ Confirmed')
       setLoader(false)
       setTimeout(() => {setResult('')}, 7000)
     }
@@ -104,6 +106,7 @@ const NftCard = ({ pic, title, id, setResult }) => {
                 className="bg-purple-500 px-10 py-2 font-semibold text-white rounded-lg 
                 absolute -bottom-20 delay-500 duration-1000 group-hover:bottom-10 scale-0 group-hover:scale-100 "
               >
+         
               {loader ? <Loader /> : "BUY"}
               </button>
             </div>

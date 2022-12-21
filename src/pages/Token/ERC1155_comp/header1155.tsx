@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 const HeaderToken = () => {
    
@@ -17,10 +17,10 @@ const HeaderToken = () => {
 <Link to="/Game" className="font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400">
             Game</Link>
            
-            
+          
             </div>
         </div>
-        </> );
+   </> );
 }
  
 export default HeaderToken;
