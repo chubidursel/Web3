@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import conectSigner from '../../components/smart_contract/SIGNER';
 import getErrorMessage from '../../components/getErrorMessage';
 import Logo from "../../assets/logoNft.gif"
+import Questions from './ERC721_components/questions';
+import Usecase from './ERC721_components/usecase';
 
 export function ERC721() {
   const [result, setResult] = useState("");
@@ -64,6 +66,7 @@ export function ERC721() {
     <div className='grid place-items-center'>
         <img src={Logo} alt="coin"  className='h-80'/>
         rate: {Number(nftPrice) / 1000000000000000000 } ETH
+        <br />
         amount Minted: {amountMinted} / 33
         <button onClick={handlePurcase} className='px-10 py-3 text-5xl bg-blue-200 rounded-lg hover:bg-blue-400'>mint</button>
 
@@ -76,17 +79,31 @@ export function ERC721() {
       
     </section>
 
+    <section id='interact'>
+      <button>MyNFT</button>
+      </section>
 
-    <section>
-      usecase
+
+    <section id='usecase'>
+      <Usecase />
     </section>
 
-    <section>
-      Faqs
+    <section id='faq'>
+      <Questions />
     </section>
 
-    <section>
-      footer
+    <section id='links'>
+    <div>
+
+            <div className="flex justify-center gap-10 text-white">
+                <a href='https://goerli.etherscan.io/address/0x3eEEaEe76C2D5d4a1E72106F13AB82F750b19994' target="_blank" 
+                className="font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400">Etherscan </a>
+            
+            <a href='https://testnets.opensea.io/collection/circleart' target="_blank" 
+                className="font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400">OpenSea </a>
+          
+            </div>
+        </div>
     </section>
  
 

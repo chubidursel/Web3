@@ -10,5 +10,9 @@
 ------------ front --------------
 
 1. Reference >> https://www.sunniesnft.com
+				https://www.arweave.org/
+				https://collecttrumpcards.com/
+				https://sprawl.game/
+				https://fair.xyz/collection/angrychimps
 	scroing -> buy  -> pics  -> smartcontract  -> FAQS  -> useCase (DAO / AUCTION)
 
