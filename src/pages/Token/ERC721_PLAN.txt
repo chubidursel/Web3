@@ -1,0 +1,14 @@
+
+------------ BACK --------------
+
+1. Create idea about pics
+2.Geneertae in HashLips
+3. SmartContract ref > https://etherscan.io/address/0xdf0f0a5508aa4f506e5bdc8c45c8879e6e80d3e4
+
+
+
+------------ front --------------
+
+1. Reference >> https://www.sunniesnft.com
+	scroing -> buy  -> pics  -> smartcontract  -> FAQS  -> useCase (DAO / AUCTION)
+

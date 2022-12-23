@@ -1,33 +1,36 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.10;
 
 
-import "../node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "../node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-import "../node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
-import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
-import "../node_modules/@openzeppelin/contracts/utils/Counters.sol";
-import "../node_modules/@openzeppelin/contracts/utils/Strings.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
 
-contract Emoji is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
+contract CircleArt is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
+
     using Counters for Counters.Counter;
     using Strings for uint256;
 
-    string public folderNftUri = "QmNM3ZUzASR78M61PsPF3f63j13ZsXNCACnfMshNroFuKz";
+    uint8 public maxSupply = 33;
+    uint8 public maxPerWallet = 3;
 
     Counters.Counter private _tokenIdCounter;
 
-    //mapping(string=>bool) existingURIs;
-
-    constructor() ERC721("EmojiNft", "EMJ") {
+    constructor() ERC721("CircleArt", "CA") {
         _tokenIdCounter.increment();
     }
 
     function _baseURI() internal pure override returns (string memory) {
-        return "ipfs://QmNM3ZUzASR78M61PsPF3f63j13ZsXNCACnfMshNroFuKz/";  
+        return "ipfs://QmXJ3DPJ5upfYMtJCS4yttqbbhYaJprHFXoLZNF3kqth3Z/";  
     }
-//THERE ARE JUST 8 pic??
+
+
     function safeMint(address to) public onlyOwner {
+        require(_tokenIdCounter.current() <= maxSupply, "Opps, all NFT has been minted");
+
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
@@ -46,9 +49,10 @@ contract Emoji is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
         return bytes(baseURI).length > 0 ? string(abi.encodePacked(baseURI, tokenId.toString(), ".json")) : "";
     }
 
-//from FireShip
-    function payToMint() public payable returns (uint256) {
+//BUY!
+    function purchase() public payable returns (uint256) {
         require (msg.value >= Rate, "Need to pay up!");
+         require(balanceOf(msg.sender) <= maxPerWallet, "This purchase would exceed maximum allocation for public mints for this wallet");
 
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
@@ -57,12 +61,12 @@ contract Emoji is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
 
         return tokenId;
     }
-//MY FUNC
-    function numOfNft()public view returns (uint num){
+
+    function amountMintedNFT()public view returns (uint num){
         return _tokenIdCounter.current() -1;
     }
 
-    uint public Rate = 0.05 ether;
+    uint public Rate = 0.01 ether;
 
     function setRate(uint _num) external onlyOwner{
         Rate = _num;
@@ -71,8 +75,11 @@ contract Emoji is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
     function getBalanceEth()public view returns(uint total){
         return address(this).balance;
     }
-    function withdrow() external onlyOwner{
+    function withdraw() external onlyOwner{
         address payable _to = payable(msg.sender);
         _to.transfer(getBalanceEth());
     }
+
+    //WHITELIST??
+    //ADD MORE FEAURES
 }
