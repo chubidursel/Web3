@@ -9,6 +9,7 @@ import { contractERC20 } from '../../components/smart_contract/erc20';
 import conectSigner from '../../components/smart_contract/SIGNER';
 import Loader from '../../components/loader';
 import getErrorMessage from '../../components/getErrorMessage';
+import ethereum from "../../assets/ethereum.png"
 
 
 export function Exchange() {
@@ -17,6 +18,8 @@ export function Exchange() {
   const [rateCwt, setRateCwt] = useState<any>(); // How much ETH for 1 CWT
   const [amountBuy, setAmountBuy] = useState<any>();
   const [amountSell, setAmountSell] = useState(0);
+  const [changeSwap, setChangeSwap] = useState(true)
+console.log(amountBuy);
 
   // const [showEvents, setShowEvents] =useState(false)
   const [showEvent, setShowEvent] = useState(false)
@@ -48,7 +51,7 @@ export function Exchange() {
 
   const handleBuy = async()=>{
     //contract get amount of ETH u want to send to this SC and according to Rate recive certain amount of CWT
-    const convertEthToCwt = amountBuy * rateCwt // 1 * 0.01 
+    const convertEthToCwt = amountBuy // 1 * 0.01 - i've corrected this because there is new logic in swap
 
     try {
       if(convertEthToCwt * 100 <= Number(cwt) ){setLoader(true)
@@ -108,9 +111,11 @@ const contractExchangeWithSigner = conectSigner(contractExchange)
       <h1 className='mt-3'>💡 If u do not have any of these token, we recommend  you to visit one of Goerli faucet website, to get free goerli token</h1>
     </div>
   </Header>
+  
     <div className='flex justify-around'>
     <HeaderExchange handleToggle={handleToggle}/></div>
-  <div className='flex justify-center text-purple-800'>
+
+  {/* <div className='flex justify-center text-purple-800'>
     <div className='bg-blue-100 w-1/2 rounded-2xl border-4 border-red-400 text-xl px-[15px] py-5 m-8'>
     <h1 className=" text-3xl text-center mb-2 font-bold m-1">You wanna get some CWT tokens?</h1>
      
@@ -143,10 +148,71 @@ const contractExchangeWithSigner = conectSigner(contractExchange)
             </div>  
            <div className='flex justify-center'> {result && <h1 className='font-bold mt-3 bg-yellow-100 w-full py-2 text-center  px-1 rounded-xl text-purple-900 text-xl '>{result}</h1>}   </div>
             </div>
-        {/* <Result /> */}
-        {/* {error && <div>{error}</div>} */}
-    </div></div>
+    </div></div> */}
+
+{/* New design */}
+
+<div className="relative text-purple-800 grid border-red-400 rounded-xl border-2 h-max w-[40%] mt-20 m-[auto] bg-blue-50 grid-cols-[1fr_1fr] grid-rows-[1fr_1fr_1fr_1fr]">
+  <div className="font-bold text-2xl p-2 m-2">Swap your money </div>
+  <div className="text-lg p-2 m-2 h-[40%] justify-self-end bg-blue-100 rounded-lg">1 CWT = {rateCwt} ETH</div>
+  
+{changeSwap 
+? <>
+<div className='h-28 col-span-2 bg-blue-100 rounded-2xl mx-3'>
+<div className="flex justify-between p-2 max-w-full overflow-hidden">
+    <input min='0' type="number" className='bg-blue-100 w-[50%] rounded-lg text-5xl p-1 border-none outline-none appearance-none' 
+    onChange={e => setAmountBuy(e.target.value as any)} placeholder='ETH' />
+    <img src={ethereum} alt="coin"  className='h-12 w-12'/>
+</div>
+</div>
+
+<div className="inline-flex absolute bottom-1/2 -mb-6 -ml-5 left-1/2 z-10 w-[8,5%] border-[5px] bg-blue-100 border-blue-50 rounded-lg text-center font-extrabold text-3xl text-blue-50">
+{loader 
+? <div className='-mr-2'><Loader /></div>
+: <button onClick={() => setChangeSwap(!changeSwap)}>↑↓</button>}</div>
+
+<div className='col-span-2 bg-blue-100 rounded-2xl mt-[6px] mx-3'>
+<div className="flex justify-between p-2 max-w-full">
+<div className='text-5xl'>{amountBuy ? <p className='text-purple-800'>{amountBuy*100}</p> : <p className='text-gray-400'>CWT</p>}
+</div>
+<div className='font-bold text-3xl text-blue-50 rounded-lg bg-purple-800 p-1 h-[50%]'>CWT</div>
+</div>
+</div>
+</>
+: <>
+<div className='h-28 col-span-2 bg-blue-100 rounded-2xl mx-3'>
+<div className="flex justify-between p-2 max-w-full">
+    <input min='0' type='number' className='bg-blue-100 w-[50%] rounded-lg text-5xl p-1 border-none outline-none' 
+    onChange={e => setAmountSell(e.target.value as any)} placeholder='CWT' />
+<div className='font-bold text-3xl text-blue-50 rounded-lg bg-purple-800 p-1 h-[50%]'>CWT</div>
+
+</div>
+</div>
+
+<div className="inline-flex absolute bottom-1/2 -mb-6 -ml-5 left-1/2 z-10 w-[8,5%] border-[5px] bg-blue-100 border-blue-50 rounded-lg text-center font-extrabold text-3xl text-blue-50">
+{loaderSell 
+? <div className='-mr-2'><Loader /></div>
+: <button onClick={() => setChangeSwap(!changeSwap)}>↑↓</button>}</div>
+
+<div className='col-span-2 bg-blue-100 rounded-2xl mt-[6px] mx-3'>
+<div className="flex justify-between p-2 max-w-full">
+<div className='text-5xl'>{amountSell ? <p className='text-purple-800'>{amountSell*0.01}</p> : <p className='text-gray-400'>ETH</p>}
+</div>
+<img src={ethereum} alt="coin"  className='h-12 w-12'/>
+
+</div>
+</div></>
+}
+  <div className="self-end col-span-2 h-[60%]">
+      <button onClick={changeSwap ? handleBuy : handleSell}
+  className="font-bold rounded-xl h-[80%] text-2xl w-[96%] mx-3 bg-blue-100 hover:bg-red-400">SWAP</button>            
+      </div>
+    </div>
+    
+    <div className='m-[auto] w-[50%]'> {result && <h1 className='font-bold mt-3 bg-yellow-100 py-2 text-center  px-1 rounded-xl text-purple-900 text-xl '>{result}</h1>}   </div>
+
     <div className='flex justify-center'>{showEvent && <EventsExchange />}</div>
+
     </>
   )
 }
