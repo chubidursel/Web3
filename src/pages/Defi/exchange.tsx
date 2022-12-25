@@ -112,48 +112,13 @@ const contractExchangeWithSigner = conectSigner(contractExchange)
     </div>
   </Header>
   
-    <div className='flex justify-around'>
-    <HeaderExchange handleToggle={handleToggle}/></div>
+    {/* <div className='flex justify-around'>
+    <HeaderExchange handleToggle={handleToggle}/>
+    </div> */}
 
-  {/* <div className='flex justify-center text-purple-800'>
-    <div className='bg-blue-100 w-1/2 rounded-2xl border-4 border-red-400 text-xl px-[15px] py-5 m-8'>
-    <h1 className=" text-3xl text-center mb-2 font-bold m-1">You wanna get some CWT tokens?</h1>
-     
-   
-    <div className='flex justify-around text-center'>
-            <div className='grid grid-cols-1 gap-3 w-56 rounded-2xl border-2 border-red-400 px-[15px] p-1'>
-              <p className='font-bold'>Exchange rate: </p>
-              <p>1 CWT = {rateCwt} ETH</p>
-            </div>
-            <div className='grid grid-cols-1 gap-3 rounded-2xl border-2 border-red-400 px-[15px] p-1'>
-              <p className='font-bold'>Current amount of:</p>
-              <p>CWT: {cwt}</p>
-              <p>ETH: {eth} </p>
-            </div>
-          </div>
-          <div className='rounded-2xl border-2 border-red-400 px-[15px] p-2 m-2'>
-          <h1 className='text-center font-bold text-3xl mb-2 p-1'>Exchange</h1>
-          <div className='flex justify-around flex-wrap'>
-          <div className="grid grid-cols-1 gap-3 w-72">
-                <input type='number' min='0' className='rounded-xl text-center p-1 hover:shadow-lg' onChange={e => setAmountBuy(e.target.value as any)} placeholder='amount of CWT' />
-                {loader ? 
-            <Loader /> : <button onClick={handleBuy} className="font-bold rounded-xl py-1 text-2xl hover:shadow-xl border-2 border-red-400 px-[15px] hover:bg-red-400">buy</button>}            
-        </div>
 
-        <div className="grid grid-cols-1 gap-3 w-72 my-1">
-                <input type='number' min='0' className='rounded-xl text-center p-1 hover:shadow-lg' onChange={e => setAmountSell(e.target.value as any)} placeholder='amount of CWT' />
-                {loaderSell ? 
-            <Loader /> : <button onClick={handleSell} className="font-bold py-1 text-2xl hover:shadow-xl rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400">sell</button>}           
-            </div>
-            </div>  
-           <div className='flex justify-center'> {result && <h1 className='font-bold mt-3 bg-yellow-100 w-full py-2 text-center  px-1 rounded-xl text-purple-900 text-xl '>{result}</h1>}   </div>
-            </div>
-    </div></div> */}
-
-{/* New design */}
-
-<div className="relative text-purple-800 grid border-red-400 rounded-xl border-2 h-max w-[40%] mt-20 m-[auto] bg-blue-50 grid-cols-[1fr_1fr] grid-rows-[1fr_1fr_1fr_1fr]">
-  <div className="font-bold text-2xl p-2 m-2">Swap your money </div>
+<div className="relative text-purple-800 grid border-red-400 rounded-xl border-2 h-max w-[40%] my-10 m-[auto] bg-blue-50 grid-cols-[1fr_1fr] grid-rows-[1fr_1fr_1fr_1fr]">
+  <div className="font-bold text-2xl p-2 m-2">Swap</div>
   <div className="text-lg p-2 m-2 h-[40%] justify-self-end bg-blue-100 rounded-lg">1 CWT = {rateCwt} ETH</div>
   
 {changeSwap 
@@ -205,13 +170,12 @@ const contractExchangeWithSigner = conectSigner(contractExchange)
 }
   <div className="self-end col-span-2 h-[60%]">
       <button onClick={changeSwap ? handleBuy : handleSell}
-  className="font-bold rounded-xl h-[80%] text-2xl w-[96%] mx-3 bg-blue-100 hover:bg-red-400">SWAP</button>            
+  className="font-bold rounded-xl h-[80%] text-2xl w-[96%] mx-3 bg-blue-100 hover:bg-red-400 hover:shadow-xl">SWAP</button>            
       </div>
     </div>
     
-    <div className='m-[auto] w-[50%]'> {result && <h1 className='font-bold mt-3 bg-yellow-100 py-2 text-center  px-1 rounded-xl text-purple-900 text-xl '>{result}</h1>}   </div>
+    <div className='m-[auto] w-[50%] mb-5'> {result && <h1 className='font-bold mt-3 bg-yellow-100 py-2 text-center  px-1 rounded-xl text-purple-900 text-xl '>{result}</h1>}   </div>
 
-    <div className='flex justify-center'>{showEvent && <EventsExchange />}</div>
 
     </>
   )

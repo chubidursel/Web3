@@ -21,6 +21,7 @@ import { Address } from "./pages/Other/Address";
 import { Game } from "./pages/Other/Game";
 import { AAVE } from "./pages/Defi/AAVE";
 import { Bridge } from "./pages/Defi/bridge";
+import {Terminal} from "./pages/Other/Terminal"
 
 function App() {
   return (
@@ -47,7 +48,7 @@ function App() {
       <Route path="/Other/Ipfs" element={<Ipfs />} />
       <Route path="/Other/Address" element={<Address />} />
       <Route path="/Game" element={<Game />} />
-
+      <Route path="/Terminal" element={<Terminal />} />
     </Routes>
   )
 }

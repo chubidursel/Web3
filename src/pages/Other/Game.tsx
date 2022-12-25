@@ -58,10 +58,16 @@ export function Game() {
 
     } catch (error) {
       console.log("❌ ❌ ❌ DEV >>>", error)
-      const message = getErrorMessage(error);
-      setResult(message)
-      setCoin({...coin, run:false})      
-      setTimeout(() => {setResult('')}, 3000)
+      console.log("⚠️⚠️⚠️ ERR CODE >>>", error.code)
+
+      if( error.code == 'UNPREDICTABLE_GAS_LIMIT'){ // IF USER DIDNT SET UP BANK AND BET
+        setResult('⚙️ SET UP ur game before u can play ⚙️')
+      } else {
+        const message = getErrorMessage(error);
+        setResult(message)
+      }
+      setCoin({...coin, run:false})  
+      setTimeout(() => {setResult('')}, 5000)
       setLoader(false)
     }
   }
@@ -109,7 +115,7 @@ export function Game() {
     </div>
               
         <div className='flex justify-center'>
-        {result && <h1 className='text-center text-xl bg-blue-200 rounded-xl mt-3 py-4 px-2'>{result}</h1> }
+        {result && <h1 className='text-center text-xl bg-blue-200 rounded-xl my-3 py-4 px-2'>{result}</h1> }
         </div>
  
   </div>
