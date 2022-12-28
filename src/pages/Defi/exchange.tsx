@@ -1,16 +1,14 @@
-import React from 'react'
 import { ethers } from "ethers";
 import {useState, useEffect} from 'react';
 import { contractExchange } from '../../components/smart_contract/exchange'
 import Header from '../../components/headerNew';
-import EventsExchange from './components/exchange/EventsExchange';
-import HeaderExchange from './components/exchange/headerExchange';
 import { contractERC20 } from '../../components/smart_contract/erc20';
 import conectSigner from '../../components/smart_contract/SIGNER';
 import Loader from '../../components/loader';
 import getErrorMessage from '../../components/getErrorMessage';
 import ethereum from "../../assets/ethereum.png"
-
+import { useAppContext } from "../../hooks/useAppContext";
+import defaultProvider from "../../abi/defaultProvider";
 
 export function Exchange() {
   const [cwt, setCwt] = useState();
@@ -19,7 +17,7 @@ export function Exchange() {
   const [amountBuy, setAmountBuy] = useState<any>();
   const [amountSell, setAmountSell] = useState(0);
   const [changeSwap, setChangeSwap] = useState(true)
-console.log(amountBuy);
+
 
   // const [showEvents, setShowEvents] =useState(false)
   const [showEvent, setShowEvent] = useState(false)
@@ -28,8 +26,11 @@ console.log(amountBuy);
   const [loader, setLoader] = useState(false)
   const [loaderSell, setLoaderSell] = useState(false)
 
-
   const [result, setResult] = useState('');   // ALL RESULT (SUCC , ERR, Pand)
+
+  // 📕 GET BALLANCE FOR ETH / CWT  
+  const { contextState, } = useAppContext();
+  const currentAccount = contextState?.currentAccount ;
   
   useEffect(()=>{
     (async()=>{
@@ -42,6 +43,17 @@ console.log(amountBuy);
 
         const getRate = await contractExchange.rate();
         setRateCwt(getRate.toString() / 1000000000000000000)
+
+  // 📕 GET BALLANCE FOR ETH / CWT 
+       if(currentAccount){
+        const balanceCWT = await contractERC20.balanceOf(currentAccount);
+        console.log('📕 CWT>>>', balanceCWT)
+        const balanceETH = await defaultProvider.getBalance(currentAccount);
+        console.log('📕 ETH>>>', balanceETH)
+       } else{
+        console.log('📕 Connect MetaMask >>>', currentAccount)
+       }
+
 
       } catch (error) {
         console.log(error)
