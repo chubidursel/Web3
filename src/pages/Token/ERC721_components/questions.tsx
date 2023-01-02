@@ -1,29 +1,57 @@
+import { motion } from 'framer-motion';
+import Section from './../ERC721_components/section';
+
+
+
+const faq = {
+  visible: custom => ({ opacity: 1, scale: 1, transition: { duration: 0.8, delay: 0.5 * custom, ease: [0, 0.71, 0.2, 1.01] } }),
+  hidden: { opacity: 0, scale: 0.5 }
+};
+
+
 
 const Questions = () => {
    
     return ( <>
 <div>
-      <section className="text-gray-700">
+      <section className="text-white text-xl">
         <div className="container px-5 py-24 mx-auto">
           <div className="text-center mb-20">
-            <h1 className="sm:text-5xl text-2xl font-medium text-center title-font text-blue-200 mb-4">
+            <Section>
+            <motion.h1 
+            className="sm:text-5xl text-3xl font-bold text-center title-font text-blue-200 mb-4"
+            variants={faq}
+            custom={1}
+            >
               Frequently Asked Question
-            </h1>
+            </motion.h1>
+            </Section>
 
           </div>
           <div className="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
             <div className="w-full lg:w-1/2 px-4 py-2">
-              <details className="mb-4">
-                <summary className="font-semibold  bg-blue-100 rounded-md py-2 px-4">
+<Section>
+<motion.details 
+className="mb-4"
+variants={faq}
+custom={2}
+>
+                <summary className="font-semibold text-black  bg-gray-200 rounded-md py-2 px-4">
                   Where do we store data?
                 </summary>
-
                 <span className="text-white">
                   Metadata and images are stored on IPFS and Pinata
                 </span>
-              </details>
-              <details className="mb-4">
-                <summary className="font-semibold bg-gray-200 rounded-md py-2 px-4">
+              </motion.details>
+
+</Section>
+<Section>
+<motion.details 
+className="mb-4"
+variants={faq}
+custom={3}
+>
+                <summary className="font-semibold bg-gray-200 text-black rounded-md py-2 px-4">
                   Can I install/upload anything I want on there?
                 </summary>
 
@@ -32,9 +60,14 @@ const Questions = () => {
                   Dolore ex aute deserunt esse ipsum elit aliqua. Aute quis
                   minim velit nostrud pariatur culpa magna in aute.
                 </span>
-              </details>
-              <details className="mb-4">
-                <summary className="font-semibold  bg-gray-200 rounded-md py-2 px-4">
+              </motion.details>
+</Section>
+<Section>
+<motion.details 
+className="mb-4"
+variants={faq}
+custom={4}>
+                <summary className="font-semibold text-black bg-gray-200 rounded-md py-2 px-4">
                   How can I migrate to another site?
                 </summary>
 
@@ -43,11 +76,17 @@ const Questions = () => {
                   Dolore ex aute deserunt esse ipsum elit aliqua. Aute quis
                   minim velit nostrud pariatur culpa magna in aute.
                 </span>
-              </details>
+              </motion.details>
+</Section>
+
             </div>
             <div className="w-full lg:w-1/2 px-4 py-2">
-              <details className="mb-4">
-                <summary className="font-semibold  bg-gray-200 rounded-md py-2 px-4">
+<Section>
+<motion.details 
+className="mb-4"
+variants={faq}
+custom={5}>
+                <summary className="font-semibold text-black bg-gray-200 rounded-md py-2 px-4">
                   Can I change the domain you give me?
                 </summary>
 
@@ -56,9 +95,14 @@ const Questions = () => {
                   Dolore ex aute deserunt esse ipsum elit aliqua. Aute quis
                   minim velit nostrud pariatur culpa magna in aute.
                 </span>
-              </details>
-              <details className="mb-4">
-                <summary className="font-semibold  bg-gray-200 rounded-md py-2 px-4">
+              </motion.details>
+</Section>
+<Section>
+<motion.details 
+className="mb-4"
+variants={faq}
+custom={6}>
+                <summary className="font-semibold text-black bg-gray-200 rounded-md py-2 px-4">
                   How many sites I can create at once?
                 </summary>
 
@@ -67,9 +111,14 @@ const Questions = () => {
                   Dolore ex aute deserunt esse ipsum elit aliqua. Aute quis
                   minim velit nostrud pariatur culpa magna in aute.
                 </span>
-              </details>
-              <details className="mb-4">
-                <summary className="font-semibold  bg-gray-200 rounded-md py-2 px-4">
+              </motion.details>
+</Section>
+<Section>
+<motion.details 
+className="mb-4"
+variants={faq}
+custom={7}>
+                <summary className="font-semibold text-black bg-gray-200 rounded-md py-2 px-4">
                   How can I communicate with you?
                 </summary>
 
@@ -78,7 +127,8 @@ const Questions = () => {
                   Dolore ex aute deserunt esse ipsum elit aliqua. Aute quis
                   minim velit nostrud pariatur culpa magna in aute.
                 </span>
-              </details>
+              </motion.details>
+</Section>
             </div>
           </div>
         </div>
