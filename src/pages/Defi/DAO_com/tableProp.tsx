@@ -30,11 +30,11 @@ export function PrposalTable() {
       try {
         setLoader(true)
         const indexProp = await contractDAO.nextProposal();
-        const index = indexProp -1;
+        const index = indexProp - 1;
 
         let arrAllProp = [];
 
-        for(let i = 0; i <= index; i++){
+        for(let i = 1; i <= index; i++){
           const data = await contractDAO.Proposals(i);
 
           const newProp  = {
@@ -50,7 +50,6 @@ export function PrposalTable() {
           arrAllProp.push(newProp)
         }
         setAllProp([...arrAllProp] as any)
-        console.log(allProp)
         setLoader(false)
       } catch (error) {
         console.log(error)
@@ -91,7 +90,7 @@ export function PrposalTable() {
    
    
    </div>
-   <table className='bg-orange-100 w-full  my-2 text-xl rounded-2xl text-center'>
+   <table className='bg-orange-100 w-full  my-2 text-xl text-center'>
      <tr className='bg-orange-300 '>
        <th>id</th>
        <th>desciption</th>

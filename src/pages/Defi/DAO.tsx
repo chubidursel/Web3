@@ -14,10 +14,8 @@ export function DAO() {
   useEffect((()=>{
     (async()=>{
       try {
-        const numMinted = await contractERC721.numOfNft()
+        const numMinted = await contractERC721.amountMintedNFT()
         setAmountVote(numMinted.toString())
-        // const numVote = await contractDAO.nextProposal();
-        // console.log(numVote)
       } catch (error) {
         console.log(error)
       }
@@ -39,7 +37,7 @@ export function DAO() {
       <div>
             <h2 className="flex justify-center text-6xl text-blue-100 font-bold m-3 mb-5">DAO</h2>
             <div className="flex justify-center space-x-4 text-white m-6">
-                <a href='https://goerli.etherscan.io/address/0x76086675490192222654F93a15761f53a5B96a15#code' target="_blank" 
+                <a href='https://goerli.etherscan.io/address/0x05C94576Ef2aCB916D64e714b477a8814F58Aa7a#code' target="_blank" 
                 className="font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400">Etherscan </a>  
              
              <Link to="/Token/ERC721"> <button className="font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400">

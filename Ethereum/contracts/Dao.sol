@@ -3,7 +3,7 @@ pragma solidity ^0.8.9;
 
 interface MyNFT {
         function balanceOf(address) external view returns (uint256);
-         function numOfNft() external  view returns (uint num);
+        function amountMintedNFT() external  view returns (uint num);
     }
 
 contract DaoSimple {
@@ -66,7 +66,7 @@ contract DaoSimple {
         newProposal.exists = true;
         newProposal.description = _description;
         newProposal.deadline = block.timestamp + _time;
-        newProposal.maxVotes = daoContract.numOfNft();
+        newProposal.maxVotes = daoContract.amountMintedNFT();
          newProposal.initiator = msg.sender;
 
         emit proposalCreated(nextProposal, _description, msg.sender);

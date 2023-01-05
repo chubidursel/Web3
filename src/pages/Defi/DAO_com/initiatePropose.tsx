@@ -12,7 +12,7 @@ export function InitiatePropse() {
 
 // GET OWNER
 const[ownerOrNot, setOwnrOrNot ] = useState(false)
-const { contextState, updateContextState } = useAppContext();
+const { contextState, } = useAppContext();
 const currentAccount = contextState?.currentAccount;
 
 useEffect((()=>{
@@ -29,19 +29,20 @@ useEffect((()=>{
 
   const handleCreate = async() =>{
     try {
+
       setResult("Please sign the transation in MetaMask 📝 and wait till this tx will be confirmed in blockchain")
       const minTime = timeProp * 60
       const contractDAOWithSigner = conectSigner(contractDAO)
+      console.log('👨‍💻DEV ???? ', descProp, minTime)
       const txCreate = await contractDAOWithSigner.createProposal(descProp, minTime)
       await txCreate.wait(1);
-      console.log(txCreate);
+      console.log('👨‍💻DEV>>', txCreate);
       setTimeout(() => {setResult('')}, 5000)
     } catch (error) {
       const message = getErrorMessage(error);
       setResult(message)
       setTimeout(() => {setResult('')}, 5000)
     }
-
   }
 
   return (<>
