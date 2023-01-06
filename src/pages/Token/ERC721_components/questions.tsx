@@ -1,12 +1,32 @@
 import { motion } from 'framer-motion';
 import Section from './../ERC721_components/section';
 
-
-
 const faq = {
   visible: custom => ({ opacity: 1, scale: 1, transition: { duration: 0.8, delay: 0.5 * custom, ease: [0, 0.71, 0.2, 1.01] } }),
   hidden: { opacity: 0, scale: 0.5 }
 };
+const leftAnimation = {
+  hidden:{
+    x: -1000,
+    opacity: 0,
+  },
+  visible: custom => ({
+    x: 0,
+    opacity: 1,
+    transition: {duration: 3, delay: 0.5 * custom},
+})}
+
+const rightAnimation = {
+  hidden:{
+    x: 1500,
+    opacity: 0,
+  },
+  visible: custom => ({
+    x: 650,
+    opacity: 1,
+    transition: {duration: 3, delay: 0.5 * custom}
+  }),
+}
 
 
 
@@ -14,12 +34,12 @@ const Questions = () => {
    
     return ( <>
 <div>
-      <section className="text-white text-xl">
+      <section className="text-white text-xl h-[100vh]">
         <div className="container px-5 py-24 mx-auto">
           <div className="text-center mb-20">
             <Section>
             <motion.h1 
-            className="sm:text-5xl text-3xl font-bold text-center title-font text-blue-200 mb-4"
+            className="text-5xl font-bold text-center title-font text-blue-200 mb-4"
             variants={faq}
             custom={1}
             >
@@ -28,15 +48,17 @@ const Questions = () => {
             </Section>
 
           </div>
-          <div className="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
-            <div className="w-full lg:w-1/2 px-4 py-2">
+          <div className="flex flex-wrap w-1/2 text-3xl">
+            <div className="w-full px-4 py-2">
 <Section>
 <motion.details 
 className="mb-4"
-variants={faq}
+variants={leftAnimation}
 custom={2}
 >
-                <summary className="font-semibold text-black  bg-gray-200 rounded-md py-2 px-4">
+                <summary 
+                className="font-semibold text-black  bg-blue-100
+                 bg-opacity-50 rounded-md py-2 px-4 ">
                   Where do we store data?
                 </summary>
                 <span className="text-white">
@@ -48,10 +70,11 @@ custom={2}
 <Section>
 <motion.details 
 className="mb-4"
-variants={faq}
+variants={rightAnimation}
 custom={3}
 >
-                <summary className="font-semibold bg-gray-200 text-black rounded-md py-2 px-4">
+                <summary className="font-semibold  bg-blue-100
+                 bg-opacity-50  text-black rounded-md py-2 px-4">
                   Can I install/upload anything I want on there?
                 </summary>
 
@@ -65,9 +88,10 @@ custom={3}
 <Section>
 <motion.details 
 className="mb-4"
-variants={faq}
+variants={leftAnimation}
 custom={4}>
-                <summary className="font-semibold text-black bg-gray-200 rounded-md py-2 px-4">
+                <summary className="font-semibold text-black  bg-blue-100
+                 bg-opacity-50  rounded-md py-2 px-4">
                   How can I migrate to another site?
                 </summary>
 
@@ -79,14 +103,13 @@ custom={4}>
               </motion.details>
 </Section>
 
-            </div>
-            <div className="w-full lg:w-1/2 px-4 py-2">
 <Section>
 <motion.details 
 className="mb-4"
-variants={faq}
+variants={rightAnimation}
 custom={5}>
-                <summary className="font-semibold text-black bg-gray-200 rounded-md py-2 px-4">
+                <summary className="font-semibold text-black  bg-blue-100
+                 bg-opacity-50  rounded-md py-2 px-4">
                   Can I change the domain you give me?
                 </summary>
 
@@ -100,25 +123,27 @@ custom={5}>
 <Section>
 <motion.details 
 className="mb-4"
-variants={faq}
+variants={leftAnimation}
 custom={6}>
-                <summary className="font-semibold text-black bg-gray-200 rounded-md py-2 px-4">
+                <summary className="font-semibold text-black  bg-blue-100
+                 bg-opacity-50  rounded-md py-2 px-4">
                   How many sites I can create at once?
                 </summary>
 
                 <span className="px-4 py-2">
                   Laboris qui labore cillum culpa in sunt quis sint veniam.
                   Dolore ex aute deserunt esse ipsum elit aliqua. Aute quis
-                  minim velit nostrud pariatur culpa magna in aute.
+                  minim velit.
                 </span>
               </motion.details>
 </Section>
-<Section>
+{/* <Section>
 <motion.details 
 className="mb-4"
-variants={faq}
+variants={rightAnimation}
 custom={7}>
-                <summary className="font-semibold text-black bg-gray-200 rounded-md py-2 px-4">
+                <summary className="font-semibold text-black  bg-blue-100
+                 bg-opacity-50 rounded-md py-2 px-4">
                   How can I communicate with you?
                 </summary>
 
@@ -128,7 +153,7 @@ custom={7}>
                   minim velit nostrud pariatur culpa magna in aute.
                 </span>
               </motion.details>
-</Section>
+</Section> */}
             </div>
           </div>
         </div>

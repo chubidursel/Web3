@@ -9,6 +9,9 @@ import nft2 from "../../assets/nft2.png"
 import nft3 from "../../assets/nft3.png"
 import nft4 from "../../assets/nft4.png"
 import nft5 from "../../assets/nft5.png"
+import dao from "../../assets/dao.png"
+import auction from "../../assets/auction.png"
+import otherr from "../../assets/otherr.png"
 import Questions from './ERC721_components/questions';
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -17,22 +20,22 @@ import Section from './ERC721_components/section';
 
 const leftAnimation = {
   hidden:{
-    x: -1000,
+    x: -500,
     opacity: 0,
   },
   visible: {
-    x: -300,
+    x: 100,
     opacity: 1,
     transition: {duration: 3, delay: 1},
 }}
 
 const rightAnimation = {
   hidden:{
-    x: 600,
+    x: 900,
     opacity: 0,
   },
   visible: {
-    x: 300,
+    x: 450,
     opacity: 1,
     transition: {duration: 3, delay: 1}
   },
@@ -64,23 +67,37 @@ const downAnimation = {
     transition: {duration: 2}
   },
 }
-const coinsAnim = {
-  hidden:{
-    x: -1000,
-    opacity: 0,
-  },
-  visible: {
-    x: 0,
-    opacity: 1,
-    transition: {duration: 2}
-  },
-}
+const faq = {
+  visible: custom => ({ opacity: 1, scale: 1, transition: { duration: 1.5, delay: 1 * custom, ease: [0, 0.71, 0.2, 1.01] } }),
+  hidden: { opacity: 0, scale: 0.5 }
+};
 
-let coins = ["1","2","3","4","5"];
-let nft = 'nft'
-const c = coins.map((i,id) => <img key={id} src={`nft${i}`} className='w-[10%]'/>)
-
-console.log(c);
+const img = [{
+  title: 'Tired fish',
+  src: nft1,
+  custom: 5, 
+},
+{
+  title: 'Sick love',
+  src: nft2,
+  custom: 2, 
+},
+{
+  title: 'Hungry Mosquito',
+  src: nft3,
+  custom: 3, 
+},
+{
+  title: 'Enamored Bananas',
+  src: nft4,
+  custom: 4, 
+},
+{
+  title: 'Sick Duck',
+  src: nft5,
+  custom: 1, 
+},
+]
 
 export function ERC721() {
   const [result, setResult] = useState("");
@@ -132,37 +149,33 @@ export function ERC721() {
     </div>
     </Header>
 
-    <section id='links'>
-    <div>
-
-            <div className="flex justify-center gap-10 text-white my-10">
+<div className="flex justify-end m-3">
+            <div className="flex flex-col items-end fixed gap-3 text-white">
                 <a href='https://goerli.etherscan.io/address/0x3eEEaEe76C2D5d4a1E72106F13AB82F750b19994' target="_blank" 
                 className="font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400">Etherscan </a>
             
             <a href='https://testnets.opensea.io/collection/circleart' target="_blank" 
                 className="font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400">OpenSea </a>
           
-            </div>
-        </div>
-    </section>
+            </div></div>
 
 
 <div 
-className='grid grid-cols-1 w-[97vw] gap-32'
+className='grid grid-cols-1 w-[96vw] gap-32'
 >
 <Section>
   <div className="flex justify-center">
   <motion.img 
         src={nftt} 
         alt="APE"  
-        className='w-[40%] h-[70vh] -m-32 -z-50'
+        className='w-[30%] h-[70vh] -m-20 -z-50'
         variants={upAnimation}
         />
   </div>
 </Section>
 
         <Section>
-        <div className="flex justify-center -m-11">
+        <div className="flex justify-center -m-5">
         <motion.div
         variants={downAnimation}
         >
@@ -178,69 +191,110 @@ className='grid grid-cols-1 w-[97vw] gap-32'
 </Section>
 
 <Section>
-<motion.section 
-    className=" h-[30vh] mt-20"
-    variants={coinsAnim}
->
-  <div className='text-white font-bold text-center text-3xl m-3'>
+  <motion.div variants={faq} className='flex justify-center'>
+      <div className='text-white font-bold text-5xl mb-10 mt-44 bg-blue-100 bg-opacity-50 rounded-2xl w-fit flex justify-center p-5'>
   <p>Here you can see few variants of our NFT</p>
   </div>
-<div className="flex justify-center gap-5">
-  {/* {[1,2,3,4,5].map((i,id) => {<img key={id} src={`nft${i}`} className='w-[13%]'/>)} */}
-<img src={nft1} className='w-[13%]'/>
-<img src={nft4} className='w-[13%]'/>
-<img src={nft3} className='w-[13%]'/>
-<img src={nft5} className='w-[13%]'/> 
-<img src={nft2} className='w-[13%]'/>
+
+  </motion.div>
+<div 
+className="grid grid-cols-[250px_250px_250px] justify-around h-[300px]">
+{img.slice(0,3).map(({custom, title, src}) => 
+  <motion.div 
+  variants={faq}
+custom={custom}
+className='bg-blue-100 bg-opacity-50 rounded-2xl grid grid-cols-1'>
+<img src={src}/>
+<p className='text-3xl font-bold text-center'>{title}</p>
+</motion.div>)
+}  
+</div>
+<div className='grid grid-cols-[250px_250px] mt-20 justify-center gap-64 h-[300px]'>
+{img.slice(3).map(({custom, title, src}) => 
+  <motion.div 
+  variants={faq}
+custom={custom}
+className='bg-blue-100 bg-opacity-50 rounded-2xl grid grid-cols-1'>
+<img src={src}/>
+<p className='text-3xl font-bold text-center'>{title}</p>
+</motion.div>)
+}  
+
+
   </div>
-    </motion.section>
 </Section>
 
 <Section>
-<div className="flex justify-center">
-  <motion.section 
-    className="bg-blue-200 px-5 py-2 text-2xl rounded-lg border-4  border-red-400 w-1/5 h-[30vh]"
+          <motion.div 
+    className="bg-blue-100 bg-opacity-50 p-5 text-2xl rounded-2xl 
+    w-[1000px] h-[60vh] justify-between grid grid-cols-[_1fr_1fr] gap-10 items-stretch" 
     variants={rightAnimation}
 >
-            <h1>i think we have to</h1> 
-            <p>create here some interactive</p>
-            <p>form which allows to get info </p>
-             <p> about nft if user has it</p>
-            <p>or about that he hasn't</p>
-        </motion.section>
-        </div>
+  <div className='text-center'>
+            <h1 className='text-3xl font-bold'>There is a simple implemetation of DAO. How does it work?</h1> <br/>
+<p className='text-left'>The NFT-holders can create an proposal and vote for them.</p><br/>
+<p className='text-right'> If you want to participate and be a member of our DAO you need to get one of our token which u can get in a few different way (buy it on the Auction, in the shop or buy dirrectly from the smart contract)</p><br/>
+  </div>
+  <div className='self-center'>
+  <Link to="../Defi/Market/Auction" >
+   <motion.img className=''
+   src={otherr}
+   whileHover={{scale: 1.3}}
+   />
+   </Link>
+  </div>
+        </motion.div >
 </Section>
 
+
 <Section>
-<div className="flex justify-center">
           <motion.div 
-    className="bg-blue-100 p-5 text-2xl rounded-2xl w-1/5 h-[30vh] text-center" 
+    className="bg-blue-100 bg-opacity-50 p-5 text-2xl rounded-2xl 
+    w-[1000px] h-[60vh] justify-between grid grid-cols-[_1fr_1fr] gap-10" 
     variants={leftAnimation}
 >
-        <h1> Here you can create a new smart contract and sell NFT! </h1> 
-<button className='border-2 border-black text-5xl bg-blue-200 rounded-lg hover:bg-blue-400 p-3 m-3'>
-<Link to="../Defi/Market/Auction" >GO!</Link>
-</button>
+  <div className='text-center'>
+            <h1 className='text-3xl font-bold'> Here you can create a new smart contract and sell NFT! </h1> <br/>
+<p className='text-left'>Without write a single line of code Exited!,isn't it? 🤩</p><br/>
+<p className='text-right'> How does it work?</p><br/>
+<p className='text-left'>There is factory smart contract with create a Auction contract where you can sell our NFT</p> 
+  </div>
+  <div className=''>
+  <Link to="../Defi/Market/Auction" >
+   <motion.img 
+   src={auction}
+   whileHover={{scale: 1.3}}
+   />
+   </Link>
+  </div>
         </motion.div >
-        </div>
 </Section>
   
 <Section>
-<div className="flex justify-center">
           <motion.div 
-    className="bg-blue-100 p-5 text-2xl rounded-2xl w-1/5 h-[30vh] text-center" 
+    className="bg-blue-100 bg-opacity-50 p-5 text-2xl rounded-2xl 
+    w-[1000px] h-[60vh] justify-between grid grid-cols-[_1fr_1fr] gap-10 items-stretch" 
     variants={rightAnimation}
 >
-        <h1>There is a simple implemetation of DAO! Take part in it with your NFT!</h1> 
-<button className='border-2 border-black text-5xl bg-blue-200 rounded-lg hover:bg-blue-400 p-3 m-3'>
-<Link to="../DAO">GO!</Link>
-</button>
+  <div className='text-center'>
+            <h1 className='text-3xl font-bold'>There is a simple implemetation of DAO. How does it work?</h1> <br/>
+<p className='text-left'>The NFT-holders can create an proposal and vote for them.</p><br/>
+<p className='text-right'> If you want to participate and be a member of our DAO you need to get one of our token which u can get in a few different way (buy it on the Auction, in the shop or buy dirrectly from the smart contract)</p><br/>
+  </div>
+  <div className='self-center'>
+  <Link to="../Defi/Market/Auction" >
+   <motion.img className=''
+   src={otherr}
+   whileHover={{scale: 1.3}}
+   />
+   </Link>
+  </div>
         </motion.div >
-        </div>
 </Section>
-
     <section>
-      <Questions />
+      <div className=''>
+         <Questions />
+      </div>
     </section>
     </div>
     </>
