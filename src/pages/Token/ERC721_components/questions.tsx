@@ -18,11 +18,11 @@ const leftAnimation = {
 
 const rightAnimation = {
   hidden:{
-    x: 1500,
+    x: 1000,
     opacity: 0,
   },
   visible: custom => ({
-    x: 650,
+    x: 0,
     opacity: 1,
     transition: {duration: 3, delay: 0.5 * custom}
   }),
@@ -48,8 +48,8 @@ const Questions = () => {
             </Section>
 
           </div>
-          <div className="flex flex-wrap w-1/2 text-3xl">
-            <div className="w-full px-4 py-2">
+          <div className="flex flex-wrap  text-4xl justify-center ">
+            <div className="grid grid-cols-1 content-center px-4 py-2 gap-5">
 <Section>
 <motion.details 
 className="mb-4"
