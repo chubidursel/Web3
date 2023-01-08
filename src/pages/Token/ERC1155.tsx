@@ -32,10 +32,10 @@ export function ERC1155() {
       <HeaderToken />
 
       <div className="flex justify-center m-10 space-between">
-        <NftCard pic={Gold} title="Gold" id="1" setResult={setResult} />
-        <NftCard pic={Silver} title="Silver" id="2" setResult={setResult} />
-        <NftCard pic={Bronze} title="Bronze" id="3" setResult={setResult} />
-        <NftCard pic={Iron} title="Iron" id="4" setResult={setResult} />
+        <NftCard pic={Gold} title="Gold" id="0" setResult={setResult} />
+        <NftCard pic={Silver} title="Silver" id="1" setResult={setResult} />
+        <NftCard pic={Bronze} title="Bronze" id="2" setResult={setResult} />
+        <NftCard pic={Iron} title="Iron" id="3" setResult={setResult} />
        
         </div>
         <div className="flex justify-center items-start">

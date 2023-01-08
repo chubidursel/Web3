@@ -26,12 +26,15 @@ const NftCard = ({ pic, title, id, setResult }) => {
   useEffect((()=>{
     (async()=>{
       try {
-        for (let index = 1; index <= 4; index++) {
-          const getPriceGold = await contractERC1155.tokenPrice(index)
-          setPrice(old => [...old, ethers.utils.formatEther(getPriceGold)])
-
-          // DO TOTAL SUPPLY
+        const arr=[]
+        for (let index = 1; index < 5; index++) {
+         // const getPriceGold = await contractERC1155.tokenPrice(index)
+        //  setPrice(old => [...old, ethers.utils.formatEther(getPriceGold)])
+        //  console.log(price);
+           arr.push(await contractERC1155.tokenPrice(index))
         }
+        setPrice(arr.map(i=>ethers.utils.formatEther(i)))
+          // DO TOTAL SUPPLY
         console.log("🤷‍♀️ PROBLEM: ", price) // Why does it update so many times?
       } catch (error) {
         console.log(error)

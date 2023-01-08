@@ -17,7 +17,8 @@ export function Exchange() {
   const [amountBuy, setAmountBuy] = useState<any>();
   const [amountSell, setAmountSell] = useState(0);
   const [changeSwap, setChangeSwap] = useState(true)
-
+  const [walletBalanceE, setWalletBalanceE] = useState(null)
+  const [walletBalanceC, setWalletBalanceC] = useState(null)
 
   // const [showEvents, setShowEvents] =useState(false)
   const [showEvent, setShowEvent] = useState(false)
@@ -37,7 +38,6 @@ export function Exchange() {
       try {
         const balanceCWT = await contractExchange.getTokenBalance();
         setCwt(balanceCWT.toString()) 
-
         const balanceETH = await contractExchange.getEthBalance();
         setEth(ethers.utils.formatEther(balanceETH) as any)
 
@@ -47,9 +47,12 @@ export function Exchange() {
   // 📕 GET BALLANCE FOR ETH / CWT 
        if(currentAccount){
         const balanceCWT = await contractERC20.balanceOf(currentAccount);
-        console.log('📕 CWT>>>', balanceCWT)
+        console.log('📕 CWT>>>', balanceCWT.toString())
+        setWalletBalanceC(balanceCWT.toString())
         const balanceETH = await defaultProvider.getBalance(currentAccount);
-        console.log('📕 ETH>>>', balanceETH)
+        const balanceE = Number(ethers.utils.formatEther(balanceETH)).toFixed(4)
+        console.log('📕 ETH>>>', Number(ethers.utils.formatEther(balanceETH)).toFixed(4) )
+        setWalletBalanceE(balanceE)
        } else{
         console.log('📕 Connect MetaMask >>>', currentAccount)
        }
@@ -129,7 +132,7 @@ const contractExchangeWithSigner = conectSigner(contractExchange)
     </div> */}
 
 
-<div className="relative text-purple-800 grid border-red-400 rounded-xl border-2 h-max w-[40%] my-10 m-[auto] bg-blue-50 grid-cols-[1fr_1fr] grid-rows-[1fr_1fr_1fr_1fr]">
+<div className="relative text-purple-800 grid border-red-400 rounded-xl border-2 h-max w-[30%] my-10 m-[auto] bg-blue-50 grid-cols-[1fr_1fr] grid-rows-[1fr_1fr_1fr_1fr]">
   <div className="font-bold text-2xl p-2 m-2">Swap</div>
   <div className="text-lg p-2 m-2 h-[40%] justify-self-end bg-blue-100 rounded-lg">1 CWT = {rateCwt} ETH</div>
   
@@ -140,7 +143,9 @@ const contractExchangeWithSigner = conectSigner(contractExchange)
     <input min='0' type="number" className='bg-blue-100 w-[50%] rounded-lg text-5xl p-1 border-none outline-none appearance-none' 
     onChange={e => setAmountBuy(e.target.value as any)} placeholder='ETH' />
     <img src={ethereum} alt="coin"  className='h-12 w-12'/>
+    
 </div>
+{currentAccount && <div className="flex justify-end p-1">Balance ETH: {walletBalanceE}</div>}
 </div>
 
 <div className="inline-flex absolute bottom-1/2 -mb-6 -ml-5 left-1/2 z-10 w-[8,5%] border-[5px] bg-blue-100 border-blue-50 rounded-lg text-center font-extrabold text-3xl text-blue-50">
@@ -154,6 +159,7 @@ const contractExchangeWithSigner = conectSigner(contractExchange)
 </div>
 <div className='font-bold text-3xl text-blue-50 rounded-lg bg-purple-800 p-1 h-[50%]'>CWT</div>
 </div>
+{currentAccount && <div className="flex justify-end p-1">Balance CWT: {walletBalanceC}</div>}
 </div>
 </>
 : <>
@@ -162,8 +168,8 @@ const contractExchangeWithSigner = conectSigner(contractExchange)
     <input min='0' type='number' className='bg-blue-100 w-[50%] rounded-lg text-5xl p-1 border-none outline-none' 
     onChange={e => setAmountSell(e.target.value as any)} placeholder='CWT' />
 <div className='font-bold text-3xl text-blue-50 rounded-lg bg-purple-800 p-1 h-[50%]'>CWT</div>
-
 </div>
+{currentAccount && <div className="flex justify-end p-1">Balance CWT: {walletBalanceC}</div>}
 </div>
 
 <div className="inline-flex absolute bottom-1/2 -mb-6 -ml-5 left-1/2 z-10 w-[8,5%] border-[5px] bg-blue-100 border-blue-50 rounded-lg text-center font-extrabold text-3xl text-blue-50">
@@ -176,8 +182,8 @@ const contractExchangeWithSigner = conectSigner(contractExchange)
 <div className='text-5xl'>{amountSell ? <p className='text-purple-800'>{amountSell*0.01}</p> : <p className='text-gray-400'>ETH</p>}
 </div>
 <img src={ethereum} alt="coin"  className='h-12 w-12'/>
-
 </div>
+{currentAccount && <div className="flex justify-end p-1">Balance ETH: {walletBalanceE}</div>}
 </div></>
 }
   <div className="self-end col-span-2 h-[60%]">
