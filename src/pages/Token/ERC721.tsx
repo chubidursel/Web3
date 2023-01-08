@@ -8,8 +8,10 @@ import nft1 from "../../assets/nft1.png"
 import nft2 from "../../assets/nft2.png"
 import nft3 from "../../assets/nft3.png"
 import nft4 from "../../assets/nft4.png"
+import nftButt from "../../assets/nftButt.png"
 import etherscan from "../../assets/etherscan.png"
 import opensea from "../../assets/opensea.png"
+import daoo from "../../assets/daoo.png"
 import auction from "../../assets/auction.png"
 import otherr from "../../assets/otherr.png"
 import Questions from './ERC721_components/questions';
@@ -17,7 +19,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Section from './ERC721_components/section';
 import Modal from '../../components/modal';
-import NftCard from './ERC1155_comp/nftCard';
+import NftCard from './ERC721_components/NFTcard';
 
 
 const leftAnimation = {
@@ -37,7 +39,7 @@ const rightAnimation = {
     opacity: 0,
   },
   visible: {
-    x: 450,
+    x: 370,
     opacity: 1,
     transition: {duration: 3, delay: 1}
   },
@@ -105,25 +107,22 @@ export function ERC721() {
   const [result, setResult] = useState("");
   const [nftPrice, setNftPrice] = useState("");
   const [amountMinted, setAmountMinted] = useState('');
-  const [numInteract, setNumInteract] = useState<string>('') // toos this number to NFT card
+  const [numInteract, setNumInteract] = useState(null) // toos this number to NFT card
   const [active, setActive] = useState<boolean>(false);
 
-  const handleMod = async() => {
-  //   if(!numInteract) { 
-  //     dispatch({ type: "er_bal", payload: "Invalid input!"})
-  //   setTimeout(() => {
-  //     dispatch({ type: "stop", payload: initial })
-  //   }, 2000)
-  // }
-    // else 
-    setActive(true);
-    // router.push({
-    //   query: { tokenId: numInteract,
-    //     currentAccount: currentAccount
-    //   },
-    // });
-}
-
+  const [tokenId, setTokenId] = useState();
+  const [tokenUri, setTokenUri] = useState('');
+  const [tokenOwner, setTokenOwner] = useState('');
+  const [opneTokenInfo, setOpneTokenInfo] = useState(false);
+  const [error, setError] = useState('')
+  const [errorQ, setErrorQ] = useState('')
+  
+  
+  const handleMod = () => {
+   if(numInteract < 9) {setActive(true)} 
+  else {setErrorQ('This token ID is not valid! 😞')
+  setTimeout(() => {setErrorQ('')}, 2000)}}
+  
 
   useEffect((()=>{
   
@@ -245,23 +244,22 @@ className='bg-blue-100 bg-opacity-50 rounded-2xl grid grid-cols-1'>
 <Section>
           <motion.div 
     className="bg-blue-100 bg-opacity-50 p-5 text-2xl rounded-2xl mb-44
-    w-[1000px] h-[60vh] justify-between grid grid-cols-[_1fr_1fr] gap-10 items-stretch" 
+    w-[1000px] h-[60vh] justify-between grid grid-cols-[_1fr_1fr] gap-10" 
     variants={rightAnimation}
 >
-  <div className='text-center'>
-            <h1 className='text-3xl font-bold'>There is a interactive form, which helps you to get info about your NFT!</h1> <br/>
+  <div className=''>
+            <h1 className='text-3xl font-bold text-center'>There is a interactive form, which helps you to get info about your NFT!</h1> <br/>
 <p className='text-left'>Just enter ID number of your NFT and you will see additional info.</p><br/>
-<p className='text-right'> If you want to participate and be a member of our DAO you need to get one of our token which u can get in a few different way (buy it on the Auction, in the shop or buy dirrectly from the smart contract)</p><br/>
+<p className='text-right'>You can see image of your NFT, transfer or approve it! Also you could see another NFT from collection, just enter ID!</p><br/>
   </div>
-  <div className='self-center'>
-  <h1 className=" text-3xl text-center font-bold m-1">Interact</h1>
-<div className='brd justify-center flex border-2 py-5'>
-           
-            <input className='w-1/2 inpt' type='number' 
-            min="1" max="8" onChange={(e:ChangeEvent<HTMLInputElement>)=>setNumInteract(e.target.value)} placeholder='token ID'/>
-            <button onClick={handleMod} className='btn'>show</button>
-</div> 
-
+    <div className='grid grid-cols-[_1fr] py-5'>
+       <h1 className="text-3xl text-center font-bold m-1">Interact</h1>
+            <input className='rounded-xl text-center h-fit w-1/2 justify-self-center' type='number' 
+            onChange={(e)=>setNumInteract(e.target.value)} placeholder='token ID'/>
+            <button onClick={handleMod} 
+            className='border-2 justify-self-center w-1/2 h-fit border-black text-3xl bg-blue-200 rounded-lg hover:bg-blue-400 p-3 mt-3'>
+              Show</button>
+              <img src={nftButt} className="w-[40%] justify-self-center"/>
   </div>
         </motion.div >
 </Section>
@@ -304,7 +302,7 @@ className='bg-blue-100 bg-opacity-50 rounded-2xl grid grid-cols-1'>
   <div className='self-center'>
   <Link to="../Defi/Market/Auction" >
    <motion.img className=''
-   src={otherr}
+   src={daoo}
    whileHover={{scale: 1.3}}
    />
    </Link>
@@ -312,7 +310,7 @@ className='bg-blue-100 bg-opacity-50 rounded-2xl grid grid-cols-1'>
         </motion.div >
 </Section>
     <section>
-      <div className=''>
+      <div className='bottom'>
          <Questions />
       </div>
     </section>
@@ -322,7 +320,7 @@ className='bg-blue-100 bg-opacity-50 rounded-2xl grid grid-cols-1'>
     <Modal
    active={active}
    setActive={setActive}
-   marginFromTop={'top-16'}
+   marginFromTop={'-mb-96 -bottom-full'}
    >
    <NftCard 
   tokenId={numInteract}
