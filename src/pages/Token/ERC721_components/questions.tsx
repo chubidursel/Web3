@@ -75,13 +75,11 @@ custom={3}
 >
                 <summary className="font-semibold  bg-blue-100
                  bg-opacity-50  text-black rounded-md py-2 px-4">
-                  Can I install/upload anything I want on there?
+                  What Blockchain are these minted on?
                 </summary>
 
                 <span>
-                  Laboris qui labore cillum culpa in sunt quis sint veniam.
-                  Dolore ex aute deserunt esse ipsum elit aliqua. Aute quis
-                  minim velit nostrud pariatur culpa magna in aute.
+                  Goerli Testnet Ethereum
                 </span>
               </motion.details>
 </Section>
@@ -92,14 +90,12 @@ variants={leftAnimation}
 custom={4}>
                 <summary className="font-semibold text-black  bg-blue-100
                  bg-opacity-50  rounded-md py-2 px-4">
-                  How can I migrate to another site?
+                  Can I sell or trade my NFT card?
                 </summary>
 
                 <span>
-                  Laboris qui labore cillum culpa in sunt quis sint veniam.
-                  Dolore ex aute deserunt esse ipsum elit aliqua. Aute quis
-                  minim velit nostrud pariatur culpa magna in aute.
-                </span>
+                  Easy! You can sell it on our Auction or via OpenSea
+                 </span>
               </motion.details>
 </Section>
 
@@ -110,13 +106,11 @@ variants={rightAnimation}
 custom={5}>
                 <summary className="font-semibold text-black  bg-blue-100
                  bg-opacity-50  rounded-md py-2 px-4">
-                  Can I change the domain you give me?
+                  How many NFTs can i mint?
                 </summary>
 
                 <span className="px-4 py-2">
-                  Laboris qui labore cillum culpa in sunt quis sint veniam.
-                  Dolore ex aute deserunt esse ipsum elit aliqua. Aute quis
-                  minim velit nostrud pariatur culpa magna in aute.
+                  max 3 per wallet
                 </span>
               </motion.details>
 </Section>

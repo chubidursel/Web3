@@ -20,7 +20,8 @@ import { Link } from "react-router-dom";
 import Section from './ERC721_components/section';
 import Modal from '../../components/modal';
 import NftCard from './ERC721_components/NFTcard';
-
+import { useAppContext } from "../../hooks/useAppContext";
+import { element } from 'prop-types';
 
 const leftAnimation = {
   hidden:{
@@ -77,22 +78,22 @@ const faq = {
 };
 
 const img = [{
-  title: 'Tired fish',
+  title: 'Chinese',
   src: nft1,
   custom: 4, 
 },
 {
-  title: 'Sick love',
+  title: 'English',
   src: nft2,
   custom: 2, 
 },
 {
-  title: 'Hungry Mosquito',
+  title: 'Arab',
   src: nft3,
   custom: 3, 
 },
 {
-  title: 'Enamored Bananas',
+  title: 'Russian',
   src: nft4,
   custom: 4, 
 },
@@ -117,12 +118,16 @@ export function ERC721() {
   const [error, setError] = useState('')
   const [errorQ, setErrorQ] = useState('')
   
+  const [arrNftByAddr, setArrNftByAddr] = useState('')   // 📕 ARR of nftbyAddr or mistake
   
   const handleMod = () => {
    if(numInteract < 9) {setActive(true)} 
   else {setErrorQ('This token ID is not valid! 😞')
   setTimeout(() => {setErrorQ('')}, 2000)}}
   
+  // 📕 ADDR TO GET LIST OF NFT TOKENS BY ADDRESS  
+  const { contextState, } = useAppContext();
+  const currentAccount = contextState?.currentAccount;
 
   useEffect((()=>{
   
@@ -136,6 +141,22 @@ export function ERC721() {
         setNftPrice(price.toString())
 
         console.log("👨‍💻 DEV useEffect Fetch: ", amountMinted, price)
+
+          // 📕 SET LIST OF NFT TOKENS BY ADDRESS 
+         if(currentAccount){
+          const arrOfNFTs = await contractERC721.tokenList(currentAccount)
+          const totalAmount = await contractERC721.balanceOf(currentAccount)
+          
+          // const resArr = arrOfNFTs.forEach(element => {
+          //   element.toString();
+          // });
+
+          //??????????????? SHOW THE LIST BUT CHANGE BIGnum to Normal
+          setArrNftByAddr(`You have: ${totalAmount.toString()} NFTs. TokenIG: `)
+          console.log("📕DEV >> ", arrOfNFTs)
+         }else{
+          setArrNftByAddr('Connect your wallet!')
+         } 
       } catch (error) {
         console.log(error)
       }
@@ -171,15 +192,14 @@ export function ERC721() {
 
 <div className="flex justify-end">
             <div className="flex flex-col fixed gap-3 -mr-60">
-                <a href='https://goerli.etherscan.io/address/0x3eEEaEe76C2D5d4a1E72106F13AB82F750b19994' target="_blank" 
-                >
+                <a href='https://goerli.etherscan.io/address/0x8E05352b5937e9aaCc1e1F39C2A7D335e044a9ED' target="_blank">
                          <motion.img 
         src={etherscan} 
         className='w-[20%]'
         whileHover={{scale: 1.2}}
         /></a>
             
-            <a href='https://testnets.opensea.io/collection/circleart' target="_blank" 
+            <a href='https://testnets.opensea.io/collection/howtofix' target="_blank" 
                 >
                                     <motion.img 
         src={opensea} 
@@ -211,8 +231,8 @@ className='grid grid-cols-1 w-[96vw] gap-32'
         >
                   {result && <h1 className='text-center text-xl bg-yellow-200 rounded-xl m-3 py-4 px-10'>{result}</h1> }
           <div className=' bg-blue-100 rounded-2xl p-5 flex justify-center flex-col text-center text-xl'>
-          <p>rate: {Number(nftPrice) / 1000000000000000000 } ETH</p>
-        <p>amount Minted: {amountMinted} / 33</p>
+          <p>Price: {Number(nftPrice) / 1000000000000000000 } ETH</p>
+        <p>Minted: {amountMinted} / 500</p>
         <button onClick={handlePurcase} className='border-2 border-black text-5xl bg-blue-200 rounded-lg hover:bg-blue-400 p-3 mt-3'>mint</button>
         </div>
         </motion.div>
@@ -220,6 +240,7 @@ className='grid grid-cols-1 w-[96vw] gap-32'
 
 </Section>
 
+{/* ---------- NFT pic --------- */}
 <Section>
   <motion.div variants={faq} className='flex justify-center'>
       <div className='text-white font-bold text-5xl my-44 bg-blue-100 bg-opacity-50 rounded-2xl w-fit flex justify-center p-5'>
@@ -241,6 +262,7 @@ className='bg-blue-100 bg-opacity-50 rounded-2xl grid grid-cols-1'>
 </div>
 </Section>
 
+{/* ---------- Interact --------- */}
 <Section>
           <motion.div 
     className="bg-blue-100 bg-opacity-50 p-5 text-2xl rounded-2xl mb-44
@@ -248,7 +270,7 @@ className='bg-blue-100 bg-opacity-50 rounded-2xl grid grid-cols-1'>
     variants={rightAnimation}
 >
   <div className=''>
-            <h1 className='text-3xl font-bold text-center'>There is a interactive form, which helps you to get info about your NFT!</h1> <br/>
+            <h1 className='text-3xl font-bold text-center'>Interact with your NFT</h1> <br/>
 <p className='text-left'>Just enter ID number of your NFT and you will see additional info.</p><br/>
 <p className='text-right'>You can see image of your NFT, transfer or approve it! Also you could see another NFT from collection, just enter ID!</p><br/>
   </div>
@@ -261,6 +283,9 @@ className='bg-blue-100 bg-opacity-50 rounded-2xl grid grid-cols-1'>
               Show</button>
               <img src={nftButt} className="w-[40%] justify-self-center"/>
   </div>
+
+{/* !!!!!!!!!!!!!!!!!! HERE IS STRING WITH 'conncet wallet' or 'Empty' or List with Token ID !!!!!!!!!! */}
+{arrNftByAddr}
         </motion.div >
 </Section>
 

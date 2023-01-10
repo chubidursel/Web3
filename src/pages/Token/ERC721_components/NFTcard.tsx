@@ -22,7 +22,7 @@ export default function NftCard({tokenId}) {
 // >>>>>>> parse data from metaData
 
 //https://gateway.pinata.cloud/ipfs/QmNM3ZUzASR78M61PsPF3f63j13ZsXNCACnfMshNroFuKz/1.json  << ur u can try this gateway
-const contentIPFS = 'QmNM3ZUzASR78M61PsPF3f63j13ZsXNCACnfMshNroFuKz';
+const contentIPFS = 'QmRB4k8jQNeTRUHQZEvStPzSGBwAJWhqvfYUVHCq9GsKVR';
 const metadataURI = `${contentIPFS}/${tokenId}.json`;
 const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
   const [imgUri, setImgUri] = useState('')

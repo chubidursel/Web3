@@ -31,7 +31,7 @@ export function Exchange() {
 
   // 📕 GET BALLANCE FOR ETH / CWT  
   const { contextState, } = useAppContext();
-  const currentAccount = contextState?.currentAccount ;
+  const currentAccount = contextState?.currentAccount;
   
   useEffect(()=>{
     (async()=>{
