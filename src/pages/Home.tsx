@@ -4,9 +4,11 @@ import Defi from "../assets/Defi.png"
 import Tool from "../assets/tool.png"
 import {Link} from "react-router-dom"
 import Header from '../components/headerNew'
-
 // require("dotenv").config();
 // console.log(process.env.ERC20_CONTRACT);
+
+
+
 
 export function Home() {
 
