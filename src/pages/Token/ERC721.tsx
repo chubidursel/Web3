@@ -35,7 +35,7 @@ const leftAnimation = {
 
 const rightAnimation = {
   hidden:{
-    x: 900,
+    x: 500,
     opacity: 0,
   },
   visible: {
@@ -198,7 +198,7 @@ className='grid grid-cols-1 w-[96vw] gap-32'
   <div className="flex justify-center">
   <motion.img 
         src={logoNft} 
-        className='w-[50%] h-[70vh] -m-20 -z-50'
+        className='w-[40%] h-[70vh] -m-20 -z-50'
         variants={upAnimation}
         />
   </div>
@@ -244,8 +244,8 @@ className='bg-blue-100 bg-opacity-50 rounded-2xl grid grid-cols-1'>
 <Section>
           <motion.div 
     className="bg-blue-100 bg-opacity-50 p-5 text-2xl rounded-2xl mb-44
-    w-[1000px] h-[60vh] justify-between grid grid-cols-[_1fr_1fr] gap-10" 
-    variants={rightAnimation}
+    w-[1000px] justify-between grid grid-cols-[_1fr_1fr] gap-10" 
+    variants={leftAnimation}
 >
   <div className=''>
             <h1 className='text-3xl font-bold text-center'>There is a interactive form, which helps you to get info about your NFT!</h1> <br/>
@@ -268,8 +268,8 @@ className='bg-blue-100 bg-opacity-50 rounded-2xl grid grid-cols-1'>
 <Section>
           <motion.div 
     className="bg-blue-100 bg-opacity-50 p-5 text-2xl rounded-2xl mb-44
-    w-[1000px] h-[60vh] justify-between grid grid-cols-[_1fr_1fr] gap-10" 
-    variants={leftAnimation}
+    w-[1000px] justify-between grid grid-cols-[_1fr_1fr] gap-10" 
+    variants={rightAnimation}
 >
   <div className='text-center'>
             <h1 className='text-3xl font-bold'> Here you can create a new smart contract and sell NFT! </h1> <br/>
@@ -291,8 +291,8 @@ className='bg-blue-100 bg-opacity-50 rounded-2xl grid grid-cols-1'>
 <Section>
           <motion.div 
     className="bg-blue-100 bg-opacity-50 p-5 text-2xl rounded-2xl mb-20
-    w-[1000px] h-[60vh] justify-between grid grid-cols-[_1fr_1fr] gap-10 items-stretch" 
-    variants={rightAnimation}
+    w-[1000px] justify-between grid grid-cols-[_1fr_1fr] gap-10 items-stretch" 
+    variants={leftAnimation}
 >
   <div className='text-center'>
             <h1 className='text-3xl font-bold'>There is a simple implemetation of DAO. How does it work?</h1> <br/>
@@ -300,7 +300,7 @@ className='bg-blue-100 bg-opacity-50 rounded-2xl grid grid-cols-1'>
 <p className='text-right'> If you want to participate and be a member of our DAO you need to get one of our token which u can get in a few different way (buy it on the Auction, in the shop or buy dirrectly from the smart contract)</p><br/>
   </div>
   <div className='self-center'>
-  <Link to="../Defi/Market/Auction" >
+  <Link to="../DAO" >
    <motion.img className=''
    src={daoo}
    whileHover={{scale: 1.3}}
@@ -320,7 +320,7 @@ className='bg-blue-100 bg-opacity-50 rounded-2xl grid grid-cols-1'>
     <Modal
    active={active}
    setActive={setActive}
-   marginFromTop={'-mb-96 -bottom-full'}
+   marginFromTop={'top-[2000px]'}
    >
    <NftCard 
   tokenId={numInteract}

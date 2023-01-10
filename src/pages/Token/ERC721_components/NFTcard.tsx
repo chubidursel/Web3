@@ -8,6 +8,7 @@ export default function NftCard({tokenId}) {
   const [loader, setLoader] = useState(false)
 
   const[infoAddressOwner, setInfoAddressOwner ] = useState('')
+
   const [addressToSend, setAddressToSend] = useState('');
   const [addressToApprove, setAddressToApprove] = useState('');
   const[ownerOrNot, setOwnrOrNot ] = useState(false)
@@ -22,33 +23,50 @@ export default function NftCard({tokenId}) {
 // >>>>>>> parse data from metaData
 
 //https://gateway.pinata.cloud/ipfs/QmNM3ZUzASR78M61PsPF3f63j13ZsXNCACnfMshNroFuKz/1.json  << ur u can try this gateway
-const contentIPFS = 'QmNM3ZUzASR78M61PsPF3f63j13ZsXNCACnfMshNroFuKz';
-const metadataURI = `${contentIPFS}/${tokenId}.json`;
-const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
+// const contentIPFS = 'QmNM3ZUzASR78M61PsPF3f63j13ZsXNCACnfMshNroFuKz';
+// const metadataURI = `${contentIPFS}/${tokenId}.json`;
+// const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
   const [imgUri, setImgUri] = useState('')
   const [metaName, setMetaName] = useState('')
   const [error, setError] = useState('')
   const [errorAp, setErrorAp] = useState('')
 
-  async function pasingMetaData(){
-    
-    const response = await fetch(metadataJson);
-
-    const data = await response.json();
-    return data
-    
-  }
+  // async function pasingMetaData(){
+  //   const response = await fetch(metadataJson);
+  //   const data = await response.json();
+  //   return data
+  // }
+  
   useEffect(() => {
+    (async () => {
+   try {
     setLoader(true)
-  pasingMetaData().then((data)=>{
-    setLoader(true)
-    const link = data.image; 
-    const cutSting = link.substring(7)
-    const imgURL = `https://ipfs.io/ipfs/${cutSting}`
-    setImgUri(imgURL)
-    setMetaName(data.name)
-    setLoader(false)
-  })}, [])
+     const response = await fetch(`https://ipfs.io/ipfs/QmNM3ZUzASR78M61PsPF3f63j13ZsXNCACnfMshNroFuKz/${tokenId}.json`);
+     const data = await response.json();
+     setMetaName(data.name)     
+     setImgUri(`https://ipfs.io/ipfs/${data.image.substring(7)}`)
+     setLoader(false)
+   } catch (error) {
+   console.error(error);
+   }
+ })();
+     }, [tokenId])
+ 
+
+  // useEffect(() => {
+  //   setLoader(true)
+  // pasingMetaData().then((data)=>{
+  //   setLoader(true)
+  //   const link = data.image; 
+  //   const cutSting = link.substring(7)
+  //  // console.log(cutSting);
+  //   const imgURL = `https://ipfs.io/ipfs/${cutSting}`
+  //   setImgUri(imgURL)
+  // //  console.log(imgURL);
+    
+  //   setMetaName(data.name)
+  //   setLoader(false)
+  // })}, [])
 
 // >>>>>>>> FUNC 1
   const handleTransfer = async(event:any)=>{
@@ -88,15 +106,10 @@ const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
       try {
         const addressOwner = await contractERC721.ownerOf(tokenId)
         setInfoAddressOwner(addressOwner)
-
-
         if(currentAccount.toLowerCase() == addressOwner.toLowerCase()){
           setOwnrOrNot(true)
           console.log("Yahooo")
         }
-
-        console.log("MY addr>>", currentAccount.toLowerCase(),  "Owner>>>", addressOwner.toLowerCase())
-
       } catch (error) {
         console.log(error)
       }
@@ -123,17 +136,21 @@ const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
           <div className='rounded-2xl border-2 border-red-400 px-[15px] p-2 m-2'>  
             <h1 className='bg-red-100 rounded-2xl text-center font-bold'>Description</h1>
             <div className='flex flex-row'> <p className="font-bold mr-3">name:</p><p>{metaName}</p></div>
-            <div className='flex flex-row'> <p className="font-bold mr-3">metadata:</p> <a href={metadataJson} target="_blank">link 🔗</a></div>
+            <div className='flex flex-row'> <p className="font-bold mr-3">metadata:</p> <a href={`https://ipfs.io/ipfs/QmNM3ZUzASR78M61PsPF3f63j13ZsXNCACnfMshNroFuKz/${tokenId}.json`} target="_blank">link 🔗</a></div>
             <div className='flex flex-row'> <p className="font-bold mr-3" >owner:</p><p className="hover:underline cursor-pointer" onClick={()=>{copyTextToClipboard(infoAddressOwner)}}>{infoAddressOwner.toString().slice(0, 7) + "..." + infoAddressOwner.toString().slice(34)}</p></div>
             {ownerOrNot ? <p className='text-green-600 font-bold'>This is your NFT! You can interact with it!🙂</p> : <p className='text-red-500'>This NFT token doesn't belong to your account</p>}
           </div>
-          <div className='rounded-2xl border-2 border-red-400 px-[15px] p-2 m-2'>
+          {
+
+          }
+        {ownerOrNot && <div className='rounded-2xl border-2 border-red-400 px-[15px] p-2 m-2'>
             <h1 className='bg-red-100 rounded-2xl text-center font-bold'>Functions</h1>
               <form onSubmit={handleTransfer}>
                 <h1 className='text-center font-bold'>Transfer</h1>
                 <div className='flex flex-row'>
                 <input onChange={(e)=>setAddressToSend(e.target.value)} className='rounded-lg hover:shadow-lg border-solid w-2/3 text-center border-2 pl-2 border-purple-800' placeholder="Reciever's  address"></input><br />
-                <button disabled={ownerOrNot} type="submit" className="font-bold ml-1 w-1/3 hover:shadow-lg rounded-lg border-2 border-red-400 px-[15px] hover:bg-red-400">send</button></div>
+                <button disabled={ownerOrNot} type="submit" className="font-bold ml-1 w-1/3 hover:shadow-lg rounded-lg border-2 border-red-400 px-[15px] hover:bg-red-400">send</button>
+                </div>
              {error && <div className='flex justify-center text-red-500 font-bold'>{error}</div>}
               </form>
               <form onSubmit={handleTransfer}>
@@ -142,7 +159,7 @@ const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
                  <input onChange={(e)=>setAddressToApprove(e.target.value)} className='rounded-lg hover:shadow-lg w-2/3 text-center border-solid w-58 border-2 pl-2 border-purple-800' placeholder="Reciever's  address"></input><br />
                 <button onClick={handleApprove} type="submit" className="font-bold ml-1 w-1/3 hover:shadow-lg rounded-lg border-2 border-red-400 px-[15px] hover:bg-red-400">approve</button>
                 </div>{errorAp && <div className='flex justify-center text-red-500 font-bold'>{errorAp}</div>}</form>
-            </div>
+            </div>}
     </div> 
     </>
 
