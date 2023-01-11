@@ -36,7 +36,7 @@ const leftAnimation = {
 
 const rightAnimation = {
   hidden:{
-    x: 900,
+    x: 500,
     opacity: 0,
   },
   visible: {
@@ -218,7 +218,7 @@ className='grid grid-cols-1 w-[96vw] gap-32'
   <div className="flex justify-center">
   <motion.img 
         src={logoNft} 
-        className='w-[50%] h-[70vh] -m-20 -z-50'
+        className='w-[40%] h-[70vh] -m-20 -z-50'
         variants={upAnimation}
         />
   </div>
@@ -266,8 +266,8 @@ className='bg-blue-100 bg-opacity-50 rounded-2xl grid grid-cols-1'>
 <Section>
           <motion.div 
     className="bg-blue-100 bg-opacity-50 p-5 text-2xl rounded-2xl mb-44
-    w-[1000px] h-[60vh] justify-between grid grid-cols-[_1fr_1fr] gap-10" 
-    variants={rightAnimation}
+    w-[1000px] justify-between grid grid-cols-[_1fr_1fr] gap-10" 
+    variants={leftAnimation}
 >
   <div className=''>
             <h1 className='text-3xl font-bold text-center'>Interact with your NFT</h1> <br/>
@@ -295,8 +295,8 @@ className='bg-blue-100 bg-opacity-50 rounded-2xl grid grid-cols-1'>
 <Section>
           <motion.div 
     className="bg-blue-100 bg-opacity-50 p-5 text-2xl rounded-2xl mb-44
-    w-[1000px] h-[60vh] justify-between grid grid-cols-[_1fr_1fr] gap-10" 
-    variants={leftAnimation}
+    w-[1000px] justify-between grid grid-cols-[_1fr_1fr] gap-10" 
+    variants={rightAnimation}
 >
   <div className='text-center'>
             <h1 className='text-3xl font-bold'> Do you want to sell your NFT?</h1> <br/>
@@ -318,8 +318,8 @@ className='bg-blue-100 bg-opacity-50 rounded-2xl grid grid-cols-1'>
 <Section>
           <motion.div 
     className="bg-blue-100 bg-opacity-50 p-5 text-2xl rounded-2xl mb-20
-    w-[1000px] h-[60vh] justify-between grid grid-cols-[_1fr_1fr] gap-10 items-stretch" 
-    variants={rightAnimation}
+    w-[1000px] justify-between grid grid-cols-[_1fr_1fr] gap-10 items-stretch" 
+    variants={leftAnimation}
 >
   <div className='text-center'>
             <h1 className='text-3xl font-bold'>THE DAO</h1> <br/>
@@ -348,7 +348,7 @@ className='bg-blue-100 bg-opacity-50 rounded-2xl grid grid-cols-1'>
     <Modal
    active={active}
    setActive={setActive}
-   marginFromTop={'-mb-96 -bottom-full'}
+   marginFromTop={'top-[2000px]'}
    >
    <NftCard 
   tokenId={numInteract}
