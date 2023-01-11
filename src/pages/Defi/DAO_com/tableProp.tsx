@@ -83,7 +83,7 @@ export function PrposalTable() {
   return (<>
 {loader ? <Loader /> : 
    <><div className='bg-blue-100 w-1/2 rounded-2xl border-4 border-red-400 px-[15px] text-purple-800'>
-   <p className='font-bold text-3xl p-1 text-center'>Token transfer history</p>
+   <p className='font-bold text-4xl py-3 text-center'>Governance Overview</p>
    <div className='flex justify-center'> 
    <button onClick={() => setAll(!all)}
    className='ml-3 w-1/2 className="font-bold rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400'>REFRESH</button>

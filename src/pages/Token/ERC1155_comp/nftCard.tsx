@@ -16,10 +16,8 @@ const NftCard = ({ pic, title, id, setResult }) => {
 
   const [loader, setLoader] = useState(false)
 
-  const [price, setPrice] = useState([]) // Make an obj??
-
-
-  let totalSuply = "1000";
+  const [price, setPrice] = useState([]) 
+  const [supply, setSupply] = useState([]) 
 
 
   // HOW TO RENDER JUST ONCE!!!!!!
@@ -27,15 +25,14 @@ const NftCard = ({ pic, title, id, setResult }) => {
     (async()=>{
       try {
         const arr=[]
+        const arrSupply=[]
         for (let index = 1; index < 5; index++) {
-         // const getPriceGold = await contractERC1155.tokenPrice(index)
-        //  setPrice(old => [...old, ethers.utils.formatEther(getPriceGold)])
-        //  console.log(price);
            arr.push(await contractERC1155.tokenPrice(index))
+           arrSupply.push(await contractERC1155.tokenSupplyLimit(index))
         }
         setPrice(arr.map(i=>ethers.utils.formatEther(i)))
-          // DO TOTAL SUPPLY
-        console.log("🤷‍♀️ PROBLEM: ", price) // Why does it update so many times?
+        setSupply(arrSupply.map(i=>i.toString()))
+
       } catch (error) {
         console.log(error)
       }
@@ -89,8 +86,7 @@ const NftCard = ({ pic, title, id, setResult }) => {
             <div className="text-center text-xl font-bold">
              <p>Title: {title}</p> 
             <p>Price: {price[Number(id)]}</p>
-            <p>Supply: {totalSuply}</p> 
-
+            <p>Supply: {supply[Number(id)]}</p> 
             </div>
           </div>
           <div

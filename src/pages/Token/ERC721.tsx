@@ -285,10 +285,12 @@ className='bg-blue-100 bg-opacity-50 rounded-2xl grid grid-cols-1'>
   </div>
 
 {/* !!!!!!!!!!!!!!!!!! HERE IS STRING WITH 'conncet wallet' or 'Empty' or List with Token ID !!!!!!!!!! */}
+
 {arrNftByAddr}
         </motion.div >
 </Section>
 
+{/* -------- Auction --------------- */}
 
 <Section>
           <motion.div 
@@ -313,6 +315,7 @@ className='bg-blue-100 bg-opacity-50 rounded-2xl grid grid-cols-1'>
         </motion.div >
 </Section>
   
+  {/* -------- DAO --------------- */}
 <Section>
           <motion.div 
     className="bg-blue-100 bg-opacity-50 p-5 text-2xl rounded-2xl mb-20
@@ -320,15 +323,16 @@ className='bg-blue-100 bg-opacity-50 rounded-2xl grid grid-cols-1'>
     variants={rightAnimation}
 >
   <div className='text-center'>
-            <h1 className='text-3xl font-bold'>There is a simple implemetation of DAO. How does it work?</h1> <br/>
-<p className='text-left'>The NFT-holders can create an proposal and vote for them.</p><br/>
-<p className='text-right'> If you want to participate and be a member of our DAO you need to get one of our token which u can get in a few different way (buy it on the Auction, in the shop or buy dirrectly from the smart contract)</p><br/>
+            <h1 className='text-3xl font-bold'>THE DAO</h1> <br/>
+<p className='text-center text-3xl'>Welcome to our community!</p><br/>
+<p className='text-center'>The NFT-holders can create a proposal and vote for them.</p><br/>
+<p className='text-center'>Participating in a DAO also gives individuals a sense of ownership.</p><br/>
   </div>
   <div className='self-center'>
-  <Link to="../Defi/Market/Auction" >
-   <motion.img className=''
+  <Link to="/DAO" >
+   <motion.img className='hover:animate-spin'
    src={daoo}
-   whileHover={{scale: 1.3}}
+
    />
    </Link>
   </div>
