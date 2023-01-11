@@ -40,7 +40,7 @@ const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
   }
   useEffect(() => {
     setLoader(true)
-  pasingMetaData().then((data)=>{
+     pasingMetaData().then((data)=>{
     setLoader(true)
     const link = data.image; 
     const cutSting = link.substring(7)
@@ -51,9 +51,8 @@ const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
   })}, [])
 
 // >>>>>>>> FUNC 1
-  const handleTransfer = async(event:any)=>{
+  const handleTransfer = async()=>{
     try{
-      event.preventDefault();
       const contractERC721WithSigner = conectSigner(contractERC721)
       const txTransfer = await contractERC721WithSigner.transferFrom(currentAccount, addressToSend, tokenId);
       await txTransfer.wait()
@@ -68,8 +67,8 @@ const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
    
   }
 // >>>>>>>> FUNC 2
-  const handleApprove = async(event:any)=>{
-    try {event.preventDefault();
+  const handleApprove = async()=>{
+    try {
       const contractERC721WithSigner = conectSigner(contractERC721)
       const txApprove = await contractERC721WithSigner.approve(addressToApprove, tokenId);
       await txApprove.wait()
@@ -129,19 +128,19 @@ const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
           </div>
           <div className='rounded-2xl border-2 border-red-400 px-[15px] p-2 m-2'>
             <h1 className='bg-red-100 rounded-2xl text-center font-bold'>Functions</h1>
-              <form onSubmit={handleTransfer}>
+
                 <h1 className='text-center font-bold'>Transfer</h1>
                 <div className='flex flex-row'>
                 <input onChange={(e)=>setAddressToSend(e.target.value)} className='rounded-lg hover:shadow-lg border-solid w-2/3 text-center border-2 pl-2 border-purple-800' placeholder="Reciever's  address"></input><br />
-                <button disabled={ownerOrNot} type="submit" className="font-bold ml-1 w-1/3 hover:shadow-lg rounded-lg border-2 border-red-400 px-[15px] hover:bg-red-400">send</button></div>
+                <button onClick={handleTransfer} className="font-bold ml-1 w-1/3 hover:shadow-lg rounded-lg border-2 border-red-400 px-[15px] hover:bg-red-400">send</button></div>
              {error && <div className='flex justify-center text-red-500 font-bold'>{error}</div>}
-              </form>
-              <form onSubmit={handleTransfer}>
+   
+
                 <h1 className='text-center font-bold'>Aprove</h1>
                 <div className='flex flex-row'>
                  <input onChange={(e)=>setAddressToApprove(e.target.value)} className='rounded-lg hover:shadow-lg w-2/3 text-center border-solid w-58 border-2 pl-2 border-purple-800' placeholder="Reciever's  address"></input><br />
                 <button onClick={handleApprove} type="submit" className="font-bold ml-1 w-1/3 hover:shadow-lg rounded-lg border-2 border-red-400 px-[15px] hover:bg-red-400">approve</button>
-                </div>{errorAp && <div className='flex justify-center text-red-500 font-bold'>{errorAp}</div>}</form>
+                </div>{errorAp && <div className='flex justify-center text-red-500 font-bold'>{errorAp}</div>}
             </div>
     </div> 
     </>
