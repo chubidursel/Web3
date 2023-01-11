@@ -103,16 +103,16 @@ console.log(contractAuctionWithSigner)
    </Header>
    
    <div>
-            <h2 className="flex justify-center text-5xl text-blue-100 font-bold m-3">NFT Auction</h2>
-            <div className="flex justify-center space-x-4 text-white m-3">
+            {/* <h2 className="flex justify-center text-5xl text-blue-100 font-bold m-3">Auction</h2> 
+             <div className="flex justify-center space-x-4 text-white m-3">
                 <a href='https://goerli.etherscan.io/address/0xab8Ce981A19146d263508855efB3F8B40724288C#code' target="_blank" 
                 className="font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400">Etherscan </a>  
           <Link to="/Token/ERC721" className='font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400'>NFT  </Link>
-            </div>
+            </div> */}
         </div>
 
 
-   <div className='grid grid-cols-1 justify-items-center'>
+   <div className='grid grid-cols-1 justify-items-center mt-10'>
    <div className='bg-blue-100 w-1/2 rounded-2xl border-4 border-red-400 text-xl px-[15px] py-5 m-3 text-purple-800'>
         <div className='flex flex-row justify-center mr-20'>
         </div>
@@ -141,7 +141,7 @@ console.log(contractAuctionWithSigner)
   
   <div className='grid grid-cols-1 justify-center'>
     <button disabled={!resCheckOwner} onClick={handleDeploy} className='ml-3 m-3 className="font-bold rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400 hover:cursor-pointer'>DEPLOY</button>
-    {resCheckOwner ? <p className='bg-green-300 p-2 text-center'>You are the Owner!</p> : <p className='text-center rounded-xl bg-red-300 p-2'>You are not an Owner!</p>}
+    {resCheckOwner ? <p className='bg-green-300 p-2 rounded-xl text-center'>You are the Owner!</p> : <p className='text-center rounded-xl bg-red-300 p-2'>You are not an Owner!</p>}
     <div>{resultDeployment}</div>
     </div></div>
  </Modal>

@@ -299,10 +299,9 @@ className='bg-blue-100 bg-opacity-50 rounded-2xl grid grid-cols-1'>
     variants={leftAnimation}
 >
   <div className='text-center'>
-            <h1 className='text-3xl font-bold'> Here you can create a new smart contract and sell NFT! </h1> <br/>
-<p className='text-left'>Without write a single line of code Exited!,isn't it? 🤩</p><br/>
-<p className='text-right'> How does it work?</p><br/>
-<p className='text-left'>There is factory smart contract with create a Auction contract where you can sell our NFT</p> 
+            <h1 className='text-3xl font-bold'> Do you want to sell your NFT?</h1> <br/>
+<p className='text-left'>Here you can create you own auction and sell you NFT by the best price!</p><br/>
+<p className='text-left'>Enjoy!</p> 
   </div>
   <div className=''>
   <Link to="../Defi/Market/Auction" >

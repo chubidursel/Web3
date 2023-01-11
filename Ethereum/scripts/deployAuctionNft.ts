@@ -5,11 +5,11 @@ import { ethers } from "hardhat";
 // npx hardhat run --network goerli scripts/deployAuctionNft.ts
 
 // verify SC on etherscan 
-// npx hardhat verify --network goerli 0x8DEC16652765ddfD5f8fB7fB3620749b89D9e978 0x71aca2815d8237A3bf3DB4AcE47115666F46a961
+// npx hardhat verify --network goerli 0xE61c44eA153807C05EfB7a9B24a603FFBE65A38D 0x8E05352b5937e9aaCc1e1F39C2A7D335e044a9ED
 
 async function main() {
 
-  const address = "0x71aca2815d8237A3bf3DB4AcE47115666F46a961" // ERC721 address
+  const address = "0x8E05352b5937e9aaCc1e1F39C2A7D335e044a9ED" // ERC721 address
 
   console.log("🚀 deploying scmart contract.....");
 
