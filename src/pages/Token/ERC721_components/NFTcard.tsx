@@ -31,17 +31,12 @@ export default function NftCard({tokenId}) {
   const [error, setError] = useState('')
   const [errorAp, setErrorAp] = useState('')
 
-  // async function pasingMetaData(){
-  //   const response = await fetch(metadataJson);
-  //   const data = await response.json();
-  //   return data
-  // }
   
   useEffect(() => {
     (async () => {
    try {
     setLoader(true)
-     const response = await fetch(`https://ipfs.io/ipfs/QmNM3ZUzASR78M61PsPF3f63j13ZsXNCACnfMshNroFuKz/${tokenId}.json`);
+     const response = await fetch(`https://ipfs.io/ipfs/QmRB4k8jQNeTRUHQZEvStPzSGBwAJWhqvfYUVHCq9GsKVR/${tokenId}.json`);
      const data = await response.json();
      setMetaName(data.name)     
      setImgUri(`https://ipfs.io/ipfs/${data.image.substring(7)}`)
