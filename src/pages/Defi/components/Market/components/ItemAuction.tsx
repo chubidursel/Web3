@@ -20,10 +20,11 @@ export function ItemAuction() {
     end : boolean,
     tokenId : number;
     addressAuc : string
+    closed: boolean;
   }
   
   const [all, setAll] = useState(true)
-  // UPDATE ALL 
+
   useEffect((()=>{
     (async()=>{
       try {
@@ -40,13 +41,16 @@ export function ItemAuction() {
         const tokenID = await contractAuctionSingle.nftId()
         const finished = await contractAuctionSingle.ended()
         const started = await contractAuctionSingle.started()
+        const closedBid = await contractAuctionSingle.biddingClosed();
 
         let newAuc: infoAuction = {
           start : started,
           end : finished,
           addressAuc : addr,
           tokenId : tokenID.toString(),
+          closed: closedBid,
         }
+
         arrAddressAuction.push(newAuc)
       }
       setArrAucWithProvider([...arrAddressAuction] as any)
@@ -58,7 +62,6 @@ export function ItemAuction() {
     })()
   }),[all])
 
-  // const arr = ["sdcsdc", "dscsdcsdc"]
 
   const testingAuc = ()=>{
     console.log("Call func")
@@ -69,18 +72,30 @@ export function ItemAuction() {
     setDisplay(!display)
     setAddressForCard(event.target.value)
   }
+// REFERENCE: https://www.sothebys.com/en/buy/auction/2021/natively-digital-a-curated-nft-sale-2?locale=en&lotFilter=AllLots
+// EXPLANATION
+// There are 3 states of a single Auction
+// 1st -> Live  (started)
+// 2nd -> Closed (Bidding is closed)
+// 3nd -> Finished
 
-
-
-  const listTx = arrAucWithProvider.map((el:any, id) =>{
+  const listTx = arrAucWithProvider.map((el:infoAuction, id) =>{
+    if(!el.start){
+      return null; // DO NOT SHOW AUCTION THAT ARE NoT STARTED (but better show them and add button to start from moddel window)
+    }
     return(<>
       <tr key={id} className='text-center'>
+        {/* {
+          el.end ? <td className='bg-red-300 text-center py-1'>error ❌</td> : el.end ? <td className='bg-green-300 text-center py-1'>finished 🏁</td> : <td className='bg-green-300 text-center py-1'> 🔴 live</td>
+        } */}
+
         {
-          !el.start ? <td className='bg-red-300 text-center py-1'>error ❌</td> : el.end ? <td className='bg-green-300 text-center py-1'>finished</td> : <td className='bg-green-300 text-center py-1'>live</td>
+          (!el.closed && !el.end) ? <td className='bg-green-300 text-center py-1'>🔴 Live</td> :  (el.closed && !el.end) ? <td className='bg-pink-200 text-center py-1'>⌛ Closed</td> : <td className='bg-pink-300 text-center py-1'>🏁 Finished</td>
         }
+
         <td  className='px-3'>{el.tokenId}</td>
         <td>{el.addressAuc}</td>
-        <td className='ml-5 font-bold'><button className='text-sm font-bold rounded-xl m-2 border-2 border-red-400 px-[15px] hover:bg-red-400' value={el.addressAuc} onClick={getCard}>OPEN</button></td>
+        <td className='ml-5 font-bold'><button className='text-sm font-bold rounded-lg m-2 border-2 border-red-400 px-[15px] hover:bg-red-400' value={el.addressAuc} onClick={getCard}>OPEN</button></td>
       </tr>
       
       </>
@@ -98,10 +113,10 @@ export function ItemAuction() {
 
  <table className='bg-orange-100 rounded-xl w-full'>
        <tr className='bg-orange-300 text-center'>
-       <th>Type</th>
+       <th>Status</th>
          <th>ID</th>
-         <th>Address</th>
-         <th>OPEN</th>
+         <th>Auction Address</th>
+         <th>Show</th>
        </tr>
        {listTx}
      </table>

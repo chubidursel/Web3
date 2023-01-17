@@ -5,7 +5,7 @@ import { ethers } from "hardhat";
 // npx hardhat run --network goerli scripts/deployAuctionNft.ts
 
 // verify SC on etherscan 
-// npx hardhat verify --network goerli 0xE61c44eA153807C05EfB7a9B24a603FFBE65A38D 0x8E05352b5937e9aaCc1e1F39C2A7D335e044a9ED
+// npx hardhat verify --network goerli 0x835D203A80F63923Dc5DDDf1bbE9519058365374 0x8E05352b5937e9aaCc1e1F39C2A7D335e044a9ED
 
 async function main() {
 

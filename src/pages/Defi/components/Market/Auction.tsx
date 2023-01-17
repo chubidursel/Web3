@@ -1,10 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import Pic from "../../../../assets/unknown.png"
 import { ItemAuction } from './components/ItemAuction';
-import {Link} from "react-router-dom"
-import { ethers } from 'ethers';
 import Header from '../../../../components/headerNew';
-import defaultProvider from '../../../../abi/defaultProvider';
 import walletProvider from '../../../../abi/walletProvider';
 import { contractAuctionFactory } from '../../../../components/smart_contract/AuctionFactory';
 import { contractERC721} from '../../../../components/smart_contract/ERC721';
@@ -28,9 +24,7 @@ export function Auction() {
     const [timeStart, setTimeStart] = useState();
     const [loaderSecond, setLoaderSecond] = useState(false);
     const [loaderThird, setLoaderThird] = useState(false);
-    
     const [resultDeployment, setResultDeployment] = useState("");
-    const addressAuction = "0xE1D5aFb20a6Fe4bD9139D91C9c833dA4c6AAcF12";
     
     const { contextState, updateContextState } = useAppContext();
     const currentAccount = contextState?.currentAccount;
@@ -146,6 +140,8 @@ console.log('👨‍💻DEV (new contract addr) >>> ', getNewAddr)
                 <h2>📍 Wait for deploying</h2>
                 <h2>📍 Activate your Auction by setting time</h2>
                 <h2>📍 Congratulation!</h2>
+                <h1 className='hover:underline'><a href='https://goerli.etherscan.io/address/0xE61c44eA153807C05EfB7a9B24a603FFBE65A38D#code' target="_blank" 
+                >📑 Etherscan</a></h1>
        </div>
 
 
@@ -157,14 +153,13 @@ console.log('👨‍💻DEV (new contract addr) >>> ', getNewAddr)
   </div>
 
 {/* ------------ 1st WINDOW  (check ownership) ---------------- */}
-
     <Modal  active={showDeploySC}
     setActive={setShowDeploySC}
     marginFromTop={'1/3'}
     >
     
   <div className='rounded-2xl border-4 border-red-400 text-xl px-2 text-center py-5  text-purple-800'>
-  <h1>Before you will create a new Auction we have to check the ownershit of current NFT 🧐</h1>
+  <h1>Before we create a new Auction we have to check the ownershit of current NFT 🧐</h1>
   
   <div className='grid grid-cols-1 justify-center'>
     <button disabled={!resCheckOwner} onClick={handleDeploy} className='ml-3 m-3 font-bold rounded-xl border-2 py-3 border-red-400 px-[15px] hover:bg-red-400 hover:cursor-pointer'>DEPLOY</button>
@@ -180,7 +175,7 @@ console.log('👨‍💻DEV (new contract addr) >>> ', getNewAddr)
     >
     
   <div className='rounded-2xl border-4 border-red-400 text-xl px-[15px] text-center py-5  text-purple-800'>
-  <h1>Sign tx to create new Smart contract 📝. Wait for deployemnt</h1>
+  <h1>Sign tx to create Smart contract 📝 Wait for deployemnt</h1>
   <div className='my-10'><Loader /></div>
   <div className='bg-yellow-100 rounded-lg'>{resultDeployment}</div>
   </div>
@@ -196,7 +191,7 @@ console.log('👨‍💻DEV (new contract addr) >>> ', getNewAddr)
       <h1>Now we gonna activate your Auction! Write how many mins do you want the auction is being active for.</h1>
         <label className='font-bold'>Time: </label>
         <input className='m-2 rounded-xl border-solid border-2 pl-2 border-purple-800' type="text" onChange={(e)=>{setTimeStart(e.target.value as any)}} placeholder='minutes' />
-        <div className='flex justify-center'><button disabled={!resCheckOwner} onClick={handleStart} className='font-bold rounded-2xl m-2 border-2 border-red-400 px-[15px] hover:bg-red-400'>START</button>
+        <div className='flex justify-center'><button disabled={!resCheckOwner} onClick={handleStart} className='font-bold rounded-xl text-3xl m-2 border-2 border-red-400 px-[15px] hover:bg-red-400 w-full'>START</button>
     </div></div>
  </Modal>
 

@@ -1,5 +1,15 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.10;
+
+/*
+   ______  ______               ______     ______  
+ .' ___  ||_   _ `.           .' ____ \  .' ___  | 
+/ .'   \_|  | | `. \  ______  | (___ \_|/ .'   \_| 
+| |         | |  | | |______|  _.____`. | |        
+\ `.___.'\ _| |_.' /          | \____) |\ `.___.'\ 
+ `.____ .'|______.'            \______.' `.____ .' 
+   ChubiDuracell                 smart contract
+*/
 
 interface IERC721 {
     function safeTransferFrom(
@@ -65,6 +75,7 @@ contract NftAuction {
     address public highestBidder;
     uint public highestBid;
     mapping(address => uint) public bids;
+    address[] public bidders;
 
     constructor(address _nft, address _seller, uint _nftId) {
         nft = IERC721(_nft);
@@ -94,6 +105,7 @@ contract NftAuction {
 
         if (highestBidder != address(0)) {
             bids[highestBidder] += highestBid;
+            bidders.push(highestBidder);
         }
 
         highestBidder = msg.sender;
@@ -102,12 +114,8 @@ contract NftAuction {
         emit Bid(msg.sender, msg.value);
     }
 
-    function withdraw() external {
-        uint bal = bids[msg.sender];
-        bids[msg.sender] = 0;
-        payable(msg.sender).transfer(bal);
-
-        emit Withdraw(msg.sender, bal);
+    function biddingClosed()public view returns(bool){
+        return block.timestamp >= endAt;
     }
 
     function end() external {
@@ -116,12 +124,23 @@ contract NftAuction {
         require(!ended, "ended");
 
         ended = true;
+
+        // NFT transfer
         if (highestBidder != address(0)) {
             nft.safeTransferFrom(address(this), highestBidder, nftId);
             seller.transfer(highestBid);
         } else {
             nft.safeTransferFrom(address(this), seller, nftId);
         }
+
+        // FUNDS transfer
+           for(uint i = 0; i <= bidders.length - 1; i++){
+               uint fundReturn = bids[bidders[i]];
+                payable(bidders[i]).transfer(fundReturn);
+
+                emit Withdraw(msg.sender, fundReturn);
+            }
+
 
         emit End(highestBidder, highestBid);
     }
