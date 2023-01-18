@@ -21,13 +21,13 @@ export function Other() {
       {/* <h2 className="flex justify-center text-6xl mt-3 text-blue-100 font-bold">Other</h2> */}
      
     <div className='flex justify-center'>
-    <div className='grid grid-cols-1 w-1/3 text-5xl text-purple-800 text-center font-bold justify-center mt-5'>
+    <div className='grid grid-cols-1 w-1/3 text-5xl text-purple-800 text-center font-bold justify-center my-5'>
           <Link to="/Other/Converter" className="bg-blue-100 rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse">Converter 🔄</Link>
           <Link to="/Other/Address" className='bg-blue-100 rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse'>Account 📮</Link> 
           <Link to="/Other/Proxy" className='bg-blue-100 rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse'>Proxy 👷</Link>
           <Link to="/Game" className='bg-blue-100 rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse'>Game 🎮</Link>
           <Link to="/Other/Ipfs" className='bg-blue-100 rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse'>IPFS 💾</Link>
-
+          <Link to="/Paint" className='bg-blue-100 rounded-2xl border-4 hover:shadow-2xl border-red-400 m-2 p-5 hover:bg-blue-200 hover:animate-pulse'>Paint 🎨</Link>
     
     </div>
     </div>

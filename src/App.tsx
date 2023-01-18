@@ -22,7 +22,7 @@ import { Game } from "./pages/Other/Game";
 import { AAVE } from "./pages/Defi/AAVE";
 import { Bridge } from "./pages/Defi/bridge";
 import {Terminal} from "./pages/Other/Terminal"
-import DrawableCanvas from "./pages/Other/Paint"
+import Paint from "./pages/Other/Paint"
 
 function App() {
   return (
@@ -50,7 +50,7 @@ function App() {
       <Route path="/Other/Address" element={<Address />} />
       <Route path="/Game" element={<Game />} />
       <Route path="/Terminal" element={<Terminal />} />
-      <Route path="/Paint" element={<DrawableCanvas />} />
+      <Route path="/Paint" element={<Paint />} />
     </Routes>
   )
 }

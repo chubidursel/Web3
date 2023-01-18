@@ -1,146 +1,95 @@
-import React, { useRef, useEffect, useState } from 'react';
-// import IPFS from 'ipfs-http-client'
-// const ipfs = new IPFS('https://ipfs.infura.io:5001');
-// import { useStorageUpload } from "@thirdweb-dev/react";
+import React, { useState, useRef, useEffect } from 'react';
+//import * as ipfsClient from 'ipfs-http-client';
 
-interface DrawableCanvasProps {
-}
+const Paint: React.FC = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  useEffect(() => {
+    if (canvasRef.current) {
+      canvasRef.current.width = window.innerWidth;
+      canvasRef.current.height = window.innerHeight;
+      setContext(canvasRef.current.getContext('2d'));
+    }
+  }, []);
+  const [color, setColor] = useState('black');
+  const [brushSize, setBrushSize] = useState(10);
+  const [context, setContext] = useState<CanvasRenderingContext2D | null>(null);
+  const [isPainting, setIsPainting] = useState(false);
+  const [prevPos, setPrevPos] = useState({ offsetX: 0, offsetY: 0 });
 
-const DrawableCanvas: React.FC<DrawableCanvasProps> = () => {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-    const [context, setContext] = useState<CanvasRenderingContext2D | null>(null);
-    const [isDrawing, setIsDrawing] = useState(false);
-    const [lastX, setLastX] = useState(0);
-    const [lastY, setLastY] = useState(0);
-    const [color, setColor] = useState("#000000"); // Initial color is black
-  
-    useEffect(() => {
-      if (canvasRef.current) {
-        const canvas = canvasRef.current;
-        const ctx = canvas.getContext('2d');
-        setContext(ctx);
-      }
-    }, []);
-  
-    const startDrawing = (event: React.MouseEvent<HTMLCanvasElement>) => {
-      setIsDrawing(true);
-      setLastX(event.clientX);
-      setLastY(event.clientY);
-    };
-  
-    const stopDrawing = () => {
-      setIsDrawing(false);
-    };
-  
-    const draw = (event: React.MouseEvent<HTMLCanvasElement>) => {
-      if (!isDrawing) {
-        return;
-      }
-  
+  const startPaint = (event: React.MouseEvent<HTMLCanvasElement>) => {
+    if (context) {
+      setIsPainting(true);
+      setPrevPos({ offsetX: event.clientX, offsetY: event.clientY });
+    }
+  };
+
+  const finishPaint = () => {
+    setIsPainting(false);
+  };
+
+  const paint = (event: React.MouseEvent<HTMLCanvasElement>) => {
+    if (isPainting) {
       if (context) {
-        const rect = canvasRef.current!.getBoundingClientRect();
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
-        context.beginPath();
-        context.moveTo(lastX, lastY);
-        context.lineTo(x, y);
         context.strokeStyle = color;
+        context.lineWidth = brushSize;
+        context.beginPath();
+        context.moveTo(prevPos.offsetX, prevPos.offsetY);
+        context.lineTo(event.clientX, event.clientY);
         context.stroke();
-        setLastX(x);
-        setLastY(y);
-      }
-  
-    };
-  
-    const erase = () => {
-      if (context) {
-        context.clearRect(0, 0, context.canvas.width, context.canvas.height);
-      }
-    };
-  
-    const save = () => {
-      if (canvasRef.current) {
-        const dataUrl = canvasRef.current.toDataURL();
-        // Generating a link to trigger download of the image
-        const link = document.createElement('a');
-        link.href = dataUrl;
-        link.download = 'image.png';
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-      }
-    };
-
-    //const { mutateAsync: upload } = useStorageUpload();
-    const saveToIpfs = async () => {
-        if (canvasRef.current) {
-          const dataUrl = canvasRef.current.toDataURL();
-          const buffer = new Buffer(dataUrl.split(',')[1], 'base64');
-          
-          try {
-            // const files = await ipfs.files.add(buffer);
-            // console.log(`Image saved to IPFS: ${files[0].path}`);
-            
-          } catch (err) {
-            console.error(err);
-          }
+        setPrevPos({ offsetX: event.clientX, offsetY: event.clientY });
         }
-
-        // ThirdWEB solution!!!!!!!!!!!!!!!!!!!!!
-    // const uploadUrl = await upload({data: [file], options: { uploadWithGatewayUrl: true, uploadWithoutDirectory: true },
-    // });
-    // alert(uploadUrl);
-      };
-
-    return (
-        <div className="relative h-screen flex flex-col items-center justify-center">
-            <canvas
+        }
+        };
+        
+        const erase = () => {
+        if (context) {
+        context.clearRect(0, 0, canvasRef.current?.width, canvasRef.current?.height);
+        }
+        };
+        
+        const save = async () => {
+          console.log("Shalom!")
+          // // const ipfs = ipfsClient('cloudflare-ipfs.com', '443', { protocol: 'https' });
+          // const ipfs = ipfsClient('ipfs.io', '443', { protocol: 'https' });
+          // const canvas = canvasRef.current;
+          // const data = canvas.toDataURL();
+          // const buffer = Buffer.from(data.split(',')[1], 'base64');
+        
+          // const results = await ipfs.add(buffer);
+          // console.log(results[0].cid.toString());
+        }
+        
+        return (
+          <div className="h-screen">
+            <h1 className='bg-yellow-300 text-center'>BETA</h1>
+            <div className="relative" style={{background:"white", height:"100%"}}>
+              <canvas
                 ref={canvasRef}
-                width={400}
-                height={400}
-                className="m-auto cursor-pointer bg-white"
-                onMouseDown={startDrawing}
-                onMouseUp={stopDrawing}
-                onMouseMove={draw}
-            />
-            <div className="flex justify-center items-center m-4">
-                <button className="bg-blue-500 text-white rounded-full p-2 mr-2" onClick={save}>Save</button>
-                <button className="bg-red-500 text-white rounded-full p-2 mr-2" onClick={erase}>Erase</button>
-                <input type="color" className="bg-gray-300 p-2 rounded-full" value={color} onChange={e => setColor(e.target.value)} />
+                className="border hover:cursor-crosshair border-gray-400 h-full w-full absolute top-0 left-0"
+                onMouseDown={startPaint}
+                onMouseUp={finishPaint}
+                onMouseLeave={finishPaint}
+                onMouseMove={paint}
+              />
             </div>
-        </div>
-    );
-            };
-            
+            <div className="absolute right-0 top-0 bottom-0 w-1/4 bg-gray-200 p-4">
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={save}>Save</button>
+              <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full my-2" onClick={erase}>Erase</button>
+              <div className="flex mt-2">
+                <label className="text-gray-700">Brush size: </label>
+                <input type="range" min="1" max="100" value={brushSize} onChange={(e) => setBrushSize(parseInt(e.target.value))} className="ml-2" />
+                <span className="ml-2">{brushSize}px</span>
+              </div>
+              <div className="flex mt-2">
+                <label className="text-gray-700">Color: </label>
+                <input type="color" value={color} onChange={(e) => setColor(e.target.value)} className="ml-2" />
+              </div>
+              <h1 className='bg-yellow-300 text-center'>Save to IPFS and then toss CID as a link to generete NFT</h1>
 
+            </div>
+          </div>
+        );
+};
 
-export default DrawableCanvas;
-
-
-
-//  --------------- FUNCTION TO SAVE ipfs CID as new NFT TOKEN -------------------------
-// import { contractPaintNFT } from '../../components/smart_contract/PaintNFT';
-// import conectSigner from '../../components/smart_contract/SIGNER';
-
-// const[result, setResult ] = useState('')
-
-// const ipfsCID = 'Qxnoifknep534i5nn3jnljnkj'
-
-// const handleCreateNFT = async(headOrTail : boolean)=>{
-//     try {
-//       setResult('Pls sign the tx and we will flip the coin! 📝')
-
-//       const contractWithSigner = conectSigner(contractPaintNFT)
-//       const txTransfer = await contractWithSigner.mint({
-//         value: 10000000000000000,
-//       }, ipfsCID);
-//       const res2 = await txTransfer.wait()
-
-//       console.log("👨‍💻 DEV >>>", res2)
-
-//       setResult('Congrat!')
-
-//     } catch (error) {
-//       console.log("❌ ❌ ❌ DEV >>>", error)
-//     }
-//   }
+export default Paint;
