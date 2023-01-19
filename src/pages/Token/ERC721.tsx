@@ -4,11 +4,6 @@ import { useEffect, useState } from 'react';
 import conectSigner from '../../components/smart_contract/SIGNER';
 import getErrorMessage from '../../components/getErrorMessage';
 import logoNft from "../../assets/logoNft.gif"
-import nft1 from "../../assets/nft1.png"
-import nft2 from "../../assets/nft2.png"
-import nft3 from "../../assets/nft3.png"
-import nft4 from "../../assets/nft4.png"
-import nftButt from "../../assets/nftButt.png"
 import etherscan from "../../assets/etherscan.png"
 import opensea from "../../assets/opensea.png"
 import daoo from "../../assets/daoo.png"
@@ -22,87 +17,19 @@ import Modal from '../../components/modal';
 import NftCard from './ERC721_components/NFTcard';
 import { useAppContext } from "../../hooks/useAppContext";
 import { element } from 'prop-types';
+import NftPic from './ERC721_components/nftpic';
+import Interact from './ERC721_components/interact';
+import AuctionNft from './ERC721_components/auction';
+import DaoNft from './ERC721_components/daoNft';
+import {
+  leftAnimation,
+  rightAnimation,
+  upAnimation,
+  downAnimation,
+  faq,
+  img
+} from "./ERC721_components/addInfo";
 
-const leftAnimation = {
-  hidden:{
-    x: -500,
-    opacity: 0,
-  },
-  visible: {
-    x: 100,
-    opacity: 1,
-    transition: {duration: 3, delay: 1},
-}}
-
-const rightAnimation = {
-  hidden:{
-    x: 500,
-    opacity: 0,
-  },
-  visible: {
-    x: 370,
-    opacity: 1,
-    transition: {duration: 3, delay: 1}
-  },
-}
-const upAnimation = {
-  hidden:{
-    scale: 0,
-    opacity: 0,
-    y: -1000,
-  },
-  visible: {
-    scale: 1,
-    opacity: 1,
-    y: 0,
-    transition: {duration: 2}
-  },
-}
-
-const downAnimation = {
-  hidden:{
-    scale: 0,
-    opacity: 0,
-    y: 1000,
-  },
-  visible: {
-    scale: 1,
-    opacity: 1,
-    y: 0,
-    transition: {duration: 2}
-  },
-}
-const faq = {
-  visible: custom => ({ opacity: 1, scale: 1, transition: { duration: 1.5, delay: 1 * custom, ease: [0, 0.71, 0.2, 1.01] } }),
-  hidden: { opacity: 0, scale: 0.5 }
-};
-
-const img = [{
-  title: 'Chinese',
-  src: nft1,
-  custom: 4, 
-},
-{
-  title: 'English',
-  src: nft2,
-  custom: 2, 
-},
-{
-  title: 'Arab',
-  src: nft3,
-  custom: 3, 
-},
-{
-  title: 'Russian',
-  src: nft4,
-  custom: 4, 
-},
-// {
-//   title: 'Sick Duck',
-//   src: nft5,
-//   custom: 1, 
-// },
-]
 
 export function ERC721() {
   const [result, setResult] = useState("");
@@ -111,19 +38,11 @@ export function ERC721() {
   const [numInteract, setNumInteract] = useState(null) // toos this number to NFT card
   const [active, setActive] = useState<boolean>(false);
 
-  const [tokenId, setTokenId] = useState();
-  const [tokenUri, setTokenUri] = useState('');
-  const [tokenOwner, setTokenOwner] = useState('');
-  const [opneTokenInfo, setOpneTokenInfo] = useState(false);
-  const [error, setError] = useState('')
-  const [errorQ, setErrorQ] = useState('')
+  const [arrNft, setArrNft] = useState([]);
+  const [amountNft, setAmountNft] = useState();
   
-  const [arrNftByAddr, setArrNftByAddr] = useState('')   // 📕 ARR of nftbyAddr or mistake
   
-  const handleMod = () => {
-   if(numInteract < 9) {setActive(true)} 
-  else {setErrorQ('This token ID is not valid! 😞')
-  setTimeout(() => {setErrorQ('')}, 2000)}}
+  const handleMod = () => setActive(true)
   
   // 📕 ADDR TO GET LIST OF NFT TOKENS BY ADDRESS  
   const { contextState, } = useAppContext();
@@ -146,22 +65,14 @@ export function ERC721() {
          if(currentAccount){
           const arrOfNFTs = await contractERC721.tokenList(currentAccount)
           const totalAmount = await contractERC721.balanceOf(currentAccount)
-          
-          // const resArr = arrOfNFTs.forEach(element => {
-          //   element.toString();
-          // });
-
-          //??????????????? SHOW THE LIST BUT CHANGE BIGnum to Normal
-          setArrNftByAddr(`You have: ${totalAmount.toString()} NFTs. TokenIG: `)
-          console.log("📕DEV >> ", arrOfNFTs)
-         }else{
-          setArrNftByAddr('Connect your wallet!')
-         } 
+          setArrNft(arrOfNFTs);
+          setAmountNft(totalAmount.toString())
+         }
       } catch (error) {
         console.log(error)
       }
     })()
-  }),[])
+  }),[currentAccount])
 
   const handlePurcase = async()=>{
     try{
@@ -172,7 +83,7 @@ export function ERC721() {
       });
       await txTransfer.wait()
       console.log("👨‍💻 DEV >> ", txTransfer)
-      setResult(`🥳 Congratulation!, You bought nice NFT`);
+      setResult(`🥳 Congratulations!, You bought nice NFT`);
       setTimeout(() => {setResult('')}, 2000)
     }catch (error) {
       console.log(error)
@@ -191,7 +102,7 @@ export function ERC721() {
     </Header>
 
 <div className="flex justify-end">
-            <div className="flex flex-col fixed gap-3 -mr-60">
+            <div className="flex flex-col fixed gap-3 -mr-60 mt-60">
                 <a href='https://goerli.etherscan.io/address/0x8E05352b5937e9aaCc1e1F39C2A7D335e044a9ED' target="_blank">
                          <motion.img 
         src={etherscan} 
@@ -218,7 +129,7 @@ className='grid grid-cols-1 w-[96vw] gap-32'
   <div className="flex justify-center">
   <motion.img 
         src={logoNft} 
-        className='w-[40%] h-[70vh] -m-20 -z-50'
+        className=' -m-20 -z-50'
         variants={upAnimation}
         />
   </div>
@@ -241,104 +152,34 @@ className='grid grid-cols-1 w-[96vw] gap-32'
 </Section>
 
 {/* ---------- NFT pic --------- */}
-<Section>
-  <motion.div variants={faq} className='flex justify-center'>
-      <div className='text-white font-bold text-5xl my-44 bg-blue-100 bg-opacity-50 rounded-2xl w-fit flex justify-center p-5'>
-  <p>Here you can see few variants of our NFT</p>
-  </div>
+<NftPic 
+img={img}
+faq={faq}
 
-  </motion.div>
-<div 
-className="grid grid-cols-[300px_300px_300px_300px] justify-around h-[350px] mb-44">
-{img.map(({custom, title, src}) => 
-  <motion.div 
-  variants={faq}
-custom={custom}
-className='bg-blue-100 bg-opacity-50 rounded-2xl grid grid-cols-1'>
-<img src={src}/>
-<p className='text-3xl font-bold text-center'>{title}</p>
-</motion.div>)
-}  
-</div>
-</Section>
-
+/>
 {/* ---------- Interact --------- */}
-<Section>
-          <motion.div 
-    className="bg-blue-100 bg-opacity-50 p-5 text-2xl rounded-2xl mb-44
-    w-[1000px] justify-between grid grid-cols-[_1fr_1fr] gap-10" 
-    variants={leftAnimation}
->
-  <div className=''>
-            <h1 className='text-3xl font-bold text-center'>Interact with your NFT</h1> <br/>
-<p className='text-left'>Just enter ID number of your NFT and you will see additional info.</p><br/>
-<p className='text-right'>You can see image of your NFT, transfer or approve it! Also you could see another NFT from collection, just enter ID!</p><br/>
-  </div>
-    <div className='grid grid-cols-[_1fr] py-5'>
-       <h1 className="text-3xl text-center font-bold m-1">Interact</h1>
-            <input className='rounded-xl text-center h-fit w-1/2 justify-self-center' type='number' 
-            onChange={(e)=>setNumInteract(e.target.value)} placeholder='token ID'/>
-            <button onClick={handleMod} 
-            className='border-2 justify-self-center w-1/2 h-fit border-black text-3xl bg-blue-200 rounded-lg hover:bg-blue-400 p-3 mt-3'>
-              Show</button>
-              <img src={nftButt} className="w-[40%] justify-self-center"/>
-  </div>
+<Interact 
+leftAnimation={leftAnimation}
+currentAccount={currentAccount}
+amountNft={amountNft}
+arrNft={arrNft}
+handleMod={handleMod}
+setNumInteract={setNumInteract}
 
-{/* !!!!!!!!!!!!!!!!!! HERE IS STRING WITH 'conncet wallet' or 'Empty' or List with Token ID !!!!!!!!!! */}
-
-{arrNftByAddr}
-        </motion.div >
-</Section>
-
+/>
 {/* -------- Auction --------------- */}
 
-<Section>
-          <motion.div 
-    className="bg-blue-100 bg-opacity-50 p-5 text-2xl rounded-2xl mb-44
-    w-[1000px] justify-between grid grid-cols-[_1fr_1fr] gap-10" 
-    variants={rightAnimation}
->
-  <div className='text-center'>
-            <h1 className='text-3xl font-bold'> Do you want to sell your NFT?</h1> <br/>
-<p className='text-left'>Here you can create you own auction and sell you NFT by the best price!</p><br/>
-<p className='text-left'>Enjoy!</p> 
-  </div>
-  <div className=''>
-  <Link to="../Defi/Market/Auction" >
-   <motion.img 
-   src={auction}
-   whileHover={{scale: 1.3}}
-   />
-   </Link>
-  </div>
-        </motion.div >
-</Section>
-  
+<AuctionNft
+rightAnimation={rightAnimation}
+auction={auction}
+/>  
   {/* -------- DAO --------------- */}
-<Section>
-          <motion.div 
-    className="bg-blue-100 bg-opacity-50 p-5 text-2xl rounded-2xl mb-20
-    w-[1000px] justify-between grid grid-cols-[_1fr_1fr] gap-10 items-stretch" 
-    variants={leftAnimation}
->
-  <div className='text-center'>
-            <h1 className='text-3xl font-bold'>THE DAO</h1> <br/>
-<p className='text-center text-3xl'>Welcome to our community!</p><br/>
-<p className='text-center'>The NFT-holders can create a proposal and vote for them.</p><br/>
-<p className='text-center'>Participating in a DAO also gives individuals a sense of ownership.</p><br/>
-  </div>
-  <div className='self-center'>
-  <Link to="/DAO" >
-   <motion.img className='hover:animate-spin'
-   src={daoo}
-
-   />
-   </Link>
-  </div>
-        </motion.div >
-</Section>
+  <DaoNft
+  leftAnimation={leftAnimation}
+daoo={daoo}
+  />
     <section>
-      <div className='bottom'>
+      <div className=''>
          <Questions />
       </div>
     </section>

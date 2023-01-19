@@ -6,6 +6,7 @@ import { auctionPutAddress } from '../../../../../components/smart_contract/Auct
 import { contractAuctionFactory } from '../../../../../components/smart_contract/AuctionFactory';
 import Modal from '../../../../../components/modal';
 import Loader from '../../../../../components/loader';
+import usePagination from '../../../../../utils/pagination';
 
 
 export function ItemAuction() {
@@ -63,10 +64,10 @@ export function ItemAuction() {
   }),[all])
 
 
-  const testingAuc = ()=>{
-    console.log("Call func")
-    console.log(arrAucWithProvider)
-  }
+  // const testingAuc = ()=>{
+  //   console.log("Call func")
+  //   console.log(arrAucWithProvider)
+  // }
 
   const getCard = async(event) =>{
     setDisplay(!display)
@@ -78,8 +79,10 @@ export function ItemAuction() {
 // 1st -> Live  (started)
 // 2nd -> Closed (Bidding is closed)
 // 3nd -> Finished
+    {/* } */}
+    const {pages, currentTx} = usePagination({inArr: arrAucWithProvider})
 
-  const listTx = arrAucWithProvider.map((el:infoAuction, id) =>{
+  const listTx = currentTx.map((el:infoAuction, id) =>{
     if(!el.start){
       return null; // DO NOT SHOW AUCTION THAT ARE NoT STARTED (but better show them and add button to start from moddel window)
     }
@@ -120,16 +123,18 @@ export function ItemAuction() {
        </tr>
        {listTx}
      </table>
+     <div className='flex justify-center cursor-pointer'>{pages}</div>
+
 </div>
     }
 
-    {display &&
+    {/* {display && */}
      <Modal  active={display}
      setActive={setDisplay}
      marginFromTop={'top-1/4'}>
     <AuctionLot address = {addressForCard}/>
     </Modal>
-    }
+    {/* } */}
     </>
   )
 }

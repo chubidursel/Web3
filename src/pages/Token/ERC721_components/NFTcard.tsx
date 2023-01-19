@@ -15,18 +15,7 @@ export default function NftCard({tokenId}) {
   const { contextState, updateContextState } = useAppContext();
   const currentAccount = contextState?.currentAccount;
   
-  // HOW TO GET PIC FROM LOCAL FOLDER ????
-  // import pic from '../ERC721_components/img/1.png'
-  const imageLocal = `../img/${tokenId}.png`; //<<< just store all ur img localy in our folder
-
-
-// >>>>>>> parse data from metaData
-
-//https://gateway.pinata.cloud/ipfs/QmNM3ZUzASR78M61PsPF3f63j13ZsXNCACnfMshNroFuKz/1.json  << ur u can try this gateway
-// const contentIPFS = 'QmNM3ZUzASR78M61PsPF3f63j13ZsXNCACnfMshNroFuKz';
-// const metadataURI = `${contentIPFS}/${tokenId}.json`;
-// const metadataJson = `https://ipfs.io/ipfs/${metadataURI}`;
-  const [imgUri, setImgUri] = useState('')
+   const [imgUri, setImgUri] = useState('')
   const [metaName, setMetaName] = useState('')
   const [error, setError] = useState('')
   const [errorAp, setErrorAp] = useState('')
@@ -47,23 +36,7 @@ export default function NftCard({tokenId}) {
  })();
      }, [tokenId])
  
-
-  // useEffect(() => {
-  //   setLoader(true)
-  // pasingMetaData().then((data)=>{
-  //   setLoader(true)
-  //   const link = data.image; 
-  //   const cutSting = link.substring(7)
-  //  // console.log(cutSting);
-  //   const imgURL = `https://ipfs.io/ipfs/${cutSting}`
-  //   setImgUri(imgURL)
-  // //  console.log(imgURL);
-    
-  //   setMetaName(data.name)
-  //   setLoader(false)
-  // })}, [])
-
-// >>>>>>>> FUNC 1
+ // >>>>>>>> FUNC 1
   const handleTransfer = async()=>{
     try{
       const contractERC721WithSigner = conectSigner(contractERC721)
@@ -126,7 +99,7 @@ export default function NftCard({tokenId}) {
     <>
  <div className='text-purple-800 w-full'>
  <h1 className="text-xl text-center text-gray-200 font-bold m-1">PICTURE</h1>
-      {loader ? <Loader /> : <img className='h-32 ml-44' src={imgUri} />}
+     <div className='flex justify-center'> {loader ? <Loader /> : <img className='h-44' src={imgUri} />}</div>
           <div className='rounded-2xl border-2 border-red-400 px-[15px] p-2 m-2'>  
             <h1 className='bg-red-100 rounded-2xl text-center font-bold'>Description</h1>
             <div className='flex flex-row'> <p className="font-bold mr-3">name:</p><p>{metaName}</p></div>
