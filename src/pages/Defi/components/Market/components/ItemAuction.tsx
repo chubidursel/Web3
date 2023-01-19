@@ -12,7 +12,7 @@ export function ItemAuction() {
   const [display, setDisplay] = useState(false);
   const [arrAucWithProvider, setArrAucWithProvider] = useState([]);
   const [amountAuc, setAmountAuc] = useState();
-  const [addressForCard, setAddressForCard] = useState();
+  const [addressForCard, setAddressForCard] = useState([]);
   const [loader, setLoader] = useState(false)
 
   type infoAuction = {
@@ -63,14 +63,15 @@ export function ItemAuction() {
   }),[all])
 
 
-  const testingAuc = ()=>{
-    console.log("Call func")
-    console.log(arrAucWithProvider)
-  }
+  // const testingAuc = ()=>{
+  //   console.log("Call func")
+  //   console.log(arrAucWithProvider)
+  // }
 
   const getCard = async(event) =>{
-    setDisplay(!display)
-    setAddressForCard(event.target.value)
+    setAddressForCard(event.target.value.split(','))
+    console.log(addressForCard);
+    setDisplay(true)
   }
 // REFERENCE: https://www.sothebys.com/en/buy/auction/2021/natively-digital-a-curated-nft-sale-2?locale=en&lotFilter=AllLots
 // EXPLANATION
@@ -95,7 +96,7 @@ export function ItemAuction() {
 
         <td  className='px-3'>{el.tokenId}</td>
         <td>{el.addressAuc}</td>
-        <td className='ml-5 font-bold'><button className='text-sm font-bold rounded-lg m-2 border-2 border-red-400 px-[15px] hover:bg-red-400' value={el.addressAuc} onClick={getCard}>OPEN</button></td>
+        <td className='ml-5 font-bold'><button className='text-sm font-bold rounded-lg m-2 border-2 border-red-400 px-[15px] hover:bg-red-400' value={[el.addressAuc, el.tokenId.toString()]} onClick={getCard}>OPEN</button></td>
       </tr>
       
       </>
@@ -123,13 +124,13 @@ export function ItemAuction() {
 </div>
     }
 
-    {display &&
      <Modal  active={display}
      setActive={setDisplay}
      marginFromTop={'top-1/4'}>
-    <AuctionLot address = {addressForCard}/>
+    <AuctionLot 
+    tokenId = {addressForCard[1]}
+    address = {addressForCard[0]}/>
     </Modal>
-    }
     </>
   )
 }
