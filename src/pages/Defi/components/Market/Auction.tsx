@@ -173,7 +173,7 @@ marginFromTop={'1/3'}
 handleStop={handleStop}
     >
   <div className='rounded-2xl border-4 border-red-400 text-xl px-[15px] text-center py-5  text-purple-800'>
-  <h1>Sign tx to create Smart contract 📝 Wait for deployment</h1>
+  <h1 className='mb-10'>Sign tx to create Smart contract 📝 Wait for deployment</h1>
   {loaderSecond && <Loader />}
   <div className='bg-yellow-100 rounded-lg'>{resultDeployment}</div>
   </div>
@@ -193,7 +193,7 @@ handleStop={handleStop}
         <label className='font-bold'>Time: </label>
         <input className='m-2 rounded-xl border-solid border-2 pl-2 border-purple-800' type="text" min={0} onChange={(e)=>{setTimeStart(e.target.value as any)}} placeholder='minutes' />
         <div className='flex justify-center'>
-        <button disabled={!resCheckOwner} onClick={handleStart} className='font-bold rounded-2xl m-2 border-2 border-red-400 px-[15px] hover:bg-red-400'>START</button>
+        <button disabled={!resCheckOwner} onClick={handleStart} className='font-bold w-full rounded-lg m-2 border-2 border-red-400 px-[15px] hover:bg-red-400'>START</button>
     </div></div>
  </Modal>
 
