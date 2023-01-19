@@ -9,6 +9,7 @@ import conectSigner from '../../components/smart_contract/SIGNER';
 import { useAppContext } from "../../hooks/useAppContext";
 import head from "../../assets/head.png"
 import tail from "../../assets/tail.png"
+import Loader from '../../components/loader';
 
 export function Game() {
   const [active, setActive] = useState(false);
@@ -96,24 +97,19 @@ export function Game() {
 : 
 <div className='flex justify-center mt-32'><img src={head} alt="coin"  className='w-[200px] h-[200px]'/></div>
 }
-  
-        {/* <FlipCoin /> */}
-        
 
-
+      
   <div className='flex items-center mt-12 flex-col'>
+  {loader ? <div className='mt-20'><Loader /> </div>: 
     <div>
-   {/* <button  className="w-64 font-bold bg-orange-400 text-white py-2 rounded-xl text-5xl border-4 border-orange-300 px-[15px] hover:bg-orange-600 hover:shadow-xl">{loader ? <Loader /> : "FLIP"}</button> */}
-   
 <div className='mt-3'>
     <button onClick={()=>handleFlip(true)} className="w-32 font-bold bg-pink-500 border-4 border-orange-300 border-r-0  text-white py-2 rounded-xl rounded-r-none text-5xl  px-[15px] hover:bg-orange-600 hover:shadow-xl">head</button>
     <button onClick={()=>handleFlip(false)} className="w-32 font-bold bg-purple-500 text-white py-2 rounded-xl border-4 border-orange-300 border-l-0  rounded-l-none text-5xl  px-[15px] hover:bg-orange-600 hover:shadow-xl">tail</button>
-</div>
-
+</div> 
 <button onClick={()=>setActive(true)} className="w-64 font-bold my-3 text-white py-2 rounded-xl text-2xl border-4 border-orange-300 px-[15px] hover:bg-orange-600 hover:shadow-xl">SETUP</button>
-
-    </div>
-              
+        
+    </div> }
+   
         <div className='flex justify-center'>
         {result && <h1 className='text-center text-xl bg-blue-200 rounded-xl my-3 py-4 px-2'>{result}</h1> }
         </div>
