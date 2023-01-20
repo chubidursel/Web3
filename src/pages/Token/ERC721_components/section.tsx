@@ -1,6 +1,8 @@
 import { useAnimation, motion, useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
 
+
+
 function Section({ children }) {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
@@ -15,7 +17,10 @@ function Section({ children }) {
     }, [control, isInView]);
   
     return (
-      <section ref={ref}>
+      <section 
+      ref={ref}
+     
+      >
         <motion.span
           initial="hidden"
           animate={control}
