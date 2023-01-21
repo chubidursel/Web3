@@ -1,4 +1,4 @@
-const Modal = ({ children, active, setActive, marginFromTop, handleStop}) => {
+const Modal = ({ children, active, setActive, marginFromTop, handleStop = false}) => {
 
     const handleStopPropag =(e) => {
     e.stopPropagation()

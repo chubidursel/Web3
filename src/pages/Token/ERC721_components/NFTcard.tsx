@@ -103,7 +103,7 @@ export default function NftCard({tokenId}) {
           <div className='rounded-2xl border-2 border-red-400 px-[15px] p-2 m-2'>  
             <h1 className='bg-red-100 rounded-2xl text-center font-bold'>Description</h1>
             <div className='flex flex-row'> <p className="font-bold mr-3">name:</p><p>{metaName}</p></div>
-            <div className='flex flex-row'> <p className="font-bold mr-3">metadata:</p> <a href={`https://ipfs.io/ipfs/QmNM3ZUzASR78M61PsPF3f63j13ZsXNCACnfMshNroFuKz/${tokenId}.json`} target="_blank">link 🔗</a></div>
+            <div className='flex flex-row'> <p className="font-bold mr-3">metadata:</p> <a href={`https://ipfs.io/ipfs/QmRB4k8jQNeTRUHQZEvStPzSGBwAJWhqvfYUVHCq9GsKVR/${tokenId}.json`} target="_blank">link 🔗</a></div>
             <div className='flex flex-row'> <p className="font-bold mr-3" >owner:</p><p className="hover:underline cursor-pointer" onClick={()=>{copyTextToClipboard(infoAddressOwner)}}>{infoAddressOwner.toString().slice(0, 7) + "..." + infoAddressOwner.toString().slice(34)}</p></div>
             {ownerOrNot ? <p className='text-green-600 font-bold'>This is your NFT! You can interact with it!🙂</p> : <p className='text-red-500'>This NFT token doesn't belong to your account</p>}
           </div>

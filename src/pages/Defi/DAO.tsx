@@ -68,6 +68,8 @@ export function DAO() {
         <p>In our simple DAO implementation 1 token = 1 vote.</p>
       </div>
     </Modal>
+
+
     </>
   )
 }

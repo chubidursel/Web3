@@ -17,7 +17,6 @@ type Proposal = {
   initiator : string,
 }
 
-
 export function PrposalTable() {
   const [allProp, setAllProp] = useState ([])
   const[displayCard, setDisplayCard] = useState(false)
@@ -31,12 +30,9 @@ export function PrposalTable() {
         setLoader(true)
         const indexProp = await contractDAO.nextProposal();
         const index = indexProp - 1;
-
         let arrAllProp = [];
-
         for(let i = 1; i <= index; i++){
           const data = await contractDAO.Proposals(i);
-
           const newProp  = {
             id: Number(data.id.toString()),
             exist: data.exist,
@@ -57,30 +53,16 @@ export function PrposalTable() {
     })()
   }),[all])
 
-
-  const showCard = (event) => {
-    setDisplayCard(!displayCard)
-    
-    const card = allProp.forEach(card => {
-      if(card.id === event.target.value){
-        return card
-      }
-      setObjForCard(card)
-    })
-  }
-
-  // const listTx = allProp.map((el:Proposal, id) =>{
-  //   return(
-  //     <tr key={id}>
-  //       <td>{el.id}</td>
-  //       <td>{el.desc}</td>
-  //       <td>{el.voteUp}</td>
-  //       <button value={el.id} onClick={showCard} className='text-sm font-bold rounded-xl m-2 border-2 border-red-400 px-[15px] hover:bg-red-400'>VOTE</button>
-  //     </tr>
-  //   )
-  // }) 
-  //{el.passed ? "active" : "finished"}
-
+  const showCard = (event: any) => {
+    try {
+     setObjForCard(allProp.find(i => i.id == event.target.value))  
+     console.log(objForCard);
+     setDisplayCard(true)  
+    } catch (error) {
+     console.log(error);
+    }
+   }
+  
   const listTx = allProp.map((el:Proposal) =>{
     return(<>
       <tbody key={el.id} className='w-full my-2 text-xl  text-center'>
@@ -88,10 +70,11 @@ export function PrposalTable() {
         <td>{el.id}</td>
         <td>{el.desc}</td>
         <td>{el.voteUp}</td>
-        <td>{el.deadline > Number(Date.now().toString().slice(0,10))
-        ? <button onClick={showCard} value={el.id} className='text-sm m-2 btn'>VOTE
-        </button>
-        : <p>Finished</p>}</td>     
+        <td>
+<button onClick={showCard} value={el.id} className='text-sm m-2 btn'>
+  {el.deadline > Number(Date.now().toString().slice(0,10)) ? "VOTE" : "Info"}
+  </button>
+        </td>
       </tr>
       </tbody>
     </>
