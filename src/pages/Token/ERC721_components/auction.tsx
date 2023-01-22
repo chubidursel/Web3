@@ -12,10 +12,10 @@ const AuctionNft = ({rightAnimation, auction}) => {
 >
   <div className='text-center'>
             <h1 className='text-3xl font-bold'> Do you want to sell your NFT?</h1> <br/>
-<p className='text-left'>Here you can create you own auction and sell you NFT by the best price!</p><br/>
-<p className='text-left'>Enjoy!</p> 
+<p className='text-justify'>Here you can create you own auction and sell you NFT by the best price!</p><br/>
+<p className='text-center'>Enjoy!</p> 
   </div>
-  <div className=''>
+  <div className='w-[90%]'>
   <Link to="../Defi/Market/Auction" >
    <motion.img 
    src={auction}

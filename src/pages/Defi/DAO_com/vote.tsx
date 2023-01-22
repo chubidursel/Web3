@@ -3,6 +3,7 @@ import { ethers } from 'ethers';
 import { contractDAO} from '../../../components/smart_contract/Dao_contract';
 import conectSigner from '../../../components/smart_contract/SIGNER';
 import getErrorMessage from '../../../components/getErrorMessage';
+import { Line } from 'rc-progress';
 
 export function Vote({objInfo}) {
 
@@ -29,8 +30,10 @@ export function Vote({objInfo}) {
       setResultTx(message)
       setTimeout(() => {setResultTx('')}, 5000)
     }
-
   }
+
+  const progBarPrcnt = objInfo.voteUp/(objInfo.voteDown + objInfo.voteUp) * 100
+  
 // UPDATE!!!!!
   return (
     <div className='rounded-2xl border-2 w-full border-red-400 px-[15px] p-2 m-2 text-purple-800 text-lg'>
@@ -39,11 +42,18 @@ export function Vote({objInfo}) {
             "..." + objInfo.initiator.toString().slice(38)}</h1></div>
       <div className='flex flex-row'><h1 className='mr-2 font-bold'>time: </h1><h1>{(new Date(objInfo.deadline * 1000)).toLocaleDateString()}</h1></div>
       <div className='flex flex-row'><h1 className='mr-2 font-bold'>descripion:</h1><h1> {objInfo.desc}</h1></div>
+      {objInfo.deadline > Number(Date.now().toString().slice(0,10)) &&
       <div className='flex flex-row justify-around mt-2'>
       <button className='font-bold ml-1 w-1/2 rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400' value={1} onClick={handleVote}>up</button>
       <button className='font-bold ml-1 w-1/2 rounded-2xl border-2 border-red-400 px-[15px] hover:bg-red-400' value={0} onClick={handleVote}>down</button>
-      
-    </div> 
+      </div>}
+      <div className="flex justify-between">
+             <p><strong>Voted for:</strong> {objInfo.voteUp}</p><p><strong>Voted against:</strong> {objInfo.voteDown}</p>
+      </div>
+<div className='flex justify-center'>
+<Line percent={progBarPrcnt} strokeWidth={5} trailWidth={5} strokeColor="green" trailColor='red' className='w-[90%] m-3'/>
+</div>
+
     <div className='flex justify-center'> {resultTx && <h1 className='font-bold mt-3 bg-yellow-100 w-full py-2 text-center  px-1 rounded-xl text-purple-900 text-xl '>{resultTx}</h1>}   </div>
     </div>
   )

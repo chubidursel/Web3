@@ -1,7 +1,6 @@
 import Section from '../ERC721_components/section';
 import { motion } from "framer-motion";
 import { Link } from 'react-router-dom';
-
 const DaoNft = ({leftAnimation, daoo}) => {
     return ( 
         <Section>
@@ -18,7 +17,7 @@ const DaoNft = ({leftAnimation, daoo}) => {
   </div>
   <div className='self-center'>
   <Link to="/DAO" >
-   <motion.img className='hover:animate-spin w-[100%]'
+   <motion.img className='hover:animate-spin w-[90%]'
    src={daoo}
 
    />
