@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import { contractDAO} from '../../../components/smart_contract/Dao_contract';
 import { contractERC721} from '../../../components/smart_contract/ERC721';
 import { useAppContext } from "../../../hooks/useAppContext";
@@ -36,6 +36,7 @@ useEffect((()=>{
       console.log('👨‍💻DEV ???? ', descProp, minTime)
       const txCreate = await contractDAOWithSigner.createProposal(descProp, minTime)
       await txCreate.wait(1);
+      setResult("✅ Confirmed")
       console.log('👨‍💻DEV>>', txCreate);
       setTimeout(() => {setResult('')}, 5000)
     } catch (error) {

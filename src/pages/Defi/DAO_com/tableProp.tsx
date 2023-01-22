@@ -71,8 +71,8 @@ export function PrposalTable() {
         <td>{el.desc}</td>
         <td>{el.voteUp}</td>
         <td>
-<button onClick={showCard} value={el.id} className='text-sm m-2 btn'>
-  {el.deadline > Number(Date.now().toString().slice(0,10)) ? "VOTE" : "Info"}
+<button onClick={showCard} value={el.id} className='text-lg rounded-lg hover:bg-orange-400 hover:shadow-xl m-2 btn bg-orange-300 px-3 py-1'>
+  {el.deadline > Number(Date.now().toString().slice(0,10)) ? 'VOTE' : "info"}
   </button>
         </td>
       </tr>
@@ -84,7 +84,7 @@ export function PrposalTable() {
 
   return (<>
 {loader ? <Loader /> : 
-   <><div className='bg-blue-100 w-1/2 rounded-2xl border-4 border-red-400 px-[15px] text-purple-800'>
+   <><div className='bg-blue-100 w-1/2 rounded-2xl border-4 mb-10 border-red-400 px-[15px] text-purple-800'>
    <p className='font-bold text-4xl py-3 text-center'>Governance Overview</p>
    <div className='flex justify-center'> 
    <button onClick={() => setAll(!all)}
