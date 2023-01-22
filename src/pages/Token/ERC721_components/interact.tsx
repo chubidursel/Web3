@@ -17,7 +17,7 @@ const Interact = ({leftAnimation, currentAccount, amountNft, handleMod, arrNft, 
     <div className='grid grid-cols-[_1fr] py-5'>
     <h1 className='text-purple-800 text-center font-bold text-3xl'>{currentAccount 
     ?  arrNft.length != 0 ? `You have: ${amountNft} NFTs. TokenID of yours NFTs: ${arrNft.map(i => '#' + i.toString()).reverse().join(', ')}`
-    : `You don't have any NFT but you can mint it on the top of this page`
+    : `You don't have any NFTs but you can mint it above`
     : 'Connect your wallet!'}</h1>
        {/* <h1 className="text-3xl text-center font-bold m-1">Interact</h1> */}
             <input className='rounded-xl text-center h-fit w-1/2 justify-self-center' type='number' min={1}

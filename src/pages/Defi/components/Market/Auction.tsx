@@ -160,7 +160,7 @@ console.log('👨‍💻DEV (new contract addr) >>> ', getNewAddr)
   <div className='rounded-2xl border-4 border-red-400 text-xl px-2 text-center py-5  text-purple-800'>
   <h1>Before we create a new Auction we have to check the ownership of current NFT 🧐</h1>
   <div className='grid grid-cols-1 justify-center'>
-  {resCheckOwner ? <button onClick={handleDeploy} className='ml-3 m-3 className="font-bold rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400 hover:cursor-pointer'>DEPLOY</button>
+  {resCheckOwner ? <button onClick={handleDeploy} className='ml-3 m-3 font-bold text-3xl rounded-xl border-2 border-red-400 px-[15px] hover:bg-red-400 hover:cursor-pointer'>DEPLOY</button>
     : <p className='text-center rounded-xl bg-red-300 p-2'>You are not an Owner! or maybe you've already used your NFT in one of current auctions. Check it!</p>}
     </div></div>
  </Modal>
