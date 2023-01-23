@@ -19,7 +19,6 @@ const DaoNft = ({leftAnimation, daoo}) => {
   <Link to="/DAO" >
    <motion.img className='hover:animate-spin w-[90%]'
    src={daoo}
-
    />
    </Link>
   </div>

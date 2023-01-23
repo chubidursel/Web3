@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react'
 import { contractERC20 } from '../../../components/smart_contract/erc20';
+import usePagination from '../../../utils/pagination';
 
 function EventErc20() {
   const [eventsLog, setEventsLog] = useState([])
@@ -16,22 +17,7 @@ function EventErc20() {
     })()
   }),[])
 
-    const[currentPage, setCurrentPage] = useState(1)
-    const [txPerPage] = useState(10)
-    const lastTxId = currentPage * txPerPage
-    const firstTxId = lastTxId - txPerPage
-    const currentTx = eventsLog.reverse().slice(firstTxId, lastTxId)
-    const pageNum = []
-    for (let i=1; i <= Math.ceil(eventsLog.length/txPerPage); i++){
-      pageNum.push(i)
-    }
-    const paginate = (pageNumber: any) => setCurrentPage(pageNumber)
-
-  
-
-
-  const pages = pageNum.map(page => <p onClick={() => paginate(page)} key={page} 
-  className='font-semibold text-2xl m-2 text-center md:hover:text-pink-400'>{page}</p>)
+    const {currentTx, pagPages} = usePagination({inArr: eventsLog})
 
   const listTx = currentTx.map((el:any, id) =>{
     return(
@@ -51,14 +37,9 @@ function EventErc20() {
   })
 
 
-
-
-  return (
+  return (<>
     <div className='bg-blue-100 w-1/2 rounded-2xl border-4 border-red-400 px-[15px] text-purple-800'>
         <p className='font-bold text-3xl p-1 text-center mt-2'>Token transfer history</p>
-        <div className='flex justify-center'> 
-        
-        </div>
         <table className='bg-orange-100 w-full  my-2 text-xl rounded-2xl text-center'>
           <tr className='bg-orange-300 '>
             <th>from</th>
@@ -67,8 +48,8 @@ function EventErc20() {
           </tr>
           {listTx}
         </table>
-       <div className='flex justify-center cursor-pointer'>{pages}</div>
-    </div>
+{pagPages}
+    </div></>
   )
 }
 
