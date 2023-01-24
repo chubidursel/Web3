@@ -81,7 +81,7 @@ export function ItemAuction() {
 // 2nd -> Closed (Bidding is closed)
 // 3nd -> Finished
     {/* } */}
-    const {pages, currentTx} = usePagination({inArr: arrAucWithProvider})
+    const {pagPages, currentTx} = usePagination({inArr: arrAucWithProvider})
 
   const listTx = currentTx.map((el:infoAuction, id) =>{
     if(!el.start){
@@ -124,7 +124,7 @@ export function ItemAuction() {
        </tr>
        {listTx}
      </table>
-     <div className='flex justify-center cursor-pointer'>{pages}</div>
+     <div className='flex justify-center cursor-pointer'>{pagPages}</div>
 
 </div>
     }
