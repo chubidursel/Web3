@@ -69,7 +69,7 @@ export function PrposalTable() {
       <tr>
         <td>{el.id}</td>
         <td>{el.desc}</td>
-        <td>{el.voteUp}</td>
+        <td>{el.voteUp+el.voteDown}</td>
         <td>
 <button onClick={showCard} value={el.id} className='text-sm m-2 btn'>
   {el.deadline > Number(Date.now().toString().slice(0,10)) ? "VOTE" : "Info"}
