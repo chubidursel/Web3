@@ -3,6 +3,7 @@ import { contractDAO} from '../../../components/smart_contract/Dao_contract';
 import Modal from '../../../components/modal';
 import {Vote} from './vote';
 import Loader from '../../../components/loader';
+import { value } from '@material-tailwind/react/types/components/chip';
 
 //import { contractERC20 } from '../../../components/smart_contract/erc20';
 type Proposal = {
@@ -15,6 +16,11 @@ type Proposal = {
   countConducted: boolean,
   passed : boolean,
   initiator : string,
+  contractTarget: string, 
+  funcSelector: string,
+  ethToSend: number,
+  isItFinished: boolean,
+  counted: boolean,
 }
 
 export function PrposalTable() {
@@ -32,6 +38,7 @@ export function PrposalTable() {
         const index = indexProp - 1;
         let arrAllProp = [];
         for(let i = 1; i <= index; i++){
+          const isitDone = await contractDAO.isItFinished(i)
           const data = await contractDAO.Proposals(i);
           const newProp  = {
             id: Number(data.id.toString()),
@@ -40,8 +47,13 @@ export function PrposalTable() {
             deadline: Number(data.deadline.toString()),
             voteUp: Number(data.votesUp.toString()),
             voteDown: Number(data.votesDown.toString()),
+            counted: data.countConducted,
             passed: data.passed,
             initiator: data.initiator,
+            contractTarget: data.target,
+            funcSelector: data.funcExecute,
+            ethToSend: data.ethToSend,
+            isItFinished: isitDone,
           }
           arrAllProp.push(newProp)
         }
@@ -69,10 +81,10 @@ export function PrposalTable() {
       <tr>
         <td>{el.id}</td>
         <td>{el.desc}</td>
-        <td>{el.voteUp}</td>
+        <td>{el.voteUp + el.voteDown}</td>
         <td>
 <button onClick={showCard} value={el.id} className='text-lg rounded-lg hover:bg-orange-400 hover:shadow-xl m-2 btn bg-orange-300 px-3 py-1'>
-  {el.deadline > Number(Date.now().toString().slice(0,10)) ? 'VOTE' : "info"}
+  {!el.isItFinished ? 'VOTE' : el.counted ? 'Info' : 'Finish'}
   </button>
         </td>
       </tr>
@@ -105,7 +117,7 @@ export function PrposalTable() {
 <Modal 
 active={displayCard}
 setActive={setDisplayCard}
-marginFromTop={2}
+marginFromTop={'top-24'}
 >
  <Vote objInfo = {objForCard}/>
 </Modal></>

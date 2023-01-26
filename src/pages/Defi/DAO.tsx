@@ -10,12 +10,16 @@ import {Link} from "react-router-dom";
 export function DAO() {
   const [initiateProp, setInitiateProp] = useState(false)
   const [amountVote, setAmountVote] = useState()
+  const [quorum, setQuorum] = useState("")
 
   useEffect((()=>{
     (async()=>{
       try {
         const numMinted = await contractERC721.amountMintedNFT()
         setAmountVote(numMinted.toString())
+
+        const q =  await contractDAO.quorum()
+        setQuorum(q.toString())
       } catch (error) {
         console.log(error)
       }
@@ -37,13 +41,13 @@ export function DAO() {
       <div>
             <h2 className="flex justify-center text-6xl text-blue-100 font-bold m-3 mb-5">DAO</h2>
             <div className="flex justify-center space-x-4 text-white m-6">
-                <a href='https://goerli.etherscan.io/address/0x33C0Be7211F2eB39Cfb80f3Df9E5aAeC0e50E82E#code' target="_blank" 
+                <a href='https://goerli.etherscan.io/address/0x6d30cdc795E5036397a21C8F376E2Deb7714f93B#code' target="_blank" 
                 className="font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400">Etherscan </a>  
              
              <Link to="/Token/ERC721"> <button className="font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400">
             NFT token</button> </Link>
             <button onClick={handleToggle} className="font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400">
-            Amount of votes</button> 
+            Votes</button> 
             </div>
             <div className='flex justify-center'>
             <button onClick={()=>{setInitiateProp(!initiateProp)}} className='w-1/3 text-white font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-4xl hover:bg-red-400'>
@@ -55,7 +59,7 @@ export function DAO() {
     <Modal 
     active={initiateProp}
     setActive={setInitiateProp}
-    marginFromTop={'top-1/3'}
+    marginFromTop={'top-10'}
     >
       
       <InitiatePropse />
@@ -63,9 +67,11 @@ export function DAO() {
 
     <Modal  active={amount} setActive={setAmount} marginFromTop={'top-1/3'}>
       <div className='text-center'>
-        <p className='font-bold text-2xl mt-5 text-purple-800'> Amount of votes: {amountVote}</p> <br />
-        <p>Right now this amount of NFT token has been minted.</p>
-        <p>In our simple DAO implementation 1 token = 1 vote.</p>
+        <p className='font-bold text-2xl mt-5 text-purple-800'> Amount of Minted NFT: {amountVote}</p>
+        <p>In our DAO implementation 1 NFT holder = 1 vote.</p>
+
+        <p className='font-bold text-2xl mt-5 text-purple-800'> Quorum: {quorum}</p>
+        <p>Quorum required for a proposal to pass.</p>
       </div>
     </Modal>
 
