@@ -63,7 +63,7 @@ useEffect((()=>{
             <label className='font-bold'>Address:</label><br />
             <input placeholder='smart contract address' className='w-full mb-3 rounded border-solid border-2 pl-2 border-purple-800' onChange={(e)=>{setAddrTarget(e.target.value as string)}} /><br />
         
-            <label className='font-bold'>Func Selector:</label><br />
+            <label className='font-bold'>Function:</label><br />
             <input placeholder='0x371303c0' className='w-full mb-3 rounded border-solid border-2 pl-2 border-purple-800' onChange={(e)=>{setFuncSelector(e.target.value as any)}} /><br />
         
             <label className='font-bold'>Value:</label><br />

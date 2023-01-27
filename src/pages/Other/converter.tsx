@@ -7,7 +7,7 @@ export function Conveter() {
     const [eth, setEth] = useState<number>(0);
     //selector
     const [resSelecotr, setResSelector] = useState('')
-    const funcSelRef = useRef<string>('')
+    const funcSelRef = useRef<HTMLInputElement>()
     //kecccek
     const [resKeccak, setResKeccak] = useState('')
     const keccakRef = useRef<HTMLInputElement>() //useRef<HTMLInputElement>('')
@@ -30,7 +30,7 @@ export function Conveter() {
 
     const handleFuncSelector = async() =>{
       try{
-      const data = await contractConvertor.funcSelector(funcSelRef.current);
+      const data = await contractConvertor.funcSelector(funcSelRef.current?.value);
       setResSelector(data)
     } catch (error) {
       console.log(error)
@@ -181,7 +181,7 @@ export function Conveter() {
             <div className=' flex flex-col w-max bg-blue-100 rounded-2xl border-4 border-red-400 px-[19px] py-3 m-8 hover:bg-blue-200' onClick={()=>{setResSelector('')}}>
                 <h1 className='text-2xl font-bold text-center underline'>Funcion Selector</h1>
                 <label>func name and param type</label>
-                <input ref={funcSelRef as any} placeholder='name(unit256, address)' className='hover:shadow-xl rounded-lg pl-2 mt-3'></input>
+                <input ref={funcSelRef} placeholder='name(unit256, address)' className='hover:shadow-xl rounded-lg pl-2 mt-3'></input>
               <button className='bg-blue-200 rounded-lg mt-4 text-lg font-bold hover:bg-blue-300 hover:shadow-xl' onClick={handleFuncSelector} >convert</button>
                 {(resSelecotr) && <h1 className='mt-2 text-center font-bold hover:underline cursor-pointer active:text-xl'  onClick={()=>{copyTextToClipboard(resSelecotr)}}>{resSelecotr}</h1>}
             </div>

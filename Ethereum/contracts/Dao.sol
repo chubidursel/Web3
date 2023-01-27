@@ -1,5 +1,16 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.15;
+
+/*
+   ______  ______               ______     ______  
+ .' ___  ||_   _ `.           .' ____ \  .' ___  | 
+/ .'   \_|  | | `. \  ______  | (___ \_|/ .'   \_| 
+| |         | |  | | |______|  _.____`. | |        
+\ `.___.'\ _| |_.' /          | \____) |\ `.___.'\ 
+ `.____ .'|______.'            \______.' `.____ .' 
+   ChubiDuracell                 smart contract
+                    V2
+*/
 
 interface MyNFT {
         function balanceOf(address) external view returns (uint256);
@@ -8,13 +19,13 @@ interface MyNFT {
 
 contract DaoSimple {
     uint256 public nextProposal;
-    MyNFT daoContract;
+    MyNFT nftContract;
 
     constructor( address nft_contract){
         nextProposal = 1;
-        daoContract = MyNFT(nft_contract);
+        nftContract = MyNFT(nft_contract);
     }
-
+// enum Status{Exists, CountConducted, Passed}
     struct proposal{
         uint256 id;
         bool exists;
@@ -22,11 +33,13 @@ contract DaoSimple {
         uint deadline;
         uint256 votesUp;
         uint256 votesDown;
-        uint256 maxVotes;
         mapping(address => bool) voteStatus;
         bool countConducted;
         bool passed;
         address initiator;
+        address target; //Contract to triger
+        bytes funcExecute;  // func in this sc
+        uint256 ethToSend;  // if func required to send ETH
     }
 
     mapping(uint256 => proposal) public Proposals;
@@ -50,15 +63,24 @@ contract DaoSimple {
         bool passed
     );
 
+    event Execute(
+        uint256 id,
+        bool done,
+        bytes returndata
+    );
+
+
+    
+
 // NFT holdre can vore
     function checkNftHolder(address _proposalist) private view returns (bool){
-        if(daoContract.balanceOf(_proposalist) != 0){
+        if(nftContract.balanceOf(_proposalist) != 0){
             return true;  
         }
         return false;
     }
 
-    function createProposal(string memory _description, uint _time) public {
+    function createProposal(string memory _description, uint _time, address _target, uint256 _ethValue, bytes memory _funcExecute) public {
         require(checkNftHolder(msg.sender), "Only NFT holders can put Proposals");
 
         proposal storage newProposal = Proposals[nextProposal];
@@ -66,8 +88,12 @@ contract DaoSimple {
         newProposal.exists = true;
         newProposal.description = _description;
         newProposal.deadline = block.timestamp + _time;
-        newProposal.maxVotes = daoContract.amountMintedNFT();
-         newProposal.initiator = msg.sender;
+        //newProposal.maxVotes = nftContract.amountMintedNFT();
+        newProposal.initiator = msg.sender;
+        newProposal.target = _target;
+        newProposal.funcExecute = _funcExecute;
+        newProposal.ethToSend = _ethValue;
+
 
         emit proposalCreated(nextProposal, _description, msg.sender);
         nextProposal++;
@@ -94,19 +120,45 @@ contract DaoSimple {
         
     }
 
-    function countVotes(uint256 _id) public {
+    function finish(uint256 _id) public {
         require(checkNftHolder(msg.sender), "Only NFT-holder Can Count Votes");
         require(Proposals[_id].exists, "This Proposal does not exist");
-        require(block.timestamp > Proposals[_id].deadline, "Voting has finished yet");
+        require(isItFinished(_id), "Voting is not finished yet");
         require(!Proposals[_id].countConducted, "Count already conducted");
-
+   
         proposal storage p = Proposals[_id];
         
-        if(Proposals[_id].votesDown < Proposals[_id].votesUp){
-            p.passed = true;            
+        if(Proposals[_id].votesDown < Proposals[_id].votesUp && _quorumReached(_id)){
+            p.passed = true;
+            _execute(_id, p.target, p.ethToSend, p.funcExecute); //After auction is done execute func            
         }
         p.countConducted = true;
         emit proposalCount(_id, p.passed);
     }
+//----------------------------------------------
+   function _execute(uint256 _id, address _target, uint256 _value, bytes memory _calldata) private {
+            (bool success, bytes memory returndata) = _target.call{value: _value}(_calldata);
+            emit Execute(_id, success, returndata);
+        }
 
-}   
+        //DEV
+    function isItFinished(uint _id) public view returns(bool){
+        return block.timestamp >= Proposals[_id].deadline;
+    }
+    
+//---------------------QUORUM-------------------------
+    uint public quorum; //Amount of NFT holder that votes on propsal
+
+// Who should be an owner? Contract it self?
+     function setQuorum(uint _quorum) public {
+         require(_quorum <= nftContract.amountMintedNFT(), "There are not enough mined NFT to set this quorum");
+         quorum = _quorum;
+     }
+     function _quorumReached(uint256 _id) public view returns (bool){
+         return Proposals[_id].votesUp + Proposals[_id].votesDown >= quorum;
+     }
+
+     //Add func to cancel >>>> Proposals[_id].exists = false ???
+
+    receive() external payable { }
+}
