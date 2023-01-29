@@ -63,6 +63,7 @@ contract DaoSimple {
         bool passed
     );
 
+// VerifyCallResult
     event Execute(
         uint256 id,
         bool done,
@@ -82,6 +83,7 @@ contract DaoSimple {
 
     function createProposal(string memory _description, uint _time, address _target, uint256 _ethValue, bytes memory _funcExecute) public {
         require(checkNftHolder(msg.sender), "Only NFT holders can put Proposals");
+        require(_time > minDeadline, "Not enough time for proposal");
 
         proposal storage newProposal = Proposals[nextProposal];
         newProposal.id = nextProposal;
@@ -135,7 +137,7 @@ contract DaoSimple {
         p.countConducted = true;
         emit proposalCount(_id, p.passed);
     }
-//----------------------------------------------
+
    function _execute(uint256 _id, address _target, uint256 _value, bytes memory _calldata) private {
             (bool success, bytes memory returndata) = _target.call{value: _value}(_calldata);
             emit Execute(_id, success, returndata);
@@ -145,12 +147,22 @@ contract DaoSimple {
     function isItFinished(uint _id) public view returns(bool){
         return block.timestamp >= Proposals[_id].deadline;
     }
+
+    function _executor() internal view virtual returns (address) {
+        return address(this);
+    }
+        modifier onlyGovernance() {
+        require(msg.sender == _executor(), "Governor: onlyGovernance");
+        _;
+    }
+
+
     
 //---------------------QUORUM-------------------------
     uint public quorum; //Amount of NFT holder that votes on propsal
 
 // Who should be an owner? Contract it self?
-     function setQuorum(uint _quorum) public {
+     function setQuorum(uint _quorum) public onlyGovernance {
          require(_quorum <= nftContract.amountMintedNFT(), "There are not enough mined NFT to set this quorum");
          quorum = _quorum;
      }
@@ -158,7 +170,15 @@ contract DaoSimple {
          return Proposals[_id].votesUp + Proposals[_id].votesDown >= quorum;
      }
 
+// What if someone make a desicion and vote immidiatly? 
+    uint minDeadline = 10 hours;
+
+    function setMinDeadLine(uint _new) public onlyGovernance {
+        minDeadline = _new;
+    }
+
      //Add func to cancel >>>> Proposals[_id].exists = false ???
 
     receive() external payable { }
+    fallback() external payable { }
 }

@@ -81,7 +81,7 @@ const viewDet = <>
 <div className='bg-blue-100 rounded-lg my-2 pl-3 py-3'>
   <p>Quorum: {"Passed"}</p>
   <p>Smart contract address: {objInfo.contractTarget}</p>
-  <p>Function Selector: {objInfo.funcSelector}</p>
+  <p>Function Selector: {objInfo.funcSelector.slice(0, 10)}...</p>
   {/* <p>Ethereum value: {objInfo.ethToSend}</p> */}
 </div>
 </>

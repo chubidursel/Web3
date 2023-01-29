@@ -78,7 +78,7 @@ console.log(  typeof funcSelRef.current?.value, funcSelRef.current?.value)
       <div>
             <h2 className="flex justify-center text-6xl text-blue-100 font-bold m-3 mb-5">DAO</h2>
             <div className="flex justify-center space-x-4 text-white m-6">
-                <a href='https://goerli.etherscan.io/address/0x6d30cdc795E5036397a21C8F376E2Deb7714f93B#code' target="_blank" 
+                <a href='https://goerli.etherscan.io/address/0x0DD6a1398d5F9adA63687374C8f39A4EA5Be64DF#code' target="_blank" 
                 className="font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400">Etherscan </a>  
              
              <Link to="/Token/ERC721"> <button className="font-bold rounded-2xl border-2 border-red-400 px-[15px] py-2 text-xl hover:bg-red-400">
